@@ -1,0 +1,53 @@
+const { readFileSync, writeFileSync, existsSync } = require('fs')
+const { ethers, network, waffle } = require('hardhat')
+
+const { resolve, dirname, parse } = require('path')
+
+const { sleep, interpolate } = require('./helper')
+const config = require('../core/tokens')
+const { contractAt } = require('../shared/helpers')
+const { parseEther, parseUnits } = require('ethers/lib/utils')
+
+
+async function main() {
+    const [owner, addr1] = await ethers.getSigners()
+    console.log(await ethers.provider.getBlock('latest'))
+    // const Router = await contractAt("contracts/core/Router.sol:Router", "0x9E9cCDcdb384Ee386dBc1139B7d2694AFf5b38e2")
+    // const Vault = await contractAt("contracts/core/Vault.sol:Vault", await Router.vault())
+    const VaultPriceFeed = await contractAt("contracts/core/VaultPriceFeed.sol:VaultPriceFeed", "0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e")
+    console.log(await VaultPriceFeed.isSecondaryPriceEnabled())
+    // const PriceFeedTimelock = await contractAt("PriceFeedTimelock", "0xaaADc140990d9f8B3144aDBE16480315Ad21b315")
+    // await (await PriceFeedTimelock.signalPriceFeedSetTokenConfig("0xB0dB5d72a106F1bF3B75a74C1Ae95376B4eeDb43", "0x0545D88Afa01456b00337eB8B6eABcc240F9E986", "0x4761B9c99334a4488659d2E7A69E8aB9bFa428C6", 8, false)).wait()
+    // await (await PriceFeedTimelock.signalPriceFeedSetTokenConfig("0xB0dB5d72a106F1bF3B75a74C1Ae95376B4eeDb43", "0x42A3737Ff60e77830bE611311bA256E041a03962", "0xee7D19E683fF07944B8f0fFAE4f76951bC3D8041", 8, false)).wait()
+    // await (await PriceFeedTimelock.priceFeedSetTokenConfig("0xB0dB5d72a106F1bF3B75a74C1Ae95376B4eeDb43", "0x0545D88Afa01456b00337eB8B6eABcc240F9E986", "0x4761B9c99334a4488659d2E7A69E8aB9bFa428C6", 8, false)).wait()
+    // await (await PriceFeedTimelock.priceFeedSetTokenConfig("0xB0dB5d72a106F1bF3B75a74C1Ae95376B4eeDb43", "0x42A3737Ff60e77830bE611311bA256E041a03962", "0xee7D19E683fF07944B8f0fFAE4f76951bC3D8041", 8, false)).wait()
+    // await (await PriceFeedTimelock.setVaultPriceFeed("0x1566EE180F7C53AB320520a293cDbdDF0b79CaF6", "0x9CB7Fc09af4e0c7C3d74f6c52b6DBdD335ED0b81")).wait()
+    // console.log("priceFeedBONE", await VaultPriceFeed.priceFeeds("0x1bA5D5209b819aA9180269c7C45B3AE2cda0817C"))
+    // console.log("priceFeedUSDG", await VaultPriceFeed.priceFeeds("0xb80ddDcA31Aac30bA629131dEA5F40CDbB7Bd077"))
+    // console.log("priceFeedBONE", await VaultPriceFeed.priceFeeds("0x1bA5D5209b819aA9180269c7C45B3AE2cda0817C"))
+    // const WBONE = await contractAt("WETH", "0x5FbDB2315678afecb367f032d93F642f64180aa3")
+    // await (await WBONE.connect(addr1).deposit({value: parseEther('5000')})).wait()
+    // await (await WBONE.connect(addr1).approve(Router.address, parseEther('5000'))).wait()
+    // await (await Router.connect(addr1).directPoolDeposit(WBONE.address, parseUnits('5000', 18))).wait()
+    // const PriceFeedBTC = await contractAt("PriceFeed", "0xDb731EaaFA0FFA7854A24C2379585a85D768Ed5C")
+    // console.log(await PriceFeedBTC.latestAnswer())
+    // const SecondaryPriceFeed = await contractAt("FastPriceFeed", "0xfDCf04D59E607C30287b65Bcb0Cf7d70eF5bC74e")
+    // console.log(await waffle.provider.getBlockNumber(), await SecondaryPriceFeed.minBlockInterval(), await SecondaryPriceFeed.lastUpdatedBlock())
+    // await (await PriceFeedTimelock.setVaultPriceFeed("0xfDCf04D59E607C30287b65Bcb0Cf7d70eF5bC74e", "0xB0dB5d72a106F1bF3B75a74C1Ae95376B4eeDb43")).wait()
+    // await (await SecondaryPriceFeed.setPrices(["0xDcfFAcB103D8A01920664ebaA8Af10B356188275"],[parseUnits('0.99991389', 30)],Math.floor(Date.now() / 1000))).wait()
+    // await (await SecondaryPriceFeed.setVaultPriceFeed("0x9CB7Fc09af4e0c7C3d74f6c52b6DBdD335ED0b81")).wait()
+    // console.log(owner.address)
+    // const PriceFeed = await contractAt("PriceFeed", "0xD569731EBe91B827924723Bc6185e1527f772a00")
+    // await (await PriceFeed.setLatestAnswer(parseUnits('1.091', 8))).wait()
+    // const PositionRouter = await contractAt("PositionRouter", "0x9A86494Ba45eE1f9EEed9cFC0894f6C5d13a1F0b")
+    // const key = await PositionRouter.getRequestKey(owner.address, 1)
+    // console.log(await PositionRouter.increasePositionRequests(key))
+    // await PositionRouter.executeIncreasePosition(key, owner.address)
+    // await PositionRouter.executeDecreasePosition(key, owner.address)
+    console.log("===================================================")
+}
+
+main().catch((error) => {
+    console.error(error)
+    process.exitCode = 1
+})

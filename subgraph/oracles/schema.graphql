@@ -1,0 +1,18 @@
+type PriceCandle @entity {
+  id: ID!
+  token: String!
+  open: BigInt!
+  high: BigInt!
+  low: BigInt!
+  close: BigInt!
+  timestamp: Int! # start of period
+  period: String!
+}
+
+type ChainlinkPrice @entity {
+  id: ID!
+  token: String!
+  price: BigInt!
+  timestamp: Int!
+  blockNumber: Int!
+}

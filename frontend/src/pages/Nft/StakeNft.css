@@ -1,0 +1,630 @@
+.StakeNft-layout {
+    padding-top:0px !important;
+    padding-bottom: calc(-0.35rem + 20rem) !important;
+}
+
+.sc-stakenft {
+    color: rgb(255, 255, 255);
+}
+
+.sc-stakenft .container {
+    width: 100%;
+    max-width: 1144px;
+    padding-right: 24px;
+    padding-left: 24px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.sc-stakenft .title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 140%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.sc-stakenft .description {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    margin: 4px 0px 48px;
+    text-align: center;
+}
+
+.roadmap {
+    margin-bottom: 48px;
+}
+
+.roadmap .referral-step {
+    text-align: center;
+    margin-top: 48px;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.roadmap .referral-step-line {
+    max-width: 424px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+    font-size: 14px;
+    display: grid;
+    grid-template-columns: repeat(3, 84px);
+    gap: 84px;
+    position: relative;
+}
+
+.roadmap .referral-step-line .line {
+    top: 18px;
+    position: absolute;
+    background: #7b68ee;
+    height: 3px;
+    width: 100%;
+    z-index: 1;
+}
+
+.roadmap .referral-step-line .step-box {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+}
+
+.roadmap .referral-step-line .step-number {
+    position: relative;
+    z-index: 3;
+    background: rgb(18, 14, 68);
+    border: 2px solid #9e8eff;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 4px;
+    font-size: 16px;
+    line-height: 140%;
+    color: #9e8eff;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.roadmap .referral-step-line .step-box .step-item {
+    max-width: 109px;
+}
+
+.stateInfo {
+    margin-bottom: 48px;
+    display: grid;
+    grid-template-columns: auto 256px 256px;
+    gap: 24px;
+}
+
+.stateInfo > div {
+    max-height: 164px;
+}
+
+.epoch-stats {
+    gap: 20px 16px;
+    padding: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    background-image: url("img/bg.png");
+    background-repeat: no-repeat;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.stateInfo .label {
+    color: rgb(255, 255, 255);
+}
+
+.stateInfo .yourApr .label {
+    margin-bottom: 16px !important;
+}
+
+.epoch-stats .label {
+    color: rgb(255, 255, 255);
+    margin-bottom: 8px;
+}
+
+.epoch-stats div.amount {
+    font-size: 14px;
+}
+
+.epoch-stats div.amount {
+    font-size: 14px;
+}
+
+.stateInfo .amount {
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.stateInfo img {
+    margin-right:5px;
+    width:20px;
+    height:20px;
+}
+
+.next-epoch .time-countdown {
+    display: flex;
+}
+
+.next-epoch .time-countdown .space {
+    margin: 0px 4px;
+}
+
+.stateInfo .stats-box {
+    padding: 24px;
+    background: url(img/bg.png) no-repeat rgba(3, 245, 174, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(35px);
+    border-radius: 24px;
+}
+
+.yourApr {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.stats-box .est-apr {
+    margin-top: 8px;
+}
+
+.reward > div:first-child {
+    margin-bottom: 18px;
+}
+
+.reward > div {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.stateInfo .amount--large {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 120%;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.stateInfo .amount-highlight {
+    /* color: #7b68ee; */
+    margin-right: 4px;
+}
+
+.stateInfo .reward .btn-claim {
+    width: 100%;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.yourNftPanel {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 24px;
+    margin-bottom: 122px;
+    background: #181a20;
+}
+
+.yourNft {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.yourNft .amount-nft {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.yourNft .amount-nft .amount-box {
+    display: flex;
+}
+
+.yourNft .amount-nft .amount-box > div:first-child {
+    margin-right: 24px;
+}
+
+.yourNft .amount-nft span {
+    margin-left: 4px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.eKhGXo .head-right {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.yourNFtInfo {
+    text-align: center;
+    border-radius: 24px;
+    width: 100%;
+    padding: 24px;
+    height: 472px;
+    margin-bottom: 82px;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.yourNFtInfo .img-avt {
+    filter: grayscale(1);
+    margin-bottom: 16px;
+}
+
+.yourNFtInfo .txt-link {
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.yourNFtInfo .txt-link img {
+    margin-left: 5px;
+}
+
+.yourNFtInfo a {
+    text-decoration: none;
+}
+
+.yourNFtInfo a {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: #9e8eff;
+    margin-top: 8px;
+}
+
+.startApp {
+    color: rgb(255, 255, 255);
+    background: rgb(12, 11, 28);
+    position: relative;
+}
+
+.startApp .container {
+    width: 100%;
+    max-width: 1144px;
+    padding-right: 24px;
+    padding-left: 24px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.startApp .panel {
+    position: relative;
+    top: -32px;
+    padding: 41px 0px;
+    background: rgb(64, 67, 129);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    text-align: center;
+}
+
+.startApp .panel .mum1 {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
+
+.startApp .panel .mum2 {
+    position: absolute;
+    right: 24px;
+    bottom: 0px;
+}
+
+.startApp .panel .title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 140%;
+    text-align: center;
+}
+
+.startApp .panel .message {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    margin: 8px auto 24px;
+    text-align: center;
+    width: 430px;
+    max-width: 100%;
+}
+
+.startApp .container a {
+    text-decoration: none;
+}
+
+.StakeNft-layout  .Modal .loading {
+    padding:15px 30px;
+    background: transparent;;
+}
+
+.StakeNft-layout .Modal .loading img {
+    width:90px;
+    height:90px;
+}
+
+.StakeNft-layout .nftPanel {
+    margin-bottom: 50px;;
+}
+
+.StakeNft-layout .yourNfts {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0px, 1fr));
+    padding-top: 0px;
+    gap: 8px;
+}
+
+.StakeNft-layout  .loadMore {
+    width:150px;
+    float:right;
+    padding:8px 20px;
+    margin-bottom:80px;
+    margin-right:10px;
+    border: 1px solid #36384f;
+    border-radius: var(--border-radius-sm);
+    text-align: center;
+    background-color: #1f2038;
+    cursor: pointer;
+}
+
+.StakeNft-layout  .loadMore:hover {
+    background-color: #0c0b1c;
+    cursor: pointer;
+}
+
+
+.StakeNft-layout  .Modal .loading {
+    padding:15px 30px;
+    background: transparent;;
+}
+
+.StakeNft-layout .Modal .loading img {
+    width:90px;
+    height:90px;
+}
+
+.StakeNft-layout .nftPanel {
+    margin-bottom: 50px;;
+}
+.StakeNft-layout .btn-stake {
+    width:150px;
+    float:right;
+    padding:10px 20px;
+    margin-right:10px;
+    border: 1px solid #36384f;
+    border-radius: var(--border-radius-sm);
+    text-align: center;
+    background-color: #1f2038;
+    cursor: pointer;
+    color: white;
+}
+
+.StakeNft-layout  .btn-stake:hover {
+    background-color: #0c0b1c;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+    .sc-stakenft .container {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .sc-stakenft .title {
+        font-size: 22px;
+        padding: 0px;
+        margin-top: 24px;
+    }
+
+    .sc-stakenft .description {
+        font-size: 12px;
+        margin-bottom: 32px;
+    }
+
+    .sc-stakenft .roadmap {
+        margin-bottom: 32px;
+    }
+
+    .sc-stakenft .roadmap .referral-step {
+        margin-top: 32px;
+        font-size: 16px;
+    }
+
+    .sc-stakenft .roadmap .referral-step-line {
+        gap: 63px;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .sc-stakenft .roadmap .referral-step-line .step-item {
+        font-size: 12px;
+    }
+
+    .stateInfo .epoch-stats {
+        padding: 16px;
+        grid-template-columns: 1fr;
+        max-height: unset !important;
+    }
+
+    .stateInfo {
+        gap: 16px;
+        padding: 0px;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 32px;
+    }
+
+    .stateInfo .epoch-stats .current-epoch {
+        order: 1;
+    }
+
+    .stateInfo .epoch-stats .next-epoch {
+        order: 2;
+    }
+
+    .stateInfo .epoch-stats .stake-nft {
+        order: 3;
+    }
+
+    .stateInfo .epoch-stats .apr {
+        order: 4;
+    }
+
+    .stateInfo .epoch-stats .total-reward {
+        order: 5;
+    }
+
+    .stateInfo .epoch-stats .next-epoch-reward {
+        order: 6;
+    }
+
+    .stateInfo .epoch-stats > div {
+        display: flex;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+    }
+
+    .stateInfo .epoch-stats > div .label {
+        margin-bottom: 0px;
+        font-size: 12px;
+    }
+
+    .stateInfo .epoch-stats > div .amount {
+        font-size: 14px;
+    }
+
+    .stateInfo .epoch-stats .amount img {
+        width: 16px;
+    }
+
+    .stateInfo .stats-box {
+        width: 100% !important;
+        padding: 16px;
+    }
+
+    .stateInfo .yourApr {
+        padding: 24px !important;
+    }
+
+    .stateInfo .amount--large {
+        font-size: 36px;
+    }
+
+    .yourNftPanel {
+        margin-bottom: 82px !important;
+        border: none;
+        padding: 0px;
+    }
+
+    .yourNft {
+        margin-bottom: 16px;
+    }
+
+    .yourNFtInfo {
+        height: fit-content;
+        padding: 16px;
+    }
+
+    .yourNFtInfo .img-avt {
+        width: 200px;
+    }
+
+    .startApp .container {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .startApp .mum1 {
+        width: 96px !important;
+    }
+
+    .startApp .mum2 {
+        width: 96px !important;
+        right: 0px !important;
+    }
+
+    .startApp .title {
+        font-size: 24px !important;
+    }
+
+    .startApp .message {
+        font-size: 12px !important;
+    }
+
+    .StakeNft-layout .yourNfts {
+        grid-template-columns: repeat(2, minmax(0px, 1fr)) !important;
+    }
+}
+
+@media screen and (max-width: 991px) {
+
+    .yourNftPanel {
+        margin-bottom: 112px;
+    }
+
+    .yourNft {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .startApp .panel {
+        padding: 24px 0px;
+    }
+
+    .startApp .mum1 {
+        width: 144px;
+    }
+
+    .startApp .mum2 {
+        width: 141px;
+        right: 6px;
+    }
+
+    .StakeNft-layout .btn-stake {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 1099px) {
+
+    .stateInfo .epoch-stats {
+        width: 100%;
+    }
+
+    .stateInfo {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .stateInfo .stats-box {
+        width: calc(50% - 12px);
+    }
+
+    .StakeNft-layout .yourNfts {
+        grid-template-columns: repeat(4, minmax(0px, 1fr));
+    }
+}
+
+@media screen and (max-width: 1368px) {
+
+    .startApp .container {
+        max-width: 100% !important;
+    }
+}

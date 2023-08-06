@@ -1,0 +1,43 @@
+.axes {
+    .table-row{
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+        .title {
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.7rem;
+        }
+        .value {
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.8rem;
+        }
+        
+    }
+    .divider-row {
+        margin: 2rem 0 2rem 0;
+    }
+    .percent-font{
+        color: #00FFC2;
+        line-height: 2.5rem;
+        font-size: 20px;
+        font-weight: 400;
+    }
+    .colored {
+        background: linear-gradient(269.5deg, rgba(0, 148, 255, 0.455) -23.12%, rgba(0, 35, 54, 0.5) 106.82%);
+        padding: 3rem;
+        border-radius: 2.6rem;
+    }
+    .strategy-title {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 18px;
+        letter-spacing: 0em;
+        text-align: left;
+
+    }
+    
+    .alp-container{
+        border-radius: 2.7rem;
+    }
+}

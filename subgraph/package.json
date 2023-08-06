@@ -1,0 +1,10 @@
+{
+    "name": "gmx-subgraph",
+    "license": "UNLICENSED",
+    "devDependencies": {
+      "@graphprotocol/graph-cli": "^0.21.0",
+      "@graphprotocol/graph-ts": "^0.20.0",
+      "typescript": "^4.3.5"
+    }
+  }
+  

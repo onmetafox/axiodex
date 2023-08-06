@@ -1,0 +1,161 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: PositionRouter
+    network: ${ network }
+    source:
+      address: "${ PositionRouter }"
+      abi: PositionRouter
+      startBlock: ${ startBlock }
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - CreateIncreasePosition
+        - CreateDecreasePosition
+      abis:
+        - name: PositionRouter
+          file: ./abis/PositionRouter.json
+      eventHandlers:
+        - event: CreateIncreasePosition(indexed address,address[],address,uint256,uint256,uint256,bool,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleCreateIncreasePosition
+        - event: CreateDecreasePosition(indexed address,address[],address,uint256,uint256,bool,address,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleCreateDecreasePosition
+      file: ./src/mapping.ts
+
+  - kind: ethereum/contract
+    name: RewardRouterV2
+    network: ${ network }
+    source:
+      address: "${ RewardRouter }"
+      abi: RewardRouterV2
+      startBlock: ${ startBlock }
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - StakeGmx
+        - UnstakeGmx
+        - StakeGlp
+        - UnstakeGlp
+      abis:
+        - name: RewardRouterV2
+          file: ./abis/RewardRouterV2.json
+      eventHandlers:
+        - event: StakeGmx(address,address,uint256)
+          handler: handleStakeGmx
+        - event: UnstakeGmx(address,address,uint256)
+          handler: handleUnstakeGmx
+        - event: StakeGlp(address,uint256)
+          handler: handleStakeGlp
+        - event: UnstakeGlp(address,uint256)
+          handler: handleUnstakeGlp
+      file: ./src/mapping.ts
+
+  - kind: ethereum/contract
+    name: Vault
+    network: ${ network }
+    source:
+      address: "${ Vault }"
+      abi: Vault
+      startBlock: ${ startBlock } 
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        # - BuyUSDG
+        - ClosePosition
+        - CollectMarginFees
+        # - CollectSwapFees
+        # - DecreaseGuaranteedUsd
+        # - DecreasePoolAmount
+        - DecreasePosition
+        # - DecreaseReservedAmount
+        # - DecreaseUsdgAmount
+        # - DirectPoolDeposit
+        # - IncreaseGuaranteedUsd
+        # - IncreasePoolAmount
+        - IncreasePosition
+        # - IncreaseReservedAmount
+        # - IncreaseUsdgAmount
+        - LiquidatePosition
+        # - SellUSDG
+        - Swap
+        # - UpdateFundingRate
+        # - UpdatePnl
+        - UpdatePosition
+      abis:
+        - name: Vault
+          file: ./abis/Vault.json
+      eventHandlers:
+        # - event: BuyUSDG(address,address,uint256,uint256,uint256)
+        #   handler: handleBuyUSDG
+        - event: ClosePosition(bytes32,uint256,uint256,uint256,uint256,uint256,int256)
+          handler: handleClosePosition
+        - event: CollectMarginFees(address,uint256,uint256)
+          handler: handleCollectMarginFees
+        - event: CollectSwapFees(address,uint256,uint256)
+          handler: handleCollectSwapFees
+        # - event: DecreaseGuaranteedUsd(address,uint256)
+        #   handler: handleDecreaseGuaranteedUsd
+        # - event: DecreasePoolAmount(address,uint256)
+        #   handler: handleDecreasePoolAmount
+        - event: DecreasePosition(bytes32,address,address,address,uint256,uint256,bool,uint256,uint256)
+          handler: handleDecreasePosition
+        # - event: DecreaseReservedAmount(address,uint256)
+        #   handler: handleDecreaseReservedAmount
+        # - event: DecreaseUsdgAmount(address,uint256)
+        #   handler: handleDecreaseUsdgAmount
+        # - event: DirectPoolDeposit(address,uint256)
+        #   handler: handleDirectPoolDeposit
+        # - event: IncreaseGuaranteedUsd(address,uint256)
+        #   handler: handleIncreaseGuaranteedUsd
+        # - event: IncreasePoolAmount(address,uint256)
+        #   handler: handleIncreasePoolAmount
+        - event: IncreasePosition(bytes32,address,address,address,uint256,uint256,bool,uint256,uint256)
+          handler: handleIncreasePosition
+        # - event: IncreaseReservedAmount(address,uint256)
+        #   handler: handleIncreaseReservedAmount
+        # - event: IncreaseUsdgAmount(address,uint256)
+        #   handler: handleIncreaseUsdgAmount
+        - event: LiquidatePosition(bytes32,address,address,address,bool,uint256,uint256,uint256,int256,uint256)
+          handler: handleLiquidatePosition
+        # - event: SellUSDG(address,address,uint256,uint256,uint256)
+        #   handler: handleSellUSDG
+        - event: Swap(address,address,address,uint256,uint256,uint256,uint256)
+          handler: handleSwap
+        # - event: UpdateFundingRate(address,uint256)
+        #   handler: handleUpdateFundingRate
+        # - event: UpdatePnl(bytes32,bool,uint256)
+        #   handler: handleUpdatePnl
+        # - event: UpdatePosition(bytes32,uint256,uint256,uint256,uint256,uint256,int256)
+        #   handler: handleUpdatePosition
+      file: ./src/mapping.ts
+
+  - kind: ethereum/contract
+    name: GlpManager
+    network: ${ network }
+    source:
+      address: "${ GlpManager }"
+      abi: GlpManager
+      startBlock: ${ startBlock } 
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - HourlyGlpStat
+      abis:
+        - name: GlpManager
+          file: ./abis/GlpManager.json
+      eventHandlers:
+        - event: AddLiquidity(address,address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleAddLiquidity
+        - event: RemoveLiquidity(address,address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleRemoveLiquidity
+      file: ./src/mapping.ts

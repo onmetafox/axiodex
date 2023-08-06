@@ -1,0 +1,4193 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2022-10-05 15:32+0530\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: de\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/pages/Home/Home.js
+msgid "#ShibArmy Burn"
+msgstr "#ShibArmy brennt"
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "01 Apr 2023"
+msgstr ""
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "06 Jan 2022"
+msgstr "06 Jan 2022"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "<0/>Profit price: {0} ${1}. This rule applies for the next {2}, until {3}."
+msgstr "<0/>Gewinnpreis: {0} ${1}. Diese Regel gilt für die nächsten {2}, bis {3}."
+
+#: src/App/App.js
+msgid "<0>Install Coinbase Wallet</0> to start using AXN."
+msgstr ""
+
+#: src/App/App.js
+msgid "<0>Install Coinbase Wallet</0>, and use AXN with its built-in browser."
+msgstr ""
+
+#: src/App/App.js
+msgid "<0>Install MetaMask</0> to start using AXN."
+msgstr ""
+
+#: src/App/App.js
+msgid "<0>Install MetaMask</0>, and use AXN with its built-in browser."
+msgstr ""
+
+#: src/components/Exchange/OrdersToa.js
+msgid "<0>Insufficient liquidity to execute the order</0><1>The mark price which is an aggregate of exchange prices did not reach the specified price</1><2>The specified price was reached but not long enough for it to be executed</2><3>No keeper picked up the order for execution</3>"
+msgstr "<0>Unzureichende Liquidität für die Ausführung des Auftrags</0><1>Der Markpreis, der ein Aggregat der Börsenkurse ist, hat den angegebenen Preis nicht erreicht</1><2>Der angegebene Preis wurde erreicht, aber nicht lange genug, um ihn auszuführen</2><3>Kein Keeper hat den Auftrag zur Ausführung angenommen</3>"
+
+#: src/pages/Nft/NftMint.js
+#: src/pages/PageNotFound/PageNotFound.js
+msgid "<0>Return to </0><1>Homepage</1> <2>or </2> <3>Trade</3>"
+msgstr "<0>Zurück zu </0><1>Homepage</1> <2>oder </2> <3>Traden</3>"
+
+#: src/components/Glp/SwapErrorModal.tsx
+msgid "<0>The pool's capacity has been reached for {0}. Please use another token to buy TLP.</0><1>Check the \"Save on Fees\" section for tokens with the lowest fees.</1>"
+msgstr "<0>Die Kapazität des Pools wurde für {0} erreicht. Bitte verwende einen anderen Token, um ALP zu kaufen.</0><1>Suche im Abschnitt \"Sparen bei den Gebühren\" nach Token mit den niedrigsten Gebühren.</1>"
+
+#: src/components/Exchange/OrdersList.js
+msgid "<0>The price that orders can be executed at may differ slightly from the chart price, as market orders update oracle prices, while limit/trigger orders do not.</0><1>This can also cause limit/triggers to not be executed if the price is not reached for long enough. </1>"
+msgstr ""
+
+#: src/pages/Stake/StakeV2.js
+msgid "<0>This will withdraw and unreserve all tokens as well as pause vesting.<1/><2/>esAXN tokens that have been converted to AXN will remain as AXN tokens.<3/><4/>To claim AXN tokens without withdrawing, use the \"Claim\" button under the Total Rewards section.<5/><6/></0>"
+msgstr "<0>Damit werden alle Token abgehoben und die Reservierung aufgehoben, sowie das Vesting unterbrochen.<1/><2/>esAXN-Token, die in AXN umgewandelt wurden, bleiben als AXN-Token erhalten.<3/><4/>Um AXN-Token zu beanspruchen, ohne sie abzuheben, verwende den Button \"Beanspruchen\" unter dem Abschnitt \"Gesamtbelohnungen\".<5/><6/></0>"
+
+#: src/lib/contracts/callContract.tsx
+#: src/lib/wallets/index.tsx
+msgid "<0>Your wallet is not connected to {0}.</0><1/><2>Switch to {1}</2>"
+msgstr "<0>Dein Wallet ist nicht mit {0} verbunden.</0><1/><2>Wechsle zu {1}</2>"
+
+#: src/pages/Home/Home.js
+msgid "A compilation of premium price feeds is utilized to establish the timing of liquidations, thereby safeguarding positions against momentary price fluctuations."
+msgstr ""
+
+#: src/components/Exchange/SwapBox.js
+msgid "A snapshot of the USD value of your {0} collateral is taken when the position is opened."
+msgstr "Bei der Eröffnung der Position wird eine Momentaufnahme des USD-Wertes deines {0} Kollaterals erstellt."
+
+#: src/components/Glp/GlpSwap.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "APR"
+msgstr "APR"
+
+#: src/components/Stake/GMXAprTooltip.tsx
+msgid "APRs are updated weekly on Wednesday and will depend on the fees collected for the week."
+msgstr "APRs werden wöchentlich am Mittwoch aktualisiert und hängen von den in der Woche erhobenen Gebühren ab."
+
+#: src/pages/Stake/StakeV2.js
+msgid "APRs are updated weekly on Wednesday and will depend on the fees collected for the week. <0/>"
+msgstr ""
+
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+msgid "AVAILABLE"
+msgstr "VERFÜGBAR"
+
+#: src/pages/Ecosystem/Ecosystem.js
+#: src/pages/Ecosystem/Ecosystem.js
+#: src/pages/Ecosystem/Ecosystem.js
+#: src/pages/Ecosystem/Ecosystem.js
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "About"
+msgstr "Über"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Accept confirmation of trigger orders"
+msgstr "Bestätigung von Trigger-Orders akzeptieren"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Accept minimum and {action}"
+msgstr "Minimum akzeptieren und {action}"
+
+#: src/components/Exchange/OrdersToa.js
+msgid "Accept terms to enable orders"
+msgstr "Akzeptiere die Bedingungen, um Orders zu ermöglichen"
+
+#: src/components/Exchange/OrdersToa.js
+msgid "Accept that orders are not guaranteed to execute and trigger orders may not settle at the trigger price"
+msgstr "Akzeptiere, dass die Ausführung von Orders nicht garantiert ist und Trigger-Orders möglicherweise nicht zum Trigger-Preis abgerechnet werden."
+
+#: src/pages/Actions/Actions.js
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Account"
+msgstr "Konto"
+
+#: src/pages/Actions/Actions.js
+msgid "Actions"
+msgstr "Aktionen"
+
+#: src/components/Exchange/PositionsList.js
+msgid "Active Orders"
+msgstr "Aktive Orders"
+
+#: src/components/Referrals/TradersStats.js
+msgid "Active Referral Code"
+msgstr "Aktive Referral Codes"
+
+#: src/pages/Dashboard/AssetDropdown.tsx
+#: src/pages/Dashboard/AssetDropdown.tsx
+msgid "Add to Metamask"
+msgstr "Zu Metamask hinzufügen"
+
+#: src/components/Referrals/JoinReferralCode.js
+msgid "Adding referral code failed."
+msgstr "Hinzufügen des Empfehlungscodes fehlgeschlagen."
+
+#: src/components/Referrals/JoinReferralCode.js
+msgid "Adding..."
+msgstr "Hinzufügen..."
+
+#: src/pages/Stake/StakeV2.js
+msgid "Additional reserve required"
+msgstr "Zusätzliche Reserve erforderlich"
+
+#: src/components/Exchange/OrdersToa.js
+msgid "Additionally, trigger orders are market orders and are not guaranteed to settle at the trigger price."
+msgstr "Außerdem handelt es sich bei Trigger-Order um Markt-Orders, bei denen nicht garantiert wird, dass sie zum Trigger-Kurs abgerechnet werden."
+
+#: src/components/AddressDropdown/AddressDropdown.tsx
+msgid "Address copied to your clipboard"
+msgstr ""
+
+#: src/pages/Referrals/Referrals.js
+msgid "Affiliates"
+msgstr "Affiliate"
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "After claiming you will be able to vest a maximum of {0} esAXN at a ratio of {1} {stakingToken} to 1 esAXN."
+msgstr "Nach Inanspruchnahme kannst du maximal {0} esAXN in einem Verhältnis von {1} {stakingToken} zu 1 esAXN erwerben."
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "After claiming, the esAXN tokens will be airdropped to your account on the selected network within 7 days."
+msgstr "Nach Inanspruchnahme werden die esAXN-Tokens innerhalb von 7 Tagen auf dein Konto im ausgewählten Netzwerk überwiesen."
+
+#: src/components/ModalViews/RedirectModal.js
+msgid "Agree"
+msgstr "Zustimmen"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/PositionSeller.js
+msgid "Allow up to 1% slippage"
+msgstr "Bis zu 1% Slippage erlauben"
+
+#: src/App/App.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/PositionSeller.js
+msgid "Allowed Slippage"
+msgstr "Erlaubter Slippage"
+
+#: src/components/ModalViews/RedirectModal.js
+msgid "Alternative links can be found in the <0>docs</0>.<1/><2/>By clicking Agree you accept the <3>T&Cs</3> and <4>Referral T&Cs</4>.<5/><6/>"
+msgstr "Alternative Links findest du in den <0>Dokumenten</0>.<1/><2/>Mit dem Klick auf Zustimmen akzeptierst du die <3>Geschäftsbedingungen</3> und <4>Referral-Bedingungen</4>.<5/><6/>"
+
+#: src/components/Exchange/NoLiquidityErrorModal.tsx
+msgid "Alternatively, you can select a different \"Collateral In\" token."
+msgstr "Alternativ kannst du auch einen anderen \"Kollateral In\" Token auswählen."
+
+#: src/components/Referrals/AffiliatesStats.js
+#: src/components/Referrals/TradersStats.js
+msgid "Amount"
+msgstr "Menge"
+
+#: src/components/Referrals/AffiliatesStats.js
+msgid "Amount of traders you referred."
+msgstr "Anzahl der von dir geworbenen Trader."
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Amount should be greater than zero"
+msgstr ""
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "Amount to claim"
+msgstr "Zu beanspruchender Betrag"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Announcement"
+msgstr "Ankündigung"
+
+#: src/components/Header/HomeHeaderLinks.tsx
+msgid "App"
+msgstr ""
+
+#: src/domain/tokens/approveTokens.tsx
+msgid "Approval failed"
+msgstr "Genehmigung gescheitert"
+
+#: src/domain/tokens/approveTokens.tsx
+msgid "Approval submitted! <0>View status.</0>"
+msgstr "Genehmigung erteilt! <0>Status anzeigen.</0>"
+
+#: src/domain/tokens/approveTokens.tsx
+msgid "Approval was cancelled"
+msgstr "Genehmigung wurde aufgehoben"
+
+#: src/pages/Nft/ItemCard.js
+msgid "Approve"
+msgstr ""
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+#: src/pages/Stake/StakeV2.js
+msgid "Approve AXN"
+msgstr "AXN genehmigen"
+
+#: src/pages/Nft/StakeNft.js
+msgid "Approve failed."
+msgstr ""
+
+#: src/pages/Nft/StakeNft.js
+msgid "Approve submitted!"
+msgstr ""
+
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Migration/Migration.js
+msgid "Approve {0}"
+msgstr "Genehmige {0}"
+
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+msgid "Approve {stakingTokenSymbol}"
+msgstr "Genehmige {stakingTokenSymbol}"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Approving AXN..."
+msgstr "AXN wird genehmigt..."
+
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Glp/GlpSwap.js
+msgid "Approving {0}..."
+msgstr "Genehmigung von {0}..."
+
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+msgid "Approving {stakingTokenSymbol}..."
+msgstr "Genehmigung von {stakingTokenSymbol}..."
+
+#: src/components/Migration/Migration.js
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+#: src/pages/Nft/ItemCard.js
+msgid "Approving..."
+msgstr " Genehmigung..."
+
+#: src/components/Exchange/NoLiquidityErrorModal.tsx
+msgid "As there is not enough liquidity in ALP to swap {0} to {swapTokenSymbol}, you can use the option below to do so:"
+msgstr "Da die Liquidität in ALP nicht ausreicht, um {0} in {swapTokenSymbol} zu tauschen, kannst du die unten stehende Option verwenden, um dies zu tun:"
+
+#: src/pages/Dashboard/DashboardV1.js
+msgid "Assets Under Management"
+msgstr "Verwaltetes Vermögen"
+
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+msgid "Available"
+msgstr "Verfügbar"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "Available Liquidity"
+msgstr "Verfügbare Liquidität"
+
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+msgid "Available amount to deposit into TLP."
+msgstr "Verfügbarer Betrag zur Einzahlung in TLP."
+
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+msgid "Available amount to withdraw from TLP. Funds not utilized by current open positions."
+msgstr "Verfügbarer Auszahlungsbetrag aus TLP. Mittel, die nicht durch aktuelle offene Positionen in Anspruch genommen werden."
+
+#: src/pages/Home/Home.js
+msgid "Available on your preferred network"
+msgstr "Verfügbar in deinem bevorzugten Netzwerk"
+
+#: src/components/Glp/GlpSwap.js
+msgid "Available:"
+msgstr "Verfügbar:"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Balance"
+msgstr "Balance"
+
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+msgid "Balance:"
+msgstr "Balance:"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Balance: {0}"
+msgstr "Balance: {0}"
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+msgid "Begin Transfer"
+msgstr "Übertragung beginnen"
+
+#: src/components/Migration/Migration.js
+#: src/components/Migration/Migration.js
+msgid "Bonus Tokens"
+msgstr "Bonus Tokens"
+
+#: src/pages/Nft/NftModal.js
+msgid "Bonus decreased by 1% for each group of 100 NFTs minted"
+msgstr ""
+
+#: src/pages/Stake/StakeV2.js
+msgid "Boost Percentage"
+msgstr "Prozentualer Boost"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Boost your rewards with Multiplier Points."
+msgstr ""
+
+#: src/components/Exchange/FeesTooltip.tsx
+#: src/components/Exchange/NetValueTooltip.tsx
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/TradeHistory.js
+msgid "Borrow Fee"
+msgstr "Leihgebühr"
+
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+msgid "Borrow Fee / Day"
+msgstr "Leihgebühr / Tag"
+
+#: src/components/Header/AppHeaderLinks.tsx
+#: src/components/Header/AppHeaderLinks.tsx
+msgid "Buy"
+msgstr "Kaufen"
+
+#: src/pages/BuyGlp/BuyGlp.js
+msgid "Buy / Sell TLP"
+msgstr "ALP Kaufen / Verkaufen"
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Buy BONE directly to Shibarium or transfer it there."
+msgstr ""
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Buy ETH directly to Ethereum or transfer it there."
+msgstr ""
+
+#: src/pages/Stake/StakeV2.js
+msgid "Buy AXN"
+msgstr "AXN Kaufen"
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Buy AXN from Traderjoe:"
+msgstr ""
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Buy AXN from Uniswap (make sure to select Ethereum):"
+msgstr ""
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Buy AXN from a Decentralized Exchange"
+msgstr ""
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Buy AXN from centralized exchanges:"
+msgstr ""
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Buy AXN from centralized services"
+msgstr ""
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Buy AXN on {0}"
+msgstr ""
+
+#: src/pages/Buy/Buy.js
+msgid "Buy AXN or TLP"
+msgstr "AXN oder ALP kaufen"
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Buy AXN using Decentralized Exchange Aggregators:"
+msgstr ""
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Buy AXN using FIAT gateways:"
+msgstr ""
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Buy AXN using any token from any network:"
+msgstr ""
+
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+#: src/pages/Stake/StakeV2.js
+msgid "Buy TLP"
+msgstr "ALP Kaufen"
+
+#: src/components/Glp/GlpSwap.js
+msgid "Buy failed."
+msgstr "Kauf fehlgeschlagen."
+
+#: src/components/TokenCard/TokenCard.js
+msgid "Buy on Ethereum"
+msgstr "Auf Ethereum kaufen"
+
+#: src/components/TokenCard/TokenCard.js
+msgid "Buy on Shibarium"
+msgstr "Auf Shibarium kaufen"
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Buy or Transfer BONE to Shibarium"
+msgstr ""
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Buy or Transfer ETH to Ethereum"
+msgstr ""
+
+#: src/components/Glp/GlpSwap.js
+msgid "Buy submitted."
+msgstr "Einkauf übermittelt."
+
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+msgid "Buy with {0}"
+msgstr "Kaufe mit {0}"
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Buy {nativeTokenSymbol}"
+msgstr ""
+
+#: src/components/Exchange/NoLiquidityErrorModal.tsx
+msgid "Buy {swapTokenSymbol} on 1inch"
+msgstr "Kaufe {swapTokenSymbol} auf 1inch"
+
+#: src/components/Glp/GlpSwap.js
+msgid "Buying..."
+msgstr "Kaufen..."
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Can't execute because of an error"
+msgstr "Kann wegen eines Fehlers nicht ausgeführt werden"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/TradeHistory.js
+msgid "Cancel"
+msgstr "Abbruch"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Cancel failed"
+msgstr "Abbruch fehlgeschlagen"
+
+#: src/domain/legacy.ts
+#: src/pages/Exchange/Exchange.js
+msgid "Cancel failed."
+msgstr "Abbruch fehlgeschlagen."
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Cancel submitted"
+msgstr "Abbruch übermittelt"
+
+#: src/domain/legacy.ts
+#: src/pages/Exchange/Exchange.js
+msgid "Cancel submitted."
+msgstr "Abbruch übermittelt."
+
+#: src/App/App.js
+#: src/pages/Exchange/Exchange.js
+msgid "Chart positions"
+msgstr "Chart-Positionen"
+
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+msgid "Check the \"Save on Fees\" section below to get the lowest fee percentages."
+msgstr "Im Abschnitt \"Spare bei den Gebühren\"\\ unten findest du die niedrigsten Gebühren."
+
+#: src/components/Referrals/AddAffiliateCode.js
+#: src/components/Referrals/JoinReferralCode.js
+msgid "Checking code..."
+msgstr "Überprüfung des Codes..."
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Choose to buy from decentralized or centralized exchanges."
+msgstr ""
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+#: src/pages/Nft/StakeNft.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Claim"
+msgstr "Beanspruchen"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Claim Rewards"
+msgstr "Beanspruche die Rewards"
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Claim AXN Rewards"
+msgstr "Beanspruche AXN Rewards"
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+#: src/pages/Stake/StakeV2.js
+msgid "Claim completed!"
+msgstr "Anspruch abgeschlossen!"
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "Claim esAXN"
+msgstr "Beanspruche esAXN"
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Claim esAXN Rewards"
+msgstr "Beanspruche esAXN Rewards"
+
+#: src/pages/Stake/StakeV1.js
+msgid "Claim failed"
+msgstr "Anpruch fehlgeschlagen"
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+#: src/pages/Nft/StakeNft.js
+#: src/pages/Stake/StakeV2.js
+msgid "Claim failed."
+msgstr "Anspruch gescheitert."
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+#: src/pages/Nft/StakeNft.js
+msgid "Claim submitted!"
+msgstr "Anspruch übermittelt!"
+
+#: src/pages/Stake/StakeV1.js
+msgid "Claim submitted! <0>View status.</0>"
+msgstr "Anspruch übermittelt! <0>Status anzeigen.</0>"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Claim submitted."
+msgstr "Anspruch übermittelt."
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Claim {wrappedTokenSymbol} Rewards"
+msgstr "Beanspruche {wrappedTokenSymbol} Belohnungen"
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Claimable"
+msgstr "Beanspruchbar"
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+#: src/pages/Nft/StakeNft.js
+#: src/pages/Stake/StakeV2.js
+msgid "Claiming..."
+msgstr "Beanspruchen..."
+
+#: src/components/Exchange/PositionsList.js
+msgid "Click on a row to select the position's market, then use the trade box to increase your position size if needed."
+msgstr "Klicke auf eine Zeile, um den Markt der Position auszuwählen, und verwende dann die Trade-Box, um deine Position bei Bedarf zu vergrößern."
+
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+msgid "Close"
+msgstr "Schließen"
+
+#: src/components/Exchange/FeesTooltip.tsx
+#: src/components/Exchange/NetValueTooltip.tsx
+msgid "Close Fee"
+msgstr ""
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Close failed."
+msgstr "Schließen fehlgeschlagen."
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Close submitted!"
+msgstr "Schließen übermittelt!"
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Close to execution price"
+msgstr "Schließe am Ausführungspreis"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Close without profit"
+msgstr "Schließe ohne Profit"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Close {longOrShortText} {0}"
+msgstr "Schließe {longOrShortText} {0}"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Close: {convertedAmountFormatted} {0}"
+msgstr "Schließe: {convertedAmountFormatted} {0}"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Closing..."
+msgstr "Schließen..."
+
+#: src/components/Referrals/AddAffiliateCode.js
+msgid "Code already taken"
+msgstr "Code bereits vergeben"
+
+#: src/App/App.js
+msgid "Coinbase Wallet"
+msgstr "Coinbase Wallet"
+
+#: src/App/App.js
+msgid "Coinbase Wallet not detected."
+msgstr "Coinbase Wallet nicht erkannt."
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+msgid "Collateral"
+msgstr "Kollateral"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+msgid "Collateral ({0})"
+msgstr "Kollateral ({0})"
+
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "Collateral In"
+msgstr "Kollateral in"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Collateral Spread"
+msgstr ""
+
+#: src/pages/Nft/NftMint.js
+msgid "Coming Soon"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Community Projects"
+msgstr "Community Projekte"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Community curated tweet collection"
+msgstr "Von der Community erstellte Tweet-Sammlung"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Community-led Telegram groups."
+msgstr "Von der Gemeinschaft geführte Telegram-Gruppen."
+
+#: src/pages/CompleteAccountTransfer/CompleteAccountTransfer.js
+msgid "Complete Account Transfer"
+msgstr "Vollständige Kontoübertragung"
+
+#: src/pages/CompleteAccountTransfer/CompleteAccountTransfer.js
+msgid "Complete Transfer"
+msgstr "Vollständige Übertragung"
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Compound"
+msgstr "Zusammenfassen"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Compound Rewards"
+msgstr "Rewards zusammenfassen"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Compound completed!"
+msgstr "Zusammenfassen abgeschlossen!"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Compound failed."
+msgstr "Zusammenfassen fehlgeschlagen."
+
+#: src/pages/Stake/StakeV2.js
+msgid "Compound submitted!"
+msgstr "Zusammenfassen übermittelt!"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Compounding..."
+msgstr "Zusammenfassen..."
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Confirm Limit Order"
+msgstr ""
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Confirm Long"
+msgstr "Bestätige Long"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Confirm Short"
+msgstr "Bestätige Short"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Confirm Swap"
+msgstr "Bestätige Swap"
+
+#: src/components/Header/AppHeaderUser.tsx
+msgid "Connect"
+msgstr "Verbinden"
+
+#: src/App/App.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Header/AppHeaderUser.tsx
+#: src/components/Migration/Migration.js
+#: src/components/Referrals/AddAffiliateCode.js
+#: src/components/Referrals/JoinReferralCode.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Connect Wallet"
+msgstr "Wallet verbinden"
+
+#: src/pages/Nft/StakeNft.js
+#: src/pages/Nft/YourNft.js
+msgid "Connect your crypto wallet to start using the app in seconds."
+msgstr ""
+
+#: src/lib/wallets/index.tsx
+msgid "Connected to {0}"
+msgstr "Verbunden mit {0}"
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+#: src/pages/CompleteAccountTransfer/CompleteAccountTransfer.js
+msgid "Continue"
+msgstr "Weiter"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Convert esAXN tokens to AXN tokens.<0/>"
+msgstr ""
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Convert {wrappedTokenSymbol} to {nativeTokenSymbol}"
+msgstr "Umwandlung von {wrappedTokenSymbol} in {nativeTokenSymbol}"
+
+#: src/components/Exchange/PositionShare.js
+msgid "Copy"
+msgstr "Kopieren"
+
+#: src/components/AddressDropdown/AddressDropdown.tsx
+msgid "Copy Address"
+msgstr "Adresse kopieren"
+
+#: src/pages/Dashboard/DashboardV1.js
+#: src/pages/Dashboard/DashboardV1.js
+msgid "Could not add token to MetaMask"
+msgstr "Token konnte nicht zu MetaMask hinzugefügt werden"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Could not decrease {0} {longOrShortText}, +{1} USD, Acceptable Price: {2}"
+msgstr "Konnte {0} {longOrShortText} nicht verringern, +{1} USD, Akzeptabler Preis: {2}"
+
+#: src/pages/Exchange/Exchange.js
+msgid "Could not decrease {tokenSymbol} {longOrShortText} within the allowed slippage, you can adjust the allowed slippage in the settings on the top right of the page."
+msgstr "{tokenSymbol} {longOrShortText} konnte nicht innerhalb der erlaubten Zeitspanne verringert werden. Du kannst die erlaubte Zeitspanne in den Einstellungen oben rechts auf der Seite anpassen."
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Could not execute deposit into {0} {longOrShortText}"
+msgstr "Einzahlung in {0} {longOrShortText} konnte nicht ausgeführt werden"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Could not execute withdrawal from {0} {longOrShortText}"
+msgstr "Konnte Abhebung von {0} {longOrShortText} nicht ausführen"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Could not increase {0} {longOrShortText}, +{1} USD, Acceptable Price: {2}"
+msgstr "Konnte {0} {longOrShortText} nicht erhöhen, +{1} USD, Akzeptabler Preis: {2}"
+
+#: src/pages/Exchange/Exchange.js
+msgid "Could not increase {tokenSymbol} {longOrShortText} within the allowed slippage, you can adjust the allowed slippage in the settings on the top right of the page."
+msgstr "Konnte {tokenSymbol} {longOrShortText} nicht innerhalb der erlaubten Zeitspanne erhöhen. Du kannst die erlaubte Zeitspanne in den Einstellungen oben rechts auf der Seite anpassen."
+
+#: src/components/Exchange/TradeHistory.js
+#: src/components/Referrals/AddAffiliateCode.js
+#: src/components/Referrals/AffiliatesStats.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+msgid "Create"
+msgstr "Erstellen"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/PositionSeller.js
+msgid "Create Order"
+msgstr "Order erstellen"
+
+#: src/components/Referrals/AffiliatesStats.js
+msgid "Create Referral Code"
+msgstr "Referral Code erstellen"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Create {0} Order"
+msgstr "{0} Auftrag erstellen"
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Created At"
+msgstr ""
+
+#: src/components/Exchange/SwapBox.js
+msgid "Created limit order for {0} {1}: {2} USD!"
+msgstr "Erstellte Limit Order für {0} {1}: {2} USD!"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/PositionSeller.js
+msgid "Creating Order..."
+msgstr "Erstellen der Order..."
+
+#: src/components/Referrals/AddAffiliateCode.js
+msgid "Creating..."
+msgstr "Erstellen..."
+
+#: src/pages/Ecosystem/Ecosystem.js
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Creator"
+msgstr "Ersteller"
+
+#: src/components/Glp/GlpSwap.js
+msgid "Current Pool Amount"
+msgstr "Aktueller Pool-Betrag"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Current Reserved"
+msgstr "Aktuell Reserviert"
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "Current Weight"
+msgstr "Aktuelle Gewichtung"
+
+#: src/pages/Nft/StakeNft.js
+msgid "Current epoch"
+msgstr ""
+
+#: src/components/Exchange/SwapBox.js
+msgid "Current {0} long"
+msgstr "Aktuell {0} long"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Current {0} shorts"
+msgstr "Aktuell {0} shorts"
+
+#: src/pages/Ecosystem/Ecosystem.js
+#: src/pages/Ecosystem/Ecosystem.js
+#: src/pages/Ecosystem/Ecosystem.js
+#: src/pages/Ecosystem/Ecosystem.js
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "DEX Aggregator"
+msgstr "DEX Aggregator"
+
+#: src/components/Header/AppHeaderLinks.tsx
+msgid "Dashboard"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Dashboard for GMX referral stats"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Dashboards"
+msgstr "Dashboards"
+
+#: src/components/Referrals/AffiliatesStats.js
+#: src/components/Referrals/TradersStats.js
+msgid "Date"
+msgstr "Datum"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "DeFi Portfolio Tracker"
+msgstr "DeFi Portfolio Tracker"
+
+#: src/components/Exchange/ExchangeTVChart.js
+msgid "Dec."
+msgstr "Dezentr."
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Decentralized Finance Dashboard"
+msgstr "Dezentrales Finanz-Dashboard"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Decentralized Options Protocol"
+msgstr "Dezentrales Optionsprotokoll"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Decentralized Options Strategies"
+msgstr "Strategien für dezentralisierte Optionen"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Decentralized Trading Protocol"
+msgstr "Dezentrales Tradingprotokoll"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/TradeHistory.js
+#: src/components/Exchange/TradeHistory.js
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Decrease"
+msgstr "Verringern"
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Decrease active: {0}, executed: {1}, cancelled: {2}"
+msgstr "Verringern aktiv: {0}, ausgeführt: {1}, abgebrochen: {2}"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Decreased"
+msgstr "Verringert"
+
+#: src/pages/Exchange/Exchange.js
+msgid "Decreased {tokenSymbol} {longOrShortText}, -{0} USD."
+msgstr "Verringert {tokenSymbol} {longOrShortText}, -{0} USD."
+
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionEditor.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Deposit"
+msgstr "Einzahlung"
+
+#: src/components/Exchange/FeesTooltip.tsx
+msgid "Deposit Fee"
+msgstr ""
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Deposit disabled, pending {0} upgrade"
+msgstr "Einzahlung deaktiviert, Aktualisierung ausstehend {0}"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Deposit failed!"
+msgstr "Einzahlung fehlgeschlagen!"
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Deposit failed."
+msgstr "Einzahlung fehlgeschlagen."
+
+#: src/pages/Stake/StakeV2.js
+msgid "Deposit submitted!"
+msgstr "Einzahlung übermittelt!"
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Deposit submitted."
+msgstr "Einzahlung übermittelt."
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Deposit {0} USD into {1} {longOrShortText}"
+msgstr "Einzahlung von {0} USD in {1} {longOrShortText}"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Deposited"
+msgstr "Eingezahlt"
+
+#: src/pages/Exchange/Exchange.js
+msgid "Deposited {0} USD into {tokenSymbol} {longOrShortText}"
+msgstr "{0} USD in {tokenSymbol} {longOrShortText} eingezahlt"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Deposited!"
+msgstr "Eingezahlt!"
+
+#: src/components/Exchange/PositionEditor.js
+#: src/pages/Stake/StakeV2.js
+msgid "Depositing..."
+msgstr "Einzahlen..."
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Diff"
+msgstr "Diff"
+
+#: src/App/App.js
+msgid "Disable order validations"
+msgstr "Orderprüfungen deaktivieren"
+
+#: src/components/AddressDropdown/AddressDropdown.tsx
+msgid "Disconnect"
+msgstr "Verbindung trennen"
+
+#: src/App/App.js
+msgid "Display PnL after fees"
+msgstr "PnL nach Gebühren anzeigen"
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "Distribution"
+msgstr "Verteilung"
+
+#: src/components/Header/AppHeaderLinks.tsx
+#: src/components/Header/HomeHeaderLinks.tsx
+msgid "Docs"
+msgstr ""
+
+#: src/components/ModalViews/RedirectModal.js
+msgid "Don't show this message again for 30 days."
+msgstr "Diese Meldung 30 Tage lang nicht mehr anzeigen."
+
+#: src/components/Exchange/PositionShare.js
+msgid "Download"
+msgstr "Download"
+
+#: src/components/Header/AppHeaderLinks.tsx
+#: src/pages/Stake/StakeV2.js
+msgid "Earn"
+msgstr "Verdienen"
+
+#: src/pages/Nft/YourNft.js
+msgid "Earn $FTM from platform's collected fees with your NFT"
+msgstr ""
+
+#: src/pages/Nft/StakeNft.js
+msgid "Earn real profit with Tail Club"
+msgstr ""
+
+#: src/pages/Nft/StakeNft.js
+msgid "Earn reward"
+msgstr ""
+
+#: src/pages/Nft/YourNft.js
+msgid "Earn with esAXN"
+msgstr ""
+
+#: src/components/Header/AppHeaderLinks.tsx
+msgid "Ecosystem"
+msgstr ""
+
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/OrdersList.js
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: src/components/Exchange/PositionDropdown.js
+#: src/components/Exchange/PositionsList.js
+msgid "Edit Collateral"
+msgstr "Kollateral bearbeiten"
+
+#: src/components/Referrals/TradersStats.js
+msgid "Edit Referral Code"
+msgstr "Referral Code bearbeiten"
+
+#: src/components/Exchange/OrderEditor.js
+#: src/components/Exchange/OrderEditor.js
+msgid "Edit order"
+msgstr "Order bearbeiten"
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Edit {longOrShortText} {0}"
+msgstr "{longOrShortText} {0} bearbeiten"
+
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+msgid "Enable Leverage"
+msgstr "Hebelwirkung ermöglichen"
+
+#: src/components/Exchange/OrdersToa.js
+#: src/components/Exchange/OrdersToa.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+msgid "Enable Orders"
+msgstr "Orders ermöglichen"
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Enable deposit failed."
+msgstr "Fehlgeschlagene Einzahlung ermöglichen"
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Enable deposit sent."
+msgstr "Einzahlung ermöglichen gesendet."
+
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+msgid "Enable leverage failed."
+msgstr "Aktivieren der Hebelwirkung fehlgeschlagen."
+
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+msgid "Enable leverage sent."
+msgstr ""
+
+#: src/pages/Exchange/Exchange.js
+msgid "Enable orders failed."
+msgstr "Freigabe von Orders ist fehlgeschlagen."
+
+#: src/pages/Exchange/Exchange.js
+msgid "Enable orders sent."
+msgstr "Freigabe von Orders gesendet."
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Enable withdraw failed."
+msgstr "Freigabe von Abhebungen ist fehlgeschlagen."
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Enable withdraw sent."
+msgstr "Auszahlung ermöglichen gesendet."
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Enabling Leverage"
+msgstr "Hebelwirkung wird aktiviert"
+
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "Enabling Leverage..."
+msgstr "Aktivierung der Hebelwirkung..."
+
+#: src/components/Exchange/OrdersToa.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "Enabling Orders..."
+msgstr "Aktivierung der Orders..."
+
+#: src/pages/NftWallet/NftWallet.js
+msgid "Enter NFT Address"
+msgstr "NFT Adresse eingeben"
+
+#: src/pages/NftWallet/NftWallet.js
+msgid "Enter NFT ID"
+msgstr "NFT ID eingeben"
+
+#: src/components/Exchange/OrderEditor.js
+#: src/components/Exchange/PositionSeller.js
+msgid "Enter Price"
+msgstr "Preis eingeben"
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+#: src/pages/NftWallet/NftWallet.js
+msgid "Enter Receiver Address"
+msgstr "Empfängeradresse eingeben"
+
+#: src/components/Referrals/JoinReferralCode.js
+#: src/components/Referrals/JoinReferralCode.js
+msgid "Enter Referral Code"
+msgstr "Referral Code eingeben"
+
+#: src/components/Referrals/AddAffiliateCode.js
+#: src/components/Referrals/AddAffiliateCode.js
+msgid "Enter a code"
+msgstr "Einen Code eingeben"
+
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "Enter a price"
+msgstr "Einen Preis eingeben"
+
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Migration/Migration.js
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Enter an amount"
+msgstr "Einen Betrag eingeben"
+
+#: src/components/Exchange/OrderEditor.js
+#: src/components/Exchange/OrderEditor.js
+msgid "Enter new Price"
+msgstr "Neuen Preis eingeben"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "Entry Price"
+msgstr "Einstiegspreis"
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Escrowed AXN"
+msgstr "Escrowed AXN"
+
+#: src/components/Glp/GlpSwap.js
+#: src/components/Stake/GMXAprTooltip.tsx
+msgid "Escrowed AXN APR"
+msgstr "Escrowed AXN APR"
+
+#: src/pages/Nft/StakeNft.js
+msgid "Est. your APR:"
+msgstr ""
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Execute"
+msgstr "Ausführen"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Execute Order: Swap {fromAmountDisplay} {0} for {toAmountDisplay} {1}"
+msgstr "Order ausführen: Tausche {fromAmountDisplay} {0} gegen {toAmountDisplay} {1}"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Execute Order: {orderTypeText} {0} {longShortDisplay} {sizeDeltaDisplay} USD, Price: {executionPriceDisplay} USD"
+msgstr ""
+
+#: src/pages/Home/Home.js
+msgid "Execute positions with negligible spreads and zero price impact, ensuring that the best possible price is obtained without incurring any extra expenses."
+msgstr ""
+
+#: src/components/Exchange/FeesTooltip.tsx
+msgid "Execution Fee"
+msgstr ""
+
+#: src/components/Exchange/SwapBox.js
+msgid "Exit Price"
+msgstr "Exit-Preis"
+
+#: src/components/Glp/GlpSwap.js
+msgid "FEES"
+msgstr "GEBÜHREN"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+#: src/pages/Dashboard/DashboardV1.js
+msgid "Fees"
+msgstr "Gebühren"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Fees are high to swap from {0} to {1}."
+msgstr "Der Wechsel von {0} zu {1} ist mit hohen Gebühren verbunden."
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Fees are high to swap from {0} to {1}. <0/>{2} is needed for collateral."
+msgstr "Der Tausch von {0} nach {1} ist mit hohen Gebühren verbunden. <0/>{2} wird für das Kollteral benötigt."
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Fees generated by GMX"
+msgstr ""
+
+#: src/components/Glp/GlpSwap.js
+msgid "Fees may vary depending on which asset you sell ALP for. <0/>Enter the amount of ALP you want to redeem in the order form, then check here to compare fees."
+msgstr "Die Gebühren können variieren, je nachdem, für welchen Vermögenswert du ALP verkaufst. <0/>Gebe die Menge an TLP, die du verkaufen möchtest, in das Order-Formular ein und vergleiche dann hier die Gebühren."
+
+#: src/components/Glp/GlpSwap.js
+msgid "Fees may vary depending on which asset you use to buy TLP. <0/>Enter the amount of ALP you want to purchase in the order form, then check here to compare fees."
+msgstr "Die Gebühren können variieren, je nachdem, welche Anlage du für den Kauf von ALP verwendest. <0/>Gebe die Menge an TLP, die du kaufen möchtest, in das Order-Formular ein und vergleiche dann hier die Gebühren."
+
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+msgid "Fees will be shown once you have entered an amount in the order form."
+msgstr "Die Gebühren werden angezeigt, sobald du einen Betrag in das Order-Formular eingegeben hast."
+
+#: src/components/Exchange/SwapBox.js
+msgid "Fetching token info..."
+msgstr "Token-Informationen abrufen..."
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Financial reports and protocol analytics"
+msgstr "Finanzberichte und Protokollanalyse"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Forfeit profit"
+msgstr "Verzicht auf Gewinn"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Forfeit profit and Short"
+msgstr "Verzicht auf Gewinn und Short"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Forfeit profit and {action}"
+msgstr "Verzicht auf Gewinn und {action}"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/PositionSeller.js
+msgid "Forfeit profit not checked"
+msgstr "Verzicht auf Gewinn nicht geprüft"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GBC NFTs APR tracker and rewards"
+msgstr "GBC NFTs APR-Tracker und Belohnungen"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GLP and GMX autocompounding vaults"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GLP autocompounding vaults"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GMX Announcements and Updates"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GMX Blueberry NFTs"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GMX Governance Page"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GMX Pages"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GMX Perpetuals Data"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GMX Proposals Voting page"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GMX Stats Page"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GMX Weekly Updates"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GMX community discussion"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GMX dashboards and analytics."
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GMX ecosystem pages."
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GMX explorer for stats and traders"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GMX fundamentals"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GMX staking calculator"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "GMX staking rewards updates and insights"
+msgstr ""
+
+#: src/components/Referrals/AddAffiliateCode.js
+msgid "Generate Referral Code"
+msgstr "Empfehlungscode generieren"
+
+#: src/components/Exchange/PositionShare.js
+msgid "Generating shareable image..."
+msgstr "Generierung von teilbaren Bildern..."
+
+#: src/pages/Nft/StakeNft.js
+msgid "Get NFT"
+msgstr ""
+
+#: src/pages/Nft/StakeNft.js
+#: src/pages/Nft/YourNft.js
+msgid "Get Your Tail NFT"
+msgstr ""
+
+#: src/pages/Referrals/Referrals.js
+msgid "Get fee discounts and earn rebates through the AXN referral program.<0/>"
+msgstr ""
+
+#: src/pages/Nft/StakeNft.js
+msgid "Go to Stake"
+msgstr ""
+
+#: src/pages/Nft/StakeNft.js
+msgid "Go to UnStake"
+msgstr ""
+
+#: src/components/Exchange/SwapBox.js
+msgid "High Slippage, Swap Anyway"
+msgstr "Hoher Slippage, trotzdem tauschen"
+
+#: src/components/Exchange/SwapBox.js
+msgid "High USDG Slippage, Long Anyway"
+msgstr "Hohe USDG-Abweichung, trotzdem Long"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "I am aware of the trigger orders"
+msgstr "Ich bin mir der Trigger-Orders bewusst"
+
+#: src/components/Exchange/SwapBox.js
+msgid "If you have an existing position, the position will be closed at {0} USD.<0/><1/>This exit price will change with the price of the asset.<2/><3/>"
+msgstr ""
+
+#: src/components/Exchange/PositionShare.js
+msgid "Image generation error, please refresh and try again."
+msgstr "Fehler bei der Bilderzeugung, bitte aktualisieren und versuche es erneut."
+
+#: src/components/Exchange/ExchangeTVChart.js
+msgid "Inc."
+msgstr "Inc."
+
+#: src/App/App.js
+msgid "Include PnL in leverage display"
+msgstr "PnL in die Anzeige der Hebelwirkung einbeziehen"
+
+#: src/pages/CompleteAccountTransfer/CompleteAccountTransfer.js
+msgid "Incorrect Account"
+msgstr "Falsches Konto"
+
+#: src/components/Exchange/SwapBox.js
+#: src/pages/Stake/StakeV1.js
+msgid "Incorrect Network"
+msgstr "Falsches Netzwerk"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Incorrect network"
+msgstr "Falsches Netzwerk"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/TradeHistory.js
+#: src/components/Exchange/TradeHistory.js
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Increase"
+msgstr "Erhöhen"
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Increase active: {0}, executed: {1}, cancelled: {2}"
+msgstr "Erhöhen aktiv: {0}, ausgeführt: {1}, abgebrochen: {2}"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Increase {0} {longOrShortText}, +{1} USD, {2} Price: {3} USD"
+msgstr "Erhöhen {0} {longOrShortText}, +{1} USD, {2} Preis: {3} USD"
+
+#: src/pages/Exchange/Exchange.js
+msgid "Increased {tokenSymbol} {longOrShortText}, +{0} USD."
+msgstr "Erhöht {tokenSymbol} {longOrShortText}, +{0} USD."
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Index"
+msgstr "Index"
+
+#: src/components/Exchange/NetValueTooltip.tsx
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+msgid "Initial Collateral"
+msgstr "Ursprüngliches Kollateral"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Initial Collateral (Collateral excluding Borrow Fee)."
+msgstr ""
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Initial collateral"
+msgstr "Ursprüngliches Kollateral"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Insufficient Available Liquidity to swap to {0}:"
+msgstr "Unzureichende verfügbare Liquidität zum Swap auf {0}:"
+
+#: src/components/Glp/GlpSwap.js
+msgid "Insufficient ALP balance"
+msgstr "Unzureichende TLP-Balance"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Insufficient liquidit"
+msgstr ""
+
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Glp/GlpSwap.js
+msgid "Insufficient liquidity"
+msgstr "Unzureichende Liquidität"
+
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "Insufficient liquidity, change \"Collateral In\""
+msgstr "Unzureichende Liquidität, Veränderung \"Kollateral in\""
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Insufficient receive token liquidity"
+msgstr "Unzureichende Liquidität der erhaltenen Token"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Insufficient staked tokens"
+msgstr "Unzureichend gestakete Tokens"
+
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Glp/GlpSwap.js
+msgid "Insufficient {0} balance"
+msgstr "Unzureichende {0} Balance"
+
+#: src/pages/NftWallet/NftWallet.js
+msgid "Invalid NFT Address"
+msgstr "Ungültige NFT-Adresse"
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+msgid "Invalid Receiver"
+msgstr "Ungültiger Empfänger"
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+#: src/pages/NftWallet/NftWallet.js
+msgid "Invalid Receiver Address"
+msgstr "Ungültige Empfängeradresse"
+
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionEditor.js
+msgid "Invalid liq. price"
+msgstr "Ungültiger Liq.-Preis"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/OrderEditor.js
+#: src/components/Exchange/PositionSeller.js
+msgid "Invalid price, see warning"
+msgstr "Ungültiger Preis, siehe Warnung"
+
+#: src/App/App.js
+msgid "Invalid slippage value"
+msgstr "Ungültiger Slippagewert"
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Invalid token fromToken: \"{0}\" toToken: \"{toTokenAddress}\""
+msgstr "Ungültiger Token von Token: \"{0}\" zu Token: \"{toTokenAddress}\""
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Invalid token indexToken: \"{0}\" collateralToken: \"{1}\""
+msgstr "Ungültiger Token index Token: \"{0} Kollateral Token: \"{1}\""
+
+#: src/pages/Jobs/Jobs.js
+msgid "Job openings at AXN."
+msgstr "Offene Jobs bei AXN."
+
+#: src/pages/Jobs/Jobs.js
+msgid "Jobs"
+msgstr "Jobs"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Keep leverage at {0}x"
+msgstr "Hebelwirkung bei {0}x behalten"
+
+#: src/components/NetworkDropdown/NetworkDropdown.tsx
+msgid "Language"
+msgstr "Sprache"
+
+#: src/components/Header/AppHeaderUser.tsx
+#: src/components/ModalViews/RedirectModal.js
+#: src/pages/Home/Home.js
+msgid "Launch App"
+msgstr "App starten"
+
+#: src/components/Exchange/UsefulLinks.tsx
+msgid "Leaderboard"
+msgstr "Bestenliste"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Leaderboard for GMX traders"
+msgstr ""
+
+#: src/pages/Nft/StakeNft.js
+#: src/pages/Nft/YourNft.js
+msgid "Learn how to start"
+msgstr ""
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Leave at least {0} ETH for gas"
+msgstr "Mindestens {0} ETH für Gas lassen"
+
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "Leave at least {0} {1} for gas"
+msgstr "Mindestens {0} {1} für Gas lassen"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Leftover collateral below 5 USD"
+msgstr "Verbleibendes Kollateral unter 5 USD"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Leftover position below 10 USD"
+msgstr "Verbleibende Position unter 10 USD"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "Leverage"
+msgstr "Hebelwirkung"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Leverage disabled, pending {0} upgrade"
+msgstr "Hebelwirkung deaktiviert, {0} Upgrade steht an"
+
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/SwapBox.js
+msgid "Limit"
+msgstr "Limit"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Limit Price"
+msgstr "Limit Preis"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Limit order creation failed."
+msgstr "Die Erstellung einer Limit-Order ist fehlgeschlagen."
+
+#: src/components/Exchange/SwapBox.js
+msgid "Limit order submitted!"
+msgstr "Limit-Order übermittelt!"
+
+#: src/pages/Ecosystem/Ecosystem.js
+#: src/pages/Ecosystem/Ecosystem.js
+#: src/pages/Ecosystem/Ecosystem.js
+#: src/pages/Ecosystem/Ecosystem.js
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Link"
+msgstr "Link"
+
+#: src/components/Exchange/PositionShare.js
+msgid "Link copied to clipboard."
+msgstr "Link in die Zwischenablage kopiert."
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/OrderEditor.js
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/SwapBox.js
+msgid "Liq. Price"
+msgstr "Liq. Preis"
+
+#: src/components/Exchange/ExchangeTVChart.js
+msgid "Liq. {0} {longOrShortText}"
+msgstr ""
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Liquidated"
+msgstr "Liquidiert"
+
+#: src/components/Exchange/TradeHistory.js
+msgid ""
+"Liquidated {0} {longOrShortText},\n"
+"-{1} USD,\n"
+"{2} Price: {3} USD"
+msgstr ""
+"Liquidiert {0} {longOrShortText},\n"
+"-{1} USD,\n"
+"{2} Preis: {3} USD"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Liquidation Fee"
+msgstr ""
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Liquidation price would cross mark price."
+msgstr ""
+
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "Liquidity data not loaded"
+msgstr "Liquiditätsdaten nicht geladen"
+
+#: src/pages/Poll/Poll.js
+msgid "Liquidity is locked by renouncing the ownership of liquidity pool (LP) tokens for a fixed time period, by sending them to a time-lock smart contract."
+msgstr "Die Liquidität wird gesperrt, indem für einen festgelegten Zeitraum auf den Besitz von Liquiditätspool (LP)-Token verzichtet wird, indem sie an einen Smart Contract mit Zeitsperre gesendet werden."
+
+#: src/pages/Nft/StakeNft.js
+msgid "Load more"
+msgstr ""
+
+#: src/components/Exchange/PositionsList.js
+msgid "Loading..."
+msgstr "Lädt..."
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ExchangeTVChart.js
+#: src/components/Exchange/ExchangeTVChart.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/TradeHistory.js
+#: src/components/Exchange/TradeHistory.js
+#: src/components/Exchange/TradeHistory.js
+#: src/pages/Actions/Actions.js
+#: src/pages/Actions/Actions.js
+#: src/pages/Exchange/Exchange.js
+#: src/pages/Exchange/Exchange.js
+#: src/pages/Exchange/Exchange.js
+#: src/pages/Exchange/Exchange.js
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Long"
+msgstr "Long"
+
+#: src/pages/Dashboard/DashboardV1.js
+msgid "Long positions: {0} USD, Short positions: {1} USD, {volumeLabel} volume: {2} USD"
+msgstr "Long-Positionen: {0} USD, Short-Positionen: {1} USD, {volumeLabel} Volumen: {2} USD"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Long {0}"
+msgstr "Long {0}"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Longing..."
+msgstr "Gehe Long..."
+
+#: src/components/Referrals/AddAffiliateCode.js
+msgid "Looks like you don't have a referral code to share. <0/> Create one now and start earning rebates!"
+msgstr "Sieht so aus, als hättest du keinen Empfehlungscode, den du weitergeben kannst. <0/> Erstelle jetzt einen und beginne, Rabatte zu verdienen!"
+
+#: src/pages/Actions/Actions.js
+msgid "Loss"
+msgstr "Verlust"
+
+#: src/components/BuyInputSection/BuyInputSection.js
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/InputSection/InputSection.js
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "MAX"
+msgstr "MAX"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "MEV Optimizer"
+msgstr "MEV-Optimierer"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Mark Price"
+msgstr "Mark-Preis"
+
+#: src/components/Exchange/OrderEditor.js
+msgid "Mark Price:"
+msgstr "Mark-Preis:"
+
+#: src/components/Exchange/OrderEditor.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+msgid "Mark: {0}"
+msgstr "Mark: {0}"
+
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+msgid "Market"
+msgstr "Markt"
+
+#: src/pages/Dashboard/DashboardV1.js
+#: src/pages/Dashboard/DashboardV1.js
+#: src/pages/Dashboard/DashboardV1.js
+#: src/pages/Dashboard/DashboardV2.js
+#: src/pages/Dashboard/DashboardV2.js
+msgid "Market Cap"
+msgstr "Marktkapitalisierung"
+
+#: src/pages/Nft/StakeNft.js
+msgid "Max APR"
+msgstr ""
+
+#: src/pages/Stake/StakeV2.js
+msgid "Max Capacity"
+msgstr "Max. Kapazität"
+
+#: src/components/Glp/GlpSwap.js
+msgid "Max Capacity for {0} Reached"
+msgstr "Max. Kapazität für {0} erreicht"
+
+#: src/components/Glp/GlpSwap.js
+msgid "Max Pool Capacity"
+msgstr "Max. Pool-Kapazität"
+
+#: src/components/Migration/Migration.js
+#: src/pages/Nft/NftModal.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Max amount exceeded"
+msgstr "Maximalbetrag überschritten"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Max close amount exceeded"
+msgstr "Maximaler Abschlussbetrag überschritten"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Max leverage of 100x was exceeded, the remaining collateral after deducting losses and fees have been sent back to your account:"
+msgstr "Die max. Hebelwirkung von 100x wurde überschritten, das verbleibende Kollateral wird nach Abzug von Verlusten und Gebühren wurde auf dein Konto zurücküberwiesen:"
+
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+msgid "Max leverage: {0}x"
+msgstr ""
+
+#: src/components/Glp/GlpSwap.js
+msgid "Max pool capacity reached for {0}. Please mint ALP using another token"
+msgstr "Max. Poolkapazität für {0} erreicht. Bitte minte ALP mit einem anderen Token"
+
+#: src/components/Glp/GlpSwap.js
+msgid "Max pool capacity reached for {0}<0/><1/>Please mint ALP using another token"
+msgstr "Max. Pool-Kapazität für {0}<0/><1/> erreicht. Bitte minte ALP mit einem anderen Token"
+
+#: src/App/App.js
+msgid "Max slippage precision is 0.01%"
+msgstr "Die max. Slippagegenauigkeit beträgt 0,01 %."
+
+#: src/pages/Dashboard/DashboardV2.js
+#: src/pages/Dashboard/DashboardV2.js
+msgid "Max {0} Capacity"
+msgstr "Max. {0} Kapazität"
+
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+msgid "Max {0} in"
+msgstr "Max. {0} in"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Max {0} long capacity"
+msgstr "Max. {0} Long-Kapazität"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Max {0} long exceeded"
+msgstr "Max {0} Long überschritten"
+
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+msgid "Max {0} out"
+msgstr "Max. {0} heraus"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Max {0} short capacity"
+msgstr "Max. {0} Short-Kapazität"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Max {0} short exceeded"
+msgstr "Max {0} Short überschritten"
+
+#: src/components/Migration/Migration.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Max: {0}"
+msgstr "Max: {0}"
+
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+msgid "Max: {maxAmountFormatted}"
+msgstr "Max: {maxAmountFormatted}"
+
+#: src/App/App.js
+msgid "MetaMask"
+msgstr "MetaMask"
+
+#: src/App/App.js
+msgid "MetaMask not detected."
+msgstr "MetaMask nicht erkannt."
+
+#: src/components/Migration/Migration.js
+#: src/components/Migration/Migration.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+msgid "Migrate"
+msgstr "Migrieren"
+
+#: src/components/Migration/Migration.js
+msgid "Migrated"
+msgstr "Migriert"
+
+#: src/components/Migration/Migration.js
+msgid "Migrating..."
+msgstr "Migrieren..."
+
+#: src/components/Migration/Migration.js
+msgid "Migration Price"
+msgstr "Migrationspreis"
+
+#: src/components/Migration/Migration.js
+msgid "Migration failed"
+msgstr "Migrieren fehlgeschlagen"
+
+#: src/components/Migration/Migration.js
+msgid "Migration submitted! <0>View status.</0>"
+msgstr "Migrieren übermittelt! <0>Status anzeigen.</0>"
+
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+msgid "Min leverage: 1.1x"
+msgstr "Min.-Hebelwirkung: 1.1x"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Min order: 1 USD"
+msgstr "Min. Order: 10 USD"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Min required collateral"
+msgstr "Min. erforderliches Kollateral"
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Min residual collateral: 10 USD"
+msgstr ""
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Min. Receive"
+msgstr "Min. Empfangen"
+
+#: src/components/Exchange/OrderEditor.js
+msgid "Minimum received"
+msgstr "Min. Empfangen"
+
+#: src/components/Header/AppHeaderLinks.tsx
+msgid "Mint"
+msgstr ""
+
+#: src/pages/Nft/NftModal.js
+msgid "Mint NFT"
+msgstr ""
+
+#: src/pages/Nft/NftModal.js
+msgid "Mint failed."
+msgstr ""
+
+#: src/pages/Nft/YourNft.js
+msgid "Mint more NFT"
+msgstr ""
+
+#: src/pages/Nft/NftModal.js
+msgid "Mint submitted!"
+msgstr ""
+
+#: src/pages/Nft/NftModal.js
+msgid "Minting..."
+msgstr ""
+
+#: src/pages/Home/Home.js
+msgid "Mitigate Liquidation Risks"
+msgstr "Liquidationsrisiken mindern"
+
+#: src/components/NetworkDropdown/NetworkDropdown.tsx
+msgid "More Options"
+msgstr "Mehr Optionen"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Multiplier Points"
+msgstr "Multiplikator-Punkte"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Multiplier Points APR"
+msgstr "Multiplikator-Punkte APR"
+
+#: src/pages/NftWallet/NftWallet.js
+msgid "NFT Address"
+msgstr "NFT Adresse"
+
+#: src/pages/NftWallet/NftWallet.js
+msgid "NFT ID"
+msgstr "NFT ID"
+
+#: src/pages/NftWallet/NftWallet.js
+msgid "NFT Wallet"
+msgstr "NFT Wallet"
+
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+msgid "Net Value"
+msgstr "Nettowert"
+
+#: src/components/Exchange/NetValueTooltip.tsx
+msgid "Net Value: Initial Collateral + PnL - Borrow Fee - Close Fee"
+msgstr ""
+
+#: src/components/NetworkDropdown/NetworkDropdown.tsx
+#: src/components/NetworkDropdown/NetworkDropdown.tsx
+msgid "Networks"
+msgstr "Netzwerke"
+
+#: src/components/NetworkDropdown/NetworkDropdown.tsx
+msgid "Networks and Settings"
+msgstr "Netzwerke und Einstellungen"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Next"
+msgstr "Weiter"
+
+#: src/pages/Nft/StakeNft.js
+msgid "Next epoch"
+msgstr ""
+
+#: src/pages/Nft/StakeNft.js
+msgid "Next epoch reward"
+msgstr ""
+
+#: src/pages/Nft/StakeNft.js
+msgid "Next reward"
+msgstr ""
+
+#: src/pages/Actions/Actions.js
+msgid "No PnLs found"
+msgstr "Keine PnLs gefunden"
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "No esAXN to claim"
+msgstr "Kein esAXN zu beanspruchen"
+
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/OrdersList.js
+msgid "No open orders"
+msgstr "Keine offenen Orders"
+
+#: src/lib/legacy.ts
+msgid "No open position, order cannot be executed unless a position is opened"
+msgstr "Keine offene Position, der Auftrag kann nur ausgeführt werden, wenn eine Position eröffnet ist"
+
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+msgid "No open positions"
+msgstr "Keine offenen Stellen"
+
+#: src/pages/Jobs/Jobs.js
+msgid "No open positions at AXN currently"
+msgstr "Derzeit keine offenen Positionen bei AXN"
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "No position"
+msgstr "Keine Position"
+
+#: src/components/Referrals/AffiliatesStats.js
+#: src/components/Referrals/TradersStats.js
+msgid "No rebates distribution history yet."
+msgstr "Noch keine Geschichte der Rabattverteilung."
+
+#: src/pages/Nft/StakeNft.js
+#: src/pages/Nft/YourNft.js
+msgid "No registration needed."
+msgstr ""
+
+#: src/pages/Stake/StakeV1.js
+msgid "No rewards to claim yet"
+msgstr "Noch keine Belohnungen zu beanspruchen"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "No trades yet"
+msgstr "Noch keine Trades"
+
+#: src/components/Exchange/OrdersToa.js
+msgid "Note that orders are not guaranteed to be executed.<0/><1/>This can occur in a few situations including but not exclusive to:"
+msgstr "Beachte, dass die Ausführung von Aufträgen nicht garantiert ist.<0/><1/>Dies kann in einigen Situationen vorkommen, einschließlich, aber nicht ausschließlich bei:"
+
+#: src/components/Referrals/referralsHelper.js
+msgid "Only letters, numbers and underscores are allowed."
+msgstr "Es sind nur Buchstaben, Zahlen und Unterstriche erlaubt."
+
+#: src/components/Exchange/FeesTooltip.tsx
+#: src/components/Exchange/NetValueTooltip.tsx
+#: src/components/Exchange/SwapBox.js
+msgid "Open Fee"
+msgstr ""
+
+#: src/components/Exchange/SwapBox.js
+msgid "Open a position"
+msgstr "Eine Position eröffnen"
+
+#: src/pages/Dashboard/AssetDropdown.tsx
+msgid "Open in Coingecko"
+msgstr "In Coingecko öffnen"
+
+#: src/pages/Dashboard/AssetDropdown.tsx
+#: src/pages/Dashboard/AssetDropdown.tsx
+msgid "Open in Explorer"
+msgstr "Im Explorer öffnen"
+
+#: src/pages/PositionsOverview/PositionsOverview.js
+msgid "Open positions: {0}<0/>Under risk: {1}"
+msgstr "Offene Positionen: {0}<0/>Unter Risiko: {1}"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Open trades ranking and stats"
+msgstr ""
+
+#: src/components/Exchange/ExchangeTVChart.js
+msgid "Open {0} {longOrShortText}"
+msgstr ""
+
+#: src/components/Exchange/PositionsList.js
+msgid "Opening..."
+msgstr "Öffnen..."
+
+#: src/components/Exchange/OrdersList.js
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Order"
+msgstr "Order"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Order cancelled"
+msgstr "Order storniert"
+
+#: src/domain/legacy.ts
+msgid "Order cancelled."
+msgstr "Order storniert."
+
+#: src/lib/legacy.ts
+msgid "Order cannot be executed as it would reduce the position's leverage below 1"
+msgstr "Auftrag kann nicht ausgeführt werden, da er die Hebelwirkung der Position unter 1 reduzieren würde"
+
+#: src/lib/legacy.ts
+msgid "Order cannot be executed as the remaining position would be smaller than $5.00"
+msgstr "Auftrag kann nicht ausgeführt werden, da die verbleibende Position unter $5 wäre"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Order created!"
+msgstr "Order erstellt1"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Order creation failed."
+msgstr "Order erstellen fehlgeschlagen."
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Order size exceeds position"
+msgstr "Ordergröße übersteigt Position"
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Order size is 0"
+msgstr "Ordergröße ist 0"
+
+#: src/components/Exchange/PositionsList.js
+#: src/lib/legacy.ts
+msgid "Order size is bigger than position, will only be executable if position increases"
+msgstr "Ordergröße ist größer als die Position. Wird nur ausgeführt, wenn sich die Position erhöht"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Order submitted!"
+msgstr "Order übermittelt!"
+
+#: src/components/Exchange/OrderEditor.js
+msgid "Order update failed."
+msgstr "Orderupdate fehlgeschlagen"
+
+#: src/components/Exchange/OrderEditor.js
+msgid "Order update submitted!"
+msgstr "Aktualisierung der Bestellung eingereicht!"
+
+#: src/components/Exchange/OrderEditor.js
+msgid "Order updated!"
+msgstr "Orderupdate übermittelt!"
+
+#: src/components/Exchange/PositionsList.js
+#: src/pages/Actions/Actions.js
+#: src/pages/Exchange/Exchange.js
+msgid "Orders"
+msgstr "Orders"
+
+#: src/components/Exchange/PositionsList.js
+#: src/pages/Exchange/Exchange.js
+msgid "Orders ({0})"
+msgstr "Orders ({0})"
+
+#: src/pages/Exchange/Exchange.js
+msgid "Orders cancelled."
+msgstr "Orders gekündigt."
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Overall protocol analytics"
+msgstr ""
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "POOL"
+msgstr "POOL"
+
+#: src/components/Glp/GlpSwap.js
+#: src/pages/Dashboard/DashboardV2.js
+msgid "PRICE"
+msgstr "PREIS"
+
+#: src/pages/PageNotFound/PageNotFound.js
+msgid "Page not found"
+msgstr "Seite nicht gefunden"
+
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+msgid "Page outdated, please refresh"
+msgstr "Seite veraltet, bitte aktualisieren"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Partial Liquidation"
+msgstr "Teilweise Liquidierung"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Partially Liquidated"
+msgstr "Teilweise liquidiert"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Partnerships and Integrations"
+msgstr "Partnerschaften und Integrationen"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+msgid "Pay"
+msgstr "Bezahlen"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Pay Amount"
+msgstr "Betrag bezahlen"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Pay: {0} USD"
+msgstr "Bezahlen: {0} USD"
+
+#: src/pages/Nft/StakeNft.js
+msgid "Pending reward"
+msgstr ""
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "Platform and ALP index tokens."
+msgstr "Plattform und TLP-Index-Token."
+
+#: src/components/Referrals/JoinReferralCode.js
+msgid "Please input a referral code to benefit from fee discounts."
+msgstr "Bitte gebe einen Empfehlungscode ein, um von Gebührenermäßigungen zu profitieren."
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+msgid "Please only use this for full account transfers.<0/>This will transfer all your AXN, esAXN, ALP and Multiplier Points to your new account.<1/>Transfers are only supported if the receiving account has not staked AXN or ALP tokens before.<2/>Transfers are one-way, you will not be able to transfer staked tokens back to the sending account."
+msgstr "Bitte verwende dies nur für vollständige Kontotransfers.<0/>Damit werden alle deine AXN, esAXN, ALP und Multiplikatorpunkte auf dein neues Konto übertragen.<1/>Transfers werden nur unterstützt, wenn das Empfängerkonto noch keine AXN- oder TLP-Token gestaket hat.<2/>Transfers sind einseitig, du kannst keine gestaketen Token zurück auf das Sendekonto übertragen."
+
+#: src/components/Migration/Migration.js
+msgid "Please read the <0>Medium post</0> before migrating."
+msgstr "Bitte lese vor der Migration den <0>Medium Beitrag</0>."
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "Please switch your network to Arbitrum."
+msgstr ""
+
+#: src/components/Exchange/NetValueTooltip.tsx
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/TradeHistory.js
+#: src/pages/Actions/Actions.js
+msgid "PnL"
+msgstr "PnL"
+
+#: src/components/Exchange/NetValueTooltip.tsx
+msgid "PnL After Fees"
+msgstr "PnL nach Gebühren"
+
+#: src/components/Header/AppHeaderLinks.tsx
+msgid "PoLL"
+msgstr ""
+
+#: src/pages/Dashboard/DashboardV1.js
+#: src/pages/Dashboard/DashboardV2.js
+msgid "Pool"
+msgstr "Pool"
+
+#: src/pages/Dashboard/DashboardV2.js
+#: src/pages/Dashboard/DashboardV2.js
+msgid "Pool Amount"
+msgstr "Pool Betrag"
+
+#: src/components/Exchange/PositionsList.js
+msgid "Position"
+msgstr "Position"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Position close disabled, pending {0} upgrade"
+msgstr "Positionsschließung deaktiviert, {0} Aktualisierung ausstehend"
+
+#: src/pages/Actions/Actions.js
+#: src/pages/Exchange/Exchange.js
+msgid "Positions"
+msgstr "Positionen"
+
+#: src/pages/Exchange/Exchange.js
+msgid "Positions ({0})"
+msgstr "Positionen ({0})"
+
+#: src/pages/Nft/NftModal.js
+msgid "Power decreased by 1% for each group of 100 NFTs minted"
+msgstr ""
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Prev"
+msgstr "Prev"
+
+#: src/components/Exchange/OrderEditor.js
+#: src/components/Exchange/OrderEditor.js
+#: src/components/Exchange/OrderEditor.js
+#: src/components/Exchange/OrderEditor.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+#: src/pages/Dashboard/DashboardV1.js
+#: src/pages/Dashboard/DashboardV1.js
+#: src/pages/Dashboard/DashboardV1.js
+#: src/pages/Dashboard/DashboardV2.js
+#: src/pages/Dashboard/DashboardV2.js
+#: src/pages/Dashboard/DashboardV2.js
+#: src/pages/OrdersOverview/OrdersOverview.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Price"
+msgstr "Preis"
+
+#: src/components/Exchange/OrderEditor.js
+#: src/components/Exchange/PositionSeller.js
+msgid "Price above Liq. Price"
+msgstr "Preis über Liq. Preis"
+
+#: src/components/Exchange/OrderEditor.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "Price above Mark Price"
+msgstr ""
+
+#: src/components/Exchange/OrderEditor.js
+#: src/components/Exchange/PositionSeller.js
+msgid "Price below Liq. Price"
+msgstr "Preis unter Liq. Preis"
+
+#: src/components/Exchange/OrderEditor.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "Price below Mark Price"
+msgstr "Preis unter Mark Preis"
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Price conditions are met"
+msgstr "Preisbedingungen sind erfüllt"
+
+#: src/pages/Nft/NftModal.js
+msgid "Price increases by 1% for each group of 100 NFTs minted"
+msgstr ""
+
+#: src/components/Exchange/OrderEditor.js
+msgid "Price is above Mark Price"
+msgstr "Preis ist über Mark Preis"
+
+#: src/components/Exchange/OrderEditor.js
+msgid "Price is below Mark Price"
+msgstr "Preis ist unter Mark Preis"
+
+#: src/pages/Dashboard/DashboardV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Price on Goerli"
+msgstr ""
+
+#: src/pages/Dashboard/DashboardV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Price on Puppy"
+msgstr ""
+
+#: src/pages/Actions/Actions.js
+msgid "Profit"
+msgstr "Profit"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Profit price: {0} ${1}. This rule applies for the next {2}, until {3}."
+msgstr "Profit-Preis: {0} ${1}. Diese Regel gilt für die nächsten {2}, bis {3}."
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Projects developed by the GMX community. <0/>Please exercise caution when interacting with any app, apps are fully maintained by community developers."
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Projects integrated with GMX."
+msgstr ""
+
+#: src/pages/Poll/Poll.js
+msgid "Proof of Locked Liquidity"
+msgstr "Nachweis der gesperrten Liquidität"
+
+#: src/pages/Dashboard/AssetDropdown.tsx
+msgid "Proof of Reserves"
+msgstr "Reserve-Nachweis"
+
+#: src/components/Header/HomeHeaderLinks.tsx
+msgid "Protocol"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Protocol analytics"
+msgstr "Protokoll-Analytik"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Purchase Insurance"
+msgstr "Versicherung kaufen"
+
+#: src/pages/BuyGlp/BuyGlp.js
+msgid "Purchase ALP tokens to earn {nativeTokenSymbol} fees from swaps and leverages trading."
+msgstr ""
+
+#: src/components/TokenCard/TokenCard.js
+#: src/components/TokenCard/TokenCard.js
+msgid "Read more"
+msgstr "Mehr lesen"
+
+#: src/components/Referrals/TradersStats.js
+msgid "Rebates Distribution History"
+msgstr "Rabatte Verteilungs-Historie"
+
+#: src/components/Referrals/AffiliatesStats.js
+#: src/components/Referrals/TradersStats.js
+#: src/components/Referrals/TradersStats.js
+msgid "Rebates are airdropped weekly."
+msgstr "Die Rabatte werden wöchentlich per Airdrop verteilt."
+
+#: src/components/Referrals/TradersStats.js
+msgid "Rebates earned by this account as a trader."
+msgstr "Rabatte, die mit diesem Konto als Händler verdient wurden."
+
+#: src/components/Referrals/AffiliatesStats.js
+msgid "Rebates earned by this account as an affiliate."
+msgstr "Rabatte, die von diesem Konto als Affiliate-Partner verdient wurden."
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+msgid "Receive"
+msgstr "Empfangen"
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+#: src/pages/NftWallet/NftWallet.js
+msgid "Receiver Address"
+msgstr "Empfängeradresse"
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+msgid "Receiver has not staked AXN tokens before"
+msgstr "Der Empfänger hat noch keine AXN-Token gestaket"
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+msgid "Receiver has not staked ALP tokens before"
+msgstr "Der Empfänger hat noch keine TLP-Token gestaket"
+
+#: src/components/Glp/GlpSwap.js
+msgid "Redemption time not yet reached"
+msgstr "Tilgungszeitpunkt noch nicht erreicht"
+
+#: src/components/Referrals/AffiliatesStats.js
+msgid "Referral Code"
+msgstr "Referral Code"
+
+#: src/components/Referrals/JoinReferralCode.js
+msgid "Referral Code does not exist"
+msgstr "Referral Code existiert nicht"
+
+#: src/components/Referrals/AffiliatesStats.js
+msgid "Referral Codes"
+msgstr "Referral Codes"
+
+#: src/components/Referrals/JoinReferralCode.js
+msgid "Referral code added!"
+msgstr "Referral Code hinzugefügt!"
+
+#: src/components/Referrals/AddAffiliateCode.js
+msgid "Referral code created!"
+msgstr "Referral Code erstellt!"
+
+#: src/pages/Referrals/Referrals.js
+msgid "Referral code creation failed."
+msgstr "Referral Code Erstellung fehlgeschlagen."
+
+#: src/pages/Referrals/Referrals.js
+msgid "Referral code submitted!"
+msgstr "Referral Code übermittelt!"
+
+#: src/components/Referrals/JoinReferralCode.js
+msgid "Referral code updated failed."
+msgstr "Referral Code Update fehlgeschlagen."
+
+#: src/components/Referrals/JoinReferralCode.js
+msgid "Referral code updated!"
+msgstr "Referral Code aktualisiert!"
+
+#: src/components/Header/AppHeaderLinks.tsx
+msgid "Referrals"
+msgstr "Referrals"
+
+#: src/pages/Referrals/Referrals.js
+msgid "Referrals <0/>"
+msgstr ""
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Request decrease {0} {longOrShortText}, -{1} USD, Acceptable Price: {2} {3} USD"
+msgstr "Reduzierungsanfrage {0} {longOrShortText}, -{1} USD, Akzeptabler Preis: {2} {3} USD"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Request deposit into {0} {longOrShortText}"
+msgstr "Einzahlungsanfrage in {0} {longOrShortText}"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Request increase {0} {longOrShortText}, +{1} USD, Acceptable Price: {2} {3} USD"
+msgstr "Erhöhungsanfrage {0} {longOrShortText}, +{1} USD, Akzeptabler Preis: {2} {3} USD"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Request withdrawal from {0} {longOrShortText}"
+msgstr "Antrag auf Abheben von {0} {longOrShortText}"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Requested decrease of {0} {longOrShortText} by {sizeDeltaUsd} USD."
+msgstr "Angeforderte Verringerung von {0} {longOrShortText} um {sizeDeltaUsd} USD."
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Requested deposit of {0} {1} into {2} {longOrShortText}."
+msgstr "Angeforderte Einzahlung von {0} {1} in {2} {longOrShortText}."
+
+#: src/components/Exchange/SwapBox.js
+msgid "Requested increase of {tokenSymbol} {longOrShortText} by {0} USD."
+msgstr "Angeforderte Erhöhung von {tokenSymbol} {longOrShortText} um {0} USD."
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Requested withdrawal of {0} USD from {1} {longOrShortText}."
+msgstr "Angeforderte Abhebung von {0} USD von {1} {longOrShortText}."
+
+#: src/pages/Stake/StakeV2.js
+msgid "Reserve Amount"
+msgstr "Reservebetrag"
+
+#: src/components/Glp/GlpSwap.js
+msgid "Reserved"
+msgstr "Reserviert"
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Reserved for Vesting"
+msgstr "Reserviert für Vesting"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Returns calculator for GMX and GLP"
+msgstr ""
+
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Rewards"
+msgstr "Rewards"
+
+#: src/components/Referrals/AffiliatesStats.js
+msgid "Rewards Distribution History"
+msgstr "Historie der Rewardsverteilung"
+
+#: src/components/Referrals/AffiliatesStats.js
+msgid "Rewards are airdropped weekly."
+msgstr "Die Rewards werden wöchentlich airdropped."
+
+#: src/components/Referrals/JoinReferralCode.js
+msgid "Same as current active code"
+msgstr "Gleicher Code wie der derzeitige aktive Code"
+
+#: src/App/App.js
+msgid "Save"
+msgstr "Sparen"
+
+#: src/pages/Home/Home.js
+msgid "Save on Costs"
+msgstr "Kosten sparen"
+
+#: src/components/Glp/GlpSwap.js
+msgid "Save on Fees"
+msgstr "Gebühren sparen"
+
+#: src/components/Exchange/TokenSelector.js
+msgid "Search Token"
+msgstr "Token suchen"
+
+#: src/components/NetworkDropdown/LanguagePopupHome.tsx
+#: src/components/NetworkDropdown/NetworkDropdown.tsx
+msgid "Select Language"
+msgstr "Sprache auswählen"
+
+#: src/components/Exchange/PositionDropdown.js
+msgid "Select Market"
+msgstr "Markt wählen"
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "Select an option"
+msgstr "Option wählen"
+
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "Select different tokens"
+msgstr "Anderen Token wählen"
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "Select your vesting option below then click \"Claim\"."
+msgstr "Wähle unten deine Vestingoption aus und klicke dann auf \"Beanspruchen\"."
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+msgid "Self-transfer not supported"
+msgstr "Selbstübertragungen werden nicht unterstützt"
+
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+#: src/pages/Stake/StakeV2.js
+msgid "Sell TLP"
+msgstr "ALP verkaufen"
+
+#: src/components/Glp/GlpSwap.js
+msgid "Sell failed."
+msgstr "Verkauf fehlgeschlagen."
+
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+msgid "Sell for {0}"
+msgstr "Verkaufe für {0}"
+
+#: src/components/Glp/GlpSwap.js
+msgid "Sell submitted!"
+msgstr "Verkauf übermittelt!"
+
+#: src/components/Glp/GlpSwap.js
+msgid "Selling..."
+msgstr "Verkaufe..."
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+msgid "Sender has withdrawn all tokens from AXN Vesting Vault"
+msgstr "Sender hat alle Token aus dem AXN Vesting Vault zurückgezogen"
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+msgid "Sender has withdrawn all tokens from ALP Vesting Vault"
+msgstr "Sender hat alle Token aus dem ALP Vesting Vault abgehoben"
+
+#: src/App/App.js
+#: src/components/Header/AppHeaderLinks.tsx
+#: src/components/NetworkDropdown/NetworkDropdown.tsx
+#: src/components/NetworkDropdown/NetworkDropdown.tsx
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: src/components/Exchange/PositionsList.js
+msgid "Share"
+msgstr "Teilen"
+
+#: src/components/Exchange/PositionDropdown.js
+#: src/components/Exchange/PositionShare.js
+msgid "Share Position"
+msgstr "Position teilen"
+
+#: src/pages/Home/Home.js
+msgid "Shibarium's Decentralized<0/>Perpetual Exchange"
+msgstr "Shibarium Dezentralisierte<0/>Perpetual Börse"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ExchangeTVChart.js
+#: src/components/Exchange/ExchangeTVChart.js
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/TradeHistory.js
+#: src/components/Exchange/TradeHistory.js
+#: src/components/Exchange/TradeHistory.js
+#: src/pages/Actions/Actions.js
+#: src/pages/Actions/Actions.js
+#: src/pages/Exchange/Exchange.js
+#: src/pages/Exchange/Exchange.js
+#: src/pages/Exchange/Exchange.js
+#: src/pages/Exchange/Exchange.js
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Short"
+msgstr "Short"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Short {0}"
+msgstr "Short {0}"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Shorting..."
+msgstr "Shorten..."
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Simulate your hedge strategy"
+msgstr ""
+
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+msgid "Size"
+msgstr "Größe"
+
+#: src/App/App.js
+msgid "Slippage should be less than 5%"
+msgstr "Der Slippage sollte weniger als 5% betragen"
+
+#: src/components/Exchange/UsefulLinks.tsx
+msgid "Speed up page loading"
+msgstr "Beschleunige das Laden von Seiten"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/PositionSeller.js
+msgid "Spread"
+msgstr "Spread"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Spreadsheet for position calculations"
+msgstr ""
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "Stablecoin Percentage"
+msgstr "Prozentsatz von Stablecoins"
+
+#: src/pages/Nft/ItemCard.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Stake"
+msgstr "Stake"
+
+#: src/pages/Nft/StakeNft.js
+msgid "Stake All"
+msgstr ""
+
+#: src/pages/Stake/StakeV2.js
+msgid "Stake Multiplier Points"
+msgstr "Stake Multiplikator-Punkte"
+
+#: src/components/Header/AppHeaderLinks.tsx
+#: src/pages/Nft/StakeNft.js
+msgid "Stake NFT"
+msgstr ""
+
+#: src/pages/Stake/StakeV2.js
+msgid "Stake AXN"
+msgstr "Stake AXN"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Stake AXN Rewards"
+msgstr "Stake AXN Rewards"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Stake AXN and ALP to earn rewards."
+msgstr ""
+
+#: src/pages/Stake/StakeV2.js
+msgid "Stake esAXN"
+msgstr "Stake esAXN"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Stake esAXN Rewards"
+msgstr "Stake esAXN Rewards"
+
+#: src/pages/Stake/StakeV1.js
+msgid "Stake failed"
+msgstr "Staken fehlgeschlagen"
+
+#: src/pages/Nft/StakeNft.js
+#: src/pages/Nft/StakeNft.js
+#: src/pages/Stake/StakeV2.js
+msgid "Stake failed."
+msgstr "Staken fehlgeschlagen."
+
+#: src/pages/Nft/StakeNft.js
+#: src/pages/Nft/StakeNft.js
+#: src/pages/Stake/StakeV2.js
+msgid "Stake submitted!"
+msgstr "Staken übermittelt!"
+
+#: src/pages/Stake/StakeV1.js
+msgid "Stake submitted! <0>View status.</0>"
+msgstr "Staken übermittelt! <0>Status anzeigen.</0>"
+
+#: src/components/Glp/GlpSwap.js
+#: src/pages/Dashboard/DashboardV2.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Staked"
+msgstr "Staked"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Staked Multiplier Points"
+msgstr "Staked Multiplikator-Punkte"
+
+#: src/pages/Nft/StakeNft.js
+msgid "Staked NFT"
+msgstr ""
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Staked Tokens"
+msgstr "Staked Tokens"
+
+#: src/pages/Nft/StakeNft.js
+msgid "Staking All..."
+msgstr ""
+
+#: src/pages/Nft/ItemCard.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+msgid "Staking..."
+msgstr "Staken..."
+
+#: src/pages/Nft/StakeNft.js
+#: src/pages/Nft/YourNft.js
+msgid "Start in seconds"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Structured Products"
+msgstr "Strukturierte Produkte"
+
+#: src/components/Referrals/JoinReferralCode.js
+msgid "Submit"
+msgstr "Übermitteln"
+
+#: src/pages/Dashboard/DashboardV1.js
+#: src/pages/Dashboard/DashboardV1.js
+#: src/pages/Dashboard/DashboardV1.js
+#: src/pages/Dashboard/DashboardV2.js
+#: src/pages/Dashboard/DashboardV2.js
+msgid "Supply"
+msgstr "Supply"
+
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Swap"
+msgstr "Swap"
+
+#: src/components/Exchange/FeesTooltip.tsx
+#: src/components/Exchange/SwapBox.js
+msgid "Swap Fee"
+msgstr ""
+
+#: src/components/Exchange/SwapBox.js
+msgid "Swap Order created!"
+msgstr "Swap Order erstellt!"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Swap Order creation failed."
+msgstr "Swap Order Erstellung fehlgeschlagen."
+
+#: src/components/Exchange/SwapBox.js
+msgid "Swap Order submitted!"
+msgstr "Swap Order übermittelt!"
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Swap active: {0}, executed: {1}, cancelled: {2}"
+msgstr "Swap aktiv: {0}, ausgeführt: {1}, abgebrochen: {2}"
+
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "Swap failed."
+msgstr "Swap fehlgeschlagen."
+
+#: src/components/Glp/SwapErrorModal.tsx
+msgid "Swap on 1inch"
+msgstr "Swappe auf 1inch"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Swap submitted!"
+msgstr "Swap übermittelt!"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Swap submitted."
+msgstr "Swap übermittelt."
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Swap {0} USDG for {1} {2}"
+msgstr "Swappe {0} USDG gegen {1} {2}"
+
+#: src/components/Glp/GlpSwap.js
+msgid "Swap {0} on 1inch"
+msgstr "Swappe auf 1inch"
+
+#: src/components/Exchange/SwapBox.js
+msgid "Swap {0} submitted!"
+msgstr "Swap{0} übermittelt!"
+
+#: src/components/Glp/SwapErrorModal.tsx
+msgid "Swap {0} to {1} on 1inch"
+msgstr "Swappe {0} gegen {1} auf 1inch"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Swap {0} {1} for {2} USDG"
+msgstr "Swappe {0} {1} für {2} USDG"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Swap {0} {1} for {2} {3}"
+msgstr "Swappe {0} {1} für {2} {3}"
+
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "Swapped {0} {1} for {2} {3}!"
+msgstr "{0} {1} für {2} {3} geswappt!"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Swapping..."
+msgstr "Swapping..."
+
+#: src/components/Exchange/SwapBox.js
+msgid "Swaps disabled, pending {0} upgrade"
+msgstr "Swaps deaktiviert, {0} Upgrade steht an"
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "AXN Vault"
+msgstr "AXN Tresor"
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "AXN bonds can be bought on Bond Protocol with a discount and a small vesting period:"
+msgstr ""
+
+#: src/pages/Home/Home.js
+msgid "AXN is currently live on Goerli and soon will be on Shibarium."
+msgstr ""
+
+#: src/pages/Jobs/Jobs.js
+msgid "AXN is not actively looking for new hires at the moment. However, if you think you can contribute to the project, please email <0>jobs@axn.finanace</0>."
+msgstr ""
+
+#: src/components/TokenCard/TokenCard.js
+msgid "AXN is the utility and governance token. Accrues 25% of the platform's generated fees."
+msgstr "AXN ist der Utility- und Governance-Token. Bekommt 25 % der von der Plattform generierten Gebühren an."
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "AXN transfers not yet enabled"
+msgstr "AXN-Übertragungen noch nicht aktiviert"
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "ALP Index Composition"
+msgstr ""
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "ALP Vault"
+msgstr "TLP-Tresor"
+
+#: src/components/Glp/GlpSwap.js
+msgid "ALP buy disabled, pending {0} upgrade"
+msgstr "TLP-Kauf deaktiviert, {0} Aktualisierung steht noch aus"
+
+#: src/components/Exchange/SwapBox.js
+msgid "ALP doesn't accept this amount of {0}."
+msgstr ""
+
+#: src/components/TokenCard/TokenCard.js
+msgid "ALP is the liquidity provider token. Accrues 50% of the platform's generated fees."
+msgstr "ALP ist der Token des Liquiditätsanbieters. Bekommt zu 50 % der von der Plattform generierten Gebühren an."
+
+#: src/components/Glp/GlpSwap.js
+msgid "ALP sell disabled, pending {0} upgrade"
+msgstr "TLP-Verkauf deaktiviert, {0} Aktualisierung steht noch aus"
+
+#: src/components/Glp/GlpSwap.js
+#: src/pages/Dashboard/DashboardV2.js
+msgid "TOKEN"
+msgstr "TOKEN"
+
+#: src/pages/Home/Home.js
+msgid "Tail Finance"
+msgstr ""
+
+#: src/components/Exchange/SwapBox.js
+msgid "Take-profit and stop-loss orders can be set after opening a position. <0/><1/>There will be a \"Close\" button on each position row, clicking this will display the option to set trigger orders. <2/><3/>"
+msgstr ""
+
+#: src/pages/Dashboard/DashboardV2.js
+#: src/pages/Dashboard/DashboardV2.js
+msgid "Target Min Amount"
+msgstr "Ziel Min. Betrag"
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "Target Weight"
+msgstr "Ziel-Gewichtung"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Telegram Group"
+msgstr "Telegram Gruppe"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Telegram Group (Chinese)"
+msgstr "Telegram Gruppe (Chinesisch)"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Telegram Group (Portuguese)"
+msgstr "Telegram Gruppe (Portugisisch)"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Telegram Groups"
+msgstr "Telegram Gruppen"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Telegram bot for GMX Swaps monitoring"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Telegram bot for GMX position updates"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Telegram bot for Open Interest on GMX"
+msgstr ""
+
+#: src/components/Footer/constants.ts
+msgid "Terms and Conditions"
+msgstr "Bedingungen und Konditionen"
+
+#: src/pages/Stake/StakeV1.js
+msgid "The <0>AXN migration</0> is in progress, please migrate your GMT, xGMT, GMT-USDG and xGMT-USDG tokens.<1/>USDG tokens will continue to function as before and do not need to be migrated."
+msgstr "Die <0>AXN-Migration</0> ist im Gange, bitte migriere deine GMT-, xGMT-, GMT-USDG- und xGMT-USDG-Tokens.<1/>USDG-Tokens funktionieren weiterhin wie bisher und müssen nicht migriert werden."
+
+#: src/components/Stake/GMXAprTooltip.tsx
+msgid "The Boosted APR is from your staked Multiplier Points."
+msgstr "Der erhöhte APR ergibt sich aus den von dir gestaketen Multiplikatorpunkten."
+
+#: src/pages/Stake/StakeV1.js
+msgid "The Gambit protocol is in beta, please read the <0>staking details</0>before participating."
+msgstr "Das Gambit-Protokoll befindet sich in der Beta-Phase, bitte lese die <0>Details zum Staking</0>, bevor du teilnimmst."
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "The address of the esAXN (IOU) token is {esGmxIouAddress}."
+msgstr ""
+
+#: src/components/Exchange/SwapBox.js
+msgid "The borrow fee is calculated as (assets borrowed) / (total assets in pool) * 0.01% per hour."
+msgstr "Die Leihgebühr wird berechnet als (ausgeliehenes Vermögen) / (Gesamtvermögen im Pool) * 0,01 % pro Stunde."
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "The esAXN (IOU) token is transferrable. You can add the token to your wallet and send it to another address to claim if you'd like."
+msgstr ""
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "The esAXN tokens can be staked or vested at any time."
+msgstr ""
+
+#: src/lib/contracts/callContract.tsx
+msgid "The mark price has changed, consider increasing your Allowed Slippage by clicking on the \"...\" icon next to your address."
+msgstr "Der Mark-Preis hat sich geändert. Erhöhe dein zulässiges Slippage, indem du auf das Symbol \"...\" neben deiner Adresse klickst."
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "The order will only execute if the price conditions are met and there is sufficient liquidity"
+msgstr "Der Auftrag wird nur ausgeführt, wenn die Preisbedingungen erfüllt sind und genügend Liquidität vorhanden ist."
+
+#: src/components/Exchange/PositionEditor.js
+msgid "The pending borrow fee will be charged on this transaction."
+msgstr ""
+
+#: src/components/Exchange/SwapBox.js
+msgid "The position will be opened at {0} USD with a max slippage of {1}%.<0/><1/>The slippage amount can be configured under Settings, found by clicking on your address at the top right of the page after connecting your wallet.<2/><3/>"
+msgstr ""
+
+#: src/components/Exchange/OrdersList.js
+msgid "The price that the order can be executed at may differ slightly from the chart price as market orders can change the price while limit / trigger orders cannot."
+msgstr "Der Preis, zu dem der Auftrag ausgeführt werden kann, kann geringfügig vom Chartpreis abweichen, da Marktaufträge den Preis ändern können, Limit-/Trigger-Aufträge hingegen nicht."
+
+#: src/components/Referrals/referralsHelper.js
+msgid "The referral code can't be more than {MAX_REFERRAL_CODE_LENGTH} characters."
+msgstr "Der Empfehlungscode darf nicht länger als {MAX_REFERRAL_CODE_LENGTH} Zeichen sein."
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "The spread is > 1%, please ensure the trade details are acceptable before confirming"
+msgstr ""
+
+#: src/components/ModalViews/RedirectModal.js
+msgid "The website is a community deployed and maintained instance of the open source <0>AXN front end</0>, hosted and served on the distributed, peer-to-peer <1>IPFS network</1>."
+msgstr "Die Website ist eine von der Community betriebene und gewartete Instanz des open-source <0>AXN-Frontends</0>, das im verteilten Peer-to-Peer-Netzwerk <1>IPFS</1> gehostet und bereitgestellt wird."
+
+#: src/components/Exchange/SwapBox.js
+msgid "There are more longs than shorts, borrow fees for shorting is currently zero"
+msgstr "Es gibt mehr Longs als Shorts, die Leihgebühren für Shorting sind derzeit gleich Null"
+
+#: src/components/Exchange/SwapBox.js
+msgid "There are more shorts than longs, borrow fees for longing is currently zero"
+msgstr "Es gibt mehr Shorts als Longs, Leihgebühren für Longing sind derzeit gleich Null"
+
+#: src/domain/tokens/approveTokens.tsx
+#: src/lib/contracts/callContract.tsx
+msgid "There is not enough ETH in your account on Arbitrum to send this transaction.<0/><1/><2>Bridge ETH to Arbitrum</2>"
+msgstr ""
+
+#: src/components/Glp/SwapErrorModal.tsx
+msgid "There is not enough liquidity in a single token for your size. Please check the Save on Fees section and consider splitting your order into several different ones"
+msgstr "Die Liquidität in einem einzigen Token ist für deine Größe nicht ausreichend. Bitte prüfe den Abschnitt \"Gebühren sparen\" und ziehe in Erwägung, deinen Auftrag in mehrere Aufträge aufzuteilen"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "There may not be sufficient liquidity to execute your order when the price conditions are met"
+msgstr "Es kann sein, dass nicht genügend Liquidität vorhanden ist, um deinen Auftrag auszuführen, wenn die Preisbedingungen erfüllt sind."
+
+#: src/components/Referrals/AffiliatesStats.js
+msgid "This code has been taken by someone else on {0}, you will not receive rebates from traders using this code on {1}."
+msgstr "Dieser Code wurde von jemand anderem auf {0} genommen, du wirst keine Rabatte von Tradern erhalten, die diesen Code auf {1} verwenden."
+
+#: src/components/Referrals/AffiliatesStats.js
+msgid "This code is not yet registered on {0}, you will not receive rebates there.<0/><1/>Switch your network to create this code on {1}."
+msgstr "Dieser Code ist noch nicht auf {0} registriert, du wirst dort keine Rabatte erhalten.<0/><1/>Schalte dein Netzwerk um, um diesen Code auf {1} zu erstellen."
+
+#: src/components/Exchange/TradeHistory.js
+msgid "This position was liquidated as the max leverage of 100x was exceeded."
+msgstr "Diese Position wurde liquidiert, da die maximale Hebelwirkung von 100x überschritten wurde."
+
+#: src/components/Referrals/TradersStats.js
+msgid "Tier {0} ({1}% discount)"
+msgstr "Tier {0} ({1}% Discount)"
+
+#: src/components/Referrals/AffiliatesStats.js
+msgid "Tier {0} ({1}% rebate)"
+msgstr "Tier {0} ({1}% Rabatt)"
+
+#: src/components/Migration/Migration.js
+msgid "To Receive"
+msgstr "Zu Empfangen"
+
+#: src/pages/CompleteAccountTransfer/CompleteAccountTransfer.js
+msgid "To complete the transfer, you must switch your connected account to {receiver}."
+msgstr "Um die Übertragung abzuschließen, musst du dein verbundenes Konto auf {receiver} umstellen."
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "To purchase AXN on the {0} blockchain, please <0>change your network</0>."
+msgstr ""
+
+#: src/components/Glp/GlpSwap.js
+msgid "To reduce fees, select a different asset to pay with."
+msgstr "Um die Gebühren zu senken, wähle ein anderes Zahlungsmittel."
+
+#: src/components/Glp/GlpSwap.js
+msgid "To reduce fees, select a different asset to receive."
+msgstr "Um die Gebühren zu senken, wähle einen anderen Vermögenswert aus, den du erhalten möchtest."
+
+#: src/pages/Home/Home.js
+msgid "To support the #ShibArmy and Shib Common Values 20% of trading fees generated from the platform will be used to buy and burn $SHIB."
+msgstr ""
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "Tokens"
+msgstr "Tokens"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Total"
+msgstr "Insgesamt"
+
+#: src/components/Migration/Migration.js
+msgid "Total Assets Migrated"
+msgstr "Insgesamt migrierte Assets"
+
+#: src/pages/Stake/StakeV1.js
+msgid "Total Assets Staked"
+msgstr "Insgesamt gestakete Assets"
+
+#: src/pages/Dashboard/DashboardV1.js
+msgid "Total Fees Distributed"
+msgstr "Gebühren insgesamt verteilt"
+
+#: src/pages/Nft/YourNft.js
+msgid "Total NFT"
+msgstr ""
+
+#: src/components/Referrals/AffiliatesStats.js
+#: src/components/Referrals/AffiliatesStats.js
+#: src/components/Referrals/TradersStats.js
+msgid "Total Rebates"
+msgstr "Rabatte insgesamt"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Total Rewards"
+msgstr "Rewards insgesamt"
+
+#: src/pages/Dashboard/DashboardV2.js
+#: src/pages/Dashboard/DashboardV2.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Total Staked"
+msgstr "Insgeamt gestaket"
+
+#: src/components/Glp/GlpSwap.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Total Supply"
+msgstr "Gesamtangebot"
+
+#: src/components/Referrals/AffiliatesStats.js
+msgid "Total Traders Referred"
+msgstr "Vermittelte Trader insgesamt"
+
+#: src/components/Referrals/AffiliatesStats.js
+#: src/components/Referrals/TradersStats.js
+msgid "Total Trading Volume"
+msgstr "Trading Volumen insgesamt"
+
+#: src/components/Referrals/AffiliatesStats.js
+msgid "Total Volume"
+msgstr "Volumen insgesamt"
+
+#: src/pages/Dashboard/DashboardV1.js
+msgid "Total Volume Since 28 April 2021"
+msgstr "Gesamtvolumen seit 28. April 2021"
+
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Total active: {openTotal}, executed: {executedTotal}, cancelled: {cancelledTotal}"
+msgstr "Insgesamt aktiv: {openTotal}, ausgeführt: {executedTotal}, cancelled: {cancelledTotal}"
+
+#: src/pages/Nft/StakeNft.js
+msgid "Total distributed"
+msgstr ""
+
+#: src/pages/Dashboard/DashboardV1.js
+msgid "Total fees earned since {0}: {1} USD<0/>Fee assets: {feeText}"
+msgstr "Insgesamt verdiente Gebühren seit {0}: {1} USD<0/>Gebührenwerte: {feeText}"
+
+#: src/components/StatsTooltip/StatsTooltip.tsx
+msgid "Total:"
+msgstr "Insgeamt:"
+
+#: src/components/Header/AppHeaderUser.tsx
+#: src/components/Header/AppHeaderUser.tsx
+msgid "Trade"
+msgstr "Handeln"
+
+#: src/pages/Home/Home.js
+msgid "Trade BTC, ETH, BONE and other top cryptocurrencies with up to 50x leverage directly from your wallet"
+msgstr "Handeln Sie BTC, ETH, BONE und andere Top-Kryptowährungen mit bis zu 50-facher Hebelwirkung direkt aus Ihrer Brieftasche"
+
+#: src/components/Exchange/ExchangeBanner.js
+msgid "Trade on AXN and win <0>$250.000</0> in prizes! Live until November 30th, <1>click here</1> to learn more."
+msgstr "Handle auf AXN und gewinne <0>$250.000</0> in Preisen! Live bis zum 30. November, <1>Klicke hier</1> um mehr zu erfahren."
+
+#: src/pages/Referrals/Referrals.js
+msgid "Traders"
+msgstr "Traders"
+
+#: src/components/Referrals/AffiliatesStats.js
+msgid "Traders Referred"
+msgstr "Vermittelte Trader"
+
+#: src/pages/Exchange/Exchange.js
+msgid "Trades"
+msgstr "Trades"
+
+#: src/components/Exchange/UsefulLinks.tsx
+msgid "Trading guide"
+msgstr "Handelsleitfaden"
+
+#: src/pages/NftWallet/NftWallet.js
+msgid "Tranferring..."
+msgstr "Übertragen..."
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/PositionSeller.js
+msgid "Transacting with a depegged stable coin is subject to spreads reflecting the worse of current market price or $1.00, with transactions involving multiple stablecoins may have multiple spreads."
+msgstr ""
+
+#: src/components/Referrals/AffiliatesStats.js
+#: src/components/Referrals/TradersStats.js
+msgid "Transaction"
+msgstr "Transaktion"
+
+#: src/lib/contracts/callContract.tsx
+msgid "Transaction completed!"
+msgstr "Transaktion abgeschlossen!"
+
+#: src/lib/contracts/callContract.tsx
+msgid "Transaction failed"
+msgstr "Transaktion fehlgeschlagen"
+
+#: src/lib/contracts/callContract.tsx
+msgid "Transaction failed due to RPC error.<0/><1/>Please try changing the RPC url in your wallet settings."
+msgstr ""
+
+#: src/lib/contracts/callContract.tsx
+msgid "Transaction sent."
+msgstr "Transaktion gesendet."
+
+#: src/lib/contracts/callContract.tsx
+msgid "Transaction was cancelled."
+msgstr "Transaktion wurde abgebrochen."
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+#: src/pages/Stake/StakeV2.js
+msgid "Transfer Account"
+msgstr "Transferiere Konto"
+
+#: src/pages/NftWallet/NftWallet.js
+msgid "Transfer NFT"
+msgstr "Transferiere NFT"
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+msgid "Transfer Submitted"
+msgstr "Transfer übermittelt"
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+msgid "Transfer already initiated"
+msgstr "Transfer bereits begonnen"
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+#: src/pages/CompleteAccountTransfer/CompleteAccountTransfer.js
+#: src/pages/NftWallet/NftWallet.js
+msgid "Transfer failed."
+msgstr "Transfer fehlgeschlagen"
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+#: src/pages/CompleteAccountTransfer/CompleteAccountTransfer.js
+#: src/pages/NftWallet/NftWallet.js
+msgid "Transfer submitted!"
+msgstr "Transfer übermittelt!"
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "Transfer {nativeTokenSymbol}"
+msgstr ""
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+msgid "Transferring"
+msgstr "Übermitteln"
+
+#: src/components/Exchange/OrdersList.js
+#: src/components/Exchange/PositionSeller.js
+#: src/components/Exchange/SwapBox.js
+msgid "Trigger"
+msgstr "Trigger"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Trigger Price"
+msgstr "Trigger Preis"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "Trigger order disabled, pending {0} upgrade"
+msgstr "Trigger-Order deaktiviert, {0} Aktualisierung ausstehend"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Try increasing the \"Allowed Slippage\", under the Settings menu on the top right"
+msgstr "Versuche, die Einstellung \"Erlaubter Slippage\" im Menü \"Einstellungen\" oben rechts zu erhöhen"
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Try increasing the \"Allowed Slippage\", under the Settings menu on the top right."
+msgstr "Versuche die Einstellung \"Erlaubter Slippage\" im Menü \"Einstellungen\" oben rechts zu erhöhen."
+
+#: src/components/Exchange/PositionShare.js
+msgid "Tweet"
+msgstr "Twittere"
+
+#: src/pages/Home/Home.js
+msgid "Two tokens create our ecosystem"
+msgstr "Zwei Token erschaffen unser Ökosystem"
+
+#: src/App/App.js
+msgid "Txn failed. <0>View</0>"
+msgstr "Txn fehlgeschlagen. <0>Siehe</0>"
+
+#: src/components/Exchange/OrdersList.js
+#: src/pages/OrdersOverview/OrdersOverview.js
+msgid "Type"
+msgstr "Typ"
+
+#: src/pages/Dashboard/DashboardV1.js
+msgid "USDG Debt"
+msgstr "USDG Schulden"
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "UTILIZATION"
+msgstr "NUTZUNG"
+
+#: src/pages/Nft/ItemCard.js
+msgid "UnStake"
+msgstr ""
+
+#: src/pages/Nft/StakeNft.js
+msgid "UnStake All"
+msgstr ""
+
+#: src/pages/Nft/StakeNft.js
+#: src/pages/Nft/StakeNft.js
+msgid "UnStake failed."
+msgstr ""
+
+#: src/pages/Nft/StakeNft.js
+#: src/pages/Nft/StakeNft.js
+msgid "UnStake submitted!"
+msgstr ""
+
+#: src/pages/Nft/StakeNft.js
+msgid "UnStaking All..."
+msgstr ""
+
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Unstake"
+msgstr "Unstaken"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Unstake AXN"
+msgstr "Unstake AXN"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Unstake completed!"
+msgstr "Unstaken abgeschlossen!"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Unstake esAXN"
+msgstr ""
+
+#: src/pages/Stake/StakeV1.js
+msgid "Unstake failed"
+msgstr "Unstaken fehlgeschlagen"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Unstake failed."
+msgstr "Unstaken fehlgeschlagen."
+
+#: src/pages/Stake/StakeV2.js
+msgid "Unstake submitted!"
+msgstr "Unstaken übermittelt!"
+
+#: src/pages/Stake/StakeV1.js
+msgid "Unstake submitted! <0>View status.</0>"
+msgstr "Unstaken übermittelt! <0>Status anzeigen.</0>"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Unstaking will burn . {1}"
+msgstr ""
+
+#: src/pages/Nft/ItemCard.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+msgid "Unstaking..."
+msgstr "Unstaken..."
+
+#: src/lib/wallets/index.tsx
+msgid "Unsupported chain. Switch to Arbitrum network on your wallet and try again"
+msgstr ""
+
+#: src/components/Exchange/TradeHistory.js
+#: src/components/Referrals/JoinReferralCode.js
+msgid "Update"
+msgstr "Updaten"
+
+#: src/components/Exchange/OrderEditor.js
+msgid "Update Order"
+msgstr "Update Order"
+
+#: src/components/Exchange/OrderEditor.js
+msgid "Updating Order..."
+msgstr "Order updaten..."
+
+#: src/components/Referrals/JoinReferralCode.js
+msgid "Updating..."
+msgstr "Updating.."
+
+#: src/components/Exchange/PositionsList.js
+msgid "Use the \"Close\" button to reduce your position size, or to set stop-loss / take-profit orders."
+msgstr "Verwende den Button \"Schließen\", um deine Positionsgröße zu reduzieren oder um Stop-Loss- bzw. Take-Profit-Order zu setzen."
+
+#: src/pages/Stake/StakeV2.js
+msgid "Use the \"Compound\" button to stake your Multiplier Points."
+msgstr "Verwende den Button \"Zusammensetzen\", um deine Multiplikatorpunkte zu staken."
+
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+msgid "Use the Edit Collateral icon to deposit or withdraw collateral."
+msgstr "Verwende das Symbol Kollateral bearbeiten, um Kollateral zu hinterlegen oder zurückzuziehen."
+
+#: src/components/Exchange/UsefulLinks.tsx
+msgid "Useful Links"
+msgstr "Nützliche Links"
+
+#: src/pages/Dashboard/DashboardV1.js
+#: src/pages/Dashboard/DashboardV2.js
+msgid "Utilization"
+msgstr "Nutzung"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Vault Capacity"
+msgstr "Vault-Kapazität"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Vault Capacity for your Account:"
+msgstr "Vault-Kapazität für dein Konto"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Vest"
+msgstr "Vest"
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "Vest with AXN on Arbitrum"
+msgstr ""
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "Vest with AXN on Avalanche"
+msgstr ""
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "Vest with ALP on Arbitrum"
+msgstr ""
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "Vest with ALP on Avalanche"
+msgstr ""
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+msgid "Vested AXN not withdrawn"
+msgstr "Gevestete AXN nicht abgehoben"
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+msgid "Vested ALP not withdrawn"
+msgstr "Gevestete ALP nicht abgehoben"
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Vesting Status"
+msgstr "Vesting Status"
+
+#: src/App/App.js
+#: src/pages/Exchange/Exchange.js
+#: src/pages/Exchange/Exchange.js
+msgid "View"
+msgstr "Ansicht"
+
+#: src/pages/BuyGlp/BuyGlp.js
+msgid "View <0>staking</0> page."
+msgstr ""
+
+#: src/components/AddressDropdown/AddressDropdown.tsx
+msgid "View in Explorer"
+msgstr "Ansicht im Explorer"
+
+#: src/lib/contracts/callContract.tsx
+msgid "View status."
+msgstr "Siehe Status."
+
+#: src/pages/Dashboard/DashboardV1.js
+msgid "Volume"
+msgstr "Volumen"
+
+#: src/components/Referrals/TradersStats.js
+msgid "Volume traded by this account with an active referral code."
+msgstr "Von diesem Konto gehandeltes Volumen mit einem aktiven Referralcode."
+
+#: src/components/Referrals/AffiliatesStats.js
+msgid "Volume traded by your referred traders."
+msgstr "Von den von dir empfohlenen Tradern gehandeltes Volumen."
+
+#: src/components/Glp/GlpSwap.js
+msgid "WALLET"
+msgstr "WALLET"
+
+#: src/components/Glp/GlpSwap.js
+msgid "WARNING: High Fees"
+msgstr "WARNUNG: Hohe Gebühren"
+
+#: src/components/Exchange/PositionsList.js
+#: src/components/Exchange/PositionsList.js
+msgid "WARNING: This position has a low amount of collateral after deducting borrowing fees, deposit more collateral to reduce the position's liquidation risk."
+msgstr "WARNUNG: Diese Position weist nach Abzug der Leihgebühren einen geringen Betrag an Kollateral auf; hinterlege mehr Kollateral, um das Liquidationsrisiko der Position zu verringern."
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "WEIGHT"
+msgstr "GEWICHTUNG"
+
+#: src/components/Exchange/SwapBox.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Migration/Migration.js
+msgid "Waiting for Approval"
+msgstr "Warten auf die Genehmigung"
+
+#: src/components/Glp/GlpSwap.js
+#: src/components/Glp/GlpSwap.js
+#: src/components/Migration/Migration.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV1.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Wallet"
+msgstr "Wallet"
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+#: src/pages/CompleteAccountTransfer/CompleteAccountTransfer.js
+msgid "Wallet is not connected"
+msgstr "Wallet ist nicht verbunden"
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+#: src/pages/NftWallet/NftWallet.js
+msgid "Wallet not connected"
+msgstr "Wallet nicht verbunden"
+
+#: src/pages/Stake/StakeV1.js
+msgid "Wallet not yet connected"
+msgstr "Wallet noch nicht verbunden"
+
+#: src/App/App.js
+msgid "WalletConnect"
+msgstr "WalletConnect"
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "Weight"
+msgstr "Gewichtung"
+
+#: src/components/Exchange/SwapBox.js
+msgid "When closing the position, you can select which token you would like to receive the profits in."
+msgstr "Wenn du die Position schließt, kannst du auswählen, in welchem Token du die Gewinne erhalten möchtest."
+
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionEditor.js
+#: src/components/Exchange/PositionEditor.js
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "Withdraw"
+msgstr "Abheben"
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Withdraw disabled, pending {0} upgrade"
+msgstr "Abheben deaktiviert, {0} Aktualisierung ausstehend"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Withdraw failed."
+msgstr "Abheben fehlgeschlagen."
+
+#: src/pages/Stake/StakeV2.js
+msgid "Withdraw from AXN Vault"
+msgstr "Abheben aus AXN Vault"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Withdraw from ALP Vault"
+msgstr "Abheben aus ALP Vault"
+
+#: src/pages/Stake/StakeV2.js
+msgid "Withdraw submitted."
+msgstr "Abhebung übermittelt."
+
+#: src/components/Exchange/TradeHistory.js
+msgid "Withdraw {0} USD from {1} {longOrShortText}"
+msgstr "Hebe {0} USD von {1} {longOrShortText} ab"
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Withdrawal failed."
+msgstr "Abheben fehlgeschlagen."
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Withdrawal submitted."
+msgstr "Withdrawal übermittelt."
+
+#: src/components/Exchange/PositionEditor.js
+msgid "Withdrawing..."
+msgstr "Abheben..."
+
+#: src/pages/Stake/StakeV2.js
+msgid "Withdrawn!"
+msgstr "Abgehoben!"
+
+#: src/pages/Exchange/Exchange.js
+msgid "Withdrew {0} USD from {tokenSymbol} {longOrShortText}."
+msgstr "{0} USD von {tokenSymbol} {longOrShortText} abgehoben."
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Yield Optimizer on Avalanche"
+msgstr ""
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Yield Vaults"
+msgstr "Yield Vaults"
+
+#: src/pages/Ecosystem/Ecosystem.js
+msgid "Yield simulator for GMX"
+msgstr ""
+
+#: src/pages/Stake/StakeV2.js
+msgid "You are earning {0}% more {nativeTokenSymbol} rewards using {1} Staked Multiplier Points."
+msgstr "Du verdienst {0}% mehr {nativeTokenSymbol} Rewards mit {1} gestaketen Multiplikatorpunkte\"."
+
+#: src/pages/Stake/StakeV2.js
+msgid "You are earning {nativeTokenSymbol} rewards with {0} tokens.<0/>Tokens: {amountStr}."
+msgstr "Du verdienst {0}% mehr {nativeTokenSymbol} Rewards mit {1} gestaketen Multiplikatorpunkten."
+
+#: src/components/ModalViews/RedirectModal.js
+msgid "You are leaving axnfinance.com and will be redirected to a third party, independent website."
+msgstr "Du verlässt axnfinance.com und wirst  auf eine unabhängige Website eines Drittanbieters weitergeleitet."
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "You can buy BONE directly on <0>Shibarium</0> using these options:"
+msgstr ""
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "You can buy ETH directly on <0>Ethereum</0> using these options:"
+msgstr ""
+
+#: src/components/Exchange/SwapBox.js
+msgid "You can change the \"Collateral In\" token above to find lower fees"
+msgstr "Du kannst das obige Zeichen \"Kollateral in\" ändern, um niedrigere Gebühren zu finden"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/PositionSeller.js
+msgid "You can change this in the settings menu on the top right of the page.<0/><1/>Note that a low allowed slippage, e.g. less than 0.5%, may result in failed orders if prices are volatile."
+msgstr "Du kannst dies im Einstellungsmenü oben rechts auf der Seite ändern.<0/><1/>Bitte beachte, dass eine niedrige zulässige Slippage, z. B. weniger als 0,5 %, zu fehlgeschlagenen Aufträgen führen kann, wenn die Preise volatil sind."
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "You can check your claim history <0>here</0>."
+msgstr "Du kannst deine Claim-Historie <0>hier</0> einsehen."
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "You can currently vest a maximum of {0} esAXN tokens at a ratio of {1} {stakingToken} to 1 esAXN."
+msgstr "Du kannst derzeit maximal {0} esAXN-Token in einem Verhältnis von {1} {stakingToken} zu 1 esAXN übertragen."
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "You can transfer BONE from other networks to Shibarium using any of the below options:"
+msgstr ""
+
+#: src/pages/BuyGMX/BuyGMX.tsx
+msgid "You can transfer ETH from other networks to Ethereum using any of the below options:"
+msgstr "Du kannst ETH von anderen Netzwerken zu Ethereum transferieren, indem du eine der folgenden Optionen nutzt:"
+
+#: src/pages/Nft/StakeNft.js
+#: src/pages/Nft/YourNft.js
+msgid "You don't have any Tail NFT"
+msgstr ""
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+msgid "You have a <0>pending transfer</0> to {pendingReceiver}."
+msgstr "Du hast eine <0>ausstehende Übertragung</0> an {pendingReceiver}."
+
+#: src/pages/CompleteAccountTransfer/CompleteAccountTransfer.js
+msgid "You have a pending transfer from {sender}."
+msgstr "Du hast eine ausstehende Überweisung von {sender}."
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "You have an active Limit Order to Increase {longOrShortText} {sizeInToken} {0} (${1}) at price ${2}"
+msgstr "Du hast eine aktive Limit-Order zur Erhöhung von {longOrShortText} {sizeInToken} {0} (${1}) zum Preis von ${2}"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "You have an active order to decrease {longOrShortText} {sizeInToken} {0} (${1}) at {prefix} {2}"
+msgstr "Du hast einen aktiven Auftrag zur Verringerung von {longOrShortText} {sizeInToken} {0} (${1}) bei {prefix} {2}"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "You have multiple existing Increase {longOrShortText} {0} limit orders"
+msgstr "Du hast mehrere bestehende {longOrShortText} {0} Limit-Orders zur Erhöhung"
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "You have not deposited any tokens for vesting."
+msgstr "Du hast keine Token für das Vesting hinterlegt."
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "You have {0} esAXN (IOU) tokens."
+msgstr "Du hast {0} esAXN (IOU)-tokens."
+
+#: src/pages/Stake/StakeV2.js
+msgid "You need a total of at least {0} {stakeTokenLabel} to vest {1} esAXN."
+msgstr "Du benötigst insgesamt mind. {0} {stakeTokenLabel}, um {1} esAXN zu erhalten."
+
+#: src/components/Exchange/NoLiquidityErrorModal.tsx
+msgid "You need to select {swapTokenSymbol} as the \"Pay\" token to use it for collateral to initiate this trade."
+msgstr "Du musst {swapTokenSymbol} als \"Bezahlen\"-Token auswählen, um es als Kollateral für die Einleitung dieses Trades zu verwenden."
+
+#: src/pages/CompleteAccountTransfer/CompleteAccountTransfer.js
+msgid "You will need to be on this page to accept the transfer, <0>click here</0> to copy the link to this page if needed."
+msgstr "Du musst auf dieser Seite sein, um den Transfer zu akzeptieren. <0>Klicke hier</0>, um den Link zu dieser Seite zu kopieren, falls nötig."
+
+#: src/components/Referrals/TradersStats.js
+msgid "You will receive a {0}% discount on your opening and closing fees, this discount will be airdropped to your account every Wednesday"
+msgstr "Du erhältst einen Rabatt von {0}% auf deine Eröffnungs- und Schließungsgebühren, dieser Rabatt wird jeden Mittwoch auf dein Konto überwiesen"
+
+#: src/components/Exchange/OrdersList.js
+msgid "You will receive at least {0} {1} if this order is executed. The exact execution price may vary depending on fees at the time the order is executed."
+msgstr "Du wirst mind. {0} {1} erhalten, wenn dieser Auftrag ausgeführt wird. Der genaue Ausführungspreis kann je nach den Gebühren zum Zeitpunkt der Ausführung des Auftrags variieren."
+
+#: src/components/Exchange/OrdersList.js
+msgid "You will receive at least {0} {1} if this order is executed. The execution price may vary depending on swap fees at the time the order is executed."
+msgstr "Du wirst mind. {0} {1} erhalten, wenn dieser Auftrag ausgeführt wird. Der Ausführungspreis kann je nach den Swap-Gebühren zum Zeitpunkt der Auftragsausführung variieren."
+
+#: src/pages/Nft/StakeNft.js
+msgid "Your NFT:"
+msgstr ""
+
+#: src/pages/Nft/YourNft.js
+msgid "Your Tail NFT"
+msgstr ""
+
+#: src/pages/Nft/YourNft.js
+msgid "Your esAXN"
+msgstr ""
+
+#: src/pages/ClaimEsGmx/ClaimEsGmx.js
+msgid "Your esAXN (IOU) balance will decrease by your claim amount after claiming, this is expected behaviour."
+msgstr "Dein esAXN-Guthaben (IOU) verringert sich nach der Beanspruchung um deinen beanspruchten Betrag, dies ist ein zu erwartendes Verhalten."
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "Your position's collateral after deducting fees."
+msgstr "Das Kollateral deiner Position nach Abzug der Gebühren."
+
+#: src/pages/Nft/StakeNft.js
+msgid "Your staked NFT:"
+msgstr ""
+
+#: src/pages/Nft/StakeNft.js
+msgid "Your staked power"
+msgstr ""
+
+#: src/pages/CompleteAccountTransfer/CompleteAccountTransfer.js
+msgid "Your transfer has been completed."
+msgstr "Dein Transfer wurde abgeschlossen."
+
+#: src/pages/BeginAccountTransfer/BeginAccountTransfer.js
+msgid "Your transfer has been initiated."
+msgstr "Dein Transfer wurde eingeleitet."
+
+#: src/components/Migration/Migration.js
+msgid "Your wallet: {0}"
+msgstr "Dein Wallet: {0}"
+
+#: src/pages/PositionsOverview/PositionsOverview.js
+msgid "account"
+msgstr "Konto"
+
+#: src/pages/PositionsOverview/PositionsOverview.js
+msgid "collateral"
+msgstr "Kollateral"
+
+#: src/pages/PositionsOverview/PositionsOverview.js
+msgid "fee"
+msgstr "Gebühren"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "hide"
+msgstr "Verstecken"
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "in liquidity"
+msgstr "In Liquidität"
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "not staked"
+msgstr "Nicht gestaket"
+
+#: src/pages/PositionsOverview/PositionsOverview.js
+msgid "size"
+msgstr "Größe"
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "staked"
+msgstr "Gestaket"
+
+#: src/pages/PositionsOverview/PositionsOverview.js
+msgid "time to liq"
+msgstr "Zeit zur Liq"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "view"
+msgstr "Ansicht"
+
+#: src/pages/Exchange/Exchange.js
+msgid "{0, plural, one {Cancel order} other {Cancel # orders}}"
+msgstr ""
+
+#: src/domain/tokens/approveTokens.tsx
+msgid "{0} Approved!"
+msgstr "{0} Genehmigt!"
+
+#: src/components/Glp/SwapErrorModal.tsx
+msgid "{0} Capacity Reached"
+msgstr "{0} Erreichte Kapazität"
+
+#: src/components/Exchange/NoLiquidityErrorModal.tsx
+msgid "{0} Pool Capacity Reached"
+msgstr "{0} Pool-Kapazität erreicht"
+
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/ConfirmationBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+msgid "{0} Price"
+msgstr "{0} Preis"
+
+#: src/components/Exchange/NoLiquidityErrorModal.tsx
+msgid "{0} Required"
+msgstr "{0} Erforderlich"
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "{0} AXN tokens can be claimed, use the options under the Total Rewards section to claim them."
+msgstr "{0} AXN-Token können eingefordert werden. Verwende die Optionen im Abschnitt Gesamtrewards, um sie einzufordern."
+
+#: src/components/Glp/GlpSwap.js
+msgid "{0} ALP (${1})"
+msgstr "{0} ALP (${1})"
+
+#: src/components/Glp/GlpSwap.js
+msgid "{0} ALP bought with {1} {2}!"
+msgstr "{0} ALP gekauft mit {1} {2}!"
+
+#: src/components/Glp/GlpSwap.js
+msgid "{0} ALP have been reserved for vesting."
+msgstr "{0} ALP sind für Vesting reserviert worden."
+
+#: src/components/Glp/GlpSwap.js
+msgid "{0} ALP sold for {1} {2}!"
+msgstr "{0} ALP verkauft für {1} {2}!"
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "{0} is above its target weight.<0/><1/>Get lower fees to <2>swap</2> tokens for {1}."
+msgstr "{0} liegt über der Zielgewichtung.<0/><1/>Erhalte niedrigere Gebühren, um <2>Token für {1} zu tauschen</2>."
+
+#: src/pages/Dashboard/DashboardV2.js
+msgid "{0} is below its target weight.<0/><1/>Get lower fees to <2>buy TLP</2> with {1}, and to <3>swap</3> {2} for other tokens."
+msgstr ""
+
+#: src/components/Exchange/SwapBox.js
+msgid "{0} is required for collateral."
+msgstr "{0} ist für das Kollateral erforderlich."
+
+#: src/components/Exchange/SwapBox.js
+msgid "{0} pool exceeded"
+msgstr "{0} Pool überschritten"
+
+#: src/components/Exchange/PositionSeller.js
+msgid "{0} pool exceeded, can only Receive {1}"
+msgstr "{0} Pool überschritten, kann nur {1} empfangen"
+
+#: src/components/Exchange/SwapBox.js
+#: src/components/Exchange/SwapBox.js
+#: src/components/Glp/GlpSwap.js
+msgid "{0} pool exceeded, try different token"
+msgstr "{0} Pool überschritten, anderen Token versuchen"
+
+#: src/components/Exchange/OrderEditor.js
+#: src/components/Exchange/OrderEditor.js
+msgid "{0} price"
+msgstr "{0} Preis"
+
+#: src/components/Glp/GlpSwap.js
+msgid "{0} selected in order form"
+msgstr "{0} ausgewählt im Orderformular"
+
+#: src/pages/Stake/StakeV2.js
+#: src/pages/Stake/StakeV2.js
+msgid "{0} tokens have been converted to AXN from the {1} esAXN deposited for vesting."
+msgstr "{0} Token wurden von den {1} esAXN, die als Kollateral hinterlegt wurden, in AXN umgewandelt."
+
+#: src/components/Exchange/SwapBox.js
+msgid "{0} {1} not supported"
+msgstr ""
+
+#: src/components/Exchange/TradeHistory.js
+msgid ""
+"{0}:\n"
+"{1},\n"
+"Price: {priceDisplay}"
+msgstr ""
+"{0}:\n"
+"{1},\n"
+"Preis: {priceDisplay}"
+
+#: src/components/Exchange/TradeHistory.js
+msgid ""
+"{0}: Swap {amountInDisplay}\n"
+"{1} for {minOutDisplay} {2},\n"
+"Price: {3}"
+msgstr ""
+
+#: src/components/Exchange/TradeHistory.js
+msgid "{0}  {1} {longOrShortText}, -{2} USD, {3} Price: ${4} USD"
+msgstr ""
+
+#: src/components/Exchange/TradeHistory.js
+msgid "{actionDisplay} Order"
+msgstr "{actionDisplay} Order"
+
+#: src/components/Exchange/TradeHistory.js
+msgid ""
+"{actionDisplay} {0} {longOrShortText},\n"
+"-{1} USD,\n"
+"{2} Price: {3} USD"
+msgstr ""
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "{existingTriggerOrderLength, plural, one {You have an active trigger order that could impact this position.} other {You have # active trigger orders that could impact this position.}}"
+msgstr "{existingTriggerOrderLength, plural, one {Du hast einen aktiven Triggerauftrag, der sich auf diese Position auswirken könnte.} other {Du hast # aktive Triggeraufträge, die sich auf diese Position auswirken könnten.}}"
+
+#: src/components/Exchange/ConfirmationBox.js
+msgid "{existingTriggerOrderLength, plural, one {You have an active trigger order that might execute immediately after you open this position. Please cancel the order or accept the confirmation to continue.} other {You have # active trigger orders that might execute immediately after you open this position. Please cancel the orders or accept the confirmation to continue.}}"
+msgstr "{existingTriggerOrderLength, plural, one {Du hast eine aktiven Trigger-Order, die unmittelbar nach dem Öffnen dieser Position ausgeführt werden könnte. Bitte storniere den Auftrag oder akzeptiere die Bestätigung, um fortzufahren.} other {Du hast # aktive Trigger-Orders, die sofort ausgeführt werden könnten, nachdem du diese Position eröffnet hast. Bitte storniere die Aufträge oder akzeptieren die Bestätigung, um fortzufahren.}}"
+
+#: src/components/Exchange/PositionsList.js
+msgid "{longOrShortText} {0} market selected"
+msgstr ""
+
+#: src/components/Glp/GlpSwap.js
+msgid "{nativeTokenSymbol} ({wrappedTokenSymbol}) APR"
+msgstr "{nativeTokenSymbol} ({wrappedTokenSymbol}) APR"
+
+#: src/components/Stake/GMXAprTooltip.tsx
+msgid "{nativeTokenSymbol} APR"
+msgstr ""
+
+#: src/components/Stake/GMXAprTooltip.tsx
+msgid "{nativeTokenSymbol} Base APR"
+msgstr ""
+
+#: src/components/Stake/GMXAprTooltip.tsx
+msgid "{nativeTokenSymbol} Boosted APR"
+msgstr ""
+
+#: src/components/Stake/GMXAprTooltip.tsx
+msgid "{nativeTokenSymbol} Total APR"
+msgstr ""
+
+#: src/components/Exchange/PositionSeller.js
+msgid "{nativeTokenSymbol} can not be sent to smart contract addresses. Select another token."
+msgstr ""
+
+#: src/components/StatsTooltip/StatsTooltip.tsx
+msgid "{title} on Goerli:"
+msgstr ""
+
+#: src/components/StatsTooltip/StatsTooltip.tsx
+msgid "{title} on Puppy:"
+msgstr ""
+
+#: src/pages/Dashboard/DashboardV1.js
+msgid "{volumeLabel} Volume"
+msgstr "{volumeLabel} Volumen"

@@ -1,0 +1,355 @@
+specVersion: 0.0.2
+description: AXN
+repository: https://github.com/axn-io/axn-subgraph
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: ChainlinkAggregatorPLS
+    network: devnet
+    source:
+      address: "0x84eA74d481Ee0A5332c457a4d796187F6Ba67fEB"
+      abi: ChainlinkAggregator
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - ChainlinkPrice
+      abis:
+        - name: ChainlinkAggregator
+          file: ChainlinkAggregatorPLS\abis\ChainlinkAggregator.json
+      eventHandlers:
+        - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
+          handler: handleAnswerUpdatedPLS
+      file: ChainlinkAggregatorPLS\ChainlinkAggregatorPLS.wasm
+  - kind: ethereum/contract
+    name: ChainlinkAggregatorBTC
+    network: devnet
+    source:
+      address: "0x70e0bA845a1A0F2DA3359C97E0285013525FFC49"
+      abi: ChainlinkAggregator
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - ChainlinkPrice
+      abis:
+        - name: ChainlinkAggregator
+          file: ChainlinkAggregatorBTC\abis\ChainlinkAggregator.json
+      eventHandlers:
+        - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
+          handler: handleAnswerUpdatedBTC
+      file: ChainlinkAggregatorPLS\ChainlinkAggregatorPLS.wasm
+  - kind: ethereum/contract
+    name: ChainlinkAggregatorETH
+    network: devnet
+    source:
+      address: "0x7969c5eD335650692Bc04293B07F5BF2e7A673C0"
+      abi: ChainlinkAggregator
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - ChainlinkPrice
+      abis:
+        - name: ChainlinkAggregator
+          file: ChainlinkAggregatorETH\abis\ChainlinkAggregator.json
+      eventHandlers:
+        - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
+          handler: handleAnswerUpdatedETH
+      file: ChainlinkAggregatorPLS\ChainlinkAggregatorPLS.wasm
+  - kind: ethereum/contract
+    name: ChainlinkAggregatorDAI
+    network: devnet
+    source:
+      address: "0x922D6956C99E12DFeB3224DEA977D0939758A1Fe"
+      abi: ChainlinkAggregator
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - ChainlinkPrice
+      abis:
+        - name: ChainlinkAggregator
+          file: ChainlinkAggregatorDAI\abis\ChainlinkAggregator.json
+      eventHandlers:
+        - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
+          handler: handleAnswerUpdatedHEX
+      file: ChainlinkAggregatorPLS\ChainlinkAggregatorPLS.wasm
+  - kind: ethereum/contract
+    name: AlpManager
+    network: devnet
+    source:
+      address: "0x68B1D87F95878fE05B998F19b66F4baba5De1aed"
+      abi: AlpManager
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - HourlyAlpStat
+      abis:
+        - name: AlpManager
+          file: AlpManager\abis\AlpManager.json
+      eventHandlers:
+        - event: AddLiquidity(address,address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleAddLiquidity
+        - event: RemoveLiquidity(address,address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleRemoveLiquidity
+      file: AlpManager\AlpManager.wasm
+  - kind: ethereum/contract
+    name: OrderBook
+    network: devnet
+    source:
+      address: "0x0355B7B8cb128fA5692729Ab3AAa199C1753f726"
+      abi: OrderBook
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Order
+      abis:
+        - name: OrderBook
+          file: OrderBook\abis\OrderBook.json
+      eventHandlers:
+        - event: CreateIncreaseOrder(indexed
+            address,uint256,address,uint256,address,address,uint256,bool,uint256,bool,uint256)
+          handler: handleCreateIncreaseOrder
+        - event: CancelIncreaseOrder(indexed
+            address,uint256,address,uint256,address,address,uint256,bool,uint256,bool,uint256)
+          handler: handleCancelIncreaseOrder
+        - event: ExecuteIncreaseOrder(indexed
+            address,uint256,address,uint256,address,address,uint256,bool,uint256,bool,uint256,uint256)
+          handler: handleExecuteIncreaseOrder
+        - event: CreateDecreaseOrder(indexed
+            address,uint256,address,uint256,address,uint256,bool,uint256,bool,uint256)
+          handler: handleCreateDecreaseOrder
+        - event: CancelDecreaseOrder(indexed
+            address,uint256,address,uint256,address,uint256,bool,uint256,bool,uint256)
+          handler: handleCancelDecreaseOrder
+        - event: ExecuteDecreaseOrder(indexed
+            address,uint256,address,uint256,address,uint256,bool,uint256,bool,uint256,uint256)
+          handler: handleExecuteDecreaseOrder
+        - event: CreateSwapOrder(indexed
+            address,uint256,address[],uint256,uint256,uint256,bool,bool,uint256)
+          handler: handleCreateSwapOrder
+        - event: CancelSwapOrder(indexed
+            address,uint256,address[],uint256,uint256,uint256,bool,bool,uint256)
+          handler: handleCancelSwapOrder
+        - event: ExecuteSwapOrder(indexed
+            address,uint256,address[],uint256,uint256,uint256,uint256,bool,bool,uint256)
+          handler: handleExecuteSwapOrder
+      file: OrderBook\OrderBook.wasm
+  - kind: ethereum/contract
+    name: FastPriceFeed
+    network: devnet
+    source:
+      address: "0x38A70c040CA5F5439ad52d0e821063b0EC0B52b6"
+      abi: FastPriceFeed
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - FastPrice
+      abis:
+        - name: FastPriceFeed
+          file: FastPriceFeed\abis\FastPriceFeed.json
+      eventHandlers:
+        - event: SetPrice(address,uint256)
+          handler: handleSetPrice
+      file: ChainlinkAggregatorPLS\ChainlinkAggregatorPLS.wasm
+  - kind: ethereum/contract
+    name: FastPriceEvents
+    network: devnet
+    source:
+      address: "0xaC9fCBA56E42d5960f813B9D0387F3D3bC003338"
+      abi: FastPriceEvents
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - FastPrice
+      abis:
+        - name: FastPriceEvents
+          file: FastPriceEvents\abis\FastPriceEvents.json
+      eventHandlers:
+        - event: PriceUpdate(address,uint256,address)
+          handler: handlePriceUpdate
+      file: ChainlinkAggregatorPLS\ChainlinkAggregatorPLS.wasm
+  - kind: ethereum/contract
+    name: FeeAxnDistributor
+    network: devnet
+    source:
+      address: "0xAA292E8611aDF267e563f334Ee42320aC96D0463"
+      abi: RewardDistributor
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - AxnStat
+      abis:
+        - name: RewardDistributor
+          file: FeeAxnDistributor\abis\RewardDistributor.json
+      eventHandlers:
+        - event: Distribute(uint256)
+          handler: handleDistributeEthToAxn
+      file: AlpManager\AlpManager.wasm
+  - kind: ethereum/contract
+    name: StakedAxnDistributor
+    network: devnet
+    source:
+      address: "0xC9a43158891282A2B1475592D5719c001986Aaec"
+      abi: RewardDistributor
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - AxnStat
+      abis:
+        - name: RewardDistributor
+          file: StakedAxnDistributor\abis\RewardDistributor.json
+      eventHandlers:
+        - event: Distribute(uint256)
+          handler: handleDistributeEsaxnToAxn
+      file: AlpManager\AlpManager.wasm
+  - kind: ethereum/contract
+    name: FeeAlpDistributor
+    network: devnet
+    source:
+      address: "0x5067457698Fd6Fa1C6964e416b3f42713513B3dD"
+      abi: RewardDistributor
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - AxnStat
+      abis:
+        - name: RewardDistributor
+          file: FeeAlpDistributor\abis\RewardDistributor.json
+      eventHandlers:
+        - event: Distribute(uint256)
+          handler: handleDistributeEthToAlp
+      file: AlpManager\AlpManager.wasm
+  - kind: ethereum/contract
+    name: StakedAlpDistributor
+    network: devnet
+    source:
+      address: "0xD5ac451B0c50B9476107823Af206eD814a2e2580"
+      abi: RewardDistributor
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - AxnStat
+      abis:
+        - name: RewardDistributor
+          file: StakedAlpDistributor\abis\RewardDistributor.json
+      eventHandlers:
+        - event: Distribute(uint256)
+          handler: handleDistributeEsaxnToAlp
+      file: AlpManager\AlpManager.wasm
+  - kind: ethereum/contract
+    name: Vault2
+    network: devnet
+    source:
+      address: "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6"
+      abi: Vault
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - TradingStat
+      abis:
+        - name: Vault
+          file: Vault2\abis\VaultV2.json
+      eventHandlers:
+        - event: ClosePosition(bytes32,uint256,uint256,uint256,uint256,uint256,int256)
+          handler: handleClosePosition
+        - event: IncreasePosition(bytes32,address,address,address,uint256,uint256,bool,uint256,uint256)
+          handler: handleIncreasePosition
+        - event: DecreasePosition(bytes32,address,address,address,uint256,uint256,bool,uint256,uint256)
+          handler: handleDecreasePosition
+        - event: LiquidatePosition(bytes32,address,address,address,bool,uint256,uint256,uint256,int256,uint256)
+          handler: handleLiquidatePosition
+      file: Vault2\Vault2.wasm
+  - kind: ethereum/contract
+    name: Vault
+    network: devnet
+    source:
+      address: "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6"
+      abi: Vault
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Swap
+        - IncreasePosition
+        - DecreasePosition
+        - HourlyVolume
+        - HourlyVolumeBySource
+        - HourlyVolumeByToken
+        - HourlyFee
+        - Transaction
+        - FundingFee
+      abis:
+        - name: Vault
+          file: Vault\abis\VaultV2.json
+      eventHandlers:
+        - event: UpdateFundingRate(address,uint256)
+          handler: handleUpdateFundingRate
+        - event: Swap(address,address,address,uint256,uint256,uint256,uint256)
+          handler: handleSwap
+        - event: CollectMarginFees(address,uint256,uint256)
+          handler: handleCollectMarginFees
+        - event: BuyUSDG(address,address,uint256,uint256,uint256)
+          handler: handleBuyUSDG
+        - event: SellUSDG(address,address,uint256,uint256,uint256)
+          handler: handleSellUSDG
+        - event: IncreasePosition(bytes32,address,address,address,uint256,uint256,bool,uint256,uint256)
+          handler: handleIncreasePosition
+        - event: DecreasePosition(bytes32,address,address,address,uint256,uint256,bool,uint256,uint256)
+          handler: handleDecreasePosition
+        - event: UpdatePosition(bytes32,uint256,uint256,uint256,uint256,uint256,int256,uint256)
+          handler: handleUpdatePosition
+        - event: LiquidatePosition(bytes32,address,address,address,bool,uint256,uint256,uint256,int256,uint256)
+          handler: handleLiquidatePosition
+        - event: IncreasePoolAmount(address,uint256)
+          handler: handleIncreasePoolAmount
+        - event: DecreasePoolAmount(address,uint256)
+          handler: handleDecreasePoolAmount
+        - event: IncreaseReservedAmount(address,uint256)
+          handler: handleIncreaseReservedAmount
+        - event: DecreaseReservedAmount(address,uint256)
+          handler: handleDecreaseReservedAmount
+        - event: IncreaseUsdgAmount(address,uint256)
+          handler: handleIncreaseUsdgAmount
+        - event: DecreaseUsdgAmount(address,uint256)
+          handler: handleDecreaseUsdgAmount
+      file: AlpManager\AlpManager.wasm

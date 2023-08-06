@@ -1,0 +1,56 @@
+.value > span{
+  margin-left: 5px;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 17px;
+  color : #AFAFAF;
+
+}
+.table-row{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  .title {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7rem;
+  }
+  .value {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.8rem;
+  }
+}
+.page-row-content-deverse{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  .title {
+      font-size: 15px;
+      font-weight: 300;
+
+  }
+  .value {
+      font-family: Almarai;
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 17px;
+      letter-spacing: 0em;
+      text-align: left;
+      margin-top: 1rem;
+  }
+}
+.page-row-content {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  .title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 18px;
+  }
+  .value {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 17px;
+      margin-top: 1rem;
+  }
+
+}

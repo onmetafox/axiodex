@@ -1,0 +1,64 @@
+.sc-card-product {
+  padding: 15px;
+  background-color: #1f2038;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  transition: all .3s ease-in-out;
+  border:1px solid #36384f;
+}
+
+.sc-card-product:hover {
+  transform: translateY(-5px);
+  transition: all .2s ease;
+}
+
+.sc-card-product .card-media {
+  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sc-card-product .card-media img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.sc-card-product .card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  padding:10px 0 5px 0;
+  font-size:12px;
+}
+
+.sc-card-product .meta-info {
+  /* margin-bottom: 10px; */
+  display: flex;
+  font-size:12px;
+}
+
+.sc-card-product .card-bottom {
+  margin-top:10px;
+}
+
+.sc-card-product .meta-info span.pricing {
+  color: #9e8eff;
+  margin-left:5px
+}
+
+.sc-card-product .sc-button {
+  padding: 7px 26px;
+  cursor: pointer;
+  width:100%;
+  text-align: center;
+  justify-content: center;
+}
+
+.sc-card-product .sc-button1 {
+  padding: 7px 26px;
+  cursor: pointer;
+  border: 1px solid #36384f
+}

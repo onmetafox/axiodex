@@ -1,0 +1,7 @@
+{
+  	"MAINNET_URL":"https://rpc.ankr.com/eth",
+  	"MAINNET_DEPLOY_KEY":"01ab9cdc5e0f99...",
+  	"GOERLI_TESTNET_URL":"https://rpc.ankr.com/eth_goerli/",
+  	"GOERLI_DEPLOY_KEY":"01ab9cdc5e0f996...",
+  	"ETHERSCAN_API_KEY":"XTJMS3G1DVVMZ24GR1PKZFSABFBF4WE92T"
+}

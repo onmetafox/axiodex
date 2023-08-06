@@ -1,0 +1,232 @@
+
+.Poll-layout {
+    padding-bottom: calc(2rem + 20rem) !important;
+}
+
+.Poll-sublayout {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    /* width: 100%; */
+    max-width: 1144px;
+    /* padding-right: 24px;
+    padding-left: 24px; */
+    margin-top:53px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.Poll-container {
+    z-index: 2;
+    max-width: 670px !important;
+}
+
+.Poll-container .title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 140%;
+    margin-bottom: 8px;
+}
+
+.Poll-container .link-wrapper {
+    margin: 8px 0px 24px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.Poll-container .link-wrapper .label {
+    margin-right: 2px;
+}
+
+.Poll-container .link-wrapper > div .info {
+    color: rgb(255, 213, 104);
+    margin-right:12px;
+}
+
+.Poll-container .link-wrapper > div a {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.label, .label a {
+    color: hsla(0,0%,100%,.7);
+}
+
+.Poll-container .link-wrapper > div {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    display: flex;
+    background: rgba(255, 213, 104, 0.1);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 4px 8px;
+}
+
+.Poll-container .liquididy-wrap {
+    border-radius: 24px;
+    background: #181a20;
+    padding: 17px;
+}
+
+.Poll-container .liquidity-boxes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.Poll-container .liquidity-boxes .liquidity-box {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.Poll-container .liquididy-wrap .liquidity-label {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 4px;
+}
+
+.Poll-container .liquidity-pool-wrap .liquidity-pool-amount {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.Poll-container .liquidity-box-amount {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 140%;
+}
+
+.Poll-container .txt-green {
+    color: #9e8eff;
+}
+
+.Poll-container .liquidity-pool-wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.Poll-container .liquidity-pool-wrap .liquidity-pool-amount img {
+    height: 24px;
+    margin-right: 12px;
+}
+
+.Poll-container .liquidity-pool-wrap .liquidity-pool-amount .to-usd {
+    color: rgba(255, 255, 255, 0.6);
+    margin-left: 4px;
+}
+
+.Poll-back {
+    position: relative;
+    text-align: center;
+    margin-left: 50px;
+    padding-top:40px;
+}
+
+@media screen and (max-width: 767px) {
+    .Poll-sublayout {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .Poll-container .title {
+        font-size: 24px;
+    }
+
+    .Poll-container .link-wrapper {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .Poll-container .link-wrapper > div a {
+        margin-left: auto;
+    }
+
+    .Poll-container .link-wrapper > div {
+        width: 100%;
+    }
+
+    .Poll-container .liquididy-wrap {
+        padding: 16px;
+    }
+
+    .Poll-container .liquidity-boxes {
+        gap: 12px;
+    }
+
+    .Poll-container .liquidity-boxes .liquidity-label {
+        font-size: 12px;
+    }
+
+    .Poll-container .liquidity-boxes .liquidity-box-amount {
+        font-size: 16px;
+    }
+
+    .Poll-container .liquidity-boxes .liquidity-box {
+        padding: 8px 12px;
+    }
+
+    .Poll-container .liquidity-pool-wrap {
+        gap: 12px;
+        grid-template-columns: 1fr;
+    }
+
+    .Poll-container .liquidity-pool-wrap > div {
+        display: flex;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+    }
+
+    .Poll-container .liquidity-pool-wrap > div .liquidity-label {
+        margin-bottom: 0px;
+    }
+
+    .Poll-container .liquidity-pool-wrap .liquidity-pool-amount {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+
+    .Poll-back img {
+        width:250px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .Poll-sublayout {
+        flex-direction: column;
+    }
+
+    .Poll-layout {
+        padding-top: 1.5rem !important;
+        margin-bottom:10rem;
+    }
+
+    .Poll-back {
+        margin-left: 0 !important;
+    }
+
+    .Poll-container {
+        order: 2;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .Poll-sublayout {
+        padding-right: 24px;
+        padding-left: 24px;
+    }
+
+    .Poll-back {
+        padding-top:0px;
+    }
+}

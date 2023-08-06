@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+	<title>ShiTail logo pastelArtboard 1</title>
+	<defs>
+		<image  width="22" height="22" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAMAAADzapwJAAAAAXNSR0IB2cksfwAAAhZQTFRFAAAAeVxXp4F5vZGJyJqRYkxHsomB2qed2aed1qWcNiknsIeA1aOa3quh67et+sO5+sS6vZKJ2Kac5LCn+cK4+sW7+sa8+se9+se+6LOq+sW8+snA+srB+svCzKCF1KWMuYhgm3ZK1KiX+szD+s3E+MzEq4dqoYNSqoBR+si/q35VyLqlnoNbtI93uZBmtopRsopamoBY39C9oH9dxJd+o5B0v5VS+aIN/6QK/6QJ8JoJmXY9rIlr+s/H5biulGce8p0M/64l/6UM/6oY/7Aq8JsJrode4ryx+s7Gs3oj6pkO9s6K/6kY/rU4wZxd2o0IqnANwIgvwpx+8sa+37Ss1YkItnUHRy4D0IYIvnoHXTwD45kbwppWomkH8qIYtopW88W8+si+y6Sd4sWU/7Mz+qIM+sBc/9ud/9mZ/7pF69e0uI5G4JAI9p4J+qIOxpl36761p6Kh8O3o/+3O4uHhNDQ0rKysysa/qI5j9Z0JyY5A9cO6eG9tqKinyMjIsbGxpqamxqd04pkb0I4e0IgMuIAz7720qpya8/Pz8vLy/////7c8zYQI2YwI3Y4I0IUHsYBI+MO50Kmiv7699fX1/v7+//Xk/qMJ7JgIzYQHzIMHuXcJy5+P+MS7vZ2XsrGx1tbW3d3b3aI/1IgHxn8HnWQGrXALuo5z+cO52a6mvqCauaGduJR5tIdemHRbsoVcu41r26yiy3v0TQAAALJ0Uk5TABQ9ZXsQf+j+/wRd7P////919P///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+dI7h8AAAFvSURBVHicY2CAAEYmZhYWZiZGBmTAysbOwQkEHOxsrHBBLm4eXj5+ASDg5+Pl4eaCigoKCYuIiolLSIiLiYoICwlCxLmFJAWkJKRlZGXk5CWkBCSFuMHm8ggrKCrJKKuoqqlryGiKCQjzgMxn4xXR0tbR1dM3MDQyVpHRlBLhZQO6jJ1P1MTUzNzC0tLK2sZWRUZClI+dkYGJg1/Mzt7B0cnS2cXVzd1DWVqMn4OJgZlTQFzG08vbx9LXzz8gMChYRlyAk5mBhVNAIiQ0LDzCMjIqOiY2Lj4hUYCTBSyclJySmpaekZmVnZOblw8WBhlSUFhUXFJaVl5RaWlpWVUNMgRkpXRNbV19Q2NTc4ulZW5rG8hKkAMl2jtKOru6LS17evv6J0wEORDkHalJk6dMnWY5fcbMWbNmzwF7B+R5gbnz5i9YuGjxkqWzli1fAfE8JKhWrlq9Zu269Rs2woIKHrCJiSgBiyMacEUaligGAJ9dTpsSLulIAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+	</style>
+	<use id="Background" href="#img1" x="1" y="1"/>
+</svg>

@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+	<title>goerli_24</title>
+	<defs>
+		<image  width="24" height="24" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAAXNSR0IB2cksfwAAAI1QTFRFAAAAIDBZIDJbIDFbIDFaIDJaIDBaIDBQIDBaIDFbITJbIDBZIDBaIDFaIDBY////IDJaIDBaIDFaIDBYIDJaITJaIDFa////IDFblZWVlpWVlpWUIDFbl5aVlZWTlpaTlpWUl5aUj4+PAgMFl5aVl5aVlZWVlpWVl5aVj4+Pl5OTlZWTl5WUlpSUk5OTjmH9iQAAAC90Uk5TAFCPv9+fTxB/7/9fMM8g/4Bg4ECQ8MAA0DDA76D/gFDg0BAA8ABgr98gQmqfkijKGJDQAAAAwUlEQVR4nG2SfxdCMBRAX1FrS6FI6AmhH9T3/3g9GW21e44/3Ls952wAJLO5ZVvWYgkabMWFhK8V79hCYeNMU7jQ4LI44he+/czX5rgETWMUPPEfhE9hZwo2fVl3Mog9BMYQMjjobgihG8HREELXjY076ElMgUgTOJlCihn4hpAinoGFauhBIo+GI1FD7zGjwAJvWiw1FuWlP1/80VjFw4XUqNqvh7purrdJY3Gf7rwus2rUeaP/J/Bou657tq/x/Q0E1R4gElHf6QAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="Layer 0" href="#img1" x="0" y="0"/>
+</svg>

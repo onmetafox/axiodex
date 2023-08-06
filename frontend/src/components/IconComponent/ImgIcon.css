@@ -1,0 +1,31 @@
+.icon-container{
+  display: flex;
+  .icon {
+    background: linear-gradient(131.99deg, #6BFAF1 -41.53%, #01597E 62.01%);
+    width: 7rem;
+    height: 7rem;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    text-align: center;
+    float: left;
+    display: flex;
+    justify-content: center
+  }
+  .detail {
+    padding-left: 1rem;
+    display: inline-grid;
+    .title {
+      font-size: 15px;
+      font-weight: 300;
+    }
+    .value {
+      font-weight: 700;
+      font-size: 32px;
+      color: #03F5AE;
+    }
+  }
+  img {
+    text-align: center;
+    margin: auto;
+  }
+}

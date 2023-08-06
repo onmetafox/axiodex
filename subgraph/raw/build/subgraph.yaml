@@ -1,0 +1,118 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: PositionRouter
+    network: devnet
+    source:
+      address: "0xddE78e6202518FF4936b5302cC2891ec180E8bFf"
+      abi: PositionRouter
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - CreateIncreasePosition
+        - CreateDecreasePosition
+      abis:
+        - name: PositionRouter
+          file: PositionRouter\abis\PositionRouter.json
+      eventHandlers:
+        - event: CreateIncreasePosition(indexed
+            address,address[],address,uint256,uint256,uint256,bool,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleCreateIncreasePosition
+        - event: CreateDecreasePosition(indexed
+            address,address[],address,uint256,uint256,bool,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleCreateDecreasePosition
+      file: PositionRouter\PositionRouter.wasm
+  - kind: ethereum/contract
+    name: RewardRouterV2
+    network: devnet
+    source:
+      address: "0x38a024C0b412B9d1db8BC398140D00F5Af3093D4"
+      abi: RewardRouterV2
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - StakeAxn
+        - UnstakeAxn
+        - StakeAlp
+        - UnstakeAlp
+      abis:
+        - name: RewardRouterV2
+          file: RewardRouterV2\abis\RewardRouterV2.json
+      eventHandlers:
+        - event: StakeAxn(address,address,uint256)
+          handler: handleStakeAxn
+        - event: UnstakeAxn(address,address,uint256)
+          handler: handleUnstakeAxn
+        - event: StakeAlp(address,uint256)
+          handler: handleStakeAlp
+        - event: UnstakeAlp(address,uint256)
+          handler: handleUnstakeAlp
+      file: PositionRouter\PositionRouter.wasm
+  - kind: ethereum/contract
+    name: Vault
+    network: devnet
+    source:
+      address: "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6"
+      abi: Vault
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - ClosePosition
+        - CollectMarginFees
+        - DecreasePosition
+        - IncreasePosition
+        - LiquidatePosition
+        - Swap
+        - UpdatePosition
+      abis:
+        - name: Vault
+          file: Vault\abis\Vault.json
+      eventHandlers:
+        - event: ClosePosition(bytes32,uint256,uint256,uint256,uint256,uint256,int256)
+          handler: handleClosePosition
+        - event: CollectMarginFees(address,uint256,uint256)
+          handler: handleCollectMarginFees
+        - event: CollectSwapFees(address,uint256,uint256)
+          handler: handleCollectSwapFees
+        - event: DecreasePosition(bytes32,address,address,address,uint256,uint256,bool,uint256,uint256)
+          handler: handleDecreasePosition
+        - event: IncreasePosition(bytes32,address,address,address,uint256,uint256,bool,uint256,uint256)
+          handler: handleIncreasePosition
+        - event: LiquidatePosition(bytes32,address,address,address,bool,uint256,uint256,uint256,int256,uint256)
+          handler: handleLiquidatePosition
+        - event: Swap(address,address,address,uint256,uint256,uint256,uint256)
+          handler: handleSwap
+      file: PositionRouter\PositionRouter.wasm
+  - kind: ethereum/contract
+    name: AlpManager
+    network: devnet
+    source:
+      address: "0x68B1D87F95878fE05B998F19b66F4baba5De1aed"
+      abi: AlpManager
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - HourlyAlpStat
+      abis:
+        - name: AlpManager
+          file: AlpManager\abis\AlpManager.json
+      eventHandlers:
+        - event: AddLiquidity(address,address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleAddLiquidity
+        - event: RemoveLiquidity(address,address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleRemoveLiquidity
+      file: PositionRouter\PositionRouter.wasm

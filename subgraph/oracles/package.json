@@ -1,0 +1,9 @@
+{
+  "name": "axiodex-prices",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen subgraph.yaml",
+    "create": "graph create prices --node http://172.86.96.113/graph-node",
+    "deploy": "graph deploy prices --node http://172.86.96.113/graph-node"
+  }
+}

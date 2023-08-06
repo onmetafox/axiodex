@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+	<title>ShiTail logo pastelArtboard 1</title>
+	<defs>
+		<image  width="14" height="14" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAMAAAAolt3jAAAAAXNSR0IB2cksfwAAAYBQTFRFAAAAmndwyZqRzZ2U1KOa1aSbzp+VzJ2UsIeAwZSL26if6bWr+MO4+sW7+sS67biu4q6kyJmRRjYz4K2j+sa8+si/+srB8sO42quT+MW76bSqyZqSAAAAx5Rwqopm0KeU4Leu1a+jtJRztJJm6r215LCmwJOL6bWqyJl9v6uPv5FN5qE56qIyypdErpBs8MW9+svC+se9872zzJ2U6rqvt4Al9akn/6gU+asnwYg04bmn8si/+srA3qyi78G4248OsHsh5JcU750ToXIhyo0lu4In0ptT78G26LOp3bKq57536qxC4LFf0Ktt7sN50Khj45QO+aEL05te+sa96LSq9sa8pKCf19LKxMPBm5GBzqVg0o8c/KIJ/qMJzYwt+sW846+lt62r3t7e6Ojo9M2L45MK04cI2IsIu4VD9sG3z5+Wx6ijzcnI8/Pz+ct875oJz4UHx4AHwn0I0J+EyZuS3bOrwqumvqGLtoNIpXhGwY1b1aSP8Lqx06OZW0ZCmXZv11wvnwAAAIB0Uk5TACN3y/X62ZA+avj///////+dBv//////////qQH///////////9b////////////////t/////////////n//////////////////////////////////////////////v///////////8////////////99///////////TCRxEuPM/AAAA0UlEQVR4nGNgYGBgZGJmYWVj52AAA04ubh5eXj5+AUEhEE+YT0RUTFxCkldKWoaBkUtWTl5BUUlZRZRXVY2BSV1DU0tbR1dP38DQyJiBmcfE1Mzc3MLSytqG15aBhdfO3sHRydnF1c1dxIOBldfTy9vH188/IDAoOISBjS80LDwiMio6JjYuPoGBnd8wMSk5JTY1LT0jM4uBQ4A3Oyc3L7+gsKg4pISBQVCKt7SsvKKyqrqmto6BQUha1YhXJDg+M6S2HuRmGTVjW4+QhKwSoBwA9X0nrwd/ZjMAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+	</style>
+	<use id="Background" href="#img1" x="1" y="1"/>
+</svg>

@@ -1,0 +1,133 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: OrderBook
+    network: ${ network }
+    source:
+      address: "${ OrderBook }"
+      abi: OrderBook
+      startBlock: ${ startBlock }
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - ExecuteDecreaseOrder
+      abis:
+        - name: OrderBook
+          file: ./abis/OrderBook.json
+      eventHandlers:
+        - event: ExecuteDecreaseOrder(indexed address,uint256,address,uint256,address,uint256,bool,uint256,bool,uint256,uint256)
+          handler: handleExecuteDecreaseOrder
+      file: ./src/mapping.ts
+
+  - kind: ethereum/contract
+    name: BatchSender
+    network: ${ network }
+    source:
+      address: "${ BatchSender }"
+      abi: BatchSender
+      startBlock: ${ startBlock }
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - BatchSend
+      abis:
+        - name: BatchSender
+          file: ./abis/BatchSender.json
+      eventHandlers:
+        - event: BatchSend(indexed uint256,indexed address,address[],uint256[])
+          handler: handleBatchSend
+      file: ./src/mapping.ts
+
+  - kind: ethereum/contract
+    name: PositionManager
+    network: ${ network }
+    source:
+      address: "${ PositionManager }"
+      abi: PositionManager
+      startBlock: ${ startBlock }
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - IncreasePositionReferral
+        - DecreasePositionReferral
+      abis:
+        - name: PositionManager
+          file: ./abis/PositionManager.json
+      eventHandlers:
+        - event: IncreasePositionReferral(address,uint256,uint256,bytes32,address)
+          handler: handleIncreasePositionReferral
+        - event: DecreasePositionReferral(address,uint256,uint256,bytes32,address)
+          handler: handleDecreasePositionReferral
+      file: ./src/mapping.ts
+
+  - kind: ethereum/contract
+    name: PositionRouter
+    network: ${ network }
+    source:
+      address: "${ RewardRouter }"
+      abi: PositionRouter
+      startBlock: ${ startBlock }
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - IncreasePositionReferral
+        - DecreasePositionReferral
+      abis:
+        - name: PositionRouter
+          file: ./abis/PositionRouter.json
+      eventHandlers:
+        - event: IncreasePositionReferral(address,uint256,uint256,bytes32,address)
+          handler: handleIncreasePositionReferral
+        - event: DecreasePositionReferral(address,uint256,uint256,bytes32,address)
+          handler: handleDecreasePositionReferral
+      file: ./src/mapping.ts
+
+  - kind: ethereum/contract
+    name: ReferralStorage
+    network: ${ network }
+    source:
+      address: "${ ReferralStorage }"
+      abi: ReferralStorage
+      startBlock: ${ startBlock }
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - GovSetCodeOwner
+        - RegisterCode
+        - SetCodeOwner
+        - SetHandler
+        - SetReferrerDiscountShare
+        - SetReferrerTier
+        - SetTier
+        - SetTraderReferralCode
+      abis:
+        - name: ReferralStorage
+          file: ./abis/ReferralStorage.json
+      eventHandlers:
+        - event: GovSetCodeOwner(bytes32,address)
+          handler: handleGovSetCodeOwner
+        - event: RegisterCode(address,bytes32)
+          handler: handleRegisterCode
+        - event: SetCodeOwner(address,address,bytes32)
+          handler: handleSetCodeOwner
+        - event: SetReferrerDiscountShare(address,uint256)
+          handler: handleSetReferrerDiscountShare
+        - event: SetReferrerTier(address,uint256)
+          handler: handleSetReferrerTier
+        - event: SetTier(uint256,uint256,uint256)
+          handler: handleSetTier
+        - event: SetTraderReferralCode(address,bytes32)
+          handler: handleSetTraderReferralCode
+      file: ./src/mapping.ts

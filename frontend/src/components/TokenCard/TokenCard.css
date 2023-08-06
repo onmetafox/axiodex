@@ -1,0 +1,36 @@
+@media (min-width: 1100px) {
+  .Home-token-card-option-action .ethereum {
+      margin-right: 0 !important;
+  }
+  .Home-token-card-option-action .buy{
+    display: flex;
+  }
+}
+@media (max-width: 1100px) {
+  .Home-token-card-option-action .ethereum {
+      margin-right: 0 !important;
+  }
+  .Home-token-card-option-action .buy{
+    display: flex;
+  }
+}
+
+@media (max-width: 786px) {
+  .Home-token-card-option-action .buy{
+    display: grid;
+  }
+}
+.Home-token-card-option-action .buy{
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+.Home-token-card-option-action > .buy >a{
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.Home-token-card-option-action .ethereum {
+    margin-right: 15px;
+    
+}

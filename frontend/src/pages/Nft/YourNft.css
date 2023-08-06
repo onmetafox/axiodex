@@ -1,0 +1,435 @@
+.YourNft-layout {
+    padding-top:0px !important;
+    padding-bottom: calc(-0.35rem + 20rem) !important;
+}
+
+.sc-yournft {
+    color: rgb(255, 255, 255);
+}
+
+.sc-yournft .container {
+    width: 100%;
+    max-width: 1144px;
+    padding-right: 24px;
+    padding-left: 24px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.sc-yournft .title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 140%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.sc-yournft .description {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    margin: 4px 0px 48px;
+    text-align: center;
+}
+
+.sc-yournft .yourNftInfo {
+    margin-bottom: 48px;
+    display: grid;
+}
+
+.sc-yournft .yourNftInfo > div {
+    max-height: 164px;
+}
+
+.yourNftHeader {
+    margin-bottom: 48px;
+    height: 168px;
+    padding: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    background-image: url("img/bg.png");
+    background-repeat: no-repeat;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+
+.yourNftHeader .nft-avt-box {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.yourNftHeader .nft-avt-box .mum1 {
+    border-radius: 16px;
+
+    filter: grayscale(1);
+    visibility: visible;
+}
+
+.yourNftHeader .nft-avt-box img {
+    width: 120px;
+    height: 120px;
+    margin-right: 24px;
+}
+
+.yourNftHeader .nft-avt-box .total-nft {
+    margin-right: 32px;
+}
+
+.yourNftHeader .nft-avt-box .nft-label {
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.yourNftHeader .nft-avt-box .nft-amount {
+    font-weight: 700;
+    font-size: 36px;
+}
+
+.yourNftHeader .actions {
+    display: flex;
+}
+
+.yourNftHeader .actions a:first-child {
+    margin-right: 12px;
+}
+
+.yourNftHeader .actions a {
+    padding: 8px 16px;
+    height: 40px;
+    text-decoration: none;
+}
+
+.yourNftHeader .btn-outline {
+    font-weight: 500;
+    font-size: 14px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-sm);
+    color: rgb(255, 255, 255);
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.yourNftHeader .actions a img {
+    margin-right: 4px;
+}
+
+.YourNft-layout .yourNFtInfo {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    border-radius: 24px;
+    width: 100%;
+    padding: 24px;
+    height: 472px;
+    margin-bottom: 82px;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.yourNFtInfo .img-avt {
+    filter: grayscale(1);
+    margin-bottom: 16px;
+}
+
+.yourNFtInfo .txt-link {
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.yourNFtInfo .txt-link img {
+    margin-left: 5px;
+}
+
+.yourNFtInfo a {
+    text-decoration: none;
+}
+
+.yourNFtInfo a {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: #9e8eff;
+    margin-top: 8px;
+}
+
+.sc-startApp {
+    color: rgb(255, 255, 255);
+    background: rgb(12, 11, 28);
+    position: relative;
+    text-align: center;
+}
+
+.sc-startApp .container {
+    width: 100%;
+    max-width: 1144px;
+    padding-right: 24px;
+    padding-left: 24px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.sc-startApp .panel {
+    position: relative;
+    top: -32px;
+    padding: 41px 0px;
+    background: rgb(64, 67, 129);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+}
+
+.sc-startApp .panel .mum1 {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
+
+.sc-startApp .panel .mum2 {
+    position: absolute;
+    right: 24px;
+    bottom: 0px;
+}
+
+.sc-startApp .panel .title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 140%;
+    text-align: center;
+}
+
+.sc-startApp .panel .message {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    margin: 8px auto 24px;
+    text-align: center;
+    width: 430px;
+    max-width: 30%;
+}
+
+.sc-startApp .container a {
+    text-decoration: none;
+}
+
+
+.YourNft-layout .yourNfts {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0px, 1fr));
+    padding-top: 0px;
+    gap: 8px;
+}
+
+.YourNft-layout  .loadMore {
+    width:150px;
+    float:right;
+    padding:8px 20px;
+    margin-bottom:80px;
+    margin-right:10px;
+    border: 1px solid #36384f;
+    border-radius: var(--border-radius-sm);
+    text-align: center;
+    background-color: #1f2038;
+    cursor: pointer;
+}
+
+.YourNft-layout  .loadMore:hover {
+    background-color: #0c0b1c;
+    cursor: pointer;
+}
+
+
+.YourNft-layout  .Modal .loading {
+    padding:15px 30px;
+    background: transparent;;
+}
+
+.YourNft-layout .Modal .loading img {
+    width:90px;
+    height:90px;
+}
+
+.YourNft-layout .nftPanel {
+    margin-bottom: 50px;;
+}
+
+@media screen and (max-width: 700px) {
+    .yourNftHeader {
+        padding: 16px !important;
+    }
+
+    .yourNftHeader .nft-avt-box {
+        width: 100%;
+    }
+
+    .yourNftHeader .nft-avt-box .avt-wrapper img {
+        width: 80px;
+        height: 80px;
+        margin-right: 16px;
+    }
+
+    .yourNftHeader .nft-avt-box .total-nft {
+        margin-right: 4px;
+        flex: 1 1 0%;
+    }
+
+    .yourNftHeader .nft-avt-box .nft-amount {
+        font-size: 24px;
+    }
+
+    .yourNftHeader .nft-avt-box .total-nft {
+        margin-right: 4px;
+        flex: 1 1 0%;
+    }
+
+    .yourNftHeader .nft-avt-box .nft-amount {
+        font-size: 24px;
+    }
+
+    .yourNftHeader .actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .yourNftHeader .actions a:first-child {
+        margin-right: 0px;
+        margin-bottom: 12px;
+    }
+
+    .yourNftHeader .actions a {
+        width: 100%;
+    }
+
+    .sc-yournft .container {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .sc-yournft .title {
+        font-size: 22px;
+        padding: 0px;
+        margin-top: 24px;
+    }
+
+    .sc-yournft .description {
+        font-size: 12px;
+        margin-bottom: 32px;
+    }
+
+
+    .yourNftInfo {
+        gap: 16px;
+        padding: 0px;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 32px;
+    }
+
+    .yourNftInfo .yourApr {
+        padding: 24px !important;
+    }
+
+    .yourNftInfo .amount--large {
+        font-size: 36px;
+    }
+
+    .yourNftPanel {
+        margin-bottom: 82px !important;
+        border: none;
+        padding: 0px;
+    }
+
+    .yourNFtInfo {
+        height: fit-content;
+        padding: 16px;
+    }
+
+    .yourNFtInfo .img-avt {
+        width: 200px;
+    }
+
+    .sc-startApp .container {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .sc-startApp .mum1 {
+        width: 96px !important;
+    }
+
+    .sc-startApp .mum2 {
+        width: 96px !important;
+        right: 0px !important;
+    }
+
+    .sc-startApp .title {
+        font-size: 24px !important;
+    }
+
+    .sc-startApp .message {
+        font-size: 12px !important;
+    }
+
+    .YourNft-layout .yourNfts {
+        grid-template-columns: repeat(2, minmax(0px, 1fr)) !important;
+    }
+}
+
+@media screen and (max-width: 991px) {
+
+    .yourNftPanel {
+        margin-bottom: 112px;
+    }
+
+    .yourNftHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+    }
+
+    .yourNftHeader .actions {
+        margin-top: 16px;
+    }
+
+    .sc-startApp .panel {
+        padding: 24px 0px;
+    }
+
+    .sc-startApp .mum1 {
+        width: 144px;
+    }
+
+    .sc-startApp .mum2 {
+        width: 141px;
+        right: 6px;
+    }
+}
+
+@media screen and (max-width: 1099px) {
+    .yourNftInfo {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .YourNft-layout .yourNfts {
+        grid-template-columns: repeat(4, minmax(0px, 1fr));
+    }
+}
+
+@media screen and (max-width: 1368px) {
+
+    .sc-startApp .container {
+        max-width: 100% !important;
+    }
+}

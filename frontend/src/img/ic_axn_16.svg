@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+	<title>ShibTail logo fullArtboard 1</title>
+	<defs>
+		<image  width="14" height="14" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAMAAAAolt3jAAAAAXNSR0IB2cksfwAAAZVQTFRFAAAAngAUzQAa0AEb2AIc2AIc0gEb0AAatAAXxQAY3gId6wgj+xAs/RYw/Rcx/BIt7wom5QQfzAAaRwAJ4gQf/BIu/R02/Sc//S5E9S9C3DEy+yA4/Bcx6wcizQAaAAAAyCkcq2VJ0jw/4zhI2D5JtWhQtHdQ7DFE/SlA/Bgy5gUhwwAYySgkv6uPv38/54Yj644hypJArnNV80BR/TVK/SI69Q0p0AAa7Sc6t3wi9akn/6gU+asnwm8g5FJU9UFT/S1E/RYx4gMe8ixB3IoKsHsh5JcU750ToXIgyo0lu3kg03Ax8TVF/Rw26wUh3yo957126qxC4LFf0Ktt7sN50Khi45QO+aEL1FUm6wYi+Sk/pZKU19LKxMPBm5GBzqVg0o8c/KIJ/qMJzmsS/Rgy5gQf/SA5uI6S3t7e6Ojo9M2L45MK04cI2IsIvEwW+RAr0gEbyEdVzb2/8/Pz+ct875oJz4UHx4AHwnsH0SYk6ggjzgAa3yo+w2Fsv2lft0wcpkAZwj8d1yEn8gsm1wEbXQALnAAUsm//VwAAAId0Uk5TACN3y/X62ZA+avj/////////nQb/////////////qQH//////////////1v//////////////7f/////////////+f/////////////////////////////////////////////+/////////////8//////////////ff//////////0wkceX9hpwAAANFJREFUeJxjYGBgYGRiZmFlY+dgAANOLm4eXj5+AUEhYRBPRFRMXEJSSlpGVk6egZFLQVFJWUVVTV1DU0ubgYlbR1dP38DQyNjE1MycgZnHwtLK2trG1s7ewdGJgYXX2cXVzd3D08vbx9ePgZXPPyAwKDgkNCw8QiySgY0/KjomNi4+ITEpOSWVgV0gLT0jMyspOyc3L7+AgUNQprCouKS0rLyisqqagUFIVrOmtq6+obGpuaWVgUFYTsvM0VcsJb+qpQ3kZnltcye/yNSCaqAcABo4K1tR/LI+AAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+	</style>
+	<use id="Background" href="#img1" x="1" y="1"/>
+</svg>

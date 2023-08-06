@@ -1,0 +1,10 @@
+.nft-dropdown-arrow {
+  /* margin-left: 0.8rem; */
+  cursor: pointer;
+  color: white;
+  opacity: 0.8;
+}
+
+.nft-dropdown-arrow:hover {
+  opacity: 1;
+}

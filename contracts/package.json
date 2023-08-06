@@ -1,0 +1,40 @@
+{
+  "name": "gmx-contracts",
+  "version": "1.0.0",
+  "description": "",
+  "files": [
+    "contracts/**/*.sol"
+  ],
+  "scripts": {
+    "test": "npx hardhat test",
+    "compile": "hardhat compile",
+    "typechain": "hardhat typechain"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.2",
+    "@nomiclabs/hardhat-etherscan": "^3.0.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "@typechain/ethers-v5": "^7.0.1",
+    "@typechain/hardhat": "^2.3.0",
+    "argparse": "2.0.1",
+    "chai": "^4.3.7",
+    "ethereum-waffle": "^3.4.4",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.12.6",
+    "hardhat-contract-sizer": "^2.0.3",
+    "hardhat-gas-reporter": "^1.0.9",
+    "hardhat-preprocessor": "^0.1.5",
+    "node-fetch": "3.2.3",
+    "typechain": "^5.1.2"
+  },
+  "dependencies": {
+    "@uniswap/sdk-core": "^3.0.1",
+    "@uniswap/v3-sdk": "^3.8.2",
+    "bn.js": "^5.2.0",
+    "csv-parse": "^4.16.3",
+    "https-proxy-agent": "^5.0.1",
+    "proxy-agent": "^6.2.0"
+  }
+}

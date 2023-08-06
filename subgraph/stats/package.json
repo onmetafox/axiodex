@@ -1,0 +1,9 @@
+{
+  "name": "perp-stats",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen subgraph.yaml",
+    "create": "graph create stats --node http://172.86.96.113/graph-node",
+    "deploy": "node ../prepare.js devnet && graph deploy stats --node http://172.86.96.113/graph-node"
+  }
+}

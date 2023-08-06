@@ -1,0 +1,37 @@
+
+.vest {
+    .strategy-container{
+        background: #13193e;
+        padding: 1.5rem 3rem 1.5rem 3rem;
+    }
+    .sub-section{
+        background: #1f2548;
+        .strategy-title{
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 16px;
+        }
+        .strategy-content{
+            font-size: 14px;
+            font-weight: 800;
+            line-height: 16px;
+
+        }
+    }
+    .strategy-title {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 18px;
+    }
+    .strategy-content {
+        display: block;
+    }
+    .page-row-content-deverse {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding-right: 0px;
+        .align-right{
+            padding-right: 0px;
+        }
+    }
+}

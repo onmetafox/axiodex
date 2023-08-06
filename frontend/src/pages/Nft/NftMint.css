@@ -1,0 +1,672 @@
+.Nft-layout {
+    padding-top:0px !important;
+    padding-bottom: calc(-0.35rem + 20rem) !important;
+}
+
+.Nft-layout .club {
+    position: relative;
+    margin-top: 48px;
+    margin-bottom: 120px;
+}
+
+.Nft-layout .clubPanel {
+    position: relative;
+    z-index: 2;
+    margin-left: auto;
+    margin-right: auto;
+    width: 872px;
+    max-width: calc(100% - 48px);
+    background: rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(35px);
+    padding: 36px;
+    border-radius: 36px;
+    display: grid;
+    grid-template-columns: 320px auto;
+    gap: 24px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+}
+
+.Nft-layout .clubPanel .avt-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+}
+
+
+.Nft-layout .clubPanel .deep-banner {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0px;
+    z-index: -2;
+}
+
+.Nft-layout .clubPanel .title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 140%;
+}
+
+
+.Nft-layout .clubPanel .desc {
+    margin: 16px 0px 32px;
+}
+
+.Nft-layout .clubPanel .actions {
+    display: flex;
+    gap: 16px;
+}
+
+.Nft-layout .clubPanel .goTo {
+    display:flex;
+    margin-top: 30px;;
+    justify-content:right;
+}
+
+.Nft-layout .clubPanel .goTo .button {
+    /* border:1px solid rgba(0,0,0,0.8); */
+    padding:10px 20px;
+    border-radius: 8px;
+    text-align: center;
+    color:white;
+    cursor: pointer;
+    margin-bottom:-40px;
+}
+
+.Nft-layout .clubPanel .goTo .button a {
+    text-decoration: none;
+}
+
+.Nft-layout .clubPanel .goTo .button a:hover {
+    color:yellow;
+}
+
+.Nft-layout .clubPanel .actions a, .clubPanel .actions button {
+    text-decoration: none;
+    padding: 8px 16px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    height: 48px;
+    width: fit-content;
+}
+
+.clubPanel .actions a img, .clubPanel .actions button img {
+    margin-right: 8px;
+    margin-left: 0px
+}
+
+.clubPanel .actions .soldout {
+    background: rgb(154, 148, 148) !important;
+}
+
+.Nft-layout .banner {
+    position: absolute;
+    top: 22px;
+    width: 100%;
+    height: 348px;
+    left: 0px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(270deg, rgba(217, 217, 217, 0.2) 0%, rgb(217, 217, 217) 49.48%, rgba(217, 217, 217, 0.2) 100%);
+}
+
+.Nft-layout .banner .banner-content {
+    height: 348px;
+    background: url(img/banner-bg.png) repeat-x;
+    width: 5076px;
+    animation: 60s linear 0s infinite normal none running slide;
+}
+
+.Nft-layout .treasury {
+    margin-bottom: 120px;
+}
+
+.Nft-layout .container {
+    width: 100%;
+    max-width: 1144px;
+    padding-right: 24px;
+    padding-left: 24px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.Nft-layout .treasury .titlePanel {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    line-height: 140%;
+}
+
+.Nft-layout .treasury .titlePanel .title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 140%;
+}
+
+.Nft-layout .treasury .titlePanel .subTitle {
+    margin: 8px 0px 24px;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.Nft-layout .treasury .graphPanel {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 24px 24px 0px;
+}
+
+.Nft-layout .treasury .graphPanel .data {
+    color: rgb(255, 255, 255);
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.Nft-layout .treasury .graphPanel .data .label {
+    font-weight: 400;
+    font-size: 12px;
+    margin-bottom: 13px;
+    line-height: 140%;
+}
+
+.Nft-layout .treasury .graphPanel .data .amount--large {
+    font-size: 24px;
+    line-height: 140%;
+    font-weight: 700;
+}
+
+.Tooltip {
+    position: relative;
+}
+
+.Tooltip-handle {
+    cursor: help;
+    position: relative;
+    display: inline-flex;
+    text-underline-offset: 2px;
+    text-decoration: underline 1px dashed rgba(255, 255, 255, 0.6);
+}
+
+.Nft-layout .treasury .graphPanel .data .stats-right {
+    display: flex;
+}
+
+.Nft-layout .treasury .graphPanel .data .label {
+    font-weight: 400;
+    font-size: 12px;
+    margin-bottom: 13px;
+    line-height: 140%;
+}
+
+.Nft-layout .treasury .graphPanel .data .amount {
+    line-height: 140%;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.Nft-layout .treasury .graphPanel .data .amount span {
+    color: #7b68ee;
+}
+
+.Nft-layout .treasury .graphPanel .data .pending-box {
+    margin-left: 24px;
+}
+
+.Nft-layout .treasury .graphPanel .graph {
+    margin-top: 24px;
+}
+
+.recharts-responsive-container {
+    width: 100%;
+    height: 205px;
+}
+
+.recharts-wrapper {
+    position: relative;
+    cursor: default;
+    width: 1046px;
+    height: 205px;
+}
+
+
+.Nft-layout .smallBanner {
+    margin-bottom: 120px;
+}
+
+.Nft-layout .banner-part {
+    width: 100%;
+    height: 160px;
+    left: 0px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(270deg, rgba(217, 217, 217, 0.2) 0%, rgb(217, 217, 217) 49.48%, rgba(217, 217, 217, 0.2) 100%);
+}
+
+
+.Nft-layout .banner-part .banner-content {
+    height: 160px;
+    background: url(img/banner-bg-small.png) repeat-x;
+    width: 5076px;
+    animation: 60s linear 0s infinite normal none running slide;
+}
+
+.Nft-layout .rewardPanel {
+    color: rgb(255, 255, 255);
+    margin-bottom: 152px;
+}
+
+.Nft-layout .rewardPanel .title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 140%;
+    text-align: center;
+}
+
+.Nft-layout .rewardPanel .subTitle {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    margin: 8px 0px 24px;
+    text-align: center;
+}
+
+.rewardBlock {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.Nft-layout .rewardPanel .subBlock {
+    background: #181a20;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 24px;
+    display: flex;
+}
+
+.Nft-layout .rewardPanel .subBlock .step-number {
+    font-weight: 700;
+    font-size: 64px;
+    margin-right: 24px;
+    line-height: 100% !important;
+    color:#9e8eff;
+}
+
+.Nft-layout .rewardPanel .subBlock .step-content .label {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 140%;
+    color: rgb(255, 255, 255);
+}
+
+.Nft-layout .rewardPanel .subBlock .step-content .content {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 9px 0px;
+}
+
+.Nft-layout .rewardPanel .subBlock .step-content .howto-link {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 140%;
+    color: #9e8eff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.Nft-layout .startPanel {
+    color: rgb(255, 255, 255);
+    background: rgb(12, 11, 28);
+    position: relative;
+    text-align: center;
+}
+
+.Nft-layout .startPanel .container {
+    width: 1368px !important;
+    max-width: 1368px !important;
+}
+
+.Nft-layout .startPanel .container a {
+    text-decoration: none;
+}
+
+.Nft-layout .startPanel .startBlock {
+    position: relative;
+    top: -32px;
+    padding: 41px 0px;
+    background: rgb(64, 67, 129);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+}
+
+.Nft-layout .startPanel .startBlock .mum1 {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
+
+.Nft-layout .startPanel .startBlock .mum2 {
+    position: absolute;
+    right: 24px;
+    bottom: 0px;
+}
+
+.Nft-layout .startPanel .subTitle {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    margin: 8px auto 24px;
+    text-align: center;
+    width: 430px;
+    max-width: 100%;
+}
+
+.Nft-layout .startPanel .container a {
+    text-decoration: none;
+}
+
+.Nft-layout .startPanel .title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 140%;
+    text-align: center;
+}
+
+@keyframes slide {
+    0% {
+        transform: translate3d(0px, 0px, 0px);
+    }
+
+    100% {
+        transform: translate3d(-1692px, 0px, 0px);
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    .Nft-layout .club {
+        margin-top: 24px;
+        margin-bottom: 48px !important;
+    }
+
+    .Nft-layout .clubPanel {
+        padding: 16px !important;
+        grid-template-columns: 100% !important;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .Nft-layout .clubPanel .avt-img {
+        width: 240px !important;
+        height: 240px !important;
+    }
+
+    .Nft-layout .clubPanel .title {
+        font-size: 16px;
+    }
+
+    .Nft-layout .clubPanel .desc {
+        font-size: 14px;
+        margin: 8px 0px 16px !important;
+    }
+
+    .Nft-layout .clubPanel .actions {
+        flex-direction: column;
+    }
+
+    .Nft-layout .clubPanel .actions a, .Nft-layout .clubPanel .actions button {
+        height: 40px;
+        width: 100%;
+    }
+
+    .Nft-layout .clubPanel .actions a img, .Nft-layout .clubPanel .actions button img {
+        width: 24px;
+        margin-right: 4px;
+    }
+
+    .Nft-layout .club .banner {
+        top: 79px !important;
+    }
+
+    .Nft-layout .treasury {
+        margin-bottom: 48px !important;
+    }
+
+    .Nft-layout .container {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .Nft-layout .treasury .titlePanel .title {
+        font-size: 24px;
+    }
+
+    .Nft-layout .treasury .graphPanel {
+        padding: 16px 16px 0px;
+    }
+
+    .Nft-layout .treasury .data {
+        flex-direction: column;
+    }
+
+    .Nft-layout .treasury .data > div {
+        width: 100%;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+    }
+
+    .Nft-layout .treasury .data .label {
+        margin-bottom: 0px;
+    }
+
+    .Nft-layout .treasury .data .amount--large {
+        font-size: 20px !important;
+    }
+
+    .Nft-layout .treasury .data .stats-right {
+        margin-top: 16px;
+        flex-direction: column;
+    }
+
+    .Nft-layout .treasury .data .stats-right > div {
+        width: 100%;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+    }
+
+    .Nft-layout .treasury .data .label {
+        margin-bottom: 0px;
+    }
+
+    .Nft-layout .treasury .data .amount {
+        font-size: 14px !important;
+    }
+
+    .Nft-layout .treasury .data .stats-right > div.pending-box {
+        margin-left: 0px;
+        margin-top: 16px;
+    }
+
+    .Nft-layout .treasury .data .stats-right > div {
+        width: 100%;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+    }
+
+    .Nft-layout .treasury .recharts-wrapper {
+        width: 284px !important;
+        /* height: 205px !important; */
+    }
+
+    .Nft-layout .smallBanner {
+        margin-bottom: 48px !important;
+    }
+
+    .Nft-layout .banner-part {
+        height: 100px !important;
+    }
+
+    .Nft-layout .banner-part .banner-content {
+        background: url(img/banner-bg-small-mobile.png) repeat-x !important;
+        height: 100px !important;
+    }
+
+    .Nft-layout .rewardPanel {
+        margin-bottom: 80px;
+    }
+
+    .Nft-layout .rewardPanel .title {
+        font-size: 24px;
+        padding: 0px 24px;
+    }
+
+    .Nft-layout .rewardPanel .rewardBlock {
+        gap: 16px;
+    }
+
+    .Nft-layout .rewardPanel .subBlock {
+        padding: 16px;
+    }
+
+    .Nft-layout .rewardPanel .subBlock .step-number {
+        font-size: 48px;
+    }
+
+    .Nft-layout .startPanel .startBlock .mum1 {
+        width: 96px !important;
+    }
+
+    .Nft-layout .startPanel .startBlock .mum2 {
+        width: 96px !important;
+        right: 0px !important;
+    }
+
+    .Nft-layout .startPanel .startBlock .title {
+        font-size: 24px;
+    }
+
+    .Nft-layout .startPanel .startBlock .subTitle {
+        font-size: 12px;
+    }
+
+    .Nft-layout .clubPanel .goTo {
+        display:flex;
+        margin-top: 20px;
+        justify-content:right;
+    }
+
+    .Nft-layout .clubPanel .goTo .button {
+        border:1px solid #3e404c;
+        padding:10px 20px;
+        border-radius: var(--border-radius-sm);
+        margin-bottom:0px !important;
+        width:100%
+    }
+}
+@media screen and (max-width: 991px) {
+
+    .Nft-layout .club {
+        margin-bottom: 72px;
+    }
+
+    .Nft-layout .clubPanel {
+        padding: 24px;
+        grid-template-columns: 260px auto;
+    }
+
+    .Nft-layout .clubPanel .avt-img {
+        width: 260px;
+        height: 260px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .Nft-layout .clubPanel .deep-banner {
+        width: 100%;
+        top: 0px;
+    }
+
+    .Nft-layout .clubPanel .desc {
+        margin: 16px 0px;
+    }
+
+    .Nft-layout .club .banner {
+        top: -20px;
+    }
+
+    .Nft-layout treasury {
+        margin-bottom: 72px;
+    }
+
+    .Nft-layout .treasury .smallBanner {
+        margin-bottom: 72px;
+    }
+
+    .Nft-layout .banner-part {
+        height: 120px;
+    }
+
+    .Nft-layout .banner-part .banner-content {
+        background: url(img/banner-bg-small-ip.png) repeat-x;
+        height: 120px;
+    }
+
+    .Nft-layout .rewardPanel {
+        margin-bottom: 104px;
+    }
+
+    .Nft-layout .rewardPanel .rewardBlock {
+        grid-template-columns: 100%;
+    }
+
+    .Nft-layout .startPanel .startBlock {
+        padding: 24px 0px;
+    }
+
+    .Nft-layout .startPanel .startBlock .mum1 {
+        width: 144px;
+    }
+
+    .Nft-layout .startPanel .startBlock .mum2 {
+        width: 141px;
+        right: 6px;
+    }
+
+    .Nft-layout .clubPanel .goTo .button {
+        margin-bottom:-10px;
+    }
+
+    .Nft-layout .clubPanel .goTo {
+        display:flex;
+        margin-top: 10px;
+        justify-content:right;
+    }
+}
+
+
+@media screen and (max-width: 1368px) {
+
+    .Nft-layout .startPanel .container {
+        max-width: 100% !important;
+    }
+
+}

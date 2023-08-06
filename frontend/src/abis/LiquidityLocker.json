@@ -1,0 +1,8 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "LiquidityLocker",
+  "sourceName": "contracts/staking/LiquidityLocker.sol",
+  "abi": [
+    {"inputs":[{"internalType":"address","name":"_timelock","type":"address"},{"internalType":"address","name":"_lockToken","type":"address"},{"internalType":"uint256","name":"_lockUntil","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"MAX_INCREASE_LOCK","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_duration","type":"uint256"}],"name":"increaseLock","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"lockToken","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"lockUntil","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_token","type":"address"},{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"address","name":"_to","type":"address"}],"name":"skim","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"timelock","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"}
+  ]
+}

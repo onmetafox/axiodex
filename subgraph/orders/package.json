@@ -1,0 +1,9 @@
+{
+  "name": "perp-orders",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen subgraph.yaml",
+    "create": "graph create orders --node http://172.86.96.113/graph-node",
+    "deploy": "graph deploy orders --node http://172.86.96.113/graph-node"
+  }
+}

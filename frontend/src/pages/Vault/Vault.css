@@ -1,0 +1,124 @@
+.strategy-container{
+    padding: 2rem;
+    background: #141436;
+    border-radius: 1.5rem;
+}
+.logo-container{
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    .btn-label{
+        font-size: 14px;
+        font-weight: 800;
+        line-height: 16px;
+        margin-left: 0.5rem;
+    }
+}
+.logo-container, .detail-container{
+    border-radius: 1.5rem; 
+    line-height: 5.4rem;
+    background: #202040;
+    color: white;
+    display: -webkit-inline-box;
+    margin-top: 0.5rem;
+    
+}
+.detail-container{
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem 2rem 1rem 2rem;
+    .strategy-container {
+        background: #202040;
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+    }
+}
+.fee {
+    display: block;
+}
+@media (max-width: 1145px) {
+    .logo-container {
+        display: none;
+    }
+}
+.padding-1r {
+    padding: 1rem;
+}
+.fiat-container{
+    background: #202040;
+    margin: 0.3rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    padding:3rem;
+
+    .strategy-link{
+        margin-bottom: 2rem;
+    }
+    .block {
+        background: #202040;
+        box-shadow: none;
+    }
+    .Tab-option {
+        opacity: 1;
+        background: #202040;
+    }
+}
+.fiat-detail>.Exchange-swap-section{
+    padding: 2rem;
+    background: #101021;
+    border: none;
+}
+
+.detail-content{
+    font-size: 14px;
+    font-weight: 800;
+}
+.detail-title{
+    font-size: 13px;
+    font-weight: 300;
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+.logo>img{
+    width: 2.1rem;
+}
+.logo {
+    font-size: 14px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+.Tab-option-icon {
+    opacity: 1;
+    margin-left: 0.3rem;
+}
+
+.strategy-title{
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.strategy-link>a:hover{
+    color: aquamarine;
+}
+.strategy-title > img{
+    width: 2rem;
+}
+.strategy-link>a{
+    color: #00FFC2;
+    text-decoration: none;
+}
+
+.strategy-content {
+    font-family: Almarai;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+}

@@ -1,0 +1,52 @@
+.side-menu{
+    padding: 5rem;
+}
+.nav-item>a{
+    color: white;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+}
+.nav-item>a>img{
+    margin-right: 1rem;
+}
+.navbar {
+    padding: 5rem !important;
+}
+.menu-button {
+    padding: 5rem 0 0 3rem;
+}
+.menu-button > a > span {
+    color: white;
+    font-size: 15px !important;
+    font-weight: 300 !important;
+}
+.menu-button > a{
+    line-height: 4.5rem;
+}
+.menu-button, .menu-button > a{
+    text-align: center;
+    display: flex;
+    justify-content: center
+}
+@media (max-width: 991.98px) {
+    
+}
+.btn {
+    border: none;
+}
+@media (min-width: 992px) {
+    .menu-button, .menu-button > a{
+        text-align: left;
+        display: block;
+    }
+}
+@media (max-width: 760px) {
+    .menu-button, .menu-button > a{
+        text-align: left;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: left;
+    }
+}
