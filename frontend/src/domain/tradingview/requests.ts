@@ -1,8 +1,6 @@
-import { gql } from "@apollo/client";
 import { getServerUrl } from "config/backend";
 import { getTokenBySymbol, getWrappedToken } from "config/tokens";
 import { getChainlinkChartPricesFromGraph, getChartPricesFromStats, timezoneOffset } from "domain/prices";
-import { getPriceClient } from "lib/subgraph";
 
 function getCurrentBarTimestamp(periodSeconds) {
   return Math.floor(Date.now() / (periodSeconds * 1000)) * (periodSeconds * 1000);
@@ -28,27 +26,17 @@ export const getTokenChartPrice = async (chainId: number, symbol: string, period
 
 export async function getCurrentPriceOfToken(chainId: number, symbol: string) {
   try {
-    const client = getPriceClient(chainId)
-    const query = gql`{
-      chainlinkPrices(where: {token: $symbol}) {
-        price
-      }
-    }`
-    const result = await client.query({
-      query, fetchPolicy: 'no-cache', variables: { symbol }
-    })
-    return result?.data?.chainlinkPrices?.[0]?.price
-    // const indexPricesUrl = getServerUrl(chainId, "/prices");
-    // const response = await fetch(indexPricesUrl);
-    // if (!response.ok) {
-    //   throw new Error(`HTTP error! status: ${response.status}`);
+    const indexPricesUrl = getServerUrl(chainId, "/prices");
+    const response = await fetch(indexPricesUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const indexPrices = await response.json();
+    // let symbolInfo = getTokenBySymbol(symbol);
+    // if (symbolInfo.isNative) {
+    //   symbolInfo = getWrappedToken();
     // }
-    // const indexPrices = await response.json();
-    // // let symbolInfo = getTokenBySymbol(symbol);
-    // // if (symbolInfo.isNative) {
-    // //   symbolInfo = getWrappedToken();
-    // // }
-    // return indexPrices[symbol];
+    return indexPrices[symbol];
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error(err);
@@ -58,7 +46,7 @@ export async function getCurrentPriceOfToken(chainId: number, symbol: string) {
 export function fillBarGaps(prices, periodSeconds) {
   if (prices.length < 2) return prices;
 
-  const currentBarTimestamp = getCurrentBarTimestamp(periodSeconds) / 1000;
+  const currentBarTimestamp = getCurrentBarTimestamp(periodSeconds) / 1000 + timezoneOffset;
   let lastBar = prices[prices.length - 1];
 
   if (lastBar.time !== currentBarTimestamp) {

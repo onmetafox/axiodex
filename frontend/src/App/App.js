@@ -563,22 +563,22 @@ function FullApp() {
                 </Route>
                 <Route exact path="/begin_account_transfer">
                   <SideBar>
-                    <Route component={BeginAccountTransfer} setPendingTxns={setPendingTxns} path="/begin_account_transfer"/>
+                    <Route render={(props) => <BeginAccountTransfer {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />} path="/begin_account_transfer"/>
                   </SideBar>
                 </Route>
                 <Route exact path="/vault">
                   <SideBar>
-                    <Route component={Vault}  path="/vault"/>
+                    <Route render={(props) => <Vault {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />} path="/vault"/>
                   </SideBar>
                 </Route>
                 <Route exact path="/overview">
                   <SideBar>
-                    <Route component={Overview} setPendingTxns={setPendingTxns} connectWallet={connectWallet}  path="/overview"/>
+                    <Route render={(props) => <Overview {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />} path="/overview"/>
                   </SideBar>
                 </Route>
                 <Route exact path="/axes">
                   <SideBar>
-                    <Route component={Axes} setPendingTxns={setPendingTxns} connectWallet={connectWallet} path="/axes"/>
+                    <Route render={(props) => <Axes {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />} path="/axes"/>
                   </SideBar>
                 </Route>
                 <Route exact path="/vest">
@@ -588,7 +588,7 @@ function FullApp() {
                 </Route>
                 <Route exact path="/alp">
                   <SideBar>
-                    <Route component={ALP} setPendingTxns={setPendingTxns} connectWallet={connectWallet}  path="/alp"/>
+                    <Route render={(props) => <ALP {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />}  path="/alp"/>
                   </SideBar>
                 </Route>
                 <Route exact path="/complete_account_transfer/:sender/:receiver">

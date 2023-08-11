@@ -2,9 +2,8 @@ import { useWeb3React } from "@web3-react/core"
 import { Trans, t } from "@lingui/macro";
 import "./ALP.css";
 import PageTitle from "components/PageComponent/PageTitle";
-import ExternalLink from "components/ExternalLink/ExternalLink";
 import PageRow from "components/PageComponent/PageRow";
-
+import { Link } from "react-router-dom";
 
 import Vault from "abis/Vault.json";
 import ReaderV2 from "abis/ReaderV2.json";
@@ -274,9 +273,9 @@ export default function ALP({ setPendingTxns, connectWallet }) {
                   <div className="Exchange-swap-section-top row">
                     <div className="strategy-title">Reward</div>
                     <div className="align-right strategy-link Tab-option">
-                    <ExternalLink href="https://gmxio.gitbook.io/gmx/trading#fees">
+                    <Link to="/overview">
                         <Trans>Claim page</Trans>
-                    </ExternalLink>
+                    </Link>
                     </div>
                   </div>
                   <div className="row">

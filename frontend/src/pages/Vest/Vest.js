@@ -34,6 +34,7 @@ import { getContract } from "config/contracts";
 import { contractFetcher } from "lib/contracts";
 import { bigNumberify, expandDecimals, formatAmount, formatAmountFree, formatKeyAmount, parseValue } from "lib/numbers";
 import { useChainId } from "lib/chains";
+import { Link } from "react-router-dom";
 
 const PAGE_TITLE = "Vest";
 const DESCRIPTION = ["Convert esAXN tokens to AXN tokens.","Prior to using the vaults, please review the vesting details carefully."];
@@ -281,9 +282,9 @@ export default function Vest() {
                         <div className="Exchange-swap-section-top">
                           <div className="strategy-title">claimable</div>
                           <div className="align-right strategy-link Tab-option">
-                            <ExternalLink href="https://gmxio.gitbook.io/gmx/trading#fees">
+                            <Link to="/overview">
                               <Trans>Claim page</Trans>
-                            </ExternalLink>
+                            </Link>
                           </div>
                         </div>
                         <div className="Exchange-swap-section-bottom strategy-content">
@@ -327,9 +328,9 @@ export default function Vest() {
                         <div className="Exchange-swap-section-top">
                           <div className="strategy-title">claimable</div>
                           <div className="align-right strategy-link Tab-option">
-                            <ExternalLink href="https://gmxio.gitbook.io/gmx/trading#fees">
+                            <Link to="/overview">
                               <Trans>Claim page</Trans>
-                            </ExternalLink>
+                            </Link>
                           </div>
                         </div>
                         <div className="Exchange-swap-section-bottom strategy-content">

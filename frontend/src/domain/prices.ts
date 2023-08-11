@@ -4,9 +4,9 @@ import useSWR from "swr";
 import { ethers } from "ethers";
 
 import { USD_DECIMALS, CHART_PERIODS } from "lib/legacy";
-// import { getServerUrl } from "config/backend";
-import { chainlinkClient, getPriceClient } from "lib/subgraph/clients";
-// import { sleep } from "lib/sleep";
+import { getServerUrl } from "config/backend";
+import { chainlinkClient } from "lib/subgraph/clients";
+import { sleep } from "lib/sleep";
 import { formatAmount } from "lib/numbers";
 import { getNativeToken, getNormalizedTokenSymbol, isChartAvailabeForToken } from "config/tokens";
 
@@ -14,27 +14,27 @@ const BigNumber = ethers.BigNumber;
 
 // Ethereum network, Chainlink Aggregator contracts
 const FEED_ID_MAP = {
-  // BTC_USD: "0xae74faa92cb67a95ebcab07358bc222e33a34da7",
-  // ETH_USD: "0x37bc7498f4ff12c19678ee8fe19d713b87f6a9e6",
-  // BNB_USD: "0xc45ebd0f901ba6b2b8c7e70b717778f055ef5e6d",
-  // LINK_USD: "0xdfd03bfc3465107ce570a0397b247f546a42d0fa",
-  // UNI_USD: "0x68577f915131087199fe48913d8b416b3984fd38",
-  // SUSHI_USD: "0x7213536a36094cd8a768a5e45203ec286cba2d74",
-  // AVAX_USD: "0x0fc3657899693648bba4dbd2d8b33b82e875105d",
-  // AAVE_USD: "0xe3f0dede4b499c07e12475087ab1a084b5f93bc0",
-  // YFI_USD: "0x8a4d74003870064d41d4f84940550911fbfccf04",
-  // SPELL_USD: "0x8640b23468815902e011948f3ab173e1e83f9879",
+  BTC_USD: "0xae74faa92cb67a95ebcab07358bc222e33a34da7",
+  ETH_USD: "0x37bc7498f4ff12c19678ee8fe19d713b87f6a9e6",
+  BNB_USD: "0xc45ebd0f901ba6b2b8c7e70b717778f055ef5e6d",
+  LINK_USD: "0xdfd03bfc3465107ce570a0397b247f546a42d0fa",
+  UNI_USD: "0x68577f915131087199fe48913d8b416b3984fd38",
+  SUSHI_USD: "0x7213536a36094cd8a768a5e45203ec286cba2d74",
+  AVAX_USD: "0x0fc3657899693648bba4dbd2d8b33b82e875105d",
+  AAVE_USD: "0xe3f0dede4b499c07e12475087ab1a084b5f93bc0",
+  YFI_USD: "0x8a4d74003870064d41d4f84940550911fbfccf04",
+  SPELL_USD: "0x8640b23468815902e011948f3ab173e1e83f9879",
 };
 export const timezoneOffset = -new Date().getTimezoneOffset() * 60;
 
 function formatBarInfo(bar) {
-  // const { t, o: open, c: close, h: high, l: low } = bar;
+  const { t, o: open, c: close, h: high, l: low } = bar;
   return {
-    time: bar.t,
-    open: Number(ethers.utils.formatUnits(BigNumber.from(bar.o), USD_DECIMALS)),
-    close: Number(ethers.utils.formatUnits(BigNumber.from(bar.c), USD_DECIMALS)),
-    high: Number(ethers.utils.formatUnits(BigNumber.from(bar.h), USD_DECIMALS)),
-    low: Number(ethers.utils.formatUnits(BigNumber.from(bar.l), USD_DECIMALS)),
+    time: t + timezoneOffset,
+    open,
+    close,
+    high,
+    low,
   };
 }
 
@@ -75,61 +75,27 @@ export async function getLimitChartPricesFromStats(chainId, symbol, period, limi
     symbol = getNativeToken().symbol;
   }
 
-  // const timeDiff = CHART_PERIODS[period] * 3000;
-  // const url = getServerUrl(chainId, `/candles/${symbol}?preferableChainId=${chainId}&period=${period}&limit=${limit}`);
-  const client = getPriceClient(chainId)
-  const result = await client.query({
-    query: gql`query($limit: Int, $symbol: String, $period: String) {
-      priceCandles (
-          first: $limit
-          orderBy: timestamp
-          orderDirection: desc
-          where: { period: $period, token: $symbol }
-      ) { t:timestamp o:open h:high l:low c:close }
-    }`,
-    variables: {
-      period, symbol, limit
+  const url = getServerUrl(chainId, `/candles/${symbol}?preferableChainId=${chainId}&period=${period}&limit=${limit}`);
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-  })
-
-  const prices = result.data?.priceCandles
-  return prices.map(formatBarInfo)
-
-  // try {
-  //   const response = await fetch(url);
-  //   if (!response.ok) {
-  //     throw new Error(`HTTP error! status: ${response.status}`);
-  //   }
-  //   const prices = await response.json().then(({ prices }) => prices);
-  //   return prices.map(formatBarInfo);
-  // } catch (error) {
-  //   // eslint-disable-next-line no-console
-  //   console.log(`Error fetching data: ${error}`);
-  // }
+    const prices = await response.json().then(({ prices }) => prices);
+    return prices.map(formatBarInfo);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(`Error fetching data: ${error}`);
+  }
 }
 
 export async function getChartPricesFromStats(chainId, symbol, period) {
   symbol = getNormalizedTokenSymbol(symbol);
-  
+
   const timeDiff = CHART_PERIODS[period] * 3000;
-  const from = Math.floor(Date.now() / 1000 - timeDiff)
-
-  const client = getPriceClient(chainId)
-  const result = await client.query({
-    query: gql`query($from: Int, $symbol: String, $period: String) {
-      prices:priceCandles (
-          first: 1000
-          orderBy: timestamp
-          orderDirection: asc
-          where: { period: $period, timestamp_gte: $from, token: $symbol }
-      ) { t:timestamp o:open h:high l:low c:close }
-    }`,
-    variables: {
-      period, symbol, from
-    }
-  })
-
-  /*const url = getServerUrl(chainId, `/candles/${symbol}?preferableChainId=${chainId}&period=${period}&from=${from}&preferableSource=fast`);
+  const from = Math.floor(Date.now() / 1000 - timeDiff);
+  const url = getServerUrl(chainId, `/candles/${symbol}?preferableChainId=${chainId}&period=${period}&from=${from}&preferableSource=fast`);
 
   const TIMEOUT = 5000;
   const res: Response = await new Promise(async (resolve, reject) => {
@@ -157,23 +123,24 @@ export async function getChartPricesFromStats(chainId, symbol, period) {
     throw new Error(`request failed ${res.status} ${res.statusText}`);
   }
   const json = await res.json();
-  let prices = json?.prices;*/
-  const prices = result.data?.prices
+  let prices = json?.prices;
   if (!prices || prices.length < 1) {
     throw new Error(`not enough prices data: ${prices?.length}`);
   }
 
-  // const OBSOLETE_THRESHOLD = Date.now() / 1000 - 60 * 30; // 30 min ago
-  // const updatedAt = json?.updatedAt || 0;
-  // if (updatedAt < OBSOLETE_THRESHOLD) {
-  //   throw new Error(
-  //     "chart data is obsolete, last price record at " +
-  //       new Date(updatedAt * 1000).toISOString() +
-  //       " now: " +
-  //       new Date().toISOString()
-  //   );
-  // }
-  return prices.map(formatBarInfo)
+  const OBSOLETE_THRESHOLD = Date.now() / 1000 - 60 * 30; // 30 min ago
+  const updatedAt = json?.updatedAt || 0;
+  if (updatedAt < OBSOLETE_THRESHOLD) {
+    throw new Error(
+      "chart data is obsolete, last price record at " +
+        new Date(updatedAt * 1000).toISOString() +
+        " now: " +
+        new Date().toISOString()
+    );
+  }
+
+  prices = prices.map(formatBarInfo);
+  return prices;
 }
 
 function getCandlesFromPrices(prices, period) {
@@ -195,7 +162,7 @@ function getCandlesFromPrices(prices, period) {
     const [ts, price] = prices[i];
     const tsGroup = Math.floor(ts / periodTime) * periodTime;
     if (prevTsGroup !== tsGroup) {
-      candles.push({ t: prevTsGroup, o, h, l, c });
+      candles.push({ t: prevTsGroup + timezoneOffset, o, h, l, c });
       o = c;
       h = Math.max(o, c);
       l = Math.min(o, c);
@@ -316,7 +283,7 @@ export function useChartPrices(chainId, symbol, isStable, period, currentAverage
 
 function appendCurrentAveragePrice(prices, currentAveragePrice, period) {
   const periodSeconds = CHART_PERIODS[period];
-  const currentCandleTime = Math.floor(Date.now() / 1000 / periodSeconds) * periodSeconds;
+  const currentCandleTime = Math.floor(Date.now() / 1000 / periodSeconds) * periodSeconds + timezoneOffset;
   const last = prices[prices.length - 1];
   const averagePriceValue = parseFloat(formatAmount(currentAveragePrice, USD_DECIMALS, 2));
   if (currentCandleTime === last.time) {

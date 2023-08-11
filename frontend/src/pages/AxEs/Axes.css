@@ -34,9 +34,17 @@
         line-height: 18px;
         letter-spacing: 0em;
         text-align: left;
+        margin-top: auto;
+        margin-bottom: auto;
 
     }
-    
+    .strategy-link {
+        .btn-label{
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 18px;
+        }
+    }
     .alp-container{
         border-radius: 2.7rem;
     }

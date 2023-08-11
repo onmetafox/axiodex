@@ -16,9 +16,6 @@ import { bigNumberify, expandDecimals } from "lib/numbers";
 import { getTokens, getWhitelistedTokens } from "config/tokens";
 import { Web3Provider } from "@ethersproject/providers";
 import { getSpread } from "./utils";
-import { getPriceClient } from "lib/subgraph";
-import { gql } from "@apollo/client";
-import { graphFetcher } from "lib/contracts/graphFetcher";
 
 export function useInfoTokens(
   library: Web3Provider,
@@ -50,25 +47,14 @@ export function useInfoTokens(
     }
   );
 
-  // const indexPricesUrl = getServerUrl(chainId, "/prices");
-  const client = getPriceClient(chainId)
-  const query = gql`{
-    chainlinkPrices {
-      token
-      price
-    }
-  }`
-  
-  const {data} = useSWR([client, query], {
+  const indexPricesUrl = getServerUrl(chainId, "/prices");
+
+  const { data: indexPrices } = useSWR([indexPricesUrl], {
     // @ts-ignore spread args incorrect type
-    fetcher: graphFetcher,
+    fetcher: (...args) => fetch(...args).then((res) => res.json()),
     refreshInterval: 500,
     refreshWhenHidden: true,
-  })
-
-  const indexPrices = data?.chainlinkPrices?.reduce((tokenPrices, item) => {
-    return { ...tokenPrices, [item.token]: `${item.price}0000000000000000000000` }
-  }, {})
+  });
 
   return {
     infoTokens: getInfoTokens(

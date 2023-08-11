@@ -12,7 +12,12 @@
     background: #0099FF;
     padding: 2rem;
     /* margin: 1rem; */
-    margin-top: 3rem 
+    margin-top: 3rem;
+    .btn-label{
+      margin-left:0px;
+      font-weight: 800;
+      font-size: 1.6rem;
+    }
   }
   .Home-top {
     .default-container{
@@ -219,7 +224,7 @@
   margin-top: 3.1rem;
 }
 .home-top-container{
-  background: #2119319e;
+  background: #6767674A;
   width: 100%;
   border-radius: 2rem;
   margin: 3rem;
@@ -231,12 +236,14 @@
   }
 }
 .title-welcome {
+  font-family: "Barlow";
   padding-left: 3rem !important;
   font-size: 40px;
   font-weight: 400;
   line-height: 4.8rem;
 }
 .title-logo {
+  font-family: "Amaranth";
   font-size: 96px;
   font-weight: 700;
   line-height: 11.7rem;

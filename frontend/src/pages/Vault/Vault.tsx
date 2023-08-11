@@ -11,7 +11,7 @@ import { Trans, t } from "@lingui/macro";
 
 import "./Vault.css";
 
-export default function Vault() {
+export default function Vault({ setPendingTxns, connectWallet }) {
 
   const PAGE_TITLE = "Vault";
   const DESCRIPTION = ["Our cutting-edge auto-compound Yield Farming strategy, designed to empower investors to earn rewards effortlessly."];
@@ -151,9 +151,9 @@ export default function Vault() {
                     </ExternalLink>
                   </div>
                 </div>
-                <div className="row">
-                  <button className="App-cta Exchange-swap-button">Connect Wallet</button>
-                </div>
+                <button className="App-cta Exchange-swap-button" onClick={() => connectWallet()}>
+                  Connect Wallet
+                </button>
                 
               </div>
               <div className="row padding-1r">

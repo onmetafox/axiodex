@@ -62,3 +62,11 @@
   font-family: "Baloo" ;
   src: url("fonts/baloo/Baloo2.ttf");
 }
+@font-face {
+  font-family: "Amaranth" ;
+  src: url("fonts/Amaranth/Amaranth-Regular.ttf");
+}
+@font-face {
+  font-family: "Baloo" ;
+  src: url("fonts/Barlow/Barlow-Regular.ttf");
+}

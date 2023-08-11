@@ -255,7 +255,7 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
             </div>
             <div className="Home-benifit-content">
               <div className="Home-benefit-title">
-                <Trans>About US</Trans>
+                <Trans>About Us</Trans>
               </div>
               <div className="Home-benefit-description">
                 <Trans>

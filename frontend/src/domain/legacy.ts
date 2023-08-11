@@ -25,7 +25,7 @@ import { DECREASE, getOrderKey, INCREASE, SWAP, USD_DECIMALS } from "lib/legacy"
 import { groupBy } from "lodash";
 import { UI_VERSION } from "config/env";
 import { getServerBaseUrl, getServerUrl } from "config/backend";
-import { getGraphClient, mainnetNissohClient } from "lib/subgraph/clients";
+import { getGmxGraphClient, mainnetNissohClient } from "lib/subgraph/clients";
 import { callContract, contractFetcher } from "lib/contracts";
 import { replaceNativeTokenAddress } from "./tokens";
 import { getUsd } from "./tokens/utils";
@@ -56,7 +56,7 @@ export function useAllOrdersStats(chainId) {
   const [res, setRes] = useState<any>();
 
   useEffect(() => {
-    const graphClient = getGraphClient(chainId);
+    const graphClient = getGmxGraphClient(chainId);
     if (graphClient) {
       // eslint-disable-next-line no-console
       graphClient.query({ query }).then(setRes).catch(console.warn);
@@ -78,7 +78,7 @@ export function useUserStat(chainId) {
 
   useEffect(() => {
     // eslint-disable-next-line no-console
-    getGraphClient(chainId)?.query({ query }).then(setRes).catch(console.warn);
+    getGmxGraphClient(chainId)?.query({ query }).then(setRes).catch(console.warn);
   }, [setRes, query, chainId]);
 
   return res ? res.data.userStat : null;
@@ -105,7 +105,7 @@ export function useLiquidationsData(chainId, account) {
            type
          }
       }`);
-      const graphClient = getGraphClient(chainId);
+      const graphClient = getGmxGraphClient(chainId);
       if (!graphClient) {
         return;
       }
@@ -218,7 +218,7 @@ export function useAllOrders(chainId, library) {
   const [res, setRes] = useState<any>();
 
   useEffect(() => {
-    getGraphClient(chainId)?.query({ query }).then(setRes);
+    getGmxGraphClient(chainId)?.query({ query }).then(setRes);
   }, [setRes, query, chainId]);
 
   const key = res ? res.data.orders.map((order) => `${order.type}-${order.account}-${order.index}`) : null;
@@ -432,20 +432,19 @@ export function useStakedGmxSupply(library, active) {
 }
 
 export function useHasOutdatedUi() {
-  return { data: false }
-  // const url = getServerUrl(DEFAULT_CHAIN_ID, "/ui_version");
-  // const { data, mutate } = useSWR([url], {
-  //   // @ts-ignore
-  //   fetcher: (...args) => fetch(...args).then((res) => res.text()),
-  // });
+  const url = getServerUrl(DEFAULT_CHAIN_ID, "/ui_version");
+  const { data, mutate } = useSWR([url], {
+    // @ts-ignore
+    fetcher: (...args) => fetch(...args).then((res) => res.text()),
+  });
 
-  // let hasOutdatedUi = false;
+  let hasOutdatedUi = false;
 
-  // if (data && parseFloat(data) > parseFloat(UI_VERSION)) {
-  //   hasOutdatedUi = true;
-  // }
+  if (data && parseFloat(data) > parseFloat(UI_VERSION)) {
+    hasOutdatedUi = true;
+  }
 
-  // return { data: hasOutdatedUi, mutate };
+  return { data: hasOutdatedUi, mutate };
 }
 
 export function useGmxPrice(chainId, libraries, active) {

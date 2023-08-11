@@ -40,7 +40,7 @@ export const TOKENS: Token[] = [
   {
     name: "HEX",
     symbol: "HEX",
-    decimals: 8,
+    decimals: 18,
     address: getContract("HEX"),
     isShortable: true,
     imageUrl: "https://assets.coingecko.com/coins/images/10103/small/HEX-logo.png?1575942673",
