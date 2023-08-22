@@ -251,9 +251,9 @@ export default function DashboardV3() {
                 </div>
                 <div className="Exchange-swap-section-bottom strategy-content">
                   <div className="row padding-1r">
-                    <div className="col-4"><PageRow title = "Supply" value={`${formatAmount(totalGmxSupply, AXN_DECIMALS, 0, true)} AXN`} direction = "vertical" className="table-row"/></div>
-                    <div className="col-4"><PageRow title = "Total Staked" value={`$${formatAmount(stakedGmxSupplyUsd, USD_DECIMALS, 2, true)}`} direction = "vertical" className="table-row"/></div>
-                    <div className="col-4"><PageRow title = "Market Cap" value={`$${formatAmount(gmxMarketCap, USD_DECIMALS, 2, true)}`} direction = "vertical" className="table-row"/></div>
+                    <div className="col-lg-4 col-md-4 col-sm-12"><PageRow title = "Supply" value={`${formatAmount(totalGmxSupply, AXN_DECIMALS, 0, true)} AXN`} direction = "vertical" className="table-row"/></div>
+                    <div className="col-lg-4 col-md-4 col-sm-12"><PageRow title = "Total Staked" value={`$${formatAmount(stakedGmxSupplyUsd, USD_DECIMALS, 2, true)}`} direction = "vertical" className="table-row"/></div>
+                    <div className="col-lg-4 col-md-4 col-sm-12"><PageRow title = "Market Cap" value={`$${formatAmount(gmxMarketCap, USD_DECIMALS, 2, true)}`} direction = "vertical" className="table-row"/></div>
                   </div>
                   <div className="row padding-1r">
                     <div className="stats-block">
@@ -261,20 +261,20 @@ export default function DashboardV3() {
                         <div className="label">
                           <Button imgSrc={iconPlus} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
-                        <div><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
+                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
                       </div>
                       
                       <div className="App-card-row body">
                         <div className="label">
                         <Button imgSrc={iconArbi} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
-                        <div><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
+                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
                       </div>
                       <div className="App-card-row footer border-top-0">
                         <div className="label">
                           <Button imgSrc={iconAval} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
-                        <div><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
+                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
                       </div>
                     </div>
                   </div>
@@ -291,10 +291,10 @@ export default function DashboardV3() {
                 </div>
                 <div className="Exchange-swap-section-bottom strategy-content">
                   <div className="row padding-1r">
-                    <div className="col-3"><PageRow title = "Supply" value={`${formatAmount(glpSupply, TLP_DECIMALS, 0, true)} ALP`} direction = "vertical" className="table-row"/></div>
-                    <div className="col-3"><PageRow title = "Total Staked" value={`$${formatAmount(glpMarketCap, USD_DECIMALS, 2, true)}`} direction = "vertical" className="table-row"/></div>
-                    <div className="col-3"><PageRow title = "Market Cap" value={`$${formatAmount(glpMarketCap, USD_DECIMALS, 2, true)}`} direction = "vertical" className="table-row"/></div>
-                    <div className="col-3"><PageRow title = "Stablecoin Pct." value={`${stablePercentage}%`} direction = "vertical" className="table-row"/></div>
+                    <div className="col-lg-3 col-md-3 col-sm-12"><PageRow title = "Supply" value={`${formatAmount(glpSupply, TLP_DECIMALS, 0, true)} ALP`} direction = "vertical" className="table-row"/></div>
+                    <div className="col-lg-3 col-md-3 col-sm-12"><PageRow title = "Total Staked" value={`$${formatAmount(glpMarketCap, USD_DECIMALS, 2, true)}`} direction = "vertical" className="table-row"/></div>
+                    <div className="col-lg-3 col-md-3 col-sm-12"><PageRow title = "Market Cap" value={`$${formatAmount(glpMarketCap, USD_DECIMALS, 2, true)}`} direction = "vertical" className="table-row"/></div>
+                    <div className="col-lg-3 col-md-3 col-sm-12"><PageRow title = "Stablecoin Pct." value={`${stablePercentage}%`} direction = "vertical" className="table-row"/></div>
                   </div>
                   <div className="row padding-1r">
                     <div className="stats-block">
@@ -302,20 +302,20 @@ export default function DashboardV3() {
                         <div className="label">
                           <Button imgSrc={iconPlus} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
-                        <div><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
+                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
                       </div>
                       
                       <div className="App-card-row body">
                         <div className="label">
                         <Button imgSrc={iconArbi} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
-                        <div><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
+                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
                       </div>
                       <div className="App-card-row footer border-top-0">
                         <div className="label">
                           <Button imgSrc={iconAval} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
-                        <div><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
+                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
                       </div>
                     </div>
                   </div>

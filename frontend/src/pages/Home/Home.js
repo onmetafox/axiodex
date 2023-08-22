@@ -265,40 +265,12 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
             </div>
             
           </div>
-          {/* <div className="Home-benefit">
-            <div className="Home-benefit-icon">
-              <img src={costIcon} alt="Save on Costs Icon" className="Home-benefit-icon-symbol" />
-              <div className="Home-benefit-title">
-                <Trans>Save on Costs</Trans>
-              </div>
-            </div>
-            <div className="Home-benefit-description">
-              <Trans>
-              Execute positions with negligible spreads and zero price impact, ensuring that the best possible price is obtained without incurring any extra expenses.
-              </Trans>
-            </div>
-          </div>
-          <div className="Home-benefit">
-            <div className="Home-benefit-icon">
-              <img src={simpleSwapIcon} alt="Simple Swaps Icon" className="Home-benefit-icon-symbol" />
-              <div className="Home-benefit-title">
-                <Trans>#ShibArmy Burn</Trans>
-              </div>
-            </div>
-            <div className="Home-benefit-description">
-              <Trans>
-              To support the #ShibArmy and Shib Common Values 20% of trading fees generated from the platform will be used to buy and burn $SHIB.
-              </Trans>
-              <br />
-              <br />
-            </div>
-          </div> */}
         </div>
       </div>
       <div className="Home-cta-section">
         <div className="Home-cta-container default-container">
           <div className="col-lg-4 col-md-12 col-sm-12 padding-1r">
-            <div className="Home-benefit-icon">
+            <div className="Home-cta-icon">
               <img src={liquidityIcon} alt="Reduce Liquidation Risks" className="Home-benefit-icon-symbol" />
               <div className="Home-benefit-title">
                 <Trans>Reduce Liquidation Risks</Trans>
@@ -311,7 +283,7 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
             </div>
           </div>
           <div className="col-lg-4 col-md-12 col-sm-12 padding-1r">
-            <div className="Home-benefit-icon">
+            <div className="Home-cta-icon">
               <img src={costIcon} alt="Save on Costs Icon" className="Home-benefit-icon-symbol" />
               <div className="Home-benefit-title">
                 <Trans>Save on Costs</Trans>
@@ -324,7 +296,7 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
             </div>
           </div>
           <div className="col-lg-4 col-md-12 col-sm-12 padding-1r">
-            <div className="Home-benefit-icon">
+            <div className="Home-cta-icon">
               <img src={swapIcon} alt="Simple Swaps" className="Home-benefit-icon-symbol" />
               <div className="Home-benefit-title">
                 <Trans>Simple Swaps</Trans>

@@ -549,6 +549,12 @@
   }
 }
 @media (max-width: 1100px) {
+  .Home-benefit-icon{
+    display: none;
+  }
+  .Home-cta-icon{
+    text-align: center;
+  }
   .Home-token-card-option-action {
     display: grid;
     grid-template-columns: 1fr;

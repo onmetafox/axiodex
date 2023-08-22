@@ -1362,6 +1362,599 @@ button.App-button {
   }
 }
 
+
+
+
+
+.dashboard {
+  .detail {
+    padding-top: 1rem !important;
+  }
+  .Page-content {
+    max-width: 1540px;
+    /* margin-left:auto ;
+    margin-right: auto; */
+    padding: 2.5rem;
+  }
+  .stats-section {
+    max-width: 1478px;
+    .strategy-container{
+      background: #2b2b4a;
+      border-radius: 3.2rem;
+      padding: 3rem;
+      margin-top: 5rem;
+      .strategy-title{
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 27px;
+      }
+      .state-group {
+        display: flex;
+        width: 100%;
+        margin: 3rem 0 3rem 0;
+      }
+      .strategy-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 5rem;
+      }
+      
+      .value {
+        color: white;
+      }
+      
+    }
+    .detail {
+      padding-top: 1rem !important;
+    }
+    .title{
+      font-size: 14px !important;
+      font-weight: 400 !important;
+    }
+    .icon>img {
+      margin: auto;
+    }
+  }
+  .token-section {
+    max-width: 1478px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    .token-title {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 4rem;
+      margin-top: 10rem;
+    }
+    .strategy-container{
+      margin-top: 3rem;
+      padding: 0 4rem 0 4rem;
+    }
+    .token-content {
+      display: flex;
+      justify-content: space-between;
+    }
+    .token-content>.strategy-container{
+      width: 49%;
+    }
+    .icon {
+      border-radius: 0 0 1rem 1rem;
+    }
+    .strategy-content{
+      display: block;
+      
+    }
+    .stats-block{
+      .btn-label{
+        color: white;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 26px;
+      }
+      .btn-label>span {
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 24px;
+        color: #00FF6E;
+      }
+      .header {
+        border-radius: 2.7rem 2.7rem 0 0;
+        background: linear-gradient(90deg, rgba(240, 0, 231, 0.225) 2.87%, rgba(255, 255, 255, 0) 100%);
+
+      }
+      .body {
+        background: linear-gradient(90deg, rgba(0, 197, 240, 0.225) 2.87%, rgba(255, 255, 255, 0) 100%);
+
+      }
+      .footer {
+        border-radius:  0 0 2.7rem 2.7rem;
+        background: linear-gradient(90deg, rgba(240, 0, 231, 0.225) 2.87%, rgba(255, 255, 255, 0) 100%);
+      }
+      .strategy-btn {
+        border-radius: 1rem;
+        border: solid 1px #b2b2bd;
+      }
+      .green-btn {
+        background: #00B981;
+        .btn-label {
+          color: black !important;
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 24px;
+        }
+      }
+    }
+    .App-card-divider {
+      margin: 0;
+    }
+    .title{
+      font-size: 15px !important;
+      font-weight: 400 !important;
+    }
+    .value {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+    
+    .App-card-row{
+      line-height: 6.5rem;
+      padding: 1rem ;
+      border: solid 1px #9595a5;
+    }
+    .btn-label {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 24px;
+    }
+  }
+  .market-section{
+    margin-top: 3rem;
+    padding: 0;
+    .icon {
+      width: 4rem;
+      height: 4rem;
+      background: transparent;
+      padding: 0;
+    }
+    .market-title {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 27px;
+      margin: 2rem 0 2rem 0;
+    }
+    .token-table{
+      border-collapse: separate;
+      border-spacing: 0 1em;
+    }
+    .title {
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 18px;
+    }
+    .token-table>thead>tr>th:last-child {
+      text-align: center;
+    }
+
+    .token-table>tbody>tr>td {
+      background: #2b2b4a;
+    }
+    .token-table>tbody>tr>td:first-child{
+      border-radius: 1.4rem 0 0 1.4rem;
+    }
+    .token-table>tbody>tr>td:last-child{
+      border-radius:  0 1.4rem 1.4rem 0;
+      text-align: center;
+    }
+    .label {
+      font-family: "Baloo";
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 32px;
+      color: white;
+    }
+    .App-card {
+      background: #2b2b4a;
+      border-radius: 14px;
+      border: 4px 4px 0px 4px;
+
+    }
+  }
+  
+  .strategy-container{
+    border-radius: 3.2rem;
+    background: #2b2b4a;
+  }
+  .align-right{
+    display: block;
+    padding-top: 3rem;
+  }
+  .strategy-link>a {
+    color: white;
+    text-decoration: none;
+  }
+  .btn .btn-label {
+    margin: 0 1rem 0 1rem;
+  }
+  .table-row{
+    margin-top: 3rem;
+    .title {
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.7rem;
+    }
+    .value {
+      font-weight: 700;
+      font-size: 20px;
+      margin: 2rem 0 2rem 0;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .token-content {
+    display: table-column !important;
+  }
+  .token-content>.strategy-container{
+    width: 100% !important;
+  }
+  .state-group {
+    margin: 0 !important;
+    .icon-container{
+      margin-top: 3rem;
+    }
+  }
+  .strategy-trade{
+    margin-top: 3rem;
+  }
+}
+@media (max-width: 450px){
+  .stats-block{
+    .App-card-row{
+      display: flex;
+      flex-direction: column;
+      .button{
+        text-align: center;
+      }
+    }
+  }
+}
+
+.icon-container{
+  display: flex;
+  .icon {
+    background: linear-gradient(131.99deg, #6BFAF1 -41.53%, #01597E 62.01%);
+    width: 7rem;
+    height: 7rem;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    text-align: center;
+    float: left;
+    display: flex;
+    justify-content: center
+  }
+  .detail {
+    padding-left: 1rem;
+    display: inline-grid;
+    .title {
+      font-size: 15px;
+      font-weight: 300;
+    }
+    .value {
+      font-weight: 700;
+      font-size: 32px;
+      color: #03F5AE;
+    }
+  }
+  img {
+    text-align: center;
+    margin: auto;
+  }
+}
+.overview {
+  .icon{
+      background: linear-gradient(131.99deg, #6BFAF1 -41.53%, #01597E 62.01%);
+  }
+  .icon>img{
+      margin: auto;
+  }
+  
+  .btn-label {
+      margin-left: 0;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 2.4rem;
+  }
+  .strategy-btn {
+      border-radius: 1rem;
+      border: solid 1px #b2b2bd;
+  }
+  .text-align-btn {
+      .col-4 {
+          text-align: right;
+      }
+  }
+  .colored {
+      background: linear-gradient(269.5deg, rgba(0, 148, 255, 0.455) -23.12%, rgba(0, 35, 54, 0.5) 106.82%);
+      padding: 3rem;
+      border-radius: 2.6rem;
+  }
+  .strategy-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0em;
+      text-align: left;
+
+      
+  }
+}
+
+.axes {
+  .table-row{
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+      .title {
+          font-size: 15px;
+          font-weight: 300;
+          line-height: 1.7rem;
+      }
+      .value {
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 1.8rem;
+      }
+      
+  }
+  .divider-row {
+      margin: 2rem 0 2rem 0;
+  }
+  .percent-font{
+      color: #00FFC2;
+      line-height: 2.5rem;
+      font-size: 20px;
+      font-weight: 400;
+  }
+  .colored {
+      background: linear-gradient(269.5deg, rgba(0, 148, 255, 0.455) -23.12%, rgba(0, 35, 54, 0.5) 106.82%);
+      padding: 3rem;
+      border-radius: 2.6rem;
+  }
+  .strategy-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0em;
+      text-align: left;
+      margin-top: auto;
+      margin-bottom: auto;
+
+  }
+  .strategy-link {
+      .btn-label{
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 18px;
+      }
+  }
+  .alp-container{
+      border-radius: 2.7rem;
+  }
+}
+
+.alp {
+  .divider-row {
+      margin: 2rem 0 2rem 0;
+  }
+  .percent-font{
+      color: #00FFC2;
+      line-height: 2.5rem;
+      font-size: 20px;
+      font-weight: 400;
+  }
+  .colored {
+      background: linear-gradient(269.5deg, rgba(0, 148, 255, 0.455) -23.12%, rgba(0, 35, 54, 0.5) 106.82%);
+      padding: 3rem;
+      border-radius: 2.6rem;
+  }
+  .strategy-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0em;
+      text-align: left;
+
+  }
+  
+  .alp-container{
+      border-radius: 2.7rem;
+  }
+}
+
+
+.vest {
+  .strategy-container{
+      background: #13193e;
+      padding: 1.5rem 3rem 1.5rem 3rem;
+  }
+  .sub-section{
+      background: #1f2548;
+      .strategy-title{
+          font-size: 14px;
+          font-weight: 300;
+          line-height: 16px;
+      }
+      .strategy-content{
+          font-size: 14px;
+          font-weight: 800;
+          line-height: 16px;
+
+      }
+  }
+  .strategy-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 18px;
+      margin-top: auto;
+      margin-bottom: auto;
+  }
+  .strategy-content {
+      display: block;
+  }
+  .page-row-content-deverse {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      padding-right: 0px;
+      .align-right{
+          padding-right: 0px;
+      }
+  }
+}
+
+.strategy-container{
+  padding: 2rem;
+  background: #141436;
+  border-radius: 1.5rem;
+}
+.logo-container{
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  .btn-label{
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 16px;
+      margin-left: 0.5rem;
+  }
+}
+.logo-container, .detail-container{
+  border-radius: 1.5rem; 
+  line-height: 5.4rem;
+  background: #202040;
+  color: white;
+  display: -webkit-inline-box;
+  margin-top: 0.5rem;
+  
+}
+.detail-container{
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem 2rem 1rem 2rem;
+  .strategy-container {
+      background: #202040;
+      display: flex;
+      justify-content: space-around;
+      padding: 0;
+  }
+}
+.fee {
+  display: block;
+}
+@media (max-width: 1145px) {
+  .logo-container {
+      display: none;
+  }
+}
+.padding-1r {
+  padding: 1rem;
+}
+.fiat-container{
+  background: #202040;
+  margin: 0.3rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  padding:3rem;
+
+  .strategy-link{
+      margin-bottom: 2rem;
+  }
+  .block {
+      background: #202040;
+      box-shadow: none;
+  }
+  .Tab-option {
+      opacity: 1;
+      background: #202040;
+  }
+}
+.fiat-detail>.Exchange-swap-section{
+  padding: 2rem;
+  background: #101021;
+  border: none;
+}
+
+.detail-content{
+  font-size: 14px;
+  font-weight: 800;
+}
+.detail-title{
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: auto;
+  margin-bottom: auto;
+
+}
+.logo>img{
+  width: 2.1rem;
+}
+.logo {
+  font-size: 14px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+.Tab-option-icon {
+  opacity: 1;
+  margin-left: 0.3rem;
+}
+
+.strategy-title{
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.strategy-link>a:hover{
+  color: aquamarine;
+}
+.strategy-title > img{
+  width: 2rem;
+}
+.strategy-link>a{
+  color: #00FFC2;
+  text-decoration: none;
+}
+
+.strategy-content {
+  font-family: Almarai;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@media (max-width: 991px) {
+  .token-content {
+    display: table-column !important;
+  }
+  .token-content>.strategy-container{
+    width: 100% !important;
+  }
+  .state-group {
+    margin: 0 !important;
+    .icon-container{
+      margin-top: 3rem;
+    }
+  }
+  .strategy-trade{
+    margin-top: 3rem;
+  }
+}
+
 @media (max-width: 1000px) {
   .App-card-long-content {
     display: grid;
@@ -1378,6 +1971,7 @@ button.App-button {
   }
 }
 @media (max-width : 830px){
+
   .landing-page .App-header.small {
     display: none;
   }
@@ -1482,6 +2076,7 @@ button.App-button {
   }
 
   .App-header .App-header-link-main {
+    display: none;
     padding: 0.155rem !important;
     margin-left: 0rem !important;
   }
