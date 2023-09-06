@@ -29,15 +29,10 @@ yarn-error.log*
 
 package-lock.json
 
-.yarn
+.yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
 /.idea/
-.editorconfig
-.env-cmdrc
-.htaccess
-netlify.toml
-yarn.lock

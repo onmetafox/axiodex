@@ -35,9 +35,10 @@ import {
   getProcessedData,
   getPageTitle,
 } from "lib/legacy";
+import ExternalLink from "components/ExternalLink/ExternalLink";
 
 const PAGE_TITLE = "Overview";
-const DESCRIPTION = ["By staking MMY or ALP tokens on the Fantom, Optimism and Abitrum networks, you can earn protocol income and rewards. Learn More."];
+const DESCRIPTION = ["By staking AXN or ALP tokens to the Base network, You can earn Protocol income and Rewards."];
 const REWARDS = "Total rewards";
 
 export default function Overview( {setPendingTxns, connectWallet }) {
@@ -255,9 +256,12 @@ export default function Overview( {setPendingTxns, connectWallet }) {
   return (
     <>
       <div className="BeginAccountTransfer page-layout">
+        
         <PageTitle
           title = {PAGE_TITLE}
           descriptions = {DESCRIPTION}
+          link = "Learn More"
+          href = "https://github.com"
         />
         <div className="Page-content overview">
           <div className="row">
@@ -322,10 +326,10 @@ export default function Overview( {setPendingTxns, connectWallet }) {
                 <div className="Exchange-swap-section strategy-container">
                   <div className="row">
                     <div className="col-5">
-                      <PageRow title="MLP staked" value="0.00 $0.00" direction="vertical"/>
+                      <PageRow title="APL staked" value="0.00 $0.00" direction="vertical"/>
                     </div>
                     <div className="col-3">
-                      <PageRow title="APR" value="133.62%" direction="vertical"/>
+                      <PageRow title="ALP" value="133.62%" direction="vertical"/>
                     </div>
                     <div className="col-4">
                       <Button className="strategy-btn" href="mlp">Details</Button>
