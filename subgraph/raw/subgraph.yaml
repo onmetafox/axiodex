@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: PositionRouter
-    network: base-testnet
+    network: devnet
     source:
-      address: "0xdd1eCac457C996f7937Ea2Ca97C87E7bd0C59768"
+      address: "0xddE78e6202518FF4936b5302cC2891ec180E8bFf"
       abi: PositionRouter
-      startBlock: 9616625
+      startBlock: 0
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -28,11 +28,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: RewardRouterV2
-    network: base-testnet
+    network: devnet
     source:
-      address: "0x823a8B0fB4203eccd61f2d7166715113Ef802429"
+      address: "0x38a024C0b412B9d1db8BC398140D00F5Af3093D4"
       abi: RewardRouterV2
-      startBlock: 9616625
+      startBlock: 0
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -58,11 +58,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: Vault
-    network: base-testnet
+    network: devnet
     source:
-      address: "0x94eBF73e4892d7002e373697ec71690f86103D78"
+      address: "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6"
       abi: Vault
-      startBlock: 9616625 
+      startBlock: 0 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -139,11 +139,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: AlpManager
-    network: base-testnet
+    network: devnet
     source:
-      address: "0x1A1832256cA51a57DB12b1b20703A40A2273D47B"
+      address: "0x68B1D87F95878fE05B998F19b66F4baba5De1aed"
       abi: AlpManager
-      startBlock: 9616625 
+      startBlock: 0 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

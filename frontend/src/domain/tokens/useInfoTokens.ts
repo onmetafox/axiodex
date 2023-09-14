@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { getContract } from "config/contracts";
 import useSWR from "swr";
 import { contractFetcher } from "lib/contracts";
@@ -16,6 +17,8 @@ import { bigNumberify, expandDecimals } from "lib/numbers";
 import { getTokens, getWhitelistedTokens } from "config/tokens";
 import { Web3Provider } from "@ethersproject/providers";
 import { getSpread } from "./utils";
+import { gql } from "@apollo/client";
+import { getGmxPriceClient } from "lib/subgraph/clients";
 
 export function useInfoTokens(
   library: Web3Provider,
@@ -47,14 +50,24 @@ export function useInfoTokens(
     }
   );
 
-  const indexPricesUrl = getServerUrl(chainId, "/prices");
+  const getPricesQuery = gql(`{
+		chainlinkPrices {
+      price
+      token
+    }
+	}`)
 
-  const { data: indexPrices } = useSWR([indexPricesUrl], {
-    // @ts-ignore spread args incorrect type
-    fetcher: (...args) => fetch(...args).then((res) => res.json()),
-    refreshInterval: 500,
-    refreshWhenHidden: true,
-  });
+  const graphClient = getGmxPriceClient(chainId);
+
+  const indexPrices = {};
+
+  if (graphClient) {
+    graphClient.query({ query: getPricesQuery }).then((res) => {
+      res.data.chainlinkPrices.map((item:any) => (
+        indexPrices[item.token] = item.price + "0000000000000000000000"
+      ))
+    }).catch(console.warn);
+  }
 
   return {
     infoTokens: getInfoTokens(
@@ -195,11 +208,11 @@ function setTokenUsingIndexPrices(
   if (!indexPrices) {
     return;
   }
-  
+
   // const tokenAddress = token.isNative ? nativeTokenAddress : token.address;
-  
+
   const indexPrice = indexPrices[token.symbol];
-  
+
   if (!indexPrice) {
     return;
   }

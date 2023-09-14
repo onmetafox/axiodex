@@ -33,7 +33,7 @@ const helpers = {
                 })
                 break
             } catch(ex) {
-                console.log("\t* Failed verify", args?.join(','), ex)
+                console.log("\t* Failed verify", args?.join(','))
                 await helpers.sleep(5)
             }
         }

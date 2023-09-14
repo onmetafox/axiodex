@@ -10,6 +10,9 @@ export const mainnetNissohClient = createClient(SUBGRAPH_URLS[MAINNET].nissohVau
 
 export const testnetGraphClient = createClient(SUBGRAPH_URLS[TESTNET].stats);
 export const testnetReferralClient = createClient(SUBGRAPH_URLS[TESTNET].referrals);
+export const testnetPriceClient = createClient(SUBGRAPH_URLS[TESTNET].prices);
+export const testnetOrderClient = createClient(SUBGRAPH_URLS[TESTNET].orders);
+export const testnetRawClient = createClient(SUBGRAPH_URLS[TESTNET].raws);
 export const testnetNissohClient = createClient(SUBGRAPH_URLS[TESTNET].nissohVault);
 
 export const localnetGraphClient = createClient(SUBGRAPH_URLS[LOCALNET].stats);
@@ -23,6 +26,18 @@ export function getGmxGraphClient(chainId: number) {
     return testnetGraphClient;
   } else if (chainId === LOCALNET) {
     return localnetGraphClient;
+  }
+
+  throw new Error(`Unsupported chain ${chainId}`);
+}
+
+export function getGmxPriceClient(chainId: number) {
+  if (chainId === MAINNET) {
+    return null;
+  } else if (chainId === TESTNET) {
+    return testnetPriceClient;
+  } else if (chainId === LOCALNET) {
+    return null;
   }
 
   throw new Error(`Unsupported chain ${chainId}`);

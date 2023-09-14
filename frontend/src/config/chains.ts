@@ -5,12 +5,12 @@ import { isDevelopment } from "./env";
 
 const { parseEther } = ethers.utils;
 
-export const MAINNET = 369;
-export const TESTNET = 943;
+export const MAINNET = 8453;    // basechain mainnet
+export const TESTNET = 84531;   // basechain testnet
 export const LOCALNET = 12345678;
 
 // TODO take it from web3
-export const DEFAULT_CHAIN_ID = LOCALNET;
+export const DEFAULT_CHAIN_ID = TESTNET;
 export const CHAIN_ID = DEFAULT_CHAIN_ID;
 
 // export const SUPPORTED_CHAIN_IDS = [ARBITRUM, AVALANCHE, ETHEREUM, SHIBARIUM, GOERLI];
@@ -24,8 +24,8 @@ export const IS_NETWORK_DISABLED = {
 export const SUPPORTED_CHAIN_IDS = [MAINNET, TESTNET, LOCALNET].filter(chainId => !IS_NETWORK_DISABLED[chainId]);
 
 export const CHAIN_NAMES_MAP = {
-  [MAINNET]: "PulseChain",
-  [TESTNET]: "Testnet.v4",
+  [MAINNET]: "Base",
+  [TESTNET]: "Base Goerli",
   [LOCALNET]: "Hardhat",
 };
 
@@ -49,7 +49,7 @@ export const HIGH_EXECUTION_FEES_MAP = {
 
 const constants = {
   [MAINNET]: {
-    nativeTokenSymbol: "PLS",
+    nativeTokenSymbol: "WETH",
     defaultCollateralSymbol: "USDC",
     defaultFlagOrdersEnabled: false,
     positionReaderPropsLength: 8,
@@ -65,8 +65,8 @@ const constants = {
   //   v2: true,
   // },
   [TESTNET]: {
-    nativeTokenSymbol: "FTM",
-    wrappedTokenSymbol: "WFTM",
+    nativeTokenSymbol: "WETH",
+    wrappedTokenSymbol: "WETH",
     defaultCollateralSymbol: "USDC",
     defaultFlagOrdersEnabled: true,
     positionReaderPropsLength: 8,
@@ -74,8 +74,8 @@ const constants = {
   },
 
   [LOCALNET]: {
-    nativeTokenSymbol: "PLS",
-    wrappedTokenSymbol: "WPLS",
+    nativeTokenSymbol: "WETH",
+    wrappedTokenSymbol: "WETH",
     defaultCollateralSymbol: "USDC",
     defaultFlagOrdersEnabled: true,
     positionReaderPropsLength: 9,
@@ -90,8 +90,8 @@ const constants = {
 const ALCHEMY_WHITELISTED_DOMAINS = ["axn.finanace", "app.axn.finanace"];
 
 export const RPC_PROVIDERS = {
-  [MAINNET]: ["https://rpc.pulsechain.com"],
-  [TESTNET]: ["http://104.234.119.186/rpc"],
+  [MAINNET]: ["https://rpc.notadegen.com/base"],
+  [TESTNET]: ["https://rpc.notadegen.com/base/goerli"],
   [LOCALNET]: ["http://172.86.96.113/rpc/devnet"],
 };
 
@@ -103,23 +103,23 @@ export const NETWORK_METADATA: { [chainId: number]: NetworkMetadata } = {
     chainId: "0x" + MAINNET.toString(16),
     chainName: CHAIN_NAMES_MAP[MAINNET],
     nativeCurrency: {
-      name: "Pulse",
-      symbol: "PLS",
+      name: "Wrapped Ether",
+      symbol: "WETH",
       decimals: 18,
     },
     rpcUrls: RPC_PROVIDERS[MAINNET],
-    blockExplorerUrls: ["https://scan.pulsechain.com/"],
+    blockExplorerUrls: ["https://basescan.org/"],
   },
   [TESTNET]: {
     chainId: "0x" + TESTNET.toString(16),
     chainName: CHAIN_NAMES_MAP[TESTNET],
     nativeCurrency: {
-      name: "Pulse",
-      symbol: "tPLS",
+      name: "Wrapped Ether",
+      symbol: "WETH",
       decimals: 18,
     },
     rpcUrls: RPC_PROVIDERS[TESTNET],
-    blockExplorerUrls: ["https://scan.v4.testnet.pulsechain.com/"],
+    blockExplorerUrls: ["https://goerli.basescan.org/"],
   },
   [LOCALNET]: {
     chainId: "0x" + LOCALNET.toString(16),

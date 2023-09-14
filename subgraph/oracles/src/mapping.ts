@@ -1,6 +1,5 @@
 import { BigInt, log } from "@graphprotocol/graph-ts"
 import { UpdateAnswer } from "../generated/PriceFeedBTC/PriceFeed"
-import { AnswerUpdated } from "../generated/ChainlinkAggregatorBTC/ChainlinkAggregator"
 import { ChainlinkPrice, PriceCandle } from "../generated/schema"
 
 function timestampToPeriodStart(timestamp: BigInt, period: string): BigInt {
@@ -112,16 +111,4 @@ export function handleAnswerUpdatedPLS(event: UpdateAnswer): void {
 
 export function handleAnswerUpdatedUSDC(event: UpdateAnswer): void {
   updateChainlinkPrice("USDC", event.params._answer, event.block.timestamp, event.block.number)
-}
-
-export function handleOracleAnswerUpdatedBTC(event: AnswerUpdated): void {
-  updateChainlinkPrice("BTC", event.params.current, event.block.timestamp, event.block.number)
-}
-
-export function handleOracleAnswerUpdatedETH(event: AnswerUpdated): void {
-  updateChainlinkPrice("ETH", event.params.current, event.block.timestamp, event.block.number)
-}
-
-export function handleOracleAnswerUpdatedUSDC(event: AnswerUpdated): void {
-  updateChainlinkPrice("USDC", event.params.current, event.block.timestamp, event.block.number)
 }

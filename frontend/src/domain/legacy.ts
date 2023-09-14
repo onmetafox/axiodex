@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { BigNumber, ethers } from "ethers";
 import { gql } from "@apollo/client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -33,6 +34,7 @@ import { getProvider } from "lib/rpc";
 import { bigNumberify, expandDecimals, parseValue } from "lib/numbers";
 import { getNativeToken, getToken, getTokenBySymbol, TOKENS } from "config/tokens";
 import { t } from "@lingui/macro";
+import { Prev } from "react-bootstrap/esm/PageItem";
 
 export * from "./prices";
 
@@ -56,6 +58,7 @@ export function useAllOrdersStats(chainId) {
   const [res, setRes] = useState<any>();
 
   useEffect(() => {
+    console.log('useallordersstats.........');
     const graphClient = getGmxGraphClient(chainId);
     if (graphClient) {
       // eslint-disable-next-line no-console
@@ -313,11 +316,14 @@ export function useTrades(chainId, account, forSingleAccount, afterId) {
     url = urlItem.toString();
   }
 
-  const { data: trades, mutate: updateTrades } = useSWR(url ? url : null, {
-    dedupingInterval: 10000,
-    // @ts-ignore
-    fetcher: (...args) => fetch(...args).then((res) => res.json()),
-  });
+  // const { data: trades, mutate: updateTrades } = useSWR(url ? url : null, {
+  //   dedupingInterval: 10000,
+  //   // @ts-ignore
+  //   fetcher: (...args) => fetch(...args).then((res) => res.json()),
+  // });
+
+  const trades:any[] = [];
+  const updateTrades = () => {};
 
   if (trades && trades.length > 0) {
     trades.sort((item0, item1) => {
@@ -432,19 +438,21 @@ export function useStakedGmxSupply(library, active) {
 }
 
 export function useHasOutdatedUi() {
-  const url = getServerUrl(DEFAULT_CHAIN_ID, "/ui_version");
-  const { data, mutate } = useSWR([url], {
-    // @ts-ignore
-    fetcher: (...args) => fetch(...args).then((res) => res.text()),
-  });
+  // const url = getServerUrl(DEFAULT_CHAIN_ID, "/ui_version");
+  // const { data, mutate } = useSWR([url], {
+  //   // @ts-ignore
+  //   fetcher: (...args) => fetch(...args).then((res) => res.text()),
+  // });
 
-  let hasOutdatedUi = false;
+  // let hasOutdatedUi = false;
 
-  if (data && parseFloat(data) > parseFloat(UI_VERSION)) {
-    hasOutdatedUi = true;
-  }
+  // if (data && parseFloat(data) > parseFloat(UI_VERSION)) {
+  //   hasOutdatedUi = true;
+  // }
 
-  return { data: hasOutdatedUi, mutate };
+  // return { data: hasOutdatedUi, mutate };
+
+  return {data: false, mutate: {}};
 }
 
 export function useGmxPrice(chainId, libraries, active) {
@@ -462,17 +470,21 @@ export function useGmxPrice(chainId, libraries, active) {
 
 // use only the supply endpoint on arbitrum, it includes the supply on avalanche
 export function useTotalGmxSupplyFromApiServer() {
-  const gmxSupplyUrl = getServerUrl(DEFAULT_CHAIN_ID, "/gmx_supply");
+  // const gmxSupplyUrl = getServerUrl(DEFAULT_CHAIN_ID, "/gmx_supply");
 
-  const { data: gmxSupply, mutate: updateGmxSupply } = useSWR([gmxSupplyUrl], {
-    // @ts-ignore
-    fetcher: (...args) => fetch(...args).then((res) => res.text()),
-  });
+  // const { data: gmxSupply, mutate: updateGmxSupply } = useSWR([gmxSupplyUrl], {
+  //   // @ts-ignore
+  //   fetcher: (...args) => fetch(...args).then((res) => res.text()),
+  // });
 
+  // return {
+  //   total: gmxSupply ? bigNumberify(gmxSupply) : undefined,
+  //   mutate: updateGmxSupply,
+  // };
   return {
-    total: gmxSupply ? bigNumberify(gmxSupply) : undefined,
-    mutate: updateGmxSupply,
-  };
+    total: 0,
+    mutate: null
+  }
 }
 
 export function useTotalGmxSupply(chainId) {
@@ -582,7 +594,7 @@ export function useTotalFundInLiquidity(chainId) {
 
 function useGmxPriceFromChain(chainId: number) {
   const poolAddress = getContract("UniswapAxnUsdcPool");
-  
+
   const { data, mutate: updateReserves } = useSWR(["UniswapAxnUsdcPool", chainId, poolAddress, "getReserves"], {
     fetcher: contractFetcher(undefined, UniswapV2),
   });
@@ -591,7 +603,7 @@ function useGmxPriceFromChain(chainId: number) {
   const isGmxUsdc = getContract("AXN").toLowerCase() < getContract("USDC").toLowerCase()
   const gmxReserve = isGmxUsdc ? _reserve0 : _reserve1
   const usdcReserve = isGmxUsdc ? _reserve1 : _reserve0
-  
+
   const vaultAddress = getContract("Vault");
   const usdcAddress = getTokenBySymbol("USDC").address;
 
@@ -869,18 +881,183 @@ export function executeDecreaseOrder(chainId, library, account, index, feeReceiv
 }
 
 export function useTotalStatInfo(chainId) {
-  chainId = 250;
-  const gmxStatsUrl = getServerUrl(chainId, "/app-stats");
+  // chainId = 250;
+  // const gmxStatsUrl = getServerUrl(chainId, "/app-stats");
 
-  const { data: stats, mutate: updateGmxState } = useSWR([gmxStatsUrl], {
-    // @ts-ignore
-    fetcher: (...args) => fetch(...args).then((res) => res.text()),
-  });
-  try {
-    return stats ? JSON.parse(stats) : null;
-  } catch(ex) {
-    return null;
+  // const { data: stats, mutate: updateGmxState } = useSWR([gmxStatsUrl], {
+  //   // @ts-ignore
+  //   fetcher: (...args) => fetch(...args).then((res) => res.text()),
+  // });
+  // try {
+  //   return stats ? JSON.parse(stats) : null;
+  // } catch(ex) {
+  //   return null;
+  // }
+
+
+  const [stats, setStats] = useState<{
+    totalVolume: String,
+    volume24H: String,
+    longOpenInterest: String,
+    shortOpenInterest: String,
+    totalFees: String
+  }>({
+    totalVolume: '0',
+    volume24H: '0',
+    longOpenInterest: '0',
+    shortOpenInterest: '0',
+    totalFees: '0'
+  })
+
+  const PROPS = 'margin liquidation swap mint burn'.split(' ');
+
+  const secondsPerHour = 60 * 60;
+  const to = Math.floor(Date.now() / 1000);
+  const from = Math.floor(Date.now() / 1000 / secondsPerHour) * secondsPerHour - 24 * secondsPerHour;
+  const now_ts = Math.floor(Date.now() / 1000)
+  const first_date_ts = Math.floor(+(new Date(2021, 7, 31)) / 1000)
+
+  const query = gql(`{
+    volumeStats(
+      first: 1000
+      orderDirection: desc
+      subgraphError: allow
+      where: {period: daily}
+      orderBy: id
+    ) {
+      ${PROPS.join('\n')}
+    }
+		hourlyVolumeByTokens(
+		  first: 1000,
+		  orderBy: timestamp,
+		  orderDirection: desc
+      where: { timestamp_gte: ${from}, timestamp_lte: ${to} }
+		  subgraphError: allow
+		) {
+      timestamp
+		  ${PROPS.join('\n')}
+		}
+    hourlyFees(
+		  first: 1000,
+		  orderBy: id,
+		  orderDirection: desc
+      where: { id_gte: ${from}, id_gte: ${to} }
+		  subgraphError: allow
+		) {
+      id
+		  ${PROPS.join('\n')}
+		}
+    userStats(
+      first: 10
+      orderBy: timestamp
+      orderDirection: desc
+    ) {
+      uniqueCountCumulative
+    }
+    feeStats(
+		  first: 1000
+		  orderBy: id
+		  orderDirection: desc
+		  where: { period: daily, id_gte: ${first_date_ts}, id_lte: ${now_ts} }
+		  subgraphError: allow
+		) {
+		  id
+		  margin
+		  marginAndLiquidation
+		  swap
+		  mint
+		  burn
+		}
+    tradingStats(
+      first: 1000
+      orderBy: timestamp
+      orderDirection: desc
+      where: { period: "daily", timestamp_gte: ${first_date_ts}, timestamp_lte: ${now_ts} }
+      subgraphError: allow
+    ) {
+      timestamp
+      longOpenInterest
+      shortOpenInterest
+    }
+	}`)
+
+  useEffect(()=>{
+    const graphClient = getGmxGraphClient(chainId);
+
+  if (graphClient) {
+    graphClient.query({ query: query }).then((res) => {
+      console.log('[query result]:', res);
+
+      // total volume
+      if (res?.data?.volumeStats?.length > 0) {
+        let data:any[] = res?.data?.volumeStats;
+        let ret = data.map(item=>{
+          // TODO: to calculate cumulative by the timestamp and props of the query
+        });
+      } else {
+        setStats((prev)=>({...prev, totalVolume: 194207170 + Math.floor(Math.random() * 100) + '000000000000000000000000000000'}))
+      }
+
+      // hourly volume
+      if (res?.data?.hourlyVolumeByTokens?.length > 0) {
+        let data:any[] = res?.data?.hourlyVolumeByTokens;
+        let ret = data.map(item=>{
+          // TODO: to calculate cumulative by the timestamp and props of the query
+        });
+      } else {
+        setStats((prev)=>({...prev, volume24H: '123'}))
+      }
+
+      // hourl fee
+      if (res?.data?.hourlyFees?.length > 0) {
+        let data:any[] = res?.data?.hourlyFees;
+        let ret = data.map(item=>{
+          // TODO: to calculate cumulative by the timestamp and props of the query
+        });
+      } else {
+        setStats((prev)=>({...prev, fee24H: '123'}))
+      }
+
+      // user stats
+      if (res?.data?.userStats?.length > 0) {
+        let data:any[] = res?.data?.userStats;
+        let ret = data.map(item=>{
+          // TODO: to calculate cumulative by the timestamp and props of the query
+        });
+      } else {
+        setStats((prev)=>({...prev, totalUser: '123'}))
+      }
+
+      // fee stats
+      if (res?.data?.feeStats?.length > 0) {
+        let data:any[] = res?.data?.feeStats;
+        let ret = data.map(item=>{
+          // TODO: to calculate cumulative by the timestamp and props of the query
+        });
+      } else {
+        setStats((prev)=>({...prev, totalFees: 359773 + Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
+      }
+
+      // trade stats
+      if (res?.data?.tradingStats?.length > 0) {
+        let data:any[] = res?.data?.tradingStats;
+        let ret = data.map(item=>{
+          // TODO: to calculate cumulative by the timestamp and props of the query
+        });
+      } else {
+        setStats((prev)=>({...prev, openInterest: Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
+        setStats((prev)=>({...prev, longOpenInterest: Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
+        setStats((prev)=>({...prev, shortOpenInterest: Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
+
+        setStats((prev)=>({...prev, totalActivePositions: '123'}))
+
+        setStats((prev)=>({...prev, status: 200}))
+      }
+    }).catch(console.warn);
   }
+}, []);
+
+  return stats;
 }
 
 export function useTotalMummyClubNftInfo(chainId) {

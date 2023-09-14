@@ -2,11 +2,24 @@ require("@nomiclabs/hardhat-waffle")
 require("@nomiclabs/hardhat-etherscan")
 require("hardhat-contract-sizer")
 require('@typechain/hardhat')
-const dotenv = require('dotenv')
 
-dotenv.config()
+const {
+  PULSECHAIN_RPC,
+  PULSECHAIN_API,
+  PULSECHAIN_SCAN,
+  PULSECHAIN_CHAIN,
+  PULSECHAIN_KEY
+} = require("./env.json")
+
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
+task("accounts", "Prints the list of accounts", async () => {
+  const accounts = await ethers.getSigners()
+
+  for (const account of accounts) {
+    console.info(account.address)
+  }
+})
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
@@ -31,40 +44,25 @@ module.exports = {
     devnet: {
       url: 'http://172.86.96.113/rpc/devnet',
     },
-    // pulsechain: {
-    //   timeout: 120000,
-    //   url: PULSECHAIN_RPC,
-    //   chainId: PULSECHAIN_CHAIN,
-    //   accounts: [PULSECHAIN_KEY],
-    //   gasPrice: 20000000000,
-    // },
-    basetestnet: {
-      url: 'https://base-goerli.publicnode.com',
-      chainId: 84531,
-      accounts: [process.env.BASE_DEPLOYER],
+    pulsechain: {
+      timeout: 120000,
+      url: PULSECHAIN_RPC,
+      chainId: PULSECHAIN_CHAIN,
+      accounts: [PULSECHAIN_KEY],
       gasPrice: 20000000000,
-    }
+    },
   },
   etherscan: {
     apiKey: {
-      pulsechain: 'pulsechain',
-      basetestnet: '625N7GC5238WP837PCH6D9QI6TE1USBPDT'
+      pulsechain: 'asdasdsadasdsd'
     },
     customChains: [
-      // {
-      //   network: "pulsechain",
-      //   chainId: PULSECHAIN_CHAIN,
-      //   urls: {
-      //     apiURL: PULSECHAIN_API,
-      //     browserURL: PULSECHAIN_SCAN
-      //   }
-      // },
       {
-        network: "basetestnet",
-        chainId: 84531,
+        network: "pulsechain",
+        chainId: PULSECHAIN_CHAIN,
         urls: {
-          apiURL: "https://api-goerli.basescan.org/api",
-          browserURL: "https://goerli.basescan.org"
+          apiURL: PULSECHAIN_API,
+          browserURL: PULSECHAIN_SCAN
         }
       }
     ]

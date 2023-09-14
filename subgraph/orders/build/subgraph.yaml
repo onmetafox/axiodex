@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: OrderBook
-    network: base-testnet
+    network: devnet
     source:
-      address: "0x698727269d637aC283F0CF07CD1B48715a4bD59F"
+      address: "0x0355B7B8cb128fA5692729Ab3AAa199C1753f726"
       abi: OrderBook
-      startBlock: 9616625
+      startBlock: 0
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

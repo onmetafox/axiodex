@@ -1,5 +1,15 @@
 import React, { ReactNode, useEffect, useState } from "react";
 
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+} from 'chart.js'
+import { Bar } from 'react-chartjs-2';
 import iconLocked from "img/ic_locked.svg";
 import iconVolume from "img/ic_volume.svg";
 import iconFee from "img/ic_fee.svg";
@@ -42,12 +52,83 @@ import AssetDropdown from "./AssetDropdown";
 import TooltipComponent from "components/Tooltip/Tooltip";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
 
-
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+)
+const labels = ['06-10', '06-12', '06-14', '06-16', '06-18', '06-20', '06-22', '06-24', '06-26', '06-28'];
+export const options = {
+  barPercentage: 0.3,
+  responsive: true,
+  legend: {
+    labels: {
+        fontColor: "blue",
+        fontSize: 18
+    }
+  },
+  scales: {
+    y: {
+        ticks: {
+            fontSize: 15,
+            color: '#ffffff'
+        },
+        grid: {
+          borderDash: [10, 10],
+          color: "#ffffdd",
+          tickLength: 0, // just to see the dotted line
+        }
+    },
+    x: {
+        ticks: {
+            color: "#ffffff",
+            fontSize: 15,
+        },
+        grid: {
+          display: false,
+          color: "#ffffff",
+          backdropPadding: 3,
+          borderWidth: 0.5
+        }
+    }
+  },
+  plugins: {
+    legend: {
+      position: 'left',
+      display: false
+    },
+    title: {
+      display: true,
+      text: 'Trading Vol.',
+      font: {
+        size: 24,
+        weight: 'bold',
+      },
+      color: '#ffffff',
+      position: "top",
+      align : 'start',
+      padding: 30
+    },
+  },
+};
+export const data = {
+  labels,
+  datasets: [
+    {
+      label: 'Dataset 2',
+      data: labels.map(() => 100 + Math.random() * (100000 - 100)),
+      backgroundColor: '#00FFC2'
+    },
+  ],
+};
 export default function DashboardV3() {
   const { active, library } = useWeb3React();
   const { chainId } = useChainId();
 
-  const totalVolume = useTotalVolume();
+  // const totalVolume = useTotalVolume();
 
   // const chainName = getChainName(chainId);
   const getWeightText = (tokenInfo) => {
@@ -67,6 +148,7 @@ export default function DashboardV3() {
   let shortOpenInterest;
   let total_Fees;
   let total_Volume;
+
 
   if (totalStats != null) {
     volume24H = totalStats.volume24H;
@@ -111,6 +193,7 @@ export default function DashboardV3() {
     }
   );
 
+
   const { infoTokens } = useInfoTokens(library, chainId, active, undefined, undefined);
   const { gmxPrice } = useGmxPrice(
     chainId,
@@ -152,7 +235,11 @@ export default function DashboardV3() {
   }
 
   let tvl;
+
   if (glpMarketCap && gmxPrice && totalStakedGmx) {
+    console.log('glpmarketcap:', glpMarketCap)
+    console.log('gmxprice:', gmxPrice)
+    console.log('totalstakedgmx:', totalStakedGmx)
     tvl = glpMarketCap.add(gmxPrice.mul(totalStakedGmx).div(expandDecimals(1, AXN_DECIMALS)));
   }
 
@@ -182,8 +269,8 @@ export default function DashboardV3() {
 
   // const totalStatsStartDate = chainId === AVALANCHE ? t`06 Jan 2022` : t`01 Apr 2023`;
 
-  let stableGlp = 0;
   let totalGlp = 0;
+  let stableGlp = 0;
 
   let glpPool = tokenList.map((token) => {
     const tokenInfo = infoTokens[token.address];
@@ -227,7 +314,7 @@ export default function DashboardV3() {
                   <ImgIcon icon = {iconVolume} title = "Total Volume" value={`$${formatAmount(total_Volume, USD_DECIMALS, 3, true)}`} className = "col-lg-4 col-md-12 col-sm-12"/>
                   <ImgIcon icon = {iconFee} title = "Total Fees" value={`$${formatAmount(total_Fees, USD_DECIMALS, 3, true)}`} className = "col-lg-4 col-md-12 col-sm-12"/>
                 </div>
-                
+
                 <div className="row state-group">
                   <ImgIcon icon = {iconLong} title = "Long Positions" value={`$${formatAmount(longOpenInterest, USD_DECIMALS, 3, true)}`} className = "col-lg-4 col-md-12 col-sm-12"/>
                   <ImgIcon icon = {iconShort} title = "Short Positions" value={`$${formatAmount(shortOpenInterest, USD_DECIMALS, 3, true)}`} className = "col-lg-4 col-md-12 col-sm-12"/>
@@ -235,7 +322,7 @@ export default function DashboardV3() {
                 </div>
               </div>
               <div className="Exchange-swap-section-bottom strategy-trade">
-                <img src={chatView} style={{width :'100%'}}/>
+                <Bar options={options} data = {data}/>
               </div>
             </div>
           </div>
@@ -263,7 +350,7 @@ export default function DashboardV3() {
                         </div>
                         <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
                       </div>
-                      
+
                       <div className="App-card-row body">
                         <div className="label">
                         <Button imgSrc={iconArbi} ><Trans>Total rewards : <span>55%</span></Trans></Button>
@@ -304,7 +391,7 @@ export default function DashboardV3() {
                         </div>
                         <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
                       </div>
-                      
+
                       <div className="App-card-row body">
                         <div className="label">
                         <Button imgSrc={iconArbi} ><Trans>Total rewards : <span>55%</span></Trans></Button>
@@ -499,6 +586,6 @@ export default function DashboardV3() {
         </div>
       </div>
     </>
-    
+
   )
 }

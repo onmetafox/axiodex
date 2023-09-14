@@ -4,23 +4,23 @@ import { MAINNET, TESTNET, LOCALNET, DEFAULT_CHAIN_ID } from "./chains";
 import { Token } from "domain/tokens";
 
 export const TOKENS: Token[] = [
-  {
-    name: "PLS",
-    symbol: "PLS",
-    decimals: 18,
-    address: ethers.constants.AddressZero,
-    isNative: true,
-    isShortable: false,
-    imageUrl: "https://assets.coingecko.com/coins/images/25666/small/11145.png?1653287592",
-  },
-  {
-    name: "Wrapped PLS",
-    symbol: "WPLS",
-    decimals: 18,
-    address: getContract("NATIVE_TOKEN"),
-    isWrapped: true,
-    imageUrl: "https://assets.coingecko.com/coins/images/25666/small/11145.png?1653287592",
-  },
+  // {
+  //   name: "PLS",
+  //   symbol: "PLS",
+  //   decimals: 18,
+  //   address: ethers.constants.AddressZero,
+  //   isNative: true,
+  //   isShortable: false,
+  //   imageUrl: "https://assets.coingecko.com/coins/images/25666/small/11145.png?1653287592",
+  // },
+  // {
+  //   name: "Wrapped PLS",
+  //   symbol: "WPLS",
+  //   decimals: 18,
+  //   address: getContract("NATIVE_TOKEN"),
+  //   isWrapped: true,
+  //   imageUrl: "https://assets.coingecko.com/coins/images/25666/small/11145.png?1653287592",
+  // },
   {
     name: "Bitcoin",
     symbol: "BTC",
@@ -33,18 +33,18 @@ export const TOKENS: Token[] = [
     name: "ETH",
     symbol: "ETH",
     decimals: 18,
-    address: getContract("ETH"),
+    address: getContract("NATIVE_TOKEN"),
     isShortable: true,
     imageUrl: "https://assets.coingecko.com/coins/images/279/small/ethereum.png?1595348880",
   },
-  {
-    name: "HEX",
-    symbol: "HEX",
-    decimals: 18,
-    address: getContract("HEX"),
-    isShortable: true,
-    imageUrl: "https://assets.coingecko.com/coins/images/10103/small/HEX-logo.png?1575942673",
-  },
+  // {
+  //   name: "HEX",
+  //   symbol: "HEX",
+  //   decimals: 18,
+  //   address: getContract("HEX"),
+  //   isShortable: true,
+  //   imageUrl: "https://assets.coingecko.com/coins/images/10103/small/HEX-logo.png?1575942673",
+  // },
   {
     name: "USD Coin",
     symbol: "USDC",
