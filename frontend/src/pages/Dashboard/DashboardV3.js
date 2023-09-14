@@ -1,15 +1,5 @@
 import React, { ReactNode, useEffect, useState } from "react";
 
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-} from 'chart.js'
-import { Bar } from 'react-chartjs-2';
 import iconLocked from "img/ic_locked.svg";
 import iconVolume from "img/ic_volume.svg";
 import iconFee from "img/ic_fee.svg";
@@ -52,78 +42,7 @@ import AssetDropdown from "./AssetDropdown";
 import TooltipComponent from "components/Tooltip/Tooltip";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-)
-const labels = ['06-10', '06-12', '06-14', '06-16', '06-18', '06-20', '06-22', '06-24', '06-26', '06-28'];
-export const options = {
-  barPercentage: 0.3,
-  responsive: true,
-  legend: {
-    labels: {
-        fontColor: "blue",
-        fontSize: 18
-    }
-  },
-  scales: {
-    y: {
-        ticks: {
-            fontSize: 15,
-            color: '#ffffff'
-        },
-        grid: {
-          borderDash: [10, 10],
-          color: "#ffffdd",
-          tickLength: 0, // just to see the dotted line
-        }
-    },
-    x: {
-        ticks: {
-            color: "#ffffff",
-            fontSize: 15,
-        },
-        grid: {
-          display: false,
-          color: "#ffffff",
-          backdropPadding: 3,
-          borderWidth: 0.5
-        }
-    }
-  },
-  plugins: {
-    legend: {
-      position: 'left',
-      display: false
-    },
-    title: {
-      display: true,
-      text: 'Trading Vol.',
-      font: {
-        size: 24,
-        weight: 'bold',
-      },
-      color: '#ffffff',
-      position: "top",
-      align : 'start',
-      padding: 30
-    },
-  },
-};
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 2',
-      data: labels.map(() => 100 + Math.random() * (100000 - 100)),
-      backgroundColor: '#00FFC2'
-    },
-  ],
-};
+
 export default function DashboardV3() {
   const { active, library } = useWeb3React();
   const { chainId } = useChainId();
@@ -316,7 +235,7 @@ export default function DashboardV3() {
                 </div>
               </div>
               <div className="Exchange-swap-section-bottom strategy-trade">
-                <Bar options={options} data = {data}/>
+                <img src={chatView} style={{width :'100%'}}/>
               </div>
             </div>
           </div>
