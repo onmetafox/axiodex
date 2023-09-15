@@ -9,7 +9,7 @@ type Props = {
 };
 
 function ExternalLink({ href, children, className }: Props) {
-  const classNames = cx(className);
+  const classNames = cx("link-underline", className);
   return (
     <a href={href} className={classNames} target="_blank" rel="noopener noreferrer">
       {children}
