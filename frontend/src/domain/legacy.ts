@@ -984,78 +984,91 @@ export function useTotalStatInfo(chainId) {
   useEffect(()=>{
     const graphClient = getGmxGraphClient(chainId);
 
-  if (graphClient) {
-    graphClient.query({ query: query }).then((res) => {
-      console.log('[query result]:', res);
+    if (graphClient) {
+      graphClient.query({ query: query }).then((res) => {
+        console.log('[query result]:', res);
 
-      // total volume
-      if (res?.data?.volumeStats?.length > 0) {
-        let data:any[] = res?.data?.volumeStats;
-        let ret = data.map(item=>{
-          // TODO: to calculate cumulative by the timestamp and props of the query
-        });
-      } else {
-        setStats((prev)=>({...prev, totalVolume: 194207170 + Math.floor(Math.random() * 100) + '000000000000000000000000000000'}))
-      }
+        // total volume
+        if (res?.data?.volumeStats?.length > 0) {
+          let data:any[] = res?.data?.volumeStats;
+          let all = BigNumber.from(0);
+          let ret = data.map(item=>{
+            // TODO: to calculate cumulative by the timestamp and props of the query
+            let sum = BigNumber.from(0);
+            PROPS.forEach(prop => {
+              console.log("sum + %s = %s + %s", prop, sum, BigNumber.from(item[prop]));
+              sum = sum.add(BigNumber.from(item[prop]))
+            })
+            all = all.add(sum);
+            return {
+              all,
+              ...item
+            }
+          });
+          console.log("all---------", ret[ret.length - 1].all);
+          setStats((prev)=>({...prev, totalVolume: ret[ret.length - 1].all}))
+        } else {
+          setStats((prev)=>({...prev, totalVolume: 194207170 + Math.floor(Math.random() * 100) + '000000000000000000000000000000'}))
+        }
 
-      // hourly volume
-      if (res?.data?.hourlyVolumeByTokens?.length > 0) {
-        let data:any[] = res?.data?.hourlyVolumeByTokens;
-        let ret = data.map(item=>{
-          // TODO: to calculate cumulative by the timestamp and props of the query
-        });
-      } else {
-        setStats((prev)=>({...prev, volume24H: '123'}))
-      }
+        // hourly volume
+        if (res?.data?.hourlyVolumeByTokens?.length > 0) {
+          let data:any[] = res?.data?.hourlyVolumeByTokens;
+          let ret = data.map(item=>{
+            // TODO: to calculate cumulative by the timestamp and props of the query
+          });
+        } else {
+          setStats((prev)=>({...prev, volume24H: '123'}))
+        }
 
-      // hourl fee
-      if (res?.data?.hourlyFees?.length > 0) {
-        let data:any[] = res?.data?.hourlyFees;
-        let ret = data.map(item=>{
-          // TODO: to calculate cumulative by the timestamp and props of the query
-        });
-      } else {
-        setStats((prev)=>({...prev, fee24H: '123'}))
-      }
+        // hourl fee
+        if (res?.data?.hourlyFees?.length > 0) {
+          let data:any[] = res?.data?.hourlyFees;
+          let ret = data.map(item=>{
+            // TODO: to calculate cumulative by the timestamp and props of the query
+          });
+        } else {
+          setStats((prev)=>({...prev, fee24H: '123'}))
+        }
 
-      // user stats
-      if (res?.data?.userStats?.length > 0) {
-        let data:any[] = res?.data?.userStats;
-        let ret = data.map(item=>{
-          // TODO: to calculate cumulative by the timestamp and props of the query
-        });
-      } else {
-        setStats((prev)=>({...prev, totalUser: '123'}))
-      }
+        // user stats
+        if (res?.data?.userStats?.length > 0) {
+          let data:any[] = res?.data?.userStats;
+          let ret = data.map(item=>{
+            // TODO: to calculate cumulative by the timestamp and props of the query
+          });
+        } else {
+          setStats((prev)=>({...prev, totalUser: '123'}))
+        }
 
-      // fee stats
-      if (res?.data?.feeStats?.length > 0) {
-        let data:any[] = res?.data?.feeStats;
-        let ret = data.map(item=>{
-          // TODO: to calculate cumulative by the timestamp and props of the query
-        });
-      } else {
-        setStats((prev)=>({...prev, totalFees: 359773 + Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
-      }
+        // fee stats
+        if (res?.data?.feeStats?.length > 0) {
+          let data:any[] = res?.data?.feeStats;
+          let ret = data.map(item=>{
+            // TODO: to calculate cumulative by the timestamp and props of the query
+          });
+        } else {
+          setStats((prev)=>({...prev, totalFees: 359773 + Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
+        }
 
-      // trade stats
-      if (res?.data?.tradingStats?.length > 0) {
-        let data:any[] = res?.data?.tradingStats;
-        let ret = data.map(item=>{
-          // TODO: to calculate cumulative by the timestamp and props of the query
-        });
-      } else {
-        setStats((prev)=>({...prev, openInterest: Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
-        setStats((prev)=>({...prev, longOpenInterest: Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
-        setStats((prev)=>({...prev, shortOpenInterest: Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
+        // trade stats
+        if (res?.data?.tradingStats?.length > 0) {
+          let data:any[] = res?.data?.tradingStats;
+          let ret = data.map(item=>{
+            // TODO: to calculate cumulative by the timestamp and props of the query
+          });
+        } else {
+          setStats((prev)=>({...prev, openInterest: Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
+          setStats((prev)=>({...prev, longOpenInterest: Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
+          setStats((prev)=>({...prev, shortOpenInterest: Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
 
-        setStats((prev)=>({...prev, totalActivePositions: '123'}))
+          setStats((prev)=>({...prev, totalActivePositions: '123'}))
 
-        setStats((prev)=>({...prev, status: 200}))
-      }
-    }).catch(console.warn);
-  }
-}, []);
+          setStats((prev)=>({...prev, status: 200}))
+        }
+      }).catch(console.warn);
+    }
+  }, []);
 
   return stats;
 }
