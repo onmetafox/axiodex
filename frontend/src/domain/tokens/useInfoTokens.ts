@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { getContract } from "config/contracts";
 import useSWR from "swr";
 import { contractFetcher } from "lib/contracts";
@@ -17,8 +16,9 @@ import { bigNumberify, expandDecimals } from "lib/numbers";
 import { getTokens, getWhitelistedTokens } from "config/tokens";
 import { Web3Provider } from "@ethersproject/providers";
 import { getSpread } from "./utils";
+import { getGmxPriceClient } from "lib/subgraph";
 import { gql } from "@apollo/client";
-import { getGmxPriceClient } from "lib/subgraph/clients";
+import { graphFetcher } from "lib/contracts/graphFetcher";
 
 export function useInfoTokens(
   library: Web3Provider,
@@ -50,24 +50,25 @@ export function useInfoTokens(
     }
   );
 
-  const getPricesQuery = gql(`{
-		chainlinkPrices {
-      price
+  // const indexPricesUrl = getServerUrl(chainId, "/prices");
+  const client = getGmxPriceClient(chainId)
+  const query = gql`{
+    chainlinkPrices {
       token
+      price
     }
-	}`)
+  }`
 
-  const graphClient = getGmxPriceClient(chainId);
+  const {data} = useSWR([client, query], {
+    // @ts-ignore spread args incorrect type
+    fetcher: graphFetcher,
+    refreshInterval: 500,
+    refreshWhenHidden: true,
+  })
 
-  const indexPrices = {};
-
-  if (graphClient) {
-    graphClient.query({ query: getPricesQuery }).then((res) => {
-      res.data.chainlinkPrices.map((item:any) => (
-        indexPrices[item.token] = item.price + "0000000000000000000000"
-      ))
-    }).catch(console.warn);
-  }
+  const indexPrices = data?.chainlinkPrices?.reduce((tokenPrices, item) => {
+    return { ...tokenPrices, [item.token]: `${item.price}0000000000000000000000` }
+  }, {})
 
   return {
     infoTokens: getInfoTokens(
