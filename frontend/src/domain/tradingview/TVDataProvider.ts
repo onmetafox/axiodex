@@ -51,6 +51,7 @@ export class TVDataProvider {
     periodParams: PeriodParams,
     shouldRefetchBars: boolean
   ): Promise<Bar[]> {
+    console.log('getTokenHistoryBars...');
     const barsInfo = this.barsInfo;
     if (!barsInfo.data.length || barsInfo.ticker !== ticker || barsInfo.period !== period || shouldRefetchBars) {
       try {
@@ -73,8 +74,8 @@ export class TVDataProvider {
     }
 
     const { from, to, countBack } = periodParams;
-    const toWithOffset = to + timezoneOffset;
-    const fromWithOffset = from + timezoneOffset;
+    const toWithOffset = to // + timezoneOffset;
+    const fromWithOffset = from // + timezoneOffset;
     const bars = barsInfo.data.filter((bar) => bar.time > fromWithOffset && bar.time <= toWithOffset);
 
     // if no bars returned, return empty array

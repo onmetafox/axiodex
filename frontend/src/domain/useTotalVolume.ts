@@ -6,12 +6,13 @@ import { bigNumberify } from "lib/numbers";
 const ACTIVE_CHAIN_IDS = [MAINNET, TESTNET, LOCALNET];
 
 export default function useTotalVolume() {
-  const { data: totalVolume } = useSWR<any>(
-    ACTIVE_CHAIN_IDS.map((chain) => getServerUrl(chain, "/total_volume")),
-    {
-      fetcher: arrayURLFetcher,
-    }
-  );
+  // const { data: totalVolume } = useSWR<any>(
+  //   ACTIVE_CHAIN_IDS.map((chain) => getServerUrl(chain, "/total_volume")),
+  //   {
+  //     fetcher: arrayURLFetcher,
+  //   }
+  // );
+  const totalVolume:any[] = [];
   if (totalVolume?.length > 0) {
     return ACTIVE_CHAIN_IDS.reduce(
       (acc, chainId, index) => {
