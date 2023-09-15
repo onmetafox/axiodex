@@ -4,15 +4,15 @@ import { MAINNET, TESTNET, LOCALNET, DEFAULT_CHAIN_ID } from "./chains";
 import { Token } from "domain/tokens";
 
 export const TOKENS: Token[] = [
-  // {
-  //   name: "PLS",
-  //   symbol: "PLS",
-  //   decimals: 18,
-  //   address: ethers.constants.AddressZero,
-  //   isNative: true,
-  //   isShortable: false,
-  //   imageUrl: "https://assets.coingecko.com/coins/images/25666/small/11145.png?1653287592",
-  // },
+  {
+    name: "ETH",
+    symbol: "ETH",
+    decimals: 18,
+    address: ethers.constants.AddressZero,
+    isNative: true,
+    isShortable: false,
+    imageUrl: "https://assets.coingecko.com/coins/images/25666/small/11145.png?1653287592",
+  },
   // {
   //   name: "Wrapped PLS",
   //   symbol: "WPLS",
@@ -30,8 +30,8 @@ export const TOKENS: Token[] = [
     imageUrl: "https://assets.coingecko.com/coins/images/7598/thumb/wrapped_bitcoin_wbtc.png?1548822744",
   },
   {
-    name: "ETH",
-    symbol: "ETH",
+    name: "WETH",
+    symbol: "WETH",
     decimals: 18,
     address: getContract("NATIVE_TOKEN"),
     isShortable: true,
@@ -243,7 +243,7 @@ export function getNormalizedTokenSymbol(tokenSymbol) {
   return tokenSymbol;
 }
 
-const AVAILABLE_CHART_TOKENS = ["PLS", "ETH", "BTC", "HEX", "USDC"]
+const AVAILABLE_CHART_TOKENS = ["WETH", "BTC", "USDC"]
 
 export function isChartAvailabeForToken(tokenSymbol: string) {
   const token = getTokenBySymbol(tokenSymbol);
