@@ -71,6 +71,10 @@ const constants = {
     defaultFlagOrdersEnabled: true,
     positionReaderPropsLength: 8,
     v2: true,
+
+    SWAP_ORDER_EXECUTION_GAS_FEE: parseEther("0.01"),
+    INCREASE_ORDER_EXECUTION_GAS_FEE: parseEther("0.01"),
+    DECREASE_ORDER_EXECUTION_GAS_FEE: parseEther("0.0100001"),
   },
 
   [LOCALNET]: {
