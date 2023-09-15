@@ -81,7 +81,7 @@ export const FIAT_OPTIONS = [DEPOSIT, WITHDRAWAL];
 
 export const TVL = "TVL";
 export const APY = "APY";
-export const DAILY = "Daily"; 
+export const DAILY = "Daily";
 export const DEAXN_OPTIONS = [TVL, APY, DAILY];
 export const DEFAULT_SLIPPAGE_AMOUNT = 30;
 export const DEFAULT_HIGHER_SLIPPAGE_AMOUNT = 100;
@@ -1072,18 +1072,19 @@ export function useAccountOrders(flagOrdersEnabled, overrideAccount) {
       const orderBookReaderContract = new ethers.Contract(orderBookReaderAddress, OrderBookReader.abi, provider);
 
       const fetchIndexesFromServer = () => {
-        const ordersIndexesUrl = `${getServerBaseUrl(chainId)}/orders_indices?account=${account}`;
-        return fetch(ordersIndexesUrl)
-          .then(async (res) => {
-            const json = await res.json();
-            const ret = {};
-            for (const key of Object.keys(json)) {
-              ret[key.toLowerCase()] = json[key].map((val) => parseInt(val.value)).sort((a, b) => a - b);
-            }
+        return { swap: [], increase: [], decrease: [] };
+        // const ordersIndexesUrl = `${getServerBaseUrl(chainId)}/orders_indices?account=${account}`;
+        // return fetch(ordersIndexesUrl)
+        //   .then(async (res) => {
+        //     const json = await res.json();
+        //     const ret = {};
+        //     for (const key of Object.keys(json)) {
+        //       ret[key.toLowerCase()] = json[key].map((val) => parseInt(val.value)).sort((a, b) => a - b);
+        //     }
 
-            return ret;
-          })
-          .catch(() => ({ swap: [], increase: [], decrease: [] }));
+        //     return ret;
+        //   })
+        //   .catch(() => ({ swap: [], increase: [], decrease: [] }));
       };
 
       const fetchLastIndex = async (type) => {
