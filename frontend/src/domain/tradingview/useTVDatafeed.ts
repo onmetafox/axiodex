@@ -4,7 +4,7 @@ import { SUPPORTED_RESOLUTIONS } from "config/tradingview";
 import { useChainId } from "lib/chains";
 import { USD_DECIMALS } from "lib/legacy";
 import { formatAmount } from "lib/numbers";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { TVDataProvider } from "./TVDataProvider";
 import { SymbolInfo } from "./types";
 import { formatTimeInBarToMs, getPriceScale, getScaleFromPrice } from "./utils";
@@ -33,7 +33,7 @@ export default function useTVDatafeed({ dataProvider }: Props) {
   useEffect(() => {
     if (dataProvider && tvDataProvider.current !== dataProvider) {
       tvDataProvider.current = dataProvider;
-    }          
+    }
   }, [dataProvider]);
 
   return useMemo(() => {
@@ -72,7 +72,7 @@ export default function useTVDatafeed({ dataProvider }: Props) {
               }
               setTimeout(() => onSymbolResolvedCallback(info));
             })
-          }          
+          }
         },
 
         async getBars(
@@ -126,7 +126,7 @@ export default function useTVDatafeed({ dataProvider }: Props) {
             intervalRef.current = setInterval(function () {
               tvDataProvider.current?.getLiveBar(chainId, ticker, resolution).then((bar) => {
                 if (bar && ticker === activeTicker.current) {
-                  onRealtimeCallback(formatTimeInBarToMs(bar)); 
+                  onRealtimeCallback(formatTimeInBarToMs(bar));
                 }
               });
             }, 500);

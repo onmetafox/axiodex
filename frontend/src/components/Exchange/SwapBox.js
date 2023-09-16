@@ -8,7 +8,7 @@ import cx from "classnames";
 import useSWR from "swr";
 import { ethers } from "ethers";
 
-import { IoMdSwap } from "react-icons/io";
+// import { IoMdSwap } from "react-icons/io";
 import { BsArrowRight } from "react-icons/bs";
 
 import {
@@ -1623,7 +1623,6 @@ export default function SwapBox(props) {
     setIsPendingConfirmation(true);
 
     if (isSwap) {
-      console.log("swap")
       swap();
       return;
     }
@@ -1863,7 +1862,7 @@ export default function SwapBox(props) {
         />
       </div>
       <div className="Exchange-swap-box-inner App-box-highlight">
-        
+
         <div>
           {flagOrdersEnabled && (
             <Tab
@@ -1927,7 +1926,7 @@ export default function SwapBox(props) {
             <div className="Exchange-swap-ball-container">
               <div className="Exchange-swap-ball" onClick={switchTokens}>
                 {/* <IoMdSwap className="Exchange-swap-ball-icon" /> */}
-                <img src={excImg} className="Exchange-swap-ball-icon" />
+                <img src={excImg} alt="ExchangeSwapBallIcon" className="Exchange-swap-ball-icon" />
               </div>
             </div>
             <div className="Exchange-swap-section">

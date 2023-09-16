@@ -26,7 +26,7 @@ const FEED_ID_MAP = {
   SPELL_USD: "0x8640b23468815902e011948f3ab173e1e83f9879",
 };
 
-const CANDLE_PROPS = "timestamp token period id open high low close".split(' ')
+// const CANDLE_PROPS = "timestamp token period id open high low close".split(' ')
 
 export const timezoneOffset = -new Date().getTimezoneOffset() * 60;
 
@@ -34,10 +34,10 @@ function formatBarInfo(bar) {
   // const { t, o: open, c: close, h: high, l: low } = bar;
   return {
     time: bar.t /* + timezoneOffset */,
-    open: Number(ethers.utils.formatUnits(BigNumber.from(bar.o), USD_DECIMALS)),
-    close: Number(ethers.utils.formatUnits(BigNumber.from(bar.c), USD_DECIMALS)),
-    high: Number(ethers.utils.formatUnits(BigNumber.from(bar.h), USD_DECIMALS)),
-    low: Number(ethers.utils.formatUnits(BigNumber.from(bar.l), USD_DECIMALS)),
+    open: Number(ethers.utils.formatUnits(BigNumber.from(bar.o), 8)),
+    close: Number(ethers.utils.formatUnits(BigNumber.from(bar.c), 8)),
+    high: Number(ethers.utils.formatUnits(BigNumber.from(bar.h), 8)),
+    low: Number(ethers.utils.formatUnits(BigNumber.from(bar.l), 8)),
   };
 }
 

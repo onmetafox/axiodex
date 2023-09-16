@@ -7,8 +7,7 @@ import useSWR from "swr";
 import OrderBookReader from "abis/OrderBookReader.json";
 import OrderBook from "abis/OrderBook.json";
 
-import { CHAIN_ID, DEFAULT_CHAIN_ID, getExplorerUrl, getRpcUrl, LOCALNET } from "config/chains";
-import { getServerBaseUrl } from "config/backend";
+import { DEFAULT_CHAIN_ID, getChainName, getExplorerUrl, getRpcUrl } from "config/chains";
 import { getMostAbundantStableToken } from "domain/tokens";
 import { getTokenInfo } from "domain/tokens/utils";
 import { getProvider } from "./rpc";
@@ -936,18 +935,19 @@ export function shortenAddress(address, length) {
 }
 
 export function useENS(address) {
-  const [ensName, setENSName] = useState<string | undefined>();
+  const [ensName, setENSName] = useState<string>('');
 
-  // useEffect(() => {
-  //   async function resolveENS() {
-  //     if (address /*&& DEFAULT_CHAIN_ID!==LOCALNET*/) {
-  //       const provider = new ethers.providers.JsonRpcProvider(getRpcUrl(DEFAULT_CHAIN_ID));
-  //       const name = await provider.lookupAddress(address.toLowerCase());
-  //       if (name) setENSName(name);
-  //     }
-  //   }
-  //   resolveENS();
-  // }, [address]);
+  useEffect(() => {
+    async function resolveENS() {
+      if (address /*&& DEFAULT_CHAIN_ID!==LOCALNET*/) {
+        const provider = new ethers.providers.JsonRpcProvider(getRpcUrl(DEFAULT_CHAIN_ID));
+        // const name = await provider.lookupAddress(address.toLowerCase());
+        const name = provider? getChainName(provider?._network?.chainId) : ''
+        if (name) setENSName(name);
+      }
+    }
+    resolveENS();
+  }, [address]);
 
   return { ensName };
 }

@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 import { getContract } from "./contracts";
 import { MAINNET, TESTNET, LOCALNET, DEFAULT_CHAIN_ID } from "./chains";
 import { Token } from "domain/tokens";
+import { ADDRESS_ZERO } from "@uniswap/v3-sdk";
 
 export const TOKENS: Token[] = [
   {

@@ -9,7 +9,6 @@ import {
   USD_DECIMALS,
   USDG_ADDRESS,
 } from "lib/legacy";
-import { getServerUrl } from "config/backend";
 import { InfoTokens, Token, TokenInfo } from "./types";
 import { BigNumber } from "ethers";
 import { bigNumberify, expandDecimals } from "lib/numbers";
@@ -51,6 +50,7 @@ export function useInfoTokens(
   );
 
   // const indexPricesUrl = getServerUrl(chainId, "/prices");
+  let indexPrices = {};
   const client = getGmxPriceClient(chainId)
   const query = gql`{
     chainlinkPrices {
@@ -59,16 +59,21 @@ export function useInfoTokens(
     }
   }`
 
-  const {data} = useSWR([client, query], {
-    // @ts-ignore spread args incorrect type
-    fetcher: graphFetcher,
-    refreshInterval: 500,
-    refreshWhenHidden: true,
-  })
+  // const {data} = useSWR([client, query], {
+  //   // @ts-ignore spread args incorrect type
+  //   fetcher: graphFetcher,
+  //   refreshInterval: 500,
+  //   refreshWhenHidden: true,
+  // })
 
-  const indexPrices = data?.chainlinkPrices?.reduce((tokenPrices, item) => {
-    return { ...tokenPrices, [item.token]: `${item.price}0000000000000000000000` }
-  }, {})
+  if(client) {
+    client.query({query}).then(res => {
+      indexPrices = res?.data?.chainlinkPrices?.reduce((tokenPrices, item) => {
+        return { ...tokenPrices, [item.token]: `${item.price}0000000000000000000000` }
+      }, {})
+    })
+
+  }
 
   return {
     infoTokens: getInfoTokens(

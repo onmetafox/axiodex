@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+// import React, { ReactNode, useEffect, useState } from "react";
 
 import {
   Chart as ChartJS,
@@ -44,11 +44,11 @@ import { useInfoTokens } from "domain/tokens";
 import { getContract } from "config/contracts";
 import useSWR from "swr";
 import { contractFetcher } from "lib/contracts";
-import useTotalVolume from "domain/useTotalVolume";
+// import useTotalVolume from "domain/useTotalVolume";
 import { getWhitelistedTokens } from "config/tokens";
 import { ADDRESS_ZERO } from "@uniswap/v3-sdk";
 
-import AssetDropdown from "./AssetDropdown";
+// import AssetDropdown from "./AssetDropdown";
 import TooltipComponent from "components/Tooltip/Tooltip";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
 
@@ -237,15 +237,12 @@ export default function DashboardV3() {
   let tvl;
 
   if (glpMarketCap && gmxPrice && totalStakedGmx) {
-    console.log('glpmarketcap:', glpMarketCap)
-    console.log('gmxprice:', gmxPrice)
-    console.log('totalstakedgmx:', totalStakedGmx)
     tvl = glpMarketCap.add(gmxPrice.mul(totalStakedGmx).div(expandDecimals(1, AXN_DECIMALS)));
   }
 
   let adjustedUsdgSupply = bigNumberify(0);
 
-  for (let i = 0; i < tokenList.length; i++) {
+  for (let i = 0; infoTokens && infoTokens.length > 0 && i < tokenList.length; i++) {
     const token = tokenList[i];
     const tokenInfo = infoTokens[token.address];
     if (tokenInfo && tokenInfo.usdgAmount) {
@@ -272,7 +269,7 @@ export default function DashboardV3() {
   let totalGlp = 0;
   let stableGlp = 0;
 
-  let glpPool = tokenList.map((token) => {
+  let glpPool = infoTokens && infoTokens.length > 0 && tokenList.map((token) => {
     const tokenInfo = infoTokens[token.address];
     if (tokenInfo.usdgAmount && adjustedUsdgSupply && adjustedUsdgSupply.gt(0)) {
       const currentWeightBps = tokenInfo.usdgAmount.mul(BASIS_POINTS_DIVISOR).div(adjustedUsdgSupply);
@@ -291,14 +288,13 @@ export default function DashboardV3() {
 
   let stablePercentage = totalGlp > 0 ? ((stableGlp * 100) / totalGlp).toFixed(2) : "0.0";
 
-  glpPool = glpPool.filter(function (element) {
+  glpPool = glpPool && glpPool.filter(function (element) {
     return element !== null;
-  });
-
-  glpPool = glpPool.sort(function (a, b) {
+  }).sort(function (a, b) {
     if (a.value < b.value) return 1;
     else return -1;
-  });
+  });;
+
   return (
     <>
       <div className="BeginAccountTransfer page-layout dashboard">
@@ -423,13 +419,13 @@ export default function DashboardV3() {
                       <Trans>Last Price</Trans>
                     </th>
                     <th>
-                      <Trans>24 Change(%)</Trans>
+                      <Trans>24 Volume</Trans>
                     </th>
                     <th>
                       <Trans>24 High</Trans>
                     </th>
                     <th>
-                      <Trans>24 Volume</Trans>
+                      <Trans>24 Change(%)</Trans>
                     </th>
                     <th>
                       <Trans>Open Interest</Trans>

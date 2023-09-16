@@ -1,17 +1,17 @@
 /* eslint-disable no-console */
 import { BigNumber, ethers } from "ethers";
 import { gql } from "@apollo/client";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Token as UniToken } from "@uniswap/sdk-core";
-import { Pool } from "@uniswap/v3-sdk";
+import { useCallback, useEffect, useRef, useState } from "react";
+// import { Token as UniToken } from "@uniswap/sdk-core";
+// import { Pool } from "@uniswap/v3-sdk";
 import useSWR from "swr";
 
 import OrderBook from "abis/OrderBook.json";
 import PositionManager from "abis/PositionManager.json";
-import EACAggregatorProxy from "abis/EACAggregatorProxy.json";
+// import EACAggregatorProxy from "abis/EACAggregatorProxy.json";
 import Vault from "abis/Vault.json";
 import Router from "abis/Router.json";
-import UniPool from "abis/UniPool.json";
+// import UniPool from "abis/UniPool.json";
 import UniswapV2 from "abis/UniswapV2.json";
 import Token from "abis/Token.json";
 import PositionRouter from "abis/PositionRouter.json";
@@ -23,22 +23,25 @@ import { getContract } from "config/contracts";
 import { DEFAULT_CHAIN_ID, getConstant, getHighExecutionFee } from "config/chains";
 import { DECREASE, getOrderKey, INCREASE, SWAP, USD_DECIMALS } from "lib/legacy";
 
-import { groupBy } from "lodash";
-import { UI_VERSION } from "config/env";
-import { getServerBaseUrl, getServerUrl } from "config/backend";
+import { groupBy, chain, sumBy, sortBy } from "lodash";
+// import { UI_VERSION } from "config/env";
+// import { getServerBaseUrl, getServerUrl } from "config/backend";
 import { getGmxGraphClient, mainnetNissohClient } from "lib/subgraph/clients";
 import { callContract, contractFetcher } from "lib/contracts";
 import { replaceNativeTokenAddress } from "./tokens";
 import { getUsd } from "./tokens/utils";
 import { getProvider } from "lib/rpc";
-import { bigNumberify, expandDecimals, parseValue } from "lib/numbers";
+import { bigNumberify, expandDecimals } from "lib/numbers";
 import { getNativeToken, getToken, getTokenBySymbol, TOKENS } from "config/tokens";
 import { t } from "@lingui/macro";
-import { Prev } from "react-bootstrap/esm/PageItem";
+import { timeStamp } from "console";
+// import { Prev } from "react-bootstrap/esm/PageItem";
 
 export * from "./prices";
 
 const { AddressZero } = ethers.constants;
+
+const movingAvarageDays = 7
 
 export function useAllOrdersStats(chainId) {
   const query = gql(`{
@@ -305,16 +308,16 @@ export function useTrades(chainId, account, forSingleAccount, afterId) {
   //     ? `${getServerBaseUrl(chainId)}/actions?account=${account}`
   //     : !forSingleAccount && `${getServerBaseUrl(chainId)}/actions`;
 
-  let url =
-    account && account.length > 0
-      ? `${getServerBaseUrl(chainId)}/trades?address=${account}`
-      : !forSingleAccount && `${getServerBaseUrl(chainId)}/actions`;
+  // let url =
+  //   account && account.length > 0
+  //     ? `${getServerBaseUrl(chainId)}/trades?address=${account}`
+  //     : !forSingleAccount && `${getServerBaseUrl(chainId)}/actions`;
 
-  if (afterId && afterId.length > 0) {
-    const urlItem = new URL(url as string);
-    urlItem.searchParams.append("after", afterId);
-    url = urlItem.toString();
-  }
+  // if (afterId && afterId.length > 0) {
+  //   const urlItem = new URL(url as string);
+  //   urlItem.searchParams.append("after", afterId);
+  //   url = urlItem.toString();
+  // }
 
   // const { data: trades, mutate: updateTrades } = useSWR(url ? url : null, {
   //   dedupingInterval: 10000,
@@ -896,17 +899,23 @@ export function useTotalStatInfo(chainId) {
 
 
   const [stats, setStats] = useState<{
-    totalVolume: String,
-    volume24H: String,
-    longOpenInterest: String,
-    shortOpenInterest: String,
-    totalFees: String
+    totalVolume: BigNumber,
+    volume24H: BigNumber,
+    openInterest: Number,
+    longOpenInterest: Number,
+    shortOpenInterest: Number,
+    totalFees: BigNumber,
+    totalActivePositions: Number,
+    status: Number
   }>({
-    totalVolume: '0',
-    volume24H: '0',
-    longOpenInterest: '0',
-    shortOpenInterest: '0',
-    totalFees: '0'
+    totalVolume: BigNumber.from(0),
+    volume24H: BigNumber.from(0),
+    openInterest: Number(0),
+    longOpenInterest: Number(0),
+    shortOpenInterest: Number(0),
+    totalFees: BigNumber.from(0),
+    totalActivePositions: Number(0),
+    status: Number(0)
   })
 
   const PROPS = 'margin liquidation swap mint burn'.split(' ');
@@ -993,10 +1002,8 @@ export function useTotalStatInfo(chainId) {
           let data:any[] = res?.data?.volumeStats;
           let all = BigNumber.from(0);
           let ret = data.map(item=>{
-            // TODO: to calculate cumulative by the timestamp and props of the query
             let sum = BigNumber.from(0);
             PROPS.forEach(prop => {
-              console.log("sum + %s = %s + %s", prop, sum, BigNumber.from(item[prop]));
               sum = sum.add(BigNumber.from(item[prop]))
             })
             all = all.add(sum);
@@ -1005,28 +1012,53 @@ export function useTotalStatInfo(chainId) {
               ...item
             }
           });
-          console.log("all---------", ret[ret.length - 1].all);
           setStats((prev)=>({...prev, totalVolume: ret[ret.length - 1].all}))
         } else {
-          setStats((prev)=>({...prev, totalVolume: 194207170 + Math.floor(Math.random() * 100) + '000000000000000000000000000000'}))
+          setStats((prev)=>({...prev, totalVolume: BigNumber.from(0)}))
         }
 
         // hourly volume
         if (res?.data?.hourlyVolumeByTokens?.length > 0) {
           let data:any[] = res?.data?.hourlyVolumeByTokens;
-          let ret = data.map(item=>{
-            // TODO: to calculate cumulative by the timestamp and props of the query
+          let all = BigNumber.from(0);
+          let ret = data.map(item => {
+            const buf = {timestamp: item.timestamp}
+            let sum = BigNumber.from(0);
+            PROPS.forEach(prop => {
+              buf[prop] = item[prop];
+              sum = sum.add(BigNumber.from(item[prop]));
+            })
+            all = all.add(sum);
+            return {
+              all,
+              ...buf
+            };
           });
+          console.log('volume24H: ', BigNumber.from(ret[ret.length - 1].all))
+          setStats((prev)=>({...prev, volume24H: ret[ret.length - 1].all}))
         } else {
-          setStats((prev)=>({...prev, volume24H: '123'}))
+          setStats((prev)=>({...prev, volume24H: BigNumber.from(0)}))
         }
 
         // hourl fee
         if (res?.data?.hourlyFees?.length > 0) {
           let data:any[] = res?.data?.hourlyFees;
+          let all = BigNumber.from(0)
           let ret = data.map(item=>{
-            // TODO: to calculate cumulative by the timestamp and props of the query
+            let buf = {timestamp: item.id}
+            let sum = BigNumber.from(0)
+            PROPS.forEach((prop) => {
+              buf[prop] = item[prop]
+              sum = sum.add(BigNumber.from(item[prop]))
+            })
+            all = all.add(sum);
+            return {
+              all,
+              ...buf
+            }
           });
+          console.log('fee24H: ', BigNumber.from(ret[ret.length - 1].all))
+          setStats((prev)=>({...prev, fee24H: ret[ret.length - 1].all}))
         } else {
           setStats((prev)=>({...prev, fee24H: '123'}))
         }
@@ -1034,42 +1066,108 @@ export function useTotalStatInfo(chainId) {
         // user stats
         if (res?.data?.userStats?.length > 0) {
           let data:any[] = res?.data?.userStats;
-          let ret = data.map(item=>{
-            // TODO: to calculate cumulative by the timestamp and props of the query
-          });
+          console.log('totalUser: ', data[0].uniqueCountCumulative)
+          setStats((prev)=>({...prev, totalUser: data[0].uniqueCountCumulative.toString()}))
         } else {
           setStats((prev)=>({...prev, totalUser: '123'}))
         }
 
         // fee stats
         if (res?.data?.feeStats?.length > 0) {
-          let data:any[] = res?.data?.feeStats;
-          let ret = data.map(item=>{
-            // TODO: to calculate cumulative by the timestamp and props of the query
+          let data = res?.data?.feeStats;
+          let chartData = data.map(item=>{
+            let buf = { timestamp: item.id };
+            let sum = BigNumber.from(0)
+            'margin marginAndLiquidation swap mint burn'.split(' ').forEach((prop) => {
+              buf[prop] = item[prop]
+              sum = sum.add(BigNumber.from(item[prop]))
+            })
+            buf['liquidation'] = BigNumber.from(item.marginAndLiquidation).sub(BigNumber.from(item.margin));
+            buf['all'] = PROPS.reduce((memo:any, prop) => BigNumber.from(memo).add(BigNumber.from(buf[prop])), 0)
+
+            return buf
           });
+
+          let cumulative = BigNumber.from(0);
+          const cumulativeByTs = {}
+
+          const feesChartData = chain(chartData)
+                                  .groupBy(item => item.timestamp)
+                                  .map((values, timestamp) => {
+                                    console.log(values, timestamp);
+                                    const all = sumBy(values, 'all');
+                                    cumulative = cumulative.add(BigNumber.from(all));
+
+                                    let movingAverageAll
+                                    const movingAverageTs = timestamp - movingAvarageDays
+                                    if(movingAverageTs in cumulativeByTs) {
+                                      movingAverageAll = (cumulative.sub(BigNumber.from(cumulativeByTs[movingAverageTs]))).div(BigNumber.from(movingAvarageDays));
+                                    }
+
+                                    const ret = {
+                                      timestamp: Number(timestamp),
+                                      all,
+                                      cumulative,
+                                      movingAverageAll
+                                    }
+
+                                    PROPS.forEach(prop => {
+                                      ret[prop] = sumBy(values,prop)
+                                    })
+
+                                    cumulativeByTs[timestamp] = cumulative;
+                                    return ret
+                                  })
+                                  .value()
+                                  .filter(item => item.timestamp >= first_date_ts)
+
+
+          console.log('totalFees: ', BigNumber.from(feesChartData[feesChartData.length - 1].cumulative))
+          setStats((prev)=>({...prev, totalFees: feesChartData[feesChartData.length - 1].cumulative}))
+
         } else {
-          setStats((prev)=>({...prev, totalFees: 359773 + Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
+          setStats((prev)=>({...prev, totalFees: BigNumber.from(0)}))
         }
 
         // trade stats
         if (res?.data?.tradingStats?.length > 0) {
           let data:any[] = res?.data?.tradingStats;
-          let ret = data.map(item=>{
-            // TODO: to calculate cumulative by the timestamp and props of the query
-          });
-        } else {
-          setStats((prev)=>({...prev, openInterest: Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
-          setStats((prev)=>({...prev, longOpenInterest: Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
-          setStats((prev)=>({...prev, shortOpenInterest: Math.floor(Math.random() * 10) + '000000000000000000000000000000'}))
+          let ret = sortBy(data, i => i.timestamp).map(item=>{
+            const longOpenInterest = BigNumber.from(item.longOpenInterest);
+            const shortOpenInterest = BigNumber.from(item.shortOpenInterest);
+            const openInterest = longOpenInterest.add(shortOpenInterest);
 
-          setStats((prev)=>({...prev, totalActivePositions: '123'}))
+            return {
+              longOpenInterest,
+              shortOpenInterest,
+              openInterest
+            }
+          });
+
+          const openInterest = ret[ret.length - 1].openInterest
+          const longOpenInterest = ret[ret.length - 1].longOpenInterest
+          const shortOpenInterest = ret[ret.length - 1].shortOpenInterest
+
+          setStats((prev)=>({...prev, openInterest: openInterest}))
+          setStats((prev)=>({...prev, longOpenInterest: longOpenInterest}))
+          setStats((prev)=>({...prev, shortOpenInterest: shortOpenInterest}))
+
+          setStats((prev)=>({...prev, totalActivePositions: 100}))
+
+          setStats((prev)=>({...prev, status: 200}))
+
+        } else {
+          setStats((prev)=>({...prev, openInterest: 0}))
+          setStats((prev)=>({...prev, longOpenInterest: 0}))
+          setStats((prev)=>({...prev, shortOpenInterest: 0}))
+
+          setStats((prev)=>({...prev, totalActivePositions: 100}))
 
           setStats((prev)=>({...prev, status: 200}))
         }
       }).catch(console.warn);
     }
   }, []);
-
   return stats;
 }
 
