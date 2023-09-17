@@ -17,23 +17,30 @@ app.use((req, res, next) => {
 
 app.use(express.static(__dirname + '/public'))
 
-for(const model of [ 'candles', 'prices', /*'app-stats', 'ui_version', 'mmy-supply', 'trades', 'orders_indices'*/ ]) {
+for(const model of [ 'candles', /*'prices', 'app-stats', 'ui_version', 'mmy-supply', 'trades', 'orders_indices'*/ ]) {
     try {
         const subapp = require(`./model/${model}.js`)
         app.use(`/api/${model}`, subapp)
     } catch(ex) {}
 }
 
-// for(const model of [ 'prices', 'swap', 'candles', 'position' ]) {
-//     try {
-//         const path = resolve('./src/workers', `${model}.js`)
-//         workers[model] = new Worker(path, {
-//             workerData: {
-//                 contracts
-//             }
-//         })
-//     } catch(ex) {}
-// }
+for(const model of [ 'candles', /*'prices', 'swap', 'position' */]) {
+    try {
+        const path = resolve('./src/workers', `${model}.js`)
+        workers[model] = new Worker(path, {
+            workerData: {
+                contracts
+            }
+        })
+    } catch(ex) {}
+}
  
-app.listen(process.env.PORT || 3011)
+const port =  process.env.PORT || 8000;
+app.listen(port, (err) => {
+    if (err) {
+        console.log(err)
+    } else {
+        console.log('Server listening on port ' + port)
+    }
+})
 

@@ -6,7 +6,7 @@ const { ethers } = require("ethers")
 const abiToken = require('../abi/Token.json')
 const contracts = require('../contracts.json')
 
-const provider = new ethers.providers.JsonRpcProvider('https://puppynet.shibrpc.com', 719)
+const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL | '', process.env.CHAIN)
 
 const app = express()
 app.use(bodyParser.json());

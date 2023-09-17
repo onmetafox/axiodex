@@ -3,10 +3,10 @@ const fetch = require("node-fetch");
 const createHttpLink = require("apollo-link-http").createHttpLink;
 const InMemoryCache = require("apollo-cache-inmemory").InMemoryCache;
 
-const GRAPH_URL_ORDERS = "https://subgraph-srv.tailfinance.com/subgraphs/name/orders"
-const GRAPH_URL_STATS = "https://subgraph-srv.tailfinance.com/subgraphs/name/stats"
-const GRAPH_URL_PRICES = "http://172.86.96.113/subgraphs/name/prices"
-const GRAPH_URL_RAW = "https://subgraph-srv.tailfinance.com/subgraphs/name/raw"
+const GRAPH_URL_ORDERS = "https://api.studio.thegraph.com/query/44624/orders-base-goerli/version/latest"
+const GRAPH_URL_STATS = "https://api.studio.thegraph.com/query/44624/stats-base-goerli/version/latest"
+const GRAPH_URL_PRICES = "https://api.studio.thegraph.com/query/44624/prices-base-goerli/version/latest"
+const GRAPH_URL_RAW = "https://api.studio.thegraph.com/query/44624/raw-base-goerli/version/latest"
 
 const ordersClient = new ApolloClient({
     link: createHttpLink({uri: GRAPH_URL_ORDERS, fetch}),
@@ -35,7 +35,8 @@ const MOVING_AVERAGE_PERIOD = 86400 * MOVING_AVERAGE_DAYS
 
 const UI_VERSION = 1.01
 
-const CHAIN = "FANTOM"
+// const CHAIN = "FANTOM"
+const CHAIN = "BASE"
 
 const TOTAL_ACTIVE_POSITION = 100;
 
@@ -49,7 +50,7 @@ const PERIOD_TO_SECONDS = {
     '1d': 60 * 60 * 24,
 }
 
-const PUPPYNET = 719
+const BASENET = 84531
 
 const VALID_PERIODS = new Set(Object.keys(PERIOD_TO_SECONDS))
 
@@ -71,5 +72,5 @@ module.exports = {
     TRADE_PAGE_LIMIT,
     VALID_PERIODS,
     PERIOD_TO_SECONDS,
-    PUPPYNET,
+    BASENET
 }

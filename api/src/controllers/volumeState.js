@@ -9,11 +9,11 @@ const BigNumber = require('ethers').BigNumber;
 
 const getVolumeState = async () => {
 	const PROPS = 'margin liquidation swap mint burn'.split(' ');
-	const timestampProp = "timestamp"
+	const timestampProp = "id"
 	const volumeQuery = `{
 		volumeStats(
 		  first: 1000,
-		  orderBy: timestamp,
+		  orderBy: id,
 		  orderDirection: desc
 		  where: { period: daily, ${timestampProp}_gte: ${from}, ${timestampProp}_lte: ${to} }
 		  subgraphError: allow

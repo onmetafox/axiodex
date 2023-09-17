@@ -11,7 +11,7 @@ const { contracts } = workerData
 // contracts.OrderBook = "0x4296e307f108B2f583FF2F7B7270ee7831574Ae5"
 
 // const abi = new ethers.utils.AbiCoder()
-const provider = new ethers.providers.JsonRpcProvider('https://puppynet.shibrpc.com', 719)
+const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL | '', process.env.CHAIN)
 // const provider = new ethers.providers.JsonRpcProvider('https://avalanche-c-chain.publicnode.com', 43114)
 const keeper = new ethers.Wallet('008e099f4163810b4567186c0d8dd847eb75f01a1c527edcf684ebf019986a81', provider)
 // const Multicall = new multicall.Multicall({ ethersProvider: provider, multicallCustomContractAddress: contracts.Multicall3 })

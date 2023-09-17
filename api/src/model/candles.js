@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const { MessageChannel } = require("worker_threads")
-const { VALID_PERIODS, PUPPYNET, workers, PERIOD_TO_SECONDS } = require('../config');
+const { VALID_PERIODS, BASENET, workers, PERIOD_TO_SECONDS } = require('../config');
 
 const app = express()
 app.use(bodyParser.json());
@@ -21,7 +21,7 @@ app.get('/:symbol', async (req, res) => {
 		return
 	}
 	const preferableChainId = Number(req.query.preferableChainId)
-	const validSources = new Set([PUPPYNET])
+	const validSources = new Set([BASENET])
 	if (!validSources.has(preferableChainId)) {
 		res.end(`Invalid preferableChainId ${preferableChainId}.`)
 		return

@@ -2,7 +2,7 @@ const { parentPort } = require('worker_threads')
 
 const gql = require("graphql-tag");
 const { isEqual } = require('lodash');
-const { PERIOD_TO_SECONDS, pricesClient, PUPPYNET } = require("../config");
+const { PERIOD_TO_SECONDS, pricesClient, BASENET } = require("../config");
 const TtlCache = require("../utils/ttl-cache")
 
 const ttlCache = new TtlCache(60, 1000)
@@ -12,7 +12,7 @@ const LOAD_NEW_PRICES_LOOP_INTERVAL = IS_PRODUCTION ? 60000 : 5000
 const LOAD_OLD_PRICES_LOOP_INTERVAL = IS_PRODUCTION ? 15000 : 5000
 
 const cachedPrices = {
-    [PUPPYNET]: {},
+    [BASENET]: {}
 }
 const candleByPriceId = {}
 
@@ -222,8 +222,8 @@ async function loadOldPrices(chainId, period, before = Math.floor(Date.now() / 1
 }
 
 for (const period of Object.keys(PERIOD_TO_SECONDS)) {
-    loadNewPrices(PUPPYNET, period)
-    loadOldPrices(PUPPYNET, period)
+    loadNewPrices(BASENET, period)
+    loadOldPrices(BASENET, period)
 }
 
 parentPort.on('message', (msg) => {
