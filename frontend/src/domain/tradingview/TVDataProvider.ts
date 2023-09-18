@@ -51,7 +51,6 @@ export class TVDataProvider {
     periodParams: PeriodParams,
     shouldRefetchBars: boolean
   ): Promise<Bar[]> {
-    console.log('getTokenHistoryBars...');
     const barsInfo = this.barsInfo;
     if (!barsInfo.data.length || barsInfo.ticker !== ticker || barsInfo.period !== period || shouldRefetchBars) {
       try {
