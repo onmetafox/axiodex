@@ -160,7 +160,7 @@ export default function PositionSeller(props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const prevIsVisible = usePrevious(isVisible);
   const positionRouterAddress = getContract("PositionRouter");
-  const nativeTokenSymbol = getConstant("nativeTokenSymbol");
+  const nativeTokenSymbol = getConstant(chainId, "nativeTokenSymbol");
   const longOrShortText = position?.isLong ? t`Long` : t`Short`;
 
   const toTokens = isContractAccount ? getTokens().filter((t) => !t.isNative) : getTokens();

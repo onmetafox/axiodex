@@ -785,6 +785,7 @@ export const Exchange = forwardRef((props, ref) => {
     [POSITIONS]: positions.length ? t`Positions (${positions.length})` : t`Positions`,
     [TRADES]: t`Trades`,
   };
+
   if (!LIST_SECTIONS.includes(listSection)) {
     listSection = LIST_SECTIONS[0];
   }

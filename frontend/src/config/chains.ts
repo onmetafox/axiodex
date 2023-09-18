@@ -65,7 +65,7 @@ const constants = {
   //   v2: true,
   // },
   [TESTNET]: {
-    nativeTokenSymbol: "WETH",
+    nativeTokenSymbol: "ETH",
     wrappedTokenSymbol: "WETH",
     defaultCollateralSymbol: "USDC",
     defaultFlagOrdersEnabled: true,
