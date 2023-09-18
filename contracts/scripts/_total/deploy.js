@@ -1,7 +1,7 @@
 const { readFileSync, writeFileSync, existsSync } = require('fs')
 const { ethers, network } = require('hardhat')
 
-const instructions = require(`./instruction-pulsechain`)
+const instructions = require(`./instruction-base`)
 const { resolve, dirname } = require('path')
 
 const { sleep, interpolate, verify } = require('./helper')
@@ -9,9 +9,6 @@ const config = require('../core/tokens')
 
 
 async function main() {
-    const block = await ethers.provider.getBlock('latest')
-    console.log(block)
-    return
     // const tokens = config[network.name]
     const signers = await ethers.getSigners()
     const global = { ...ethers.utils }
@@ -40,7 +37,7 @@ async function main() {
                 const contract = await ethers.getContractAt(instruction.artifact, state.contracts[name])
                 global[name] = contract
                 console.log("Loaded", name, contract.address)
-                // await verify(contract, args)
+                await verify(contract, args)
                 continue
             }
             const contract = await factory.deploy(...args, instruction.overrides ?? {})

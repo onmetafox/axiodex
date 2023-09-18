@@ -7,26 +7,6 @@ schema:
 
 dataSources:
   - kind: ethereum/contract
-    name: ChainlinkAggregatorPLS
-    network: ${ network }
-    source:
-      address: "${ PriceFeedPLS }"
-      abi: ChainlinkAggregator
-      startBlock: ${ startBlock }
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      entities:
-        - ChainlinkPrice
-      abis:
-        - name: ChainlinkAggregator
-          file: ./abis/ChainlinkAggregator.json
-      eventHandlers:
-        - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
-          handler: handleAnswerUpdatedPLS
-      file: ./src/pricesMapping.ts
-  - kind: ethereum/contract
     name: ChainlinkAggregatorBTC
     network: ${ network }
     source:
@@ -67,10 +47,10 @@ dataSources:
           handler: handleAnswerUpdatedETH
       file: ./src/pricesMapping.ts
   - kind: ethereum/contract
-    name: ChainlinkAggregatorDAI
+    name: ChainlinkAggregatorUSDC
     network: ${ network }
     source:
-      address: "${ PriceFeedHEX }"
+      address: "${ PriceFeedUSDC }"
       abi: ChainlinkAggregator
       startBlock: ${ startBlock }
     mapping:
@@ -84,6 +64,26 @@ dataSources:
           file: ./abis/ChainlinkAggregator.json
       eventHandlers:
         - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
+          handler: handleAnswerUpdatedUSDC
+      file: ./src/pricesMapping.ts
+  - kind: ethereum/contract
+    name: PriceFeedHEX
+    network: ${ network }
+    source:
+      address: "${ PriceFeedHEX }"
+      abi: PriceFeed
+      startBlock: ${ startBlock }
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - ChainlinkPrice
+      abis:
+        - name: PriceFeed
+          file: ./abis/PriceFeed.json
+      eventHandlers:
+        - event: UpdateAnswer(address,uint80,int256)
           handler: handleAnswerUpdatedHEX
       file: ./src/pricesMapping.ts
 

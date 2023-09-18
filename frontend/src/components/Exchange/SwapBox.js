@@ -465,7 +465,7 @@ export default function SwapBox(props) {
   ]);
 
   useEffect(() => {
-    if (!toTokens.find((token) => token.address === toTokenAddress)) {
+    if (toTokens?.length && !toTokens.find((token) => token.address === toTokenAddress)) {
       setToTokenAddress(swapOption, toTokens[0].address);
     }
   }, [swapOption, toTokens, toTokenAddress, setToTokenAddress]);

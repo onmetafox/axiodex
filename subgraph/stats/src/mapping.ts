@@ -46,7 +46,7 @@ import {
 } from "../generated/schema"
 
 import {
-  PLS,
+  // PLS,
   AXN,
   BASIS_POINTS_DIVISOR,
   getTokenPrice,
@@ -392,7 +392,7 @@ export function handleUpdateFundingRate(event: UpdateFundingRate): void {
 
 export function handleDistributeEthToAxn(event: Distribute): void {
   let amount = event.params.amount
-  let amountUsd = getTokenAmountUsd(PLS, amount)
+  let amountUsd = getTokenAmountUsd(ETH, amount)
   let totalEntity = _getOrCreateAxnStat("total", "total")
   totalEntity.distributedEth += amount
   totalEntity.distributedEthCumulative += amount
@@ -603,7 +603,7 @@ function _getOrCreateAlpStat(id: string, period: string): AlpStat {
 
 export function handleDistributeEthToAlp(event: Distribute): void {
   let amount = event.params.amount
-  let amountUsd = getTokenAmountUsd(PLS, amount)
+  let amountUsd = getTokenAmountUsd(ETH, amount)
 
   let totalEntity = _getOrCreateAlpStat("total", "total")
   totalEntity.distributedEth += amount

@@ -1,9 +1,12 @@
 {
-  "name": "perp-orders",
+  "name": "axiodex-orders",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen subgraph.yaml",
-    "create": "graph create orders --node http://172.86.96.113/graph-node",
-    "deploy": "graph deploy orders --node http://172.86.96.113/graph-node"
+    "build": "graph build subgraph.yaml",
+    "prepare:testnet": "node ../prepare.js base-testnet 9616625 state-basetestnet.json",
+    "init:testnet": "graph init --studio orders-base-goerli",
+    "auth:testnet": "graph auth --studio ad317bb9ff468283708f997e81ce837a",
+    "deploy:testnet": "graph deploy --studio orders-base-goerli"
   }
 }
