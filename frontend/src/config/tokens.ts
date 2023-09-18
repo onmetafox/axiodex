@@ -11,7 +11,7 @@ export const TOKENS: Token[] = [
     decimals: 18,
     address: ethers.constants.AddressZero,
     isNative: true,
-    isShortable: true,
+    isShortable: false,
     imageUrl: "https://assets.coingecko.com/coins/images/25666/small/11145.png?1653287592",
   },
   // {
@@ -35,8 +35,7 @@ export const TOKENS: Token[] = [
     symbol: "WETH",
     decimals: 18,
     address: getContract("NATIVE_TOKEN"),
-    isWrapped: true,
-    isShortable: false,
+    isShortable: true,
     imageUrl: "https://assets.coingecko.com/coins/images/279/small/ethereum.png?1595348880",
   },
   // {
@@ -53,7 +52,6 @@ export const TOKENS: Token[] = [
     decimals: 6,
     address: getContract("USDC"),
     isStable: true,
-    isShortable: true,
     imageUrl: "https://assets.coingecko.com/coins/images/6319/thumb/USD_Coin_icon.png?1547042389",
   },
   // {

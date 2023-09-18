@@ -3,9 +3,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen subgraph.yaml",
-    "build": "graph build subgraph.yaml",
-    "init:testnet": "graph init --studio prices-base-goerli",
-    "auth:testnet": "graph auth --studio ad317bb9ff468283708f997e81ce837a",
-    "deploy:testnet": "graph deploy --studio prices-base-goerli"
+    "create": "graph create prices --node http://172.86.96.113/graph-node",
+    "deploy": "graph deploy prices --node http://172.86.96.113/graph-node"
   }
 }

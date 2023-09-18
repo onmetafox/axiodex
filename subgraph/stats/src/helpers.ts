@@ -9,9 +9,9 @@ import * as contracts from "../../state"
 export let BASIS_POINTS_DIVISOR = BigInt.fromI32(10000)
 export let PRECISION = BigInt.fromI32(10).pow(30)
 
-// export let PLS = contracts.NATIVE_TOKEN
-export let ETH = contracts.NATIVE_TOKEN
+export let PLS = contracts.NATIVE_TOKEN
 export let BTC = contracts.BTC
+export let ETH = contracts.ETH
 export let USDC = contracts.USDC
 export let HEX = contracts.HEX
 export let AXN = contracts.AXN
@@ -46,11 +46,11 @@ export function timestampToPeriod(timestamp: BigInt, period: string): BigInt {
 
 export function getTokenDecimals(token: String): u8 {
   let tokenDecimals = new Map<String, i32>()
-  // tokenDecimals.set(PLS, 18)
+  tokenDecimals.set(PLS, 18)
   tokenDecimals.set(BTC, 8)
   tokenDecimals.set(ETH, 18)
   tokenDecimals.set(USDC, 6)
-  tokenDecimals.set(HEX, 8)
+  tokenDecimals.set(HEX, 18)
   tokenDecimals.set(AXN, 18)
   // tokenDecimals.set(LINK, 18)
   // tokenDecimals.set(UNI, 18)
@@ -89,7 +89,7 @@ export function getTokenPrice(token: String): BigInt {
   }
 
   let prices = new TypedMap<String, BigInt>()
-  // prices.set(PLS, BigInt.fromI32(14) * PRECISION / BigInt.fromI32(100))
+  prices.set(PLS, BigInt.fromI32(14) * PRECISION / BigInt.fromI32(100))
   prices.set(ETH, BigInt.fromI32(1800) * PRECISION)
   prices.set(BTC, BigInt.fromI32(27000) * PRECISION)
   prices.set(USDC, PRECISION)

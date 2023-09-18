@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: PriceFeedBTC
-    network: base-testnet
+    network: pulsechain
     source:
-      address: "0xf8340046E11672610532bc2F7554241ceE118fB7"
-      abi: ChainlinkAggregator
-      startBlock: 9616519
+      address: "0xDc78a8443EA62cDFd56B18D1A5Db9b1eF31e1E6C"
+      abi: PriceFeed
+      startBlock: 17201054
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -17,19 +17,19 @@ dataSources:
         - ChainlinkPrice
         - PriceCandle
       abis:
-        - name: ChainlinkAggregator
-          file: ./abis/ChainlinkAggregator.json
+        - name: PriceFeed
+          file: ./abis/PriceFeed.json
       eventHandlers:
-        - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
-          handler: handleOracleAnswerUpdatedBTC
+        - event: UpdateAnswer(address,uint80,int256)
+          handler: handleAnswerUpdatedBTC
       file: ./src/mapping.ts
   - kind: ethereum/contract
     name: PriceFeedETH
-    network: base-testnet
+    network: pulsechain
     source:
-      address: "0xeEF0ee34696a7982b8AE27c67f91f364D91967a0"
-      abi: ChainlinkAggregator
-      startBlock: 9616519
+      address: "0xf6aaFB97EFe4d723E7EF03ff225174293213eEc3"
+      abi: PriceFeed
+      startBlock: 17201070
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -38,19 +38,40 @@ dataSources:
         - ChainlinkPrice
         - PriceCandle
       abis:
-        - name: ChainlinkAggregator
-          file: ./abis/ChainlinkAggregator.json
+        - name: PriceFeed
+          file: ./abis/PriceFeed.json
       eventHandlers:
-        - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
-          handler: handleOracleAnswerUpdatedETH
+        - event: UpdateAnswer(address,uint80,int256)
+          handler: handleAnswerUpdatedETH
+      file: ./src/mapping.ts
+  - kind: ethereum/contract
+    name: PriceFeedPLS
+    network: pulsechain
+    source:
+      address: "0xe90563aB3ebFe5978F0D96d94110BdCC06ed4708"
+      abi: PriceFeed
+      startBlock: 17201043
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - ChainlinkPrice
+        - PriceCandle
+      abis:
+        - name: PriceFeed
+          file: ./abis/PriceFeed.json
+      eventHandlers:
+        - event: UpdateAnswer(address,uint80,int256)
+          handler: handleAnswerUpdatedPLS
       file: ./src/mapping.ts
   - kind: ethereum/contract
     name: PriceFeedHEX
-    network: base-testnet
+    network: pulsechain
     source:
-      address: "0xB286D34972e2d7a4C5f9C1FA4D5B6b96b6EB7c4c"
+      address: "0x196B5355757E2eccC70Fb118f5653336Bb0F222e"
       abi: PriceFeed
-      startBlock: 9616519
+      startBlock: 17201078
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -67,11 +88,11 @@ dataSources:
       file: ./src/mapping.ts
   - kind: ethereum/contract
     name: PriceFeedUSDC
-    network: base-testnet
+    network: pulsechain
     source:
-      address: "0x83Eb07416dAbDB3DE6b12a8FA63F372773814445"
-      abi: ChainlinkAggregator
-      startBlock: 9616519
+      address: "0x598d812240983501fb074781a0225cB026900e3e"
+      abi: PriceFeed
+      startBlock: 17201062
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -80,9 +101,9 @@ dataSources:
         - ChainlinkPrice
         - PriceCandle
       abis:
-        - name: ChainlinkAggregator
-          file: ./abis/ChainlinkAggregator.json
+        - name: PriceFeed
+          file: ./abis/PriceFeed.json
       eventHandlers:
-        - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
-          handler: handleOracleAnswerUpdatedUSDC
+        - event: UpdateAnswer(address,uint80,int256)
+          handler: handleAnswerUpdatedUSDC
       file: ./src/mapping.ts

@@ -9,7 +9,7 @@ import {
 import {
   BASIS_POINTS_DIVISOR,
   PRECISION,
-  // PLS,
+  PLS,
   ETH,
   BTC,
   USDC,
@@ -22,10 +22,6 @@ import {
 import {
   AnswerUpdated as AnswerUpdatedEvent
 } from '../generated/ChainlinkAggregatorBTC/ChainlinkAggregator'
-
-import {
-  UpdateAnswer as UpdateAnswerEvent
-} from '../generated/PriceFeedHEX/PriceFeed'
 
 import {
   SetPrice
@@ -63,16 +59,16 @@ export function handleAnswerUpdatedBTC(event: AnswerUpdatedEvent): void {
   _storeChainlinkPrice(BTC, event.params.current, event.block.timestamp, event.block.number)
 }
 
-export function handleAnswerUpdatedUSDC(event: AnswerUpdatedEvent): void {
-  _storeChainlinkPrice(USDC, event.params.current, event.block.timestamp, event.block.number)
+export function handleAnswerUpdatedPLS(event: AnswerUpdatedEvent): void {
+  _storeChainlinkPrice(PLS, event.params.current, event.block.timestamp, event.block.number)
 }
 
 export function handleAnswerUpdatedETH(event: AnswerUpdatedEvent): void {
   _storeChainlinkPrice(ETH, event.params.current, event.block.timestamp, event.block.number)
 }
 
-export function handleAnswerUpdatedHEX(event: UpdateAnswerEvent): void {
-  _storeChainlinkPrice(HEX, event.params._answer, event.block.timestamp, event.block.number)
+export function handleAnswerUpdatedHEX(event: AnswerUpdatedEvent): void {
+  _storeChainlinkPrice(HEX, event.params.current, event.block.timestamp, event.block.number)
 }
 
 function _storeUniswapPrice(

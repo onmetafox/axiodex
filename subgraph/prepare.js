@@ -8,18 +8,22 @@ String.prototype.interpolate = function(params) {
 }
 
 const network = process.argv[2] ?? 'ethereum'
-const block = process.argv[3] ?? 0
-const json = process.argv[4] ?? 'state-mainnet.json'
 
 const templ = path.resolve(process.cwd(), 'subgraph.template.yaml')
 const yaml = path.resolve(process.cwd(), 'subgraph.yaml')
 const state = path.resolve(process.cwd(), '../state.ts')
 
-const { contracts: variables } = require(path.resolve(__dirname, `../contracts/scripts/_total/${json}`))
-fs.writeFileSync(state, Object.entries(variables).map(([k, v]) => `export const ${k} = "${v.toLowerCase()}";`).join('\n'))
+const { contracts: variables } = require(`./state-${network}.json`)
+fs.writeFileSync(state, Object.entries(variables).map(([k, v]) => `export const ${k} = "${v}";`).join('\n'))
 
-variables['network'] = network
-variables['startBlock'] = block
+variables['network'] = {
+    devnet: 'devnet',
+    pulsechain: 'ethereum'
+}[network]
+variables['startBlock'] = {
+    devnet: 0,
+    pulsechain: 16744653
+}[network]
 
 const content = fs.readFileSync(templ).toString().interpolate(variables)
 fs.writeFileSync(yaml, Buffer.from(content))

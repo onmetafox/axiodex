@@ -18,7 +18,7 @@ export const CHAIN_ID = DEFAULT_CHAIN_ID;
 export const IS_NETWORK_DISABLED = {
   [MAINNET]: false,
   [TESTNET]: false,
-  [LOCALNET]: true,
+  [LOCALNET]: false,
 };
 
 export const SUPPORTED_CHAIN_IDS = [MAINNET, TESTNET, LOCALNET].filter(chainId => !IS_NETWORK_DISABLED[chainId]);
@@ -69,7 +69,7 @@ const constants = {
     wrappedTokenSymbol: "WETH",
     defaultCollateralSymbol: "USDC",
     defaultFlagOrdersEnabled: true,
-    positionReaderPropsLength: 9,
+    positionReaderPropsLength: 8,
     v2: true,
 
     SWAP_ORDER_EXECUTION_GAS_FEE: parseEther("0.01"),
@@ -118,8 +118,8 @@ export const NETWORK_METADATA: { [chainId: number]: NetworkMetadata } = {
     chainId: "0x" + TESTNET.toString(16),
     chainName: CHAIN_NAMES_MAP[TESTNET],
     nativeCurrency: {
-      name: "Ether",
-      symbol: "ETH",
+      name: "Wrapped Ether",
+      symbol: "WETH",
       decimals: 18,
     },
     rpcUrls: RPC_PROVIDERS[TESTNET],
