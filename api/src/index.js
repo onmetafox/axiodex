@@ -5,6 +5,7 @@ const { Worker } = require("worker_threads")
 const { resolve } = require('path')
 const contracts = require('./contracts.json')
 const { workers } = require('./config')
+require('dotenv').config();
 
 app.use(cors({
     origin: '*'
