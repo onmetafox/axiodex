@@ -45,9 +45,6 @@ export async function getCurrentPriceOfToken(chainId: number, symbol: string) {
 }
 
 export function fillBarGaps(prices, periodSeconds) {
-  console.log('fillBarGaps....')
-  console.log(prices);
-
   if(!prices) return [];
 
   if (prices.length < 2) return prices;

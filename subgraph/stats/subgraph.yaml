@@ -7,32 +7,12 @@ schema:
 
 dataSources:
   - kind: ethereum/contract
-    name: ChainlinkAggregatorPLS
-    network: devnet
-    source:
-      address: "0x84eA74d481Ee0A5332c457a4d796187F6Ba67fEB"
-      abi: ChainlinkAggregator
-      startBlock: 0
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      entities:
-        - ChainlinkPrice
-      abis:
-        - name: ChainlinkAggregator
-          file: ./abis/ChainlinkAggregator.json
-      eventHandlers:
-        - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
-          handler: handleAnswerUpdatedPLS
-      file: ./src/pricesMapping.ts
-  - kind: ethereum/contract
     name: ChainlinkAggregatorBTC
-    network: devnet
+    network: base-testnet
     source:
-      address: "0x70e0bA845a1A0F2DA3359C97E0285013525FFC49"
+      address: "0xf8340046E11672610532bc2F7554241ceE118fB7"
       abi: ChainlinkAggregator
-      startBlock: 0
+      startBlock: 9616625
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -48,11 +28,11 @@ dataSources:
       file: ./src/pricesMapping.ts
   - kind: ethereum/contract
     name: ChainlinkAggregatorETH
-    network: devnet
+    network: base-testnet
     source:
-      address: "0x7969c5eD335650692Bc04293B07F5BF2e7A673C0"
+      address: "0xeEF0ee34696a7982b8AE27c67f91f364D91967a0"
       abi: ChainlinkAggregator
-      startBlock: 0
+      startBlock: 9616625
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -67,12 +47,12 @@ dataSources:
           handler: handleAnswerUpdatedETH
       file: ./src/pricesMapping.ts
   - kind: ethereum/contract
-    name: ChainlinkAggregatorDAI
-    network: devnet
+    name: ChainlinkAggregatorUSDC
+    network: base-testnet
     source:
-      address: "0x922D6956C99E12DFeB3224DEA977D0939758A1Fe"
+      address: "0x83Eb07416dAbDB3DE6b12a8FA63F372773814445"
       abi: ChainlinkAggregator
-      startBlock: 0
+      startBlock: 9616625
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -84,16 +64,36 @@ dataSources:
           file: ./abis/ChainlinkAggregator.json
       eventHandlers:
         - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
+          handler: handleAnswerUpdatedUSDC
+      file: ./src/pricesMapping.ts
+  - kind: ethereum/contract
+    name: PriceFeedHEX
+    network: base-testnet
+    source:
+      address: "0xB286D34972e2d7a4C5f9C1FA4D5B6b96b6EB7c4c"
+      abi: PriceFeed
+      startBlock: 9616625
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - ChainlinkPrice
+      abis:
+        - name: PriceFeed
+          file: ./abis/PriceFeed.json
+      eventHandlers:
+        - event: UpdateAnswer(address,uint80,int256)
           handler: handleAnswerUpdatedHEX
       file: ./src/pricesMapping.ts
 
   - kind: ethereum/contract
     name: AlpManager
-    network: devnet
+    network: base-testnet
     source:
-      address: "0x68B1D87F95878fE05B998F19b66F4baba5De1aed"
+      address: "0x1A1832256cA51a57DB12b1b20703A40A2273D47B"
       abi: AlpManager
-      startBlock: 0
+      startBlock: 9616625
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -112,11 +112,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: OrderBook
-    network: devnet
+    network: base-testnet
     source:
-      address: "0x0355B7B8cb128fA5692729Ab3AAa199C1753f726"
+      address: "0x698727269d637aC283F0CF07CD1B48715a4bD59F"
       abi: OrderBook
-      startBlock: 0
+      startBlock: 9616625
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -151,11 +151,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: FastPriceFeed
-    network: devnet
+    network: base-testnet
     source:
-      address: "0x38A70c040CA5F5439ad52d0e821063b0EC0B52b6"
+      address: "0xB1F8Db62a7eC2354FC93707DE3F1efA2eA39a5eE"
       abi: FastPriceFeed
-      startBlock: 0
+      startBlock: 9616625
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -172,11 +172,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: FastPriceEvents
-    network: devnet
+    network: base-testnet
     source:
-      address: "0xaC9fCBA56E42d5960f813B9D0387F3D3bC003338"
+      address: "0xCc36ffBDBa965B8cFbCf41d7538d59163E3addC7"
       abi: FastPriceEvents
-      startBlock: 0
+      startBlock: 9616625
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -193,11 +193,11 @@ dataSources:
 
   # - kind: ethereum/contract
   #   name: UniswapV2pair
-  #   network: devnet
+  #   network: base-testnet
   #   source:
   #     address: "0x2A6538a456650Cd454Dcd8f0B4665183DBa0bb27"
   #     abi: UniswapV2pair
-  #     startBlock: 0
+  #     startBlock: 9616625
   #   mapping:
   #     kind: ethereum/events
   #     apiVersion: 0.0.4
@@ -215,11 +215,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: FeeAxnDistributor
-    network: devnet
+    network: base-testnet
     source:
-      address: "0xAA292E8611aDF267e563f334Ee42320aC96D0463"
+      address: "0x419dD737657f239666DC4063B1182F427C0629CB"
       abi: RewardDistributor
-      startBlock: 0
+      startBlock: 9616625
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -236,11 +236,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: StakedAxnDistributor
-    network: devnet
+    network: base-testnet
     source:
-      address: "0xC9a43158891282A2B1475592D5719c001986Aaec"
+      address: "0xFd0c6D2899Eb342b9E48abB3f21730e9F4532976"
       abi: RewardDistributor
-      startBlock: 0
+      startBlock: 9616625
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -257,11 +257,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: FeeAlpDistributor
-    network: devnet
+    network: base-testnet
     source:
-      address: "0x5067457698Fd6Fa1C6964e416b3f42713513B3dD"
+      address: "0xE9C17D7CfE0b40B998ce362bdcdFed7Ece640c82"
       abi: RewardDistributor
-      startBlock: 0
+      startBlock: 9616625
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -278,11 +278,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: StakedAlpDistributor
-    network: devnet
+    network: base-testnet
     source:
-      address: "0xD5ac451B0c50B9476107823Af206eD814a2e2580"
+      address: "0x4629Ab6f562B69B2D1ce96C79ec334D3d8B8489d"
       abi: RewardDistributor
-      startBlock: 0
+      startBlock: 9616625
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -299,11 +299,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: Vault2
-    network: devnet
+    network: base-testnet
     source:
-      address: "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6"
+      address: "0x94eBF73e4892d7002e373697ec71690f86103D78"
       abi: Vault
-      startBlock: 0
+      startBlock: 9616625
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -326,11 +326,11 @@ dataSources:
 
   - kind: ethereum/contract
     name: Vault
-    network: devnet
+    network: base-testnet
     source:
-      address: "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6"
+      address: "0x94eBF73e4892d7002e373697ec71690f86103D78"
       abi: Vault
-      startBlock: 0
+      startBlock: 9616625
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

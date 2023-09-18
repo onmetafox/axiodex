@@ -20,9 +20,9 @@ dataSources:
         - name: PositionRouter
           file: ./abis/PositionRouter.json
       eventHandlers:
-        - event: CreateIncreasePosition(indexed address,address[],address,uint256,uint256,uint256,bool,uint256,uint256,uint256,uint256,uint256,uint256)
+        - event: CreateIncreasePosition(indexed address,address[],address,uint256,uint256,uint256,bool,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
           handler: handleCreateIncreasePosition
-        - event: CreateDecreasePosition(indexed address,address[],address,uint256,uint256,bool,address,uint256,uint256,uint256,uint256,uint256,uint256)
+        - event: CreateDecreasePosition(indexed address,address[],address,uint256,uint256,bool,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
           handler: handleCreateDecreasePosition
       file: ./src/mapping.ts
 
@@ -38,22 +38,22 @@ dataSources:
       apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - StakeGmx
-        - UnstakeGmx
-        - StakeGlp
-        - UnstakeGlp
+        - StakeAxn
+        - UnstakeAxn
+        - StakeAlp
+        - UnstakeAlp
       abis:
         - name: RewardRouterV2
           file: ./abis/RewardRouterV2.json
       eventHandlers:
-        - event: StakeGmx(address,address,uint256)
-          handler: handleStakeGmx
-        - event: UnstakeGmx(address,address,uint256)
-          handler: handleUnstakeGmx
-        - event: StakeGlp(address,uint256)
-          handler: handleStakeGlp
-        - event: UnstakeGlp(address,uint256)
-          handler: handleUnstakeGlp
+        - event: StakeAxn(address,address,uint256)
+          handler: handleStakeAxn
+        - event: UnstakeAxn(address,address,uint256)
+          handler: handleUnstakeAxn
+        - event: StakeAlp(address,uint256)
+          handler: handleStakeAlp
+        - event: UnstakeAlp(address,uint256)
+          handler: handleUnstakeAlp
       file: ./src/mapping.ts
 
   - kind: ethereum/contract
@@ -138,21 +138,21 @@ dataSources:
       file: ./src/mapping.ts
 
   - kind: ethereum/contract
-    name: GlpManager
+    name: AlpManager
     network: ${ network }
     source:
-      address: "${ GlpManager }"
-      abi: GlpManager
+      address: "${ AlpManager }"
+      abi: AlpManager
       startBlock: ${ startBlock } 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - HourlyGlpStat
+        - HourlyAlpStat
       abis:
-        - name: GlpManager
-          file: ./abis/GlpManager.json
+        - name: AlpManager
+          file: ./abis/AlpManager.json
       eventHandlers:
         - event: AddLiquidity(address,address,uint256,uint256,uint256,uint256,uint256)
           handler: handleAddLiquidity
