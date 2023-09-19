@@ -7,7 +7,7 @@ const { parseEther } = ethers.utils;
 
 export const MAINNET = 8453;    // basechain mainnet
 export const TESTNET = 84531;   // basechain testnet
-export const LOCALNET = 12345678;
+export const LOCALNET = 31337;
 
 // TODO take it from web3
 export const DEFAULT_CHAIN_ID = TESTNET;
@@ -78,7 +78,7 @@ const constants = {
   },
 
   [LOCALNET]: {
-    nativeTokenSymbol: "WETH",
+    nativeTokenSymbol: "ETH",
     wrappedTokenSymbol: "WETH",
     defaultCollateralSymbol: "USDC",
     defaultFlagOrdersEnabled: true,
@@ -96,7 +96,8 @@ const ALCHEMY_WHITELISTED_DOMAINS = ["axn.finanace", "app.axn.finanace"];
 export const RPC_PROVIDERS = {
   [MAINNET]: ["https://rpc.notadegen.com/base"],
   [TESTNET]: ["https://rpc.notadegen.com/base/goerli"],
-  [LOCALNET]: ["http://172.86.96.113/rpc/devnet"],
+  [LOCALNET]: ["http://localhost:8545"],
+  // [LOCALNET]: ["http://172.86.96.113/rpc/devnet"],
 };
 
 export const FALLBACK_PROVIDERS = {
