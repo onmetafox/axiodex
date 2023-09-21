@@ -768,14 +768,21 @@ export default function Axes({ setPendingTxns, connectWallet }) {
             <div className="col-lg-5 col-sm-12 col-md-12">
               <div className="row padding-1r">
                 <div className="Exchange-swap-section strategy-container alp-container">
-                  <PageRow title="ALP price"
-                  value = {`$${formatKeyAmount(processedData, "glpPrice", USD_DECIMALS, 3, true)}`} direction="vertical"  className="page-row-content-deverse"/>
+                  <PageRow title="AXN price"
+                  value = {`$${formatAmount(axnPrice, USD_DECIMALS, 3, true)}`} direction="vertical"  className="page-row-content-deverse"/>
                   <div className="row">
                     {!active && (
                       <button className="App-cta Exchange-swap-button mt-5" onClick={() => connectWallet()}>
                         Connect Wallet
                       </button>
                     )}
+                    {active && (
+                    <>
+                    <Link className="App-button-option App-card-option" to="/buy">
+                      <Trans>Buy AXN</Trans>
+                    </Link>
+                    </>
+                  )}
                   </div>
                   <div className="row divider-row">
                     <div className="col-3"><Trans>AXN APR</Trans></div>

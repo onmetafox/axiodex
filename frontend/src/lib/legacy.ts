@@ -1375,7 +1375,7 @@ export function getProcessedData(
   data.alpPrice =
     data.alpSupply && data.alpSupply.gt(0)
       ? aum.mul(expandDecimals(1, TLP_DECIMALS)).div(data.alpSupply)
-      : bigNumberify(0);
+      : expandDecimals(1, TLP_DECIMALS);
 
   data.alpSupplyUsd = supplyData.alp.mul(data.alpPrice).div(expandDecimals(1, 18));
 

@@ -310,7 +310,7 @@ export default function ALP({ setPendingTxns, connectWallet }) {
               <div className="row padding-1r">
                 <div className="Exchange-swap-section strategy-container alp-container">
                   <PageRow title= "ALP price"
-                    value={`${formatKeyAmount(processedData, "alpPrice", USD_DECIMALS, 3, true)}`}
+                    value={`$${formatKeyAmount(processedData, "alpPrice", TLP_DECIMALS, 3, true)}`}
                     direction="vertical" className="page-row-content-deverse"/>
                   {!active && (
                     <button className="App-cta Exchange-swap-button" onClick={() => connectWallet()}>
