@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 
 import { USD_DECIMALS, CHART_PERIODS } from "lib/legacy";
 // import { getServerUrl } from "config/backend";
-import { chainlinkClient, getGmxPriceClient } from "lib/subgraph/clients";
+import { chainlinkClient, getPriceClient } from "lib/subgraph/clients";
 // import { sleep } from "lib/sleep";
 import { formatAmount } from "lib/numbers";
 import { getNativeToken, getNormalizedTokenSymbol, isChartAvailabeForToken } from "config/tokens";
@@ -79,7 +79,7 @@ export async function getLimitChartPricesFromStats(chainId, symbol, period, limi
   }
 
   // const url = getServerUrl(chainId, `/candles/${symbol}?preferableChainId=${chainId}&period=${period}&limit=${limit}`);
-  const client = getGmxPriceClient(chainId)
+  const client = getPriceClient(chainId)
   if(client) {
     const result = await client.query({
       query: gql`query($limit: Int, $symbol: String, $period: String) {
@@ -109,7 +109,7 @@ export async function getChartPricesFromStats(chainId, symbol, period) {
   const timeDiff = CHART_PERIODS[period] * 3000;
   const from = Math.floor(Date.now() / 1000 - timeDiff)
 
-  const client = getGmxPriceClient(chainId)
+  const client = getPriceClient(chainId)
 
   if (client) {
     try {

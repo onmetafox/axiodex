@@ -29,7 +29,7 @@ import {
   getProcessedData,
   getPageTitle,
 } from "lib/legacy";
-import { useGmxPrice, useTotalGmxStaked, useTotalGmxSupply } from "domain/legacy";
+import { useAxnPrice, useTotalAxnStaked, useTotalAxnSupply } from "domain/legacy";
 import { getChainName, getConstant } from "config/chains";
 
 import useSWR from "swr";
@@ -1078,14 +1078,14 @@ export default function StakeV2({ setPendingTxns, connectWallet }) {
     }
   );
 
-  const { gmxPrice, /* gmxPriceFromArbitrum, gmxPriceFromAvalanche, */ gmxPriceFromGoerli, gmxPriceFromPuppy } = useGmxPrice(
+  const { gmxPrice, /* gmxPriceFromArbitrum, gmxPriceFromAvalanche, */ gmxPriceFromGoerli, gmxPriceFromPuppy } = useAxnPrice(
     chainId,
     library,
     active
   );
 
   // Get total supply of arbitrum and avalanche
-  let { total: totalGmxSupply } = useTotalGmxSupply(chainId);
+  let { total: totalGmxSupply } = useTotalAxnSupply(chainId);
 
   let {
     avax: avaxGmxStaked,
@@ -1093,7 +1093,7 @@ export default function StakeV2({ setPendingTxns, connectWallet }) {
     goerli: goerliGmxStaked,
     puppy: puppyGmxStaked,
     total: totalGmxStaked,
-  } = useTotalGmxStaked();
+  } = useTotalAxnStaked();
 
   // const gmxSupplyUrl = getServerUrl(chainId, "/gmx_supply");
   // const { data: gmxSupply } = useSWR([gmxSupplyUrl], {

@@ -1,7 +1,7 @@
 import { useState } from "react";
-
+import { ethers } from "ethers";
 import { useWeb3React } from "@web3-react/core";
-import { getContract } from "config/contracts";
+import { Trans, t} from "@lingui/macro";
 
 import iconOview from "img/ic_overview.svg";
 import "./Overview.css";
@@ -9,19 +9,26 @@ import PageTitle from "components/PageComponent/PageTitle";
 import PageRow from "components/PageComponent/PageRow";
 import ImgIcon from "components/IconComponent/ImgIcon";
 import Button from "components/Button/Button";
+import ExternalLink from "components/ExternalLink/ExternalLink";
+import Modal from "components/Modal/Modal";
+import Checkbox from "components/Checkbox/Checkbox";
 
 import useSWR from "swr";
 import { useChainId } from "lib/chains";
-import { contractFetcher } from "lib/contracts";
-import { getChainName, getConstant } from "config/chains";
-import { bigNumberify, expandDecimals, formatKeyAmount } from "lib/numbers";
-import { useGmxPrice, useTotalGmxStaked, useTotalGmxSupply } from "domain/legacy";
+import { contractFetcher, callContract } from "lib/contracts";
+import { useLocalStorageSerializeKey } from "lib/localStorage";
+import { bigNumberify, expandDecimals, formatAmountFree, formatKeyAmount, parseValue } from "lib/numbers";
+import { getContract } from "config/contracts";
+import { DEFAULT_CHAIN_ID, getChainName, getConstant } from "config/chains";
+import { useAxnPrice, useTotalAxnStaked, useTotalAxnSupply } from "domain/legacy";
+import { approveTokens } from "domain/tokens";
 
 import Vault from "abis/Vault.json";
 import ReaderV2 from "abis/ReaderV2.json";
+import RewardRouter from "abis/RewardRouter.json";
 import RewardReader from "abis/RewardReader.json";
 import Token from "abis/Token.json";
-import GlpManager from "abis/GlpManager.json";
+import AlpManager from "abis/GlpManager.json";
 
 import {
   TLP_DECIMALS,
@@ -35,72 +42,94 @@ import {
   getProcessedData,
   getPageTitle,
 } from "lib/legacy";
-import ExternalLink from "components/ExternalLink/ExternalLink";
 
 const PAGE_TITLE = "Overview";
 const DESCRIPTION = ["By staking AXN or ALP tokens to the Base network, You can earn Protocol income and Rewards."];
 const REWARDS = "Total rewards";
 
+const VEST_WITH_GMX_ARB = "VEST_WITH_GMX_ARB";
+const VEST_WITH_GLP_ARB = "VEST_WITH_GLP_ARB";
+const VEST_WITH_GMX_AVAX = "VEST_WITH_GMX_AVAX";
+const VEST_WITH_GLP_AVAX = "VEST_WITH_GLP_AVAX";
+
 export default function Overview( {setPendingTxns, connectWallet }) {
   const { active, library, account } = useWeb3React();
   const { chainId } = useChainId();
+  const [selectedOption, setSelectedOption] = useState("");
+  const [isClaiming, setIsClaiming] = useState(false);
+  const [value, setValue] = useState("");
 
+  const isOnChain = chainId===DEFAULT_CHAIN_ID
+
+  const rewardRouterAddress = getContract("RewardRouter");
   const rewardReaderAddress = getContract("RewardReader");
   const readerAddress = getContract("Reader");
 
   const vaultAddress = getContract("Vault");
   const nativeTokenAddress = getContract("NATIVE_TOKEN");
-  const gmxAddress = getContract("AXN");
-  const esGmxAddress = getContract("EsAXN");
-  const bnGmxAddress = getContract("BnAXN");
-  const glpAddress = getContract("ALP");
+  const axnAddress = getContract("AXN");
+  const esAxnAddress = getContract("EsAXN");
+  const bnAxnAddress = getContract("BnAXN");
+  const alpAddress = getContract("ALP");
+  const esAxnIouAddress = getContract("EsAxnIOU");
 
-  const stakedGmxTrackerAddress = getContract("StakedAxnTracker");
-  const bonusGmxTrackerAddress = getContract("BonusAxnTracker");
-  const feeGmxTrackerAddress = getContract("FeeAxnTracker");
+  const stakedAxnTrackerAddress = getContract("StakedAxnTracker");
+  const bonusAxnTrackerAddress = getContract("BonusAxnTracker");
+  const feeAxnTrackerAddress = getContract("FeeAxnTracker");
 
-  const stakedGlpTrackerAddress = getContract("StakedAlpTracker");
-  const feeGlpTrackerAddress = getContract("FeeAlpTracker");
+  const stakedAlpTrackerAddress = getContract("StakedAlpTracker");
+  const feeAlpTrackerAddress = getContract("FeeAlpTracker");
 
-  const glpManagerAddress = getContract("AlpManager");
+  const alpManagerAddress = getContract("AlpManager");
 
-  const stakedGmxDistributorAddress = getContract("StakedAxnDistributor");
-  const stakedGlpDistributorAddress = getContract("StakedAlpDistributor");
+  const stakedAxnDistributorAddress = getContract("StakedAxnDistributor");
+  const stakedAlpDistributorAddress = getContract("StakedAlpDistributor");
 
-  const gmxVesterAddress = getContract("AxnVester");
-  const glpVesterAddress = getContract("AlpVester");
+  const axnVesterAddress = getContract("AxnVester");
+  const alpVesterAddress = getContract("AlpVester");
 
-  const vesterAddresses = [gmxVesterAddress, glpVesterAddress];
+  const vesterAddresses = [axnVesterAddress, alpVesterAddress];
 
-  const excludedEsGmxAccounts = [stakedGmxDistributorAddress, stakedGlpDistributorAddress];
+  const excludedEsAxnAccounts = [stakedAxnDistributorAddress, stakedAlpDistributorAddress];
 
   const nativeTokenSymbol = getConstant(chainId, "nativeTokenSymbol");
   const wrappedTokenSymbol = getConstant(chainId, "wrappedTokenSymbol");
 
-  const walletTokens = [gmxAddress, esGmxAddress, glpAddress, stakedGmxTrackerAddress];
+  const walletTokens = [axnAddress, esAxnAddress, alpAddress, stakedAxnTrackerAddress];
   const depositTokens = [
-    gmxAddress,
-    esGmxAddress,
-    stakedGmxTrackerAddress,
-    bonusGmxTrackerAddress,
-    bnGmxAddress,
-    glpAddress,
+    axnAddress,
+    esAxnAddress,
+    stakedAxnTrackerAddress,
+    bonusAxnTrackerAddress,
+    bnAxnAddress,
+    alpAddress,
   ];
   const rewardTrackersForDepositBalances = [
-    stakedGmxTrackerAddress,
-    stakedGmxTrackerAddress,
-    bonusGmxTrackerAddress,
-    feeGmxTrackerAddress,
-    feeGmxTrackerAddress,
-    feeGlpTrackerAddress,
+    stakedAxnTrackerAddress,
+    stakedAxnTrackerAddress,
+    bonusAxnTrackerAddress,
+    feeAxnTrackerAddress,
+    feeAxnTrackerAddress,
+    feeAlpTrackerAddress,
   ];
   const rewardTrackersForStakingInfo = [
-    stakedGmxTrackerAddress,
-    bonusGmxTrackerAddress,
-    feeGmxTrackerAddress,
-    stakedGlpTrackerAddress,
-    feeGlpTrackerAddress,
+    stakedAxnTrackerAddress,
+    bonusAxnTrackerAddress,
+    feeAxnTrackerAddress,
+    stakedAlpTrackerAddress,
+    feeAlpTrackerAddress,
   ];
+
+  const [isCompoundModalVisible, setIsCompoundModalVisible] = useState(false);
+  const [isClaimModalVisible, setIsClaimModalVisible] = useState(false);
+  const [claimModalTitle, setClaimModalTitle] = useState("");
+
+  // const [stakeModalMaxAmount, setClaimModalMaxAmount] = useState(undefined);
+  // const [stakeValue, setStakeValue] = useState("");
+  // const [stakingTokenSymbol, setStakingTokenSymbol] = useState("");
+  // const [stakingTokenAddress, setStakingTokenAddress] = useState("");
+  // const [stakingFarmAddress, setStakingFarmAddress] = useState("");
+  // const [stakeMethodName, setStakeMethodName] = useState("");
 
   const { data: walletBalances } = useSWR(
     [
@@ -135,15 +164,15 @@ export default function Overview( {setPendingTxns, connectWallet }) {
     }
   );
 
-  const { data: stakedGmxSupply } = useSWR(
-    [`StakeV2:stakedGmxSupply:${active}`, chainId, gmxAddress, "balanceOf", stakedGmxTrackerAddress],
+  const { data: stakedAxnSupply } = useSWR(
+    [`StakeV2:stakedAxnSupply:${active}`, chainId, axnAddress, "balanceOf", stakedAxnTrackerAddress],
     {
       fetcher: contractFetcher(library, Token),
     }
   );
 
-  const { data: aums } = useSWR([`StakeV2:getAums:${active}`, chainId, glpManagerAddress, "getAums"], {
-    fetcher: contractFetcher(library, GlpManager),
+  const { data: aums } = useSWR([`StakeV2:getAums:${active}`, chainId, alpManagerAddress, "getAums"], {
+    fetcher: contractFetcher(library, AlpManager),
   });
 
   const { data: nativeTokenPrice } = useSWR(
@@ -153,10 +182,10 @@ export default function Overview( {setPendingTxns, connectWallet }) {
     }
   );
 
-  const { data: esGmxSupply } = useSWR(
-    [`StakeV2:esGmxSupply:${active}`, chainId, readerAddress, "getTokenSupply", esGmxAddress],
+  const { data: esAxnSupply } = useSWR(
+    [`StakeV2:esAxnSupply:${active}`, chainId, readerAddress, "getTokenSupply", esAxnAddress],
     {
-      fetcher: contractFetcher(library, ReaderV2, [excludedEsGmxAccounts]),
+      fetcher: contractFetcher(library, ReaderV2, [excludedEsAxnAccounts]),
     }
   );
 
@@ -167,24 +196,39 @@ export default function Overview( {setPendingTxns, connectWallet }) {
     }
   );
 
-  const { gmxPrice } = useGmxPrice(
+  const { data: esGmxIouBalance } = useSWR(
+    [
+      `ClaimEsGmx:esGmxIouBalance:${active}`,
+      chainId,
+      esAxnIouAddress,
+      "balanceOf",
+      account || PLACEHOLDER_ACCOUNT,
+    ],
+    {
+      fetcher: contractFetcher(library, Token),
+    }
+  );
+
+  console.log("esAxnIouBalance", esGmxIouBalance);
+
+  const { axnPrice } = useAxnPrice(
     chainId,
     library,
     active
   );
 
   // Get total supply of arbitrum and avalanche
-  let { total: totalGmxSupply } = useTotalGmxSupply(chainId);
+  let { total: totalAxnSupply } = useTotalAxnSupply(chainId);
 
   let {
-    total: totalGmxStaked,
-  } = useTotalGmxStaked();
+    total: totalAxnStaked,
+  } = useTotalAxnStaked();
 
-  const gmxSupply = totalGmxSupply;
+  const axnSupply = totalAxnSupply;
 
-  let esGmxSupplyUsd;
-  if (esGmxSupply && gmxPrice) {
-    esGmxSupplyUsd = esGmxSupply.mul(gmxPrice).div(expandDecimals(1, 18));
+  let esAxnSupplyUsd;
+  if (esAxnSupply && axnPrice) {
+    esAxnSupplyUsd = esAxnSupply.mul(axnPrice).div(expandDecimals(1, 18));
   }
 
   let aum;
@@ -205,58 +249,428 @@ export default function Overview( {setPendingTxns, connectWallet }) {
     vestingData,
     aum,
     nativeTokenPrice,
-    stakedGmxSupply,
-    gmxPrice,
-    gmxSupply
+    stakedAxnSupply,
+    axnPrice,
+    axnSupply
   );
 
   let hasMultiplierPoints = false;
   let multiplierPointsAmount;
-  if (processedData && processedData.bonusGmxTrackerRewards && processedData.bnGmxInFeeGmx) {
-    multiplierPointsAmount = processedData.bonusGmxTrackerRewards.add(processedData.bnGmxInFeeGmx);
+  if (processedData && processedData.bonusAxnTrackerRewards && processedData.bnAxnInFeeAxn) {
+    multiplierPointsAmount = processedData.bonusAxnTrackerRewards.add(processedData.bnAxnInFeeAxn);
     if (multiplierPointsAmount.gt(0)) {
       hasMultiplierPoints = true;
     }
   }
   let totalRewardTokens;
-  if (processedData && processedData.bnGmxInFeeGmx && processedData.bonusGmxInFeeGmx) {
-    totalRewardTokens = processedData.bnGmxInFeeGmx.add(processedData.bonusGmxInFeeGmx);
+  if (processedData && processedData.bnAxnInFeeAxn && processedData.bonusAxnInFeeAxn) {
+    totalRewardTokens = processedData.bnAxnInFeeAxn.add(processedData.bonusAxnInFeeAxn);
   }
 
-  let totalRewardTokensAndGlp;
-  if (totalRewardTokens && processedData && processedData.glpBalance) {
-    totalRewardTokensAndGlp = totalRewardTokens.add(processedData.glpBalance);
+  let totalRewardTokensAndAlp;
+  if (totalRewardTokens && processedData && processedData.alpBalance) {
+    totalRewardTokensAndAlp = totalRewardTokens.add(processedData.alpBalance);
   }
 
-  let stakedGmxSupplyUsd;
-  if (totalGmxStaked && !totalGmxStaked.isZero() && gmxPrice) {
-    stakedGmxSupplyUsd = totalGmxStaked.mul(gmxPrice).div(expandDecimals(1, 18));
+  let stakedAxnSupplyUsd;
+  if (totalAxnStaked && !totalAxnStaked.isZero() && axnPrice) {
+    stakedAxnSupplyUsd = totalAxnStaked.mul(axnPrice).div(expandDecimals(1, 18));
   }
 
   let totalSupplyUsd;
-  if (totalGmxSupply && !totalGmxSupply.isZero() && gmxPrice) {
-    totalSupplyUsd = totalGmxSupply.mul(gmxPrice).div(expandDecimals(1, 18));
+  if (totalAxnSupply && !totalAxnSupply.isZero() && axnPrice) {
+    totalSupplyUsd = totalAxnSupply.mul(axnPrice).div(expandDecimals(1, 18));
   }
 
-  let maxUnstakeableGmx = bigNumberify(0);
+  let maxUnstakeableAxn = bigNumberify(0);
   if (
     totalRewardTokens &&
     vestingData &&
-    vestingData.gmxVesterPairAmount &&
+    vestingData.axnVesterPairAmount &&
     multiplierPointsAmount &&
-    processedData.bonusGmxInFeeGmx
+    processedData.bonusAxnInFeeAxn
   ) {
-    const availableTokens = totalRewardTokens.sub(vestingData.gmxVesterPairAmount);
-    const stakedTokens = processedData.bonusGmxInFeeGmx;
+    const availableTokens = totalRewardTokens.sub(vestingData.axnVesterPairAmount);
+    const stakedTokens = processedData.bonusAxnInFeeAxn;
     const divisor = multiplierPointsAmount.add(stakedTokens);
     if (divisor.gt(0)) {
-      maxUnstakeableGmx = availableTokens.mul(stakedTokens).div(divisor);
+      maxUnstakeableAxn = availableTokens.mul(stakedTokens).div(divisor);
     }
   }
+
+  let amount = parseValue(value, 18);
+
+  const getError = () => {
+    if (!active) {
+      return `Wallet not connected`;
+    }
+
+    if (esGmxIouBalance && esGmxIouBalance.eq(0)) {
+      return `No esAXN to claim`;
+    }
+
+    if (!amount || amount.eq(0)) {
+      return `Enter an amount`;
+    }
+
+    if (selectedOption === "") {
+      return `Select an option`;
+    }
+
+    return false;
+  };
+
+  const error = getError();
+
+  const getPrimaryText = () => {
+    if (error) {
+      return error;
+    }
+
+    if (isClaiming) {
+      return `Claiming...`;
+    }
+
+    return `Claim`;
+  };
+
+  function CompoundModal(props) {
+    const {
+      isVisible,
+      setIsVisible,
+      rewardRouterAddress,
+      active,
+      account,
+      library,
+      chainId,
+      setPendingTxns,
+      totalVesterRewards,
+      nativeTokenSymbol,
+      wrappedTokenSymbol,
+    } = props;
+    const [isCompounding, setIsCompounding] = useState(false);
+    const [shouldClaimGmx, setShouldClaimGmx] = useLocalStorageSerializeKey(
+      [chainId, "StakeV2-compound-should-claim-gmx"],
+      true
+    );
+    const [shouldStakeGmx, setShouldStakeGmx] = useLocalStorageSerializeKey(
+      [chainId, "StakeV2-compound-should-stake-gmx"],
+      true
+    );
+    const [shouldClaimEsGmx, setShouldClaimEsGmx] = useLocalStorageSerializeKey(
+      [chainId, "StakeV2-compound-should-claim-es-gmx"],
+      true
+    );
+    const [shouldStakeEsGmx, setShouldStakeEsGmx] = useLocalStorageSerializeKey(
+      [chainId, "StakeV2-compound-should-stake-es-gmx"],
+      true
+    );
+    const [shouldStakeMultiplierPoints, setShouldStakeMultiplierPoints] = useState(true);
+    const [shouldClaimWeth, setShouldClaimWeth] = useLocalStorageSerializeKey(
+      [chainId, "StakeV2-compound-should-claim-weth"],
+      true
+    );
+    const [shouldConvertWeth, setShouldConvertWeth] = useLocalStorageSerializeKey(
+      [chainId, "StakeV2-compound-should-convert-weth"],
+      true
+    );
+
+    const gmxAddress = getContract("AXN");
+    const stakedGmxTrackerAddress = getContract("StakedAxnTracker");
+
+    const [isApproving, setIsApproving] = useState(false);
+
+    const { data: tokenAllowance } = useSWR(
+      active && [active, chainId, gmxAddress, "allowance", account, stakedGmxTrackerAddress],
+      {
+        fetcher: contractFetcher(library, Token),
+      }
+    );
+
+    const needApproval = shouldStakeGmx && tokenAllowance && totalVesterRewards && totalVesterRewards.gt(tokenAllowance);
+
+    const isPrimaryEnabled = () => {
+      return !isCompounding && !isApproving && !isCompounding;
+    };
+
+    const getPrimaryText = () => {
+      if (isApproving) {
+        return t`Approving AXN...`;
+      }
+      if (needApproval) {
+        return t`Approve AXN`;
+      }
+      if (isCompounding) {
+        return t`Compounding...`;
+      }
+      return t`Compound`;
+    };
+
+    const onClickPrimary = () => {
+      if (needApproval) {
+        approveTokens({
+          setIsApproving,
+          library,
+          tokenAddress: gmxAddress,
+          spender: stakedGmxTrackerAddress,
+          chainId,
+        });
+        return;
+      }
+
+      setIsCompounding(true);
+
+      const contract = new ethers.Contract(rewardRouterAddress, RewardRouter.abi, library.getSigner());
+      callContract(
+        chainId,
+        contract,
+        "handleRewards",
+        [
+          shouldClaimGmx || shouldStakeGmx,
+          shouldStakeGmx,
+          shouldClaimEsGmx || shouldStakeEsGmx,
+          shouldStakeEsGmx,
+          shouldStakeMultiplierPoints,
+          shouldClaimWeth || shouldConvertWeth,
+          shouldConvertWeth,
+        ],
+        {
+          sentMsg: t`Compound submitted!`,
+          failMsg: t`Compound failed.`,
+          successMsg: t`Compound completed!`,
+          setPendingTxns,
+        }
+      )
+        .then(async (res) => {
+          setIsVisible(false);
+        })
+        .finally(() => {
+          setIsCompounding(false);
+        });
+    };
+
+    const toggleShouldStakeGmx = (value) => {
+      if (value) {
+        setShouldClaimGmx(true);
+      }
+      setShouldStakeGmx(value);
+    };
+
+    const toggleShouldStakeEsGmx = (value) => {
+      if (value) {
+        setShouldClaimEsGmx(true);
+      }
+      setShouldStakeEsGmx(value);
+    };
+
+    const toggleConvertWeth = (value) => {
+      if (value) {
+        setShouldClaimWeth(true);
+      }
+      setShouldConvertWeth(value);
+    };
+
+    return (
+      <div className="StakeModal">
+        <Modal isVisible={isVisible} setIsVisible={setIsVisible} label={t`Compound Rewards`}>
+          <div className="CompoundModal-menu">
+            <div>
+              <Checkbox
+                isChecked={shouldStakeMultiplierPoints}
+                setIsChecked={setShouldStakeMultiplierPoints}
+                disabled={true}
+              >
+                <Trans>Stake Multiplier Points</Trans>
+              </Checkbox>
+            </div>
+            <div>
+              <Checkbox isChecked={shouldClaimGmx} setIsChecked={setShouldClaimGmx} disabled={shouldStakeGmx}>
+                <Trans>Claim AXN Rewards</Trans>
+              </Checkbox>
+            </div>
+            <div>
+              <Checkbox isChecked={shouldStakeGmx} setIsChecked={toggleShouldStakeGmx}>
+                <Trans>Stake AXN Rewards</Trans>
+              </Checkbox>
+            </div>
+            <div>
+              <Checkbox isChecked={shouldClaimEsGmx} setIsChecked={setShouldClaimEsGmx} disabled={shouldStakeEsGmx}>
+                <Trans>Claim esAXN Rewards</Trans>
+              </Checkbox>
+            </div>
+            <div>
+              <Checkbox isChecked={shouldStakeEsGmx} setIsChecked={toggleShouldStakeEsGmx}>
+                <Trans>Stake esAXN Rewards</Trans>
+              </Checkbox>
+            </div>
+            <div>
+              <Checkbox isChecked={shouldClaimWeth} setIsChecked={setShouldClaimWeth} disabled={shouldConvertWeth}>
+                <Trans>Claim {wrappedTokenSymbol} Rewards</Trans>
+              </Checkbox>
+            </div>
+            <div>
+              <Checkbox isChecked={shouldConvertWeth} setIsChecked={toggleConvertWeth}>
+                <Trans>
+                  Convert {wrappedTokenSymbol} to {nativeTokenSymbol}
+                </Trans>
+              </Checkbox>
+            </div>
+          </div>
+          <div className="Exchange-swap-button-container">
+            <button className="App-cta Exchange-swap-button" onClick={onClickPrimary} disabled={!isPrimaryEnabled()}>
+              {getPrimaryText()}
+            </button>
+          </div>
+        </Modal>
+      </div>
+    );
+  }
+
+  function ClaimModal(props) {
+    const {
+      isVisible,
+      setIsVisible,
+      rewardRouterAddress,
+      library,
+      chainId,
+      setPendingTxns,
+      nativeTokenSymbol,
+      wrappedTokenSymbol,
+    } = props;
+    const [isClaiming, setIsClaiming] = useState(false);
+    const [shouldClaimGmx, setShouldClaimGmx] = useLocalStorageSerializeKey(
+      [chainId, "StakeV2-claim-should-claim-gmx"],
+      true
+    );
+    const [shouldClaimEsGmx, setShouldClaimEsGmx] = useLocalStorageSerializeKey(
+      [chainId, "StakeV2-claim-should-claim-es-gmx"],
+      true
+    );
+    const [shouldClaimWeth, setShouldClaimWeth] = useLocalStorageSerializeKey(
+      [chainId, "StakeV2-claim-should-claim-weth"],
+      true
+    );
+    const [shouldConvertWeth, setShouldConvertWeth] = useLocalStorageSerializeKey(
+      [chainId, "StakeV2-claim-should-convert-weth"],
+      true
+    );
+
+    const isPrimaryEnabled = () => {
+      return !isClaiming;
+    };
+
+    const getPrimaryText = () => {
+      if (isClaiming) {
+        return `Claiming...`;
+      }
+      return `Claim`;
+    };
+
+    const onClickPrimary = () => {
+      setIsClaiming(true);
+
+      const contract = new ethers.Contract(rewardRouterAddress, RewardRouter.abi, library.getSigner());
+      callContract(
+        chainId,
+        contract,
+        "handleRewards",
+        [
+          shouldClaimGmx,
+          false, // shouldStakeGmx
+          shouldClaimEsGmx,
+          false, // shouldStakeEsGmx
+          false, // shouldStakeMultiplierPoints
+          shouldClaimWeth,
+          shouldConvertWeth,
+        ],
+        {
+          sentMsg: `Claim submitted.`,
+          failMsg: `Claim failed.`,
+          successMsg: `Claim completed!`,
+          setPendingTxns,
+        }
+      )
+        .then(async (res) => {
+          setIsVisible(false);
+        })
+        .finally(() => {
+          setIsClaiming(false);
+        });
+    };
+
+    const toggleConvertWeth = (value) => {
+      if (value) {
+        setShouldClaimWeth(true);
+      }
+      setShouldConvertWeth(value);
+    };
+
+    return (
+      <div className="StakeModal">
+        <Modal isVisible={isVisible} setIsVisible={setIsVisible} label={`Claim Rewards`}>
+          <div className="CompoundModal-menu">
+            <div>
+              <Checkbox isChecked={shouldClaimGmx} setIsChecked={setShouldClaimGmx}>
+                <Trans>Claim AXN Rewards</Trans>
+              </Checkbox>
+            </div>
+            <div>
+              <Checkbox isChecked={shouldClaimEsGmx} setIsChecked={setShouldClaimEsGmx}>
+                <Trans>Claim esAXN Rewards</Trans>
+              </Checkbox>
+            </div>
+            <div>
+              <Checkbox isChecked={shouldClaimWeth} setIsChecked={setShouldClaimWeth} disabled={shouldConvertWeth}>
+                <Trans>Claim {wrappedTokenSymbol} Rewards</Trans>
+              </Checkbox>
+            </div>
+            <div>
+              <Checkbox isChecked={shouldConvertWeth} setIsChecked={toggleConvertWeth}>
+                <Trans>
+                  Convert {wrappedTokenSymbol} to {nativeTokenSymbol}
+                </Trans>
+              </Checkbox>
+            </div>
+          </div>
+          <div className="Exchange-swap-button-container">
+            <button className="App-cta Exchange-swap-button" onClick={onClickPrimary} disabled={!isPrimaryEnabled()}>
+              {getPrimaryText()}
+            </button>
+          </div>
+        </Modal>
+      </div>
+    );
+  }
+
   return (
     <>
+    <CompoundModal
+        active={active}
+        account={account}
+        setPendingTxns={setPendingTxns}
+        isVisible={isCompoundModalVisible}
+        setIsVisible={setIsCompoundModalVisible}
+        rewardRouterAddress={rewardRouterAddress}
+        totalVesterRewards={processedData.totalVesterRewards}
+        wrappedTokenSymbol={wrappedTokenSymbol}
+        nativeTokenSymbol={nativeTokenSymbol}
+        library={library}
+        chainId={chainId}
+      />
+      <ClaimModal
+        active={active}
+        account={account}
+        setPendingTxns={setPendingTxns}
+        isVisible={isClaimModalVisible}
+        setIsVisible={setIsClaimModalVisible}
+        rewardRouterAddress={rewardRouterAddress}
+        totalVesterRewards={processedData.totalVesterRewards}
+        wrappedTokenSymbol={wrappedTokenSymbol}
+        nativeTokenSymbol={nativeTokenSymbol}
+        library={library}
+        chainId={chainId}
+      />
       <div className="BeginAccountTransfer page-layout">
-        
         <PageTitle
           title = {PAGE_TITLE}
           descriptions = {DESCRIPTION}
@@ -274,33 +688,48 @@ export default function Overview( {setPendingTxns, connectWallet }) {
                   <div className="row padding-1r">
                       <ImgIcon icon = {iconOview} alt= {REWARDS} title={REWARDS} value = {`$${(formatKeyAmount(processedData, "totalRewardsUsd", USD_DECIMALS, 2, true))}`}/>
                   </div>
-                  <PageRow title={`${nativeTokenSymbol} ( ${wrappedTokenSymbol})`} 
-                    value={`${formatKeyAmount(processedData, "totalNativeTokenRewards", 18, 4, true)}`} 
+                  <PageRow title={`${nativeTokenSymbol} ( ${wrappedTokenSymbol})`}
+                    value={`${formatKeyAmount(processedData, "totalNativeTokenRewards", 18, 4, true)}`}
                     subValue={`$${formatKeyAmount(processedData, "totalNativeTokenRewardsUsd", USD_DECIMALS, 2, true)}`}
                     direction="align-right" className="table-row"/>
-                  <PageRow title="AXN" 
-                    value= {`${formatKeyAmount(processedData, "totalVesterRewards", 18, 4, true)}`} 
-                    subValue = {`$${formatKeyAmount(processedData, "totalVesterRewardsUsd", USD_DECIMALS, 2, true)}`} 
+                  <PageRow title="AXN"
+                    value= {`${formatKeyAmount(processedData, "totalVesterRewards", 18, 4, true)}`}
+                    subValue = {`$${formatKeyAmount(processedData, "totalVesterRewardsUsd", USD_DECIMALS, 2, true)}`}
                     direction="align-right" className="table-row"/>
-                  <PageRow title="esAXN" 
-                    value={`${formatKeyAmount(processedData, "totalEsGmxRewards", 18, 4, true)}`}
-                    subValue={`$${formatKeyAmount(processedData, "totalEsGmxRewardsUsd", USD_DECIMALS, 2, true)}` } 
+                  <PageRow title="esAXN"
+                    value={`${formatKeyAmount(processedData, "totalEsAxnRewards", 18, 4, true)}`}
+                    subValue={`$${formatKeyAmount(processedData, "totalEsAxnRewardsUsd", USD_DECIMALS, 2, true)}` }
                     direction="align-right" className="table-row"/>
-                  <PageRow title="Multiplier Points" 
+                  <PageRow title="Multiplier Points"
                     value={
-                      formatKeyAmount(processedData, "bonusGmxTrackerRewards", 18, 4, true)
-                    } 
+                      formatKeyAmount(processedData, "bonusAxnTrackerRewards", 18, 4, true)
+                    }
                     direction="align-right" className="table-row"/>
-                  <PageRow title="Staked Multiplier Points" 
+                  <PageRow title="Staked Multiplier Points"
                     value={
-                      formatKeyAmount(processedData, "bnGmxInFeeGmx", 18, 4, true)
-                    } 
+                      formatKeyAmount(processedData, "bnAxnInFeeAxn", 18, 4, true)
+                    }
                     direction="align-right" className="table-row"/>
                   <div className="row padding-1r">
-                    {!active && (
+                    {!active ? (
                       <button className="App-cta Exchange-swap-button" onClick={() => connectWallet()}>
-                        Connect Wallet
+                        <Trans>Connect Wallet</Trans>
                       </button>
+                    ) : (
+                      <>
+                        <button
+                          className="App-button-option App-card-option"
+                          onClick={() => setIsCompoundModalVisible(true)}
+                        >
+                          <Trans>Compound</Trans>
+                        </button>
+                        <button
+                          className="App-button-option App-card-option"
+                          onClick={() => setIsClaimModalVisible(true)}
+                        >
+                          <Trans>Claim</Trans>
+                        </button>
+                      </>
                     )}
                   </div>
                 </div>
@@ -370,6 +799,6 @@ export default function Overview( {setPendingTxns, connectWallet }) {
         </div>
       </div>
     </>
-    
+
   )
 }

@@ -35,7 +35,7 @@ import ReaderV2 from "abis/ReaderV2.json";
 import GlpManager from "abis/GlpManager.json";
 
 import "./DashboardV3.css";
-import { useGmxPrice, useTotalGmxInLiquidity, useTotalGmxStaked, useTotalGmxSupply, useTotalStatInfo } from "domain/legacy";
+import { useAxnPrice, useTotalAxnInLiquidity, useTotalAxnStaked, useTotalAxnSupply, useTotalStatInfo } from "domain/legacy";
 import { useWeb3React } from "@web3-react/core";
 import { useChainId } from "lib/chains";
 import { bigNumberify, expandDecimals, formatAmount, formatKeyAmount } from "lib/numbers";
@@ -158,7 +158,7 @@ export default function DashboardV3() {
     total_Volume = totalStats.totalVolume;
   }
 
-  let { total: totalGmxSupply } = useTotalGmxSupply(chainId);
+  let { total: totalGmxSupply } = useTotalAxnSupply(chainId);
 
   const whitelistedTokens = getWhitelistedTokens();
 
@@ -195,17 +195,17 @@ export default function DashboardV3() {
 
 
   const { infoTokens } = useInfoTokens(library, chainId, active, undefined, undefined);
-  const { gmxPrice } = useGmxPrice(
+  const { gmxPrice } = useAxnPrice(
     chainId,
     undefined,
     active
   );
 
-  let { total: totalGmxInLiquidity } = useTotalGmxInLiquidity(chainId, active);
+  let { total: totalGmxInLiquidity } = useTotalAxnInLiquidity(chainId, active);
 
   let {
     total: totalStakedGmx,
-  } = useTotalGmxStaked();
+  } = useTotalAxnStaked();
 
   let gmxMarketCap;
   if (gmxPrice && totalGmxSupply) {

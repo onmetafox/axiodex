@@ -3,7 +3,7 @@ import { getServerUrl } from "config/backend";
 import { getTokenBySymbol, getWrappedToken } from "config/tokens";
 import { getChainlinkChartPricesFromGraph, getChartPricesFromStats, timezoneOffset } from "domain/prices";
 import { bigNumberify } from "lib/numbers";
-import { getGmxPriceClient } from "lib/subgraph";
+import { getPriceClient } from "lib/subgraph";
 
 function getCurrentBarTimestamp(periodSeconds) {
   return Math.floor(Date.now() / (periodSeconds * 1000)) * (periodSeconds * 1000);
@@ -28,7 +28,7 @@ export const getTokenChartPrice = async (chainId: number, symbol: string, period
 };
 
 export async function getCurrentPriceOfToken(chainId: number, symbol: string) : Promise<any> {
-    const client = getGmxPriceClient(chainId)
+    const client = getPriceClient(chainId)
 
     if(client) {
       // const result = await client.query({

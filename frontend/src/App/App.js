@@ -437,7 +437,7 @@ function FullApp() {
     <>
       <div className="App">
         <div className="App-content">
-          
+
           {isHome && (
             <>
               <HomeHeader
@@ -508,7 +508,7 @@ function FullApp() {
                     connectWallet={connectWallet}
                   />
                 </Route>
-                <Route exact path="/buy_tlp">
+                <Route exact path="/buy_alp">
                   <BuyGlp
                     savedSlippageAmount={savedSlippageAmount}
                     setPendingTxns={setPendingTxns}
@@ -583,7 +583,7 @@ function FullApp() {
                 </Route>
                 <Route exact path="/vest">
                   <SideBar>
-                    <Route component={Vest}  path="/vest"/>
+                    <Route /* component={Vest} */ render={(props) => <Vest {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />}  path="/vest"/>
                   </SideBar>
                 </Route>
                 <Route exact path="/alp">

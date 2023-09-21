@@ -15,7 +15,7 @@ import { bigNumberify, expandDecimals } from "lib/numbers";
 import { getTokens, getWhitelistedTokens } from "config/tokens";
 import { Web3Provider } from "@ethersproject/providers";
 import { getSpread } from "./utils";
-import { getGmxPriceClient } from "lib/subgraph";
+import { getPriceClient } from "lib/subgraph";
 import { gql } from "@apollo/client";
 import { graphFetcher } from "lib/contracts/graphFetcher";
 
@@ -51,7 +51,7 @@ export function useInfoTokens(
 
   // const indexPricesUrl = getServerUrl(chainId, "/prices");
   let indexPrices = {};
-  const client = getGmxPriceClient(chainId)
+  const client = getPriceClient(chainId)
   const query = gql`{
     chainlinkPrices {
       token

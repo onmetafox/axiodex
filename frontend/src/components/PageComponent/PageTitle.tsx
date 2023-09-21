@@ -1,5 +1,4 @@
-import cx from "classnames";
-import { Trans, t } from "@lingui/macro";
+import { Trans } from "@lingui/macro";
 
 import "./PageTitle.css";
 import ExternalLink from "components/ExternalLink/ExternalLink";

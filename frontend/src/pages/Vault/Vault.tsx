@@ -1,21 +1,25 @@
 import React, { ReactNode, useEffect, useState } from "react";
-
-import logoIcon from "img/ic_logo.svg";
-import hrefIcon from "img/ic_href.svg";
-import ExternalLink from "components/ExternalLink/ExternalLink";
-import Tab from "components/Tab/Tab";
-import PageTitle from "components/PageComponent/PageTitle";
-import PageRow from "components/PageComponent/PageRow";
-import { DEPOSIT, FIAT_OPTIONS, WITHDRAWAL } from "lib/legacy";
+import { useWeb3React } from "@web3-react/core";
 import { Trans, t } from "@lingui/macro";
 
+import Tab from "components/Tab/Tab";
+import PageRow from "components/PageComponent/PageRow";
+import PageTitle from "components/PageComponent/PageTitle";
+import ExternalLink from "components/ExternalLink/ExternalLink";
+
+import { DEPOSIT, FIAT_OPTIONS, WITHDRAWAL } from "lib/legacy";
+
 import "./Vault.css";
+import logoIcon from "img/ic_logo.svg";
+import hrefIcon from "img/ic_href.svg";
 
 export default function Vault({ setPendingTxns, connectWallet }) {
 
+  const { active, library, account } = useWeb3React();
+
   const PAGE_TITLE = "Vault";
   const DESCRIPTION = ["Our cutting-edge auto-compound Yield Farming strategy, designed to empower investors to earn rewards effortlessly."];
-  const FIAT_LABELS ={  
+  const FIAT_LABELS ={
     [DEPOSIT]: t`Deposit`,
     [WITHDRAWAL]: t`Withdrawal`
   }
@@ -23,7 +27,7 @@ export default function Vault({ setPendingTxns, connectWallet }) {
     <>
       <div className="page-layout valut">
         <PageTitle title = {PAGE_TITLE} descriptions = {DESCRIPTION} />
-        
+
         <div className="Page-content">
           <div className="row">
             <div className="col-lg-8 col-sm-12 col-md-12">
@@ -151,10 +155,17 @@ export default function Vault({ setPendingTxns, connectWallet }) {
                     </ExternalLink>
                   </div>
                 </div>
-                <button className="App-cta Exchange-swap-button" onClick={() => connectWallet()}>
-                  Connect Wallet
-                </button>
-                
+                {!active && (
+                    <button className="App-button-option App-card-option" onClick={() => connectWallet()}>
+                      <Trans>Connect Wallet</Trans>
+                    </button>
+                  )}
+                {active && (
+                    <button className="App-button-option App-card-option">
+                      <Trans>Deposit</Trans>
+                    </button>
+                  )}
+
               </div>
               <div className="row padding-1r">
                 <div className="fee detail-container">
@@ -173,6 +184,6 @@ export default function Vault({ setPendingTxns, connectWallet }) {
         </div>
       </div>
     </>
-    
+
   )
 }
