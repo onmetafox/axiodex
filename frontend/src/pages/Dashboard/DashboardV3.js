@@ -195,7 +195,7 @@ export default function DashboardV3() {
 
 
   const { infoTokens } = useInfoTokens(library, chainId, active, undefined, undefined);
-  const { gmxPrice } = useAxnPrice(
+  const { axnPrice } = useAxnPrice(
     chainId,
     undefined,
     active
@@ -208,13 +208,13 @@ export default function DashboardV3() {
   } = useTotalAxnStaked();
 
   let gmxMarketCap;
-  if (gmxPrice && totalGmxSupply) {
-    gmxMarketCap = gmxPrice.mul(totalGmxSupply).div(expandDecimals(1, AXN_DECIMALS));
+  if (axnPrice && totalGmxSupply) {
+    gmxMarketCap = axnPrice.mul(totalGmxSupply).div(expandDecimals(1, AXN_DECIMALS));
   }
 
   let stakedGmxSupplyUsd;
-  if (gmxPrice && totalStakedGmx) {
-    stakedGmxSupplyUsd = totalStakedGmx.mul(gmxPrice).div(expandDecimals(1, AXN_DECIMALS));
+  if (axnPrice && totalStakedGmx) {
+    stakedGmxSupplyUsd = totalStakedGmx.mul(axnPrice).div(expandDecimals(1, AXN_DECIMALS));
   }
 
   let aum;
@@ -236,8 +236,8 @@ export default function DashboardV3() {
 
   let tvl;
 
-  if (glpMarketCap && gmxPrice && totalStakedGmx) {
-    tvl = glpMarketCap.add(gmxPrice.mul(totalStakedGmx).div(expandDecimals(1, AXN_DECIMALS)));
+  if (glpMarketCap && axnPrice && totalStakedGmx) {
+    tvl = glpMarketCap.add(axnPrice.mul(totalStakedGmx).div(expandDecimals(1, AXN_DECIMALS)));
   }
 
   let adjustedUsdgSupply = bigNumberify(0);
@@ -327,7 +327,7 @@ export default function DashboardV3() {
             <div className="token-content">
               <div className="Exchange-swap-section strategy-container border-0">
                 <div className="Exchange-swap-section-top">
-                  <div className="strategy-title"><ImgIcon icon = {iconLogo} title = "AXION" value={`$${formatAmount(gmxPrice, USD_DECIMALS, 3, true)}`}/></div>
+                  <div className="strategy-title"><ImgIcon icon = {iconLogo} title = "AXION" value={`$${formatAmount(axnPrice, USD_DECIMALS, 3, true)}`}/></div>
                   <div className="align-right strategy-link Tab-option">
                       <Button className="strategy-btn">Read more</Button>
                   </div>
