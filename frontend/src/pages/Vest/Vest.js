@@ -677,7 +677,7 @@ export default function Vest({setPendingTxns, connectWallet}) {
                           </div>
                         </div>
                         <div className="Exchange-swap-section-bottom strategy-content">
-                          <Trans>{`${formatKeyAmount(vestingData, "axnVesterClaimable", 18, 4, true)} AXN`}</Trans>
+                          <div>{`${formatKeyAmount(vestingData, "axnVesterClaimable", 18, 4, true)} AXN`}</div>
                         </div>
                       </div>
                     </div>
@@ -740,7 +740,7 @@ export default function Vest({setPendingTxns, connectWallet}) {
                           </div>
                         </div>
                         <div className="Exchange-swap-section-bottom strategy-content">
-                          <Trans>{`${formatKeyAmount(vestingData, "alpVesterClaimable", 18, 4, true)} AXN`}</Trans>
+                          <div>{`${formatKeyAmount(vestingData, "alpVesterClaimable", 18, 4, true)} AXN`}</div>
                         </div>
                       </div>
                     </div>

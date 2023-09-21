@@ -17,7 +17,7 @@ import useSWR from "swr";
 import { useChainId } from "lib/chains";
 import { contractFetcher, callContract } from "lib/contracts";
 import { useLocalStorageSerializeKey } from "lib/localStorage";
-import { bigNumberify, expandDecimals, formatAmountFree, formatKeyAmount, parseValue } from "lib/numbers";
+import { bigNumberify, expandDecimals, formatAmount, formatAmountFree, formatKeyAmount, parseValue } from "lib/numbers";
 import { getContract } from "config/contracts";
 import { DEFAULT_CHAIN_ID, getChainName, getConstant } from "config/chains";
 import { useAxnPrice, useTotalAxnStaked, useTotalAxnSupply } from "domain/legacy";
@@ -321,6 +321,12 @@ export default function Overview( {setPendingTxns, connectWallet }) {
   };
 
   const error = getError();
+
+  const AxnAndesAxnStaked = processedData.axnInStakedAxn.add(processedData.esAxnInStakedAxn);
+  const AxnAndesAxnStakedUsd = processedData.axnInStakedAxnUsd.add(processedData.esAxnInStakedAxnUsd);
+
+  console.log("AxnAndesAxnStaked",AxnAndesAxnStaked)
+  console.log("AxnAndesAxnStakedUsd",AxnAndesAxnStakedUsd)
 
   const getPrimaryText = () => {
     if (error) {
@@ -740,7 +746,10 @@ export default function Overview( {setPendingTxns, connectWallet }) {
                 <div className="Exchange-swap-section strategy-container">
                   <div className="row">
                     <div className="col-5">
-                      <PageRow title="AXN & esAXN staked" value="0.00 $0.00" direction="vertical"/>
+                      <PageRow title="AXN & esAXN staked"
+                        value ={`${formatAmount(AxnAndesAxnStaked, 18, 2, true)}`}
+                        subValue = {`$${formatAmount(AxnAndesAxnStakedUsd, USD_DECIMALS, 2, true)}`}
+                        direction="vertical"/>
                     </div>
                     <div className="col-3">
                       <PageRow title="APR" value="50.16%" direction="vertical"/>
@@ -755,7 +764,11 @@ export default function Overview( {setPendingTxns, connectWallet }) {
                 <div className="Exchange-swap-section strategy-container">
                   <div className="row">
                     <div className="col-5">
-                      <PageRow title="APL staked" value="0.00 $0.00" direction="vertical"/>
+                      <PageRow title="ALP staked"
+                        value={`${formatKeyAmount(processedData, "alpBalance", TLP_DECIMALS, 2, true)}`}
+                        subValue = {`$${formatKeyAmount(processedData, "alpBalanceUsd", USD_DECIMALS, 2, true)}`}
+                        direction="vertical"
+                      />
                     </div>
                     <div className="col-3">
                       <PageRow title="ALP" value="133.62%" direction="vertical"/>
