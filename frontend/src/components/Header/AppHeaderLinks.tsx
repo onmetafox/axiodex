@@ -113,9 +113,23 @@ export function AppHeaderLinks({
         </ExternalLink>
       </div> */}
       <div className="App-header-link-container">
-        <ExternalLink href="https://app.1inch.io/#/1/simple/swap/ETH/0x4384b85fe228ae727b129230211194e4a50877c4">
-          <Trans>Home</Trans>
-        </ExternalLink>
+        {/* <ExternalLink href="https://app.1inch.io/#/1/simple/swap/ETH/0x4384b85fe228ae727b129230211194e4a50877c4"> */}
+        <HeaderLink
+          to="/dashboard"
+          redirectPopupTimestamp={redirectPopupTimestamp}
+          showRedirectModal={showRedirectModal}
+        >
+          <Trans>Dashboard</Trans>
+        </HeaderLink>
+      </div>
+      <div className="App-header-link-container">
+        <HeaderLink
+          to="/overview"
+          redirectPopupTimestamp={redirectPopupTimestamp}
+          showRedirectModal={showRedirectModal}
+        >
+          <Trans>Overview</Trans>
+        </HeaderLink>
       </div>
       <div className="App-header-link-container">
         <HeaderLink
@@ -144,7 +158,7 @@ export function AppHeaderLinks({
           <Trans>Features</Trans>
         </HeaderLink>
       </div>
-   
+
     </div>
   );
 }
