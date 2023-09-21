@@ -10,11 +10,13 @@ import {
   Legend
 } from 'chart.js'
 import { Bar } from 'react-chartjs-2';
+import iconAxn from 'img/ic_axn.svg'
 import iconLocked from "img/ic_locked.svg";
 import iconVolume from "img/ic_volume.svg";
 import iconFee from "img/ic_fee.svg";
 import iconLogo from "img/ic_logo_70.svg";
 import iconLong from "img/ic_long.svg";
+import logoIcon from "img/ic_logo.svg";
 import iconShort from "img/ic_short.svg";
 import iconCalen from "img/ic_calendar.svg";
 import iconMlp from "img/ic_mlp-big.svg";
@@ -340,24 +342,11 @@ export default function DashboardV3() {
                   </div>
                   <div className="row padding-1r">
                     <div className="stats-block">
-                      <div className="App-card-row header border-bottom-0">
-                        <div className="label">
-                          <Button imgSrc={iconPlus} ><Trans>Total rewards : <span>55%</span></Trans></Button>
-                        </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
-                      </div>
-
                       <div className="App-card-row body">
                         <div className="label">
-                        <Button imgSrc={iconArbi} ><Trans>Total rewards : <span>55%</span></Trans></Button>
+                          <Button imgSrc={logoIcon} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
-                      </div>
-                      <div className="App-card-row footer border-top-0">
-                        <div className="label">
-                          <Button imgSrc={iconAval} ><Trans>Total rewards : <span>55%</span></Trans></Button>
-                        </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
+                        <div className="button"><Button className="strategy-btn green-btn">Buy on Basechain</Button></div>
                       </div>
                     </div>
                   </div>
@@ -381,24 +370,11 @@ export default function DashboardV3() {
                   </div>
                   <div className="row padding-1r">
                     <div className="stats-block">
-                      <div className="App-card-row header border-bottom-0">
-                        <div className="label">
-                          <Button imgSrc={iconPlus} ><Trans>Total rewards : <span>55%</span></Trans></Button>
-                        </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
-                      </div>
-
                       <div className="App-card-row body">
                         <div className="label">
-                        <Button imgSrc={iconArbi} ><Trans>Total rewards : <span>55%</span></Trans></Button>
+                        <Button imgSrc={logoIcon} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
-                      </div>
-                      <div className="App-card-row footer border-top-0">
-                        <div className="label">
-                          <Button imgSrc={iconAval} ><Trans>Total rewards : <span>55%</span></Trans></Button>
-                        </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
+                        <div className="button"><Button className="strategy-btn green-btn">Buy on Basechain</Button></div>
                       </div>
                     </div>
                   </div>
