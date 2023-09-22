@@ -380,10 +380,12 @@ function FullApp() {
       }
     };
 
-    const interval = setInterval(() => {
-      checkPendingTxns();
-    }, 2 * 1000);
-    return () => clearInterval(interval);
+    return checkPendingTxns();
+
+    // const interval = setInterval(() => {
+    //   checkPendingTxns();
+    // }, 2 * 1000);
+    // return () => clearInterval(interval);
   }, [library, pendingTxns, chainId]);
 
   const vaultAddress = getContract("Vault");

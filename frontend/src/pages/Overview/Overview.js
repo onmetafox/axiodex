@@ -322,11 +322,8 @@ export default function Overview( {setPendingTxns, connectWallet }) {
 
   const error = getError();
 
-  const AxnAndesAxnStaked = processedData.axnInStakedAxn.add(processedData.esAxnInStakedAxn);
-  const AxnAndesAxnStakedUsd = processedData.axnInStakedAxnUsd.add(processedData.esAxnInStakedAxnUsd);
-
-  console.log("AxnAndesAxnStaked",AxnAndesAxnStaked)
-  console.log("AxnAndesAxnStakedUsd",AxnAndesAxnStakedUsd)
+  const AxnAndesAxnStaked = processedData.axnInStakedAxn?.add(processedData.esAxnInStakedAxn);
+  const AxnAndesAxnStakedUsd = processedData.axnInStakedAxnUsd?.add(processedData.esAxnInStakedAxnUsd);
 
   const getPrimaryText = () => {
     if (error) {
@@ -722,20 +719,20 @@ export default function Overview( {setPendingTxns, connectWallet }) {
                         <Trans>Connect Wallet</Trans>
                       </button>
                     ) : (
-                      <>
+                      <div style={{display:'flex', justifyContent:"around", alignItems:"center"}}>
                         <button
-                          className="App-button-option App-card-option"
+                          className="default-btn"
                           onClick={() => setIsCompoundModalVisible(true)}
                         >
                           <Trans>Compound</Trans>
                         </button>
                         <button
-                          className="App-button-option App-card-option"
+                          className="default-btn"
                           onClick={() => setIsClaimModalVisible(true)}
                         >
                           <Trans>Claim</Trans>
                         </button>
-                      </>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -783,7 +780,9 @@ export default function Overview( {setPendingTxns, connectWallet }) {
                 <div className="Exchange-swap-section strategy-container">
                   <div className="row">
                     <div className="col-5">
-                      <PageRow title="Vesting status" value="0.0000 / 0.0000" direction="vertical"/>
+                      <PageRow title="Vesting status"
+                        value={`${formatKeyAmount(vestingData, "axnVesterClaimSum", 18, 4, true)} / ${formatKeyAmount( vestingData, "axnVesterVestedAmount", 18, 4, true)}`}
+                        direction="vertical"/>
                     </div>
                     <div className="col-3">
                     </div>

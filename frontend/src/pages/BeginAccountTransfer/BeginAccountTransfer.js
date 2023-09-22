@@ -166,19 +166,19 @@ export default function BeginAccountTransfer(props) {
     }
   };
 
-  // const isPrimaryEnabled = () => {
-  //   const error = getError();
-  //   if (error) {
-  //     return false;
-  //   }
-  //   if (isApproving) {
-  //     return false;
-  //   }
-  //   if (isTransferring) {
-  //     return false;
-  //   }
-  //   return true;
-  // };
+  const isPrimaryEnabled = () => {
+    const error = getError();
+    if (error) {
+      return false;
+    }
+    if (isApproving) {
+      return false;
+    }
+    if (isTransferring) {
+      return false;
+    }
+    return true;
+  };
 
   const getPrimaryText = () => {
     const error = getError();
@@ -289,13 +289,13 @@ export default function BeginAccountTransfer(props) {
             </ValidationRow>
           </div>
           <div className="input-row">
-            {/* <button
+            <button
               className="App-cta Exchange-swap-button"
               disabled={!isPrimaryEnabled()}
               onClick={() => onClickPrimary()}
             >
               {getPrimaryText()}
-            </button> */}
+            </button>
           </div>
         </div>
       </div>

@@ -318,17 +318,17 @@ export default function ALP({ setPendingTxns, connectWallet }) {
                     </button>
                   )}
                   {active && (
-                    <>
-                    <Link className="App-button-option App-card-option" to="/buy_alp">
-                      <Trans>Buy ALP</Trans>
-                    </Link>
-                    <Link className="App-button-option App-card-option" to="/buy_alp#redeem">
-                      <Trans>Sell ALP</Trans>
-                    </Link>
-                    </>
+                    <div style={{display:'flex', justifyContent:"around", alignItems:"center"}}>
+                      <Link className="default-btn" to="/buy_alp">
+                        <Trans>Buy ALP</Trans>
+                      </Link>
+                      <Link className="default-btn" to="/buy_alp#redeem">
+                        <Trans>Sell ALP</Trans>
+                      </Link>
+                    </div>
                   )}
                   <div className="row padding-1r">
-                    <div className="col-3"><Trans>ANX APR</Trans></div>
+                    <div className="col-3"><Trans>AXN APR</Trans></div>
                     <div className="col-9 App-card-divider"></div>
                   </div>
                   <div className="row padding-1r">

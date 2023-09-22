@@ -698,17 +698,17 @@ export default function Vest({setPendingTxns, connectWallet}) {
                     </div>
                     <div className="row">
                       {active && (
-                        <button className="App-button-option App-card-option" onClick={() => showAxnVesterDepositModal()}>
-                          <Trans>Deposit</Trans>
-                        </button>
-                      )}
-                      {active && (
-                        <button className="App-button-option App-card-option" onClick={() => showAxnVesterWithdrawModal()}>
-                          <Trans>Widthraw</Trans>
-                        </button>
+                        <div style={{display:'flex', justifyContent:"around", alignItems:"center"}}>
+                          <button className="default-btn" onClick={() => showAxnVesterDepositModal()}>
+                            <Trans>Deposit</Trans>
+                          </button>
+                          <button className="default-btn" onClick={() => showAxnVesterWithdrawModal()}>
+                            <Trans>Widthraw</Trans>
+                          </button>
+                        </div>
                       )}
                       {!active && (
-                        <button className="App-button-option App-card-option" onClick={() => connectWallet()}>
+                        <button className="default-btn" onClick={() => connectWallet()}>
                           Connect Wallet
                         </button>
                       )}
@@ -761,17 +761,17 @@ export default function Vest({setPendingTxns, connectWallet}) {
                     </div>
                     <div className="row">
                       {active && (
-                        <button className="App-button-option App-card-option" onClick={() => showAlpVesterDepositModal()}>
-                          <Trans>Deposit</Trans>
-                        </button>
-                      )}
-                      {active && (
-                        <button className="App-button-option App-card-option" onClick={() => showAlpVesterWithdrawModal()}>
-                          <Trans>Widthraw</Trans>
-                        </button>
+                        <div style={{display:'flex', justifyContent:"around", alignItems:"center"}}>
+                          <button className="default-btn" onClick={() => showAlpVesterDepositModal()}>
+                            <Trans>Deposit</Trans>
+                          </button>
+                          <button className="default-btn" onClick={() => showAlpVesterWithdrawModal()}>
+                            <Trans>Widthraw</Trans>
+                          </button>
+                        </div>
                       )}
                       {!active && (
-                        <button className="App-button-option App-card-option" onClick={() => connectWallet()}>
+                        <button className="default-btn" onClick={() => connectWallet()}>
                           Connect Wallet
                         </button>
                       )}

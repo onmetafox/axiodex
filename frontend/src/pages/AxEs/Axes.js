@@ -725,14 +725,14 @@ export default function Axes({ setPendingTxns, connectWallet }) {
                     </button>
                   )}
                   {active && (
-                    <button className="App-button-option App-card-option" onClick={() => showStakeAxnModal()}>
-                      <Trans>Stake</Trans>
-                    </button>
-                  )}
-                  {active && (
-                    <button className="App-button-option App-card-option" onClick={() => showUnstakeAxnModal()}>
-                      <Trans>Unstake</Trans>
-                    </button>
+                    <div style={{display:'flex', justifyContent:"around", alignItems:"center"}}>
+                      <button className="default-btn" onClick={() => showStakeAxnModal()}>
+                        <Trans>Stake</Trans>
+                      </button>
+                      <button className="default-btn" onClick={() => showUnstakeAxnModal()}>
+                        <Trans>Unstake</Trans>
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>
@@ -752,15 +752,16 @@ export default function Axes({ setPendingTxns, connectWallet }) {
                       Connect Wallet
                     </button>
                   )}
+
                   {active && (
-                    <button className="App-button-option App-card-option" onClick={() => showStakeEsAxnModal()}>
-                      <Trans>Stake</Trans>
-                    </button>
-                  )}
-                  {active && (
-                    <button className="App-button-option App-card-option" onClick={() => showUnstakeEsAxnModal()}>
-                      <Trans>Unstake</Trans>
-                    </button>
+                    <div style={{display:'flex', justifyContent:"around", alignItems:"center"}}>
+                      <button className="default-btn" onClick={() => showStakeEsAxnModal()}>
+                        <Trans>Stake</Trans>
+                      </button>
+                      <button className="default-btn" onClick={() => showUnstakeEsAxnModal()}>
+                        <Trans>Unstake</Trans>
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>
@@ -778,7 +779,7 @@ export default function Axes({ setPendingTxns, connectWallet }) {
                     )}
                     {active && (
                     <>
-                    <Link className="App-button-option App-card-option" to="/buy">
+                    <Link className="default-btn" to="/buy">
                       <Trans>Buy AXN</Trans>
                     </Link>
                     </>
