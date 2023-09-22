@@ -145,7 +145,7 @@ export default function TokenCard({ showRedirectModal, redirectPopupTimestamp })
                 <Trans>Buy on Ethereum</Trans>
               </ExternalLink> */}
               <ExternalLink
-                href="https://baseswap.fi/"
+                href="https://baseswap.fi/swap"
                 className="default-btn read-more"
               >
                 <Trans>Buy on Baseswap</Trans>
