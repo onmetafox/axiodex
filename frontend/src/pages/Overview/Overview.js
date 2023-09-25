@@ -45,7 +45,7 @@ import {
 
 const PAGE_TITLE = "Overview";
 const DESCRIPTION = ["By staking AXN or ALP tokens to the Base network, You can earn Protocol income and Rewards."];
-const REWARDS = "Total rewards";
+const REWARDS = "Total Rewards";
 
 const VEST_WITH_GMX_ARB = "VEST_WITH_GMX_ARB";
 const VEST_WITH_GLP_ARB = "VEST_WITH_GLP_ARB";
@@ -208,8 +208,6 @@ export default function Overview( {setPendingTxns, connectWallet }) {
       fetcher: contractFetcher(library, Token),
     }
   );
-
-  console.log("esAxnIouBalance", esGmxIouBalance);
 
   const { axnPrice } = useAxnPrice(
     chainId,
@@ -768,7 +766,7 @@ export default function Overview( {setPendingTxns, connectWallet }) {
                       />
                     </div>
                     <div className="col-3">
-                      <PageRow title="ALP" value="133.62%" direction="vertical"/>
+                      <PageRow title="APR" value="133.62%" direction="vertical"/>
                     </div>
                     <div className="col-4">
                       <Button className="strategy-btn" href="mlp">Details</Button>

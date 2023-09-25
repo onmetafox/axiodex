@@ -766,7 +766,7 @@ export default function Axes({ setPendingTxns, connectWallet }) {
                 </div>
               </div>
             </div>
-            <div className="col-lg-5 col-sm-12 col-md-12">
+            <div className="col-lg-7 col-sm-12 col-md-12">
               <div className="row padding-1r">
                 <div className="Exchange-swap-section strategy-container alp-container">
                   <PageRow title="AXN price"

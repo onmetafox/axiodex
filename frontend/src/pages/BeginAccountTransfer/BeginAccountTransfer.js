@@ -232,8 +232,8 @@ export default function BeginAccountTransfer(props) {
   const PAGE_TITLE = "Transfer Account";
   const DESCRIPTION = [
     "Please note that this transfer method is intended for full account transfers only. The following rules apply",
-    "- This transfer will move all your AXN, esAXN, MLP, and Multiplier Points to your new account.",
-    "- Transfers are only supported if the receiving account has not staked AXN`1 or MLP tokens before.",
+    "- This transfer will move all your AXN, esAXN, ALP, and Multiplier Points to your new account.",
+    "- Transfers are only supported if the receiving account has not staked AXN or ALP tokens before.",
     "- This transfer is one-way only, meaning you will not be able to transfer staked tokens back to the sending account."
   ]
   return (
@@ -279,13 +279,13 @@ export default function BeginAccountTransfer(props) {
               <Trans>Sender has withdrawn all tokens from AXN Vesting Vault</Trans>
             </ValidationRow>
             <ValidationRow isValid={!hasVestedGlp}>
-              <Trans>Sender has withdrawn all tokens from MLP Vesting Vault</Trans>
+              <Trans>Sender has withdrawn all tokens from ALP Vesting Vault</Trans>
             </ValidationRow>
             <ValidationRow isValid={!hasStakedGmx}>
               <Trans>Receiver has not staked AXN tokens before</Trans>
             </ValidationRow>
             <ValidationRow isValid={!hasStakedGlp}>
-              <Trans>Receiver has not staked MLP tokens before</Trans>
+              <Trans>Receiver has not staked ALP tokens before</Trans>
             </ValidationRow>
           </div>
           <div className="input-row">
