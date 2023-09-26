@@ -133,6 +133,7 @@ export default function DashboardV3() {
   const { chainId } = useChainId();
 
   const alpIcon = getIcon(chainId, "alp");
+  const baseIcon = getIcon(chainId, "network");
 
   // const totalVolume = useTotalVolume();
 
@@ -348,7 +349,7 @@ export default function DashboardV3() {
                     <div className="stats-block">
                       <div className="App-card-row body">
                         <div className="label">
-                          <Button imgSrc={logoIcon} ><Trans>Total rewards : <span>55%</span></Trans></Button>
+                          <Button imgSrc={baseIcon} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
                         <div className="button"><Button className="strategy-btn green-btn">Buy on Base</Button></div>
                       </div>
@@ -376,7 +377,7 @@ export default function DashboardV3() {
                     <div className="stats-block">
                       <div className="App-card-row body">
                         <div className="label">
-                        <Button imgSrc={logoIcon} ><Trans>Total rewards : <span>55%</span></Trans></Button>
+                        <Button imgSrc={baseIcon} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
                         <div className="button"><Button className="strategy-btn green-btn">Buy on Base</Button></div>
                       </div>

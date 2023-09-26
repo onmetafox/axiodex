@@ -1,5 +1,5 @@
 import pulse from "img/ic_pls_40.svg";
-import base from "img/base-logo.svg"
+import base from "img/ic_base.svg"
 
 import gmxIcon from "img/ic_gmx_40.svg";
 import ethIcon from "img/ic_eth_40.svg";
