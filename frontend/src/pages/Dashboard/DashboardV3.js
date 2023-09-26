@@ -9,7 +9,36 @@ import {
   Tooltip,
   Legend
 } from 'chart.js'
+import useSWR from "swr";
 import { Bar } from 'react-chartjs-2';
+import { useWeb3React } from "@web3-react/core";
+import { ADDRESS_ZERO } from "@uniswap/v3-sdk";
+import { Trans, t } from "@lingui/macro";
+
+import { useInfoTokens } from "domain/tokens";
+// import useTotalVolume from "domain/useTotalVolume";
+import { useAxnPrice, useTotalAxnInLiquidity, useTotalAxnStaked, useTotalAxnSupply, useTotalStatInfo } from "domain/legacy";
+import { useChainId } from "lib/chains";
+import { contractFetcher } from "lib/contracts";
+import { bigNumberify, expandDecimals, formatAmount, formatKeyAmount } from "lib/numbers";
+import { BASIS_POINTS_DIVISOR, DEFAULT_MAX_USDG_AMOUNT, AXN_DECIMALS, TLP_DECIMALS, USD_DECIMALS,importImage } from "lib/legacy";
+
+// import AssetDropdown from "./AssetDropdown";
+import Button from "components/Button/Button";
+import PageRow from "components/PageComponent/PageRow";
+import ImgIcon from "components/IconComponent/ImgIcon";
+import TooltipComponent from "components/Tooltip/Tooltip";
+import ExternalLink from "components/ExternalLink/ExternalLink";
+import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
+
+import { getIcon } from "config/icons";
+import { getContract } from "config/contracts";
+import { getWhitelistedTokens } from "config/tokens";
+
+import VaultV2 from "abis/VaultV2.json";
+import ReaderV2 from "abis/ReaderV2.json";
+import GlpManager from "abis/GlpManager.json";
+
 import iconAxn from 'img/ic_axn.svg'
 import iconLocked from "img/ic_locked.svg";
 import iconVolume from "img/ic_volume.svg";
@@ -25,34 +54,7 @@ import iconArbi from "img/ic_arbitrum_24.svg";
 import iconAval from "img/ic_avalanche_24.svg";
 import chatView from "img/trade-chat.svg";
 
-import ImgIcon from "components/IconComponent/ImgIcon";
-import ExternalLink from "components/ExternalLink/ExternalLink";
-import Button from "components/Button/Button";
-import PageRow from "components/PageComponent/PageRow";
-
-import { Trans, t } from "@lingui/macro";
-
-import VaultV2 from "abis/VaultV2.json";
-import ReaderV2 from "abis/ReaderV2.json";
-import GlpManager from "abis/GlpManager.json";
-
 import "./DashboardV3.css";
-import { useAxnPrice, useTotalAxnInLiquidity, useTotalAxnStaked, useTotalAxnSupply, useTotalStatInfo } from "domain/legacy";
-import { useWeb3React } from "@web3-react/core";
-import { useChainId } from "lib/chains";
-import { bigNumberify, expandDecimals, formatAmount, formatKeyAmount } from "lib/numbers";
-import { BASIS_POINTS_DIVISOR, DEFAULT_MAX_USDG_AMOUNT, AXN_DECIMALS, TLP_DECIMALS, USD_DECIMALS,importImage } from "lib/legacy";
-import { useInfoTokens } from "domain/tokens";
-import { getContract } from "config/contracts";
-import useSWR from "swr";
-import { contractFetcher } from "lib/contracts";
-// import useTotalVolume from "domain/useTotalVolume";
-import { getWhitelistedTokens } from "config/tokens";
-import { ADDRESS_ZERO } from "@uniswap/v3-sdk";
-
-// import AssetDropdown from "./AssetDropdown";
-import TooltipComponent from "components/Tooltip/Tooltip";
-import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
 
 ChartJS.register(
   CategoryScale,
@@ -129,6 +131,8 @@ export const data = {
 export default function DashboardV3() {
   const { active, library } = useWeb3React();
   const { chainId } = useChainId();
+
+  const alpIcon = getIcon(chainId, "alp");
 
   // const totalVolume = useTotalVolume();
 
@@ -346,7 +350,7 @@ export default function DashboardV3() {
                         <div className="label">
                           <Button imgSrc={logoIcon} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on Basechain</Button></div>
+                        <div className="button"><Button className="strategy-btn green-btn">Buy on Base</Button></div>
                       </div>
                     </div>
                   </div>
@@ -354,7 +358,7 @@ export default function DashboardV3() {
               </div>
               <div className="Exchange-swap-section strategy-container border-0">
                 <div className="Exchange-swap-section-top">
-                  <div className="strategy-title"><ImgIcon icon = {iconMlp} title = "ALP" value={`$${formatAmount(glpPrice, USD_DECIMALS, 3, true)}`}/></div>
+                  <div className="strategy-title"><ImgIcon icon = {alpIcon} title = "ALP" value={`$${formatAmount(glpPrice, USD_DECIMALS, 3, true)}`}/></div>
                   <div className="align-right strategy-link Tab-option">
                     <ExternalLink href="https://gmxio.gitbook.io/gmx/trading#fees">
                       <Button className="strategy-btn">Read more</Button>
@@ -374,7 +378,7 @@ export default function DashboardV3() {
                         <div className="label">
                         <Button imgSrc={logoIcon} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on Basechain</Button></div>
+                        <div className="button"><Button className="strategy-btn green-btn">Buy on Base</Button></div>
                       </div>
                     </div>
                   </div>

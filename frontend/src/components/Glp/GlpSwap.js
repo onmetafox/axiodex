@@ -140,6 +140,7 @@ export default function GlpSwap(props) {
 
   const tokensForBalanceAndSupplyQuery = [stakedGlpTrackerAddress, usdgAddress];
   const glpIcon = getIcon(chainId, "tlp");
+  const alpIcon = getIcon(chainId, "glp");
 
   const tokenAddresses = tokens.map((token) => token.address);
   const { data: tokenBalances } = useSWR(
@@ -700,8 +701,8 @@ export default function GlpSwap(props) {
           <div className="App-card-title">
             <div className="App-card-title-mark">
               <div className="App-card-title-mark-icon">
-                <img width="40" src={glpIcon} alt="ALP" />
-                <img src={getIcon(chainId, "icon")} alt="" className="selected-network-symbol" />
+                <img width="40" src={alpIcon} alt="ALP" />
+                {/* <img src={getIcon(chainId, "icon")} alt="" className="selected-network-symbol" /> */}
               </div>
               <div className="App-card-title-mark-info">
                 <div className="App-card-title-mark-title">ALP</div>

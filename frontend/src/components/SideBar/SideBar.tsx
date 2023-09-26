@@ -20,11 +20,11 @@ export default function SideBar({children}) {
         <div className="row">
             <div className="col-lg-3 col-md-12 col-sm-12">
                 <div className="menu-button">
-                    <Button imgSrc={rewardIcon} href="/overview"><Trans>Total rewards</Trans></Button>
+                    <Button imgSrc={rewardIcon} href="/earn"><Trans>Total rewards</Trans></Button>
                     <Button imgSrc={axnIcon} href="/axes"><Trans>AXN and esAXN</Trans></Button>
                     <Button imgSrc={mlpIcon} href="/alp"><Trans>ALP</Trans></Button>
-                    <Button imgSrc={vestIcon} href="/vest"><Trans>Vest</Trans></Button>
-                    <Button imgSrc={vaultIcon} href="/vault"><Trans>Vault</Trans></Button>
+                    <Button imgSrc={vestIcon} href="/vault"><Trans>Vault</Trans></Button>
+                    {/* <Button imgSrc={vaultIcon} href="/vault"><Trans>Vault</Trans></Button> */}
                     <Button imgSrc={transIcon} href="/begin_account_transfer"><Trans>Transfer account</Trans></Button>
 
                 </div>
@@ -36,8 +36,8 @@ export default function SideBar({children}) {
         <div className="row">
             <Footer></Footer>
         </div>
-        
+
     </>
-    
+
   )
 }

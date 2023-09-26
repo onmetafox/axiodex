@@ -46,7 +46,8 @@ import { getConstant } from "config/chains";
 import { getContract } from "config/contracts";
 // import { getServerUrl } from "config/backend";
 
-const PAGE_TITLE = "Vest";
+// const PAGE_TITLE = "Vest";
+const PAGE_TITLE = "Vault";
 const DESCRIPTION = ["Convert esAXN tokens to AXN tokens.","Prior to using the vaults, please review the vesting details carefully."];
 
 function VesterDepositModal(props) {
