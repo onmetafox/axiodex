@@ -17,7 +17,7 @@ import { Trans, t } from "@lingui/macro";
 
 import { useInfoTokens } from "domain/tokens";
 // import useTotalVolume from "domain/useTotalVolume";
-import { useAxnPrice, useTotalAxnInLiquidity, useTotalAxnStaked, useTotalAxnSupply, useTotalStatInfo } from "domain/legacy";
+import { useAxnPrice, useTotalAxnInLiquidity, useTotalAxnStaked, useTotalAxnSupply, useTotalStatInfo, useVolumeStatInfo } from "domain/legacy";
 import { useChainId } from "lib/chains";
 import { contractFetcher } from "lib/contracts";
 import { bigNumberify, expandDecimals, formatAmount, formatKeyAmount } from "lib/numbers";
@@ -55,6 +55,7 @@ import iconAval from "img/ic_avalanche_24.svg";
 import chatView from "img/trade-chat.svg";
 
 import "./DashboardV3.css";
+import { useEffect, useState } from 'react';
 
 ChartJS.register(
   CategoryScale,
@@ -64,9 +65,9 @@ ChartJS.register(
   Tooltip,
   Legend
 )
-const labels = ['06-10', '06-12', '06-14', '06-16', '06-18', '06-20', '06-22', '06-24', '06-26', '06-28'];
+const labels = ['06-10', '06-12', '06-14', '06-16', '06-18', '06-20', '06-22', '06-24', '06-26', '06-28', '06-10', '06-12', '06-14', '06-16', '06-18', '06-20', '06-22', '06-24', '06-26', '06-28'];
 export const options = {
-  barPercentage: 0.3,
+  barPercentage: 0.7,
   responsive: true,
   legend: {
     labels: {
@@ -82,7 +83,7 @@ export const options = {
         },
         grid: {
           borderDash: [10, 10],
-          color: "#ffffdd",
+          color: "#ddd",
           tickLength: 0, // just to see the dotted line
         }
     },
@@ -93,7 +94,7 @@ export const options = {
         },
         grid: {
           display: false,
-          color: "#ffffff",
+          color: "#ddd",
           backdropPadding: 3,
           borderWidth: 0.5
         }
@@ -106,7 +107,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Trading Vol.',
+      text: 'Trading Vol.($)',
       font: {
         size: 24,
         weight: 'bold',
@@ -123,7 +124,7 @@ export const data = {
   datasets: [
     {
       label: 'Dataset 2',
-      data: labels.map(() => 100 + Math.random() * (100000 - 100)),
+      data: labels.map(() => Math.random() * (250000 - 100)),
       backgroundColor: '#00FFC2'
     },
   ],
@@ -302,6 +303,59 @@ export default function DashboardV3() {
     else return -1;
   });;
 
+  let volumeStats = useVolumeStatInfo(chainId);
+
+  const [volumeStatsData, setVolumeStatsData] = useState();
+
+  useEffect(() => {
+    volumeStats.sort((a, b) => {return a.id - b.id});
+    let now_str = new Date().toDateString();
+
+    let timezoneOffset = new Date(now_str).getTimezoneOffset();
+    let to = new Date(now_str).getTime() - timezoneOffset * 60 * 1000
+    let from = to - 60 *60 * 24 * 30 * 1000;
+
+    from = Math.floor(from / 1000);
+    to = Math.floor(to / 1000);
+
+
+    let volumeStatsLabels = [];
+    let volumeStatsColumeData = [];
+
+    let index = -1;
+    let i = 0;
+    for (let d = from ; d <= to ; d += 86400 ) {
+      index = volumeStats.findIndex(stat => Number(stat.id) === Number(d));
+      if(index > -1) {
+        volumeStatsColumeData.push(parseFloat(formatAmount(volumeStats[index].sum, USD_DECIMALS, 2, true).replace(/,/g, '')))
+      } else {
+        volumeStatsColumeData.push(0)
+      }
+
+      if(i % 2 === 0) {
+        let cur = new Date(d * 1000)
+        let str_m = ("0" + (cur.getMonth() + 1)).substr(-2)
+        let str_d = ("0" + cur.getDate()).substr(-2)
+
+        volumeStatsLabels.push(str_m + "-" + str_d);
+      } else {
+        volumeStatsLabels.push("");
+      }
+      i ++;
+    }
+
+    setVolumeStatsData({
+      labels: volumeStatsLabels,
+      datasets: [
+        {
+          label: 'Trading Volume',
+          data: volumeStatsColumeData,
+          backgroundColor: '#00FFC2'
+        },
+      ],
+    });
+  }, [volumeStats])
+
   return (
     <>
       <div className="BeginAccountTransfer page-layout dashboard">
@@ -325,7 +379,7 @@ export default function DashboardV3() {
                 </div>
               </div>
               <div className="Exchange-swap-section-bottom strategy-trade">
-                <Bar options={options} data = {data}/>
+                {volumeStatsData && <Bar options={options} data = {volumeStatsData}/>}
               </div>
             </div>
           </div>

@@ -61,7 +61,6 @@ export function useAllOrdersStats(chainId) {
   const [res, setRes] = useState<any>();
 
   useEffect(() => {
-    console.log('useallordersstats.........');
     const graphClient = getStatsClient(chainId);
     if (graphClient) {
       // eslint-disable-next-line no-console
@@ -995,7 +994,6 @@ export function useTotalStatInfo(chainId) {
 
     if (graphClient) {
       graphClient.query({ query: query }).then((res) => {
-        console.log('[query result]:', res);
 
         // total volume
         if (res?.data?.volumeStats?.length > 0) {
@@ -1034,7 +1032,6 @@ export function useTotalStatInfo(chainId) {
               ...buf
             };
           });
-          console.log('volume24H: ', BigNumber.from(ret[ret.length - 1].all))
           setStats((prev)=>({...prev, volume24H: ret[ret.length - 1].all}))
         } else {
           setStats((prev)=>({...prev, volume24H: BigNumber.from(0)}))
@@ -1057,7 +1054,6 @@ export function useTotalStatInfo(chainId) {
               ...buf
             }
           });
-          console.log('fee24H: ', BigNumber.from(ret[ret.length - 1].all))
           setStats((prev)=>({...prev, fee24H: ret[ret.length - 1].all}))
         } else {
           setStats((prev)=>({...prev, fee24H: '123'}))
@@ -1066,7 +1062,6 @@ export function useTotalStatInfo(chainId) {
         // user stats
         if (res?.data?.userStats?.length > 0) {
           let data:any[] = res?.data?.userStats;
-          console.log('totalUser: ', data[0].uniqueCountCumulative)
           setStats((prev)=>({...prev, totalUser: data[0].uniqueCountCumulative.toString()}))
         } else {
           setStats((prev)=>({...prev, totalUser: '123'}))
@@ -1094,7 +1089,6 @@ export function useTotalStatInfo(chainId) {
           const feesChartData = chain(chartData)
                                   .groupBy(item => item.timestamp)
                                   .map((values, timestamp) => {
-                                    console.log(values, timestamp);
                                     const all = sumBy(values, 'all');
                                     cumulative = cumulative.add(BigNumber.from(all));
 
@@ -1121,8 +1115,6 @@ export function useTotalStatInfo(chainId) {
                                   .value()
                                   .filter(item => item.timestamp >= first_date_ts)
 
-
-          console.log('totalFees: ', BigNumber.from(feesChartData[feesChartData.length - 1].cumulative))
           setStats((prev)=>({...prev, totalFees: feesChartData[feesChartData.length - 1].cumulative}))
 
         } else {
@@ -1165,6 +1157,57 @@ export function useTotalStatInfo(chainId) {
 
           setStats((prev)=>({...prev, status: 200}))
         }
+      }).catch(console.warn);
+    }
+  }, []);
+  return stats;
+}
+
+export function useVolumeStatInfo(chainId) {
+
+  const [stats, setStats] = useState<any[]>([]);
+
+  const PROPS = 'margin liquidation swap mint burn'.split(' ');
+
+  const query = gql(`{
+    volumeStats(
+      first: 30
+      orderDirection: desc
+      subgraphError: allow
+      where: {period: daily}
+      orderBy: id
+    ) {
+      id
+      ${PROPS.join('\n')}
+    }
+	}`)
+
+  useEffect(()=>{
+    const graphClient = getStatsClient(chainId);
+
+    if (graphClient) {
+      graphClient.query({ query: query }).then((res) => {
+
+        // total volume
+        if (res?.data?.volumeStats?.length > 0) {
+          let data:any[] = res?.data?.volumeStats;
+          // let all = BigNumber.from(0);
+          let ret = data.map(item=>{
+            let sum = BigNumber.from(0);
+            PROPS.forEach(prop => {
+              sum = sum.add(BigNumber.from(item[prop]))
+            })
+            // all = all.add(sum);
+            return {
+              sum,
+              ...item
+            }
+          });
+          setStats(ret);
+        } else {
+          return stats;
+        }
+
       }).catch(console.warn);
     }
   }, []);
