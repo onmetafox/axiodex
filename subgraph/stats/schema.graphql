@@ -259,7 +259,6 @@ type VolumeStat @entity {
   mint: BigInt!
   burn: BigInt!
   period: Period!
-  timestamp: Int!
 }
 
 type HourlyVolumeBySource @entity {
