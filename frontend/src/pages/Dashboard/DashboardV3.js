@@ -15,11 +15,14 @@ import { useWeb3React } from "@web3-react/core";
 import { ADDRESS_ZERO } from "@uniswap/v3-sdk";
 import { Trans, t } from "@lingui/macro";
 
-import { useInfoTokens } from "domain/tokens";
+import { useHighPricesTokens, useInfoTokens } from "domain/tokens";
 // import useTotalVolume from "domain/useTotalVolume";
 import { useAxnPrice, useTotalAxnInLiquidity, useTotalAxnStaked, useTotalAxnSupply, useTotalStatInfo, useVolumeStatInfo } from "domain/legacy";
+
+import { gql } from "@apollo/client";
 import { useChainId } from "lib/chains";
 import { contractFetcher } from "lib/contracts";
+import { graphFetcher } from "lib/contracts/graphFetcher";
 import { bigNumberify, expandDecimals, formatAmount, formatKeyAmount } from "lib/numbers";
 import { BASIS_POINTS_DIVISOR, DEFAULT_MAX_USDG_AMOUNT, AXN_DECIMALS, TLP_DECIMALS, USD_DECIMALS,importImage } from "lib/legacy";
 
@@ -31,9 +34,11 @@ import TooltipComponent from "components/Tooltip/Tooltip";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
 
+
 import { getIcon } from "config/icons";
 import { getContract } from "config/contracts";
 import { getWhitelistedTokens } from "config/tokens";
+
 
 import VaultV2 from "abis/VaultV2.json";
 import ReaderV2 from "abis/ReaderV2.json";
@@ -56,6 +61,7 @@ import chatView from "img/trade-chat.svg";
 
 import "./DashboardV3.css";
 import { useEffect, useState } from 'react';
+import { getPriceClient } from 'lib/subgraph';
 
 ChartJS.register(
   CategoryScale,
@@ -201,6 +207,9 @@ export default function DashboardV3() {
     }
   );
 
+  // Get 24high Prices
+
+  const highPrices = useHighPricesTokens(chainId);
 
   const { infoTokens } = useInfoTokens(library, chainId, active, undefined, undefined);
   const { axnPrice } = useAxnPrice(
@@ -463,7 +472,7 @@ export default function DashboardV3() {
                       <Trans>24 Change(%)</Trans>
                     </th>
                     <th>
-                      <Trans>Open Interest</Trans>
+                      <Trans>Total Commitment</Trans>
                     </th>
                     <th>
                       <Trans>Chart</Trans>
@@ -521,7 +530,7 @@ export default function DashboardV3() {
                             }}
                           />
                         </td>
-                        <td>{getWeightText(tokenInfo)}</td>
+                        <td>${formatAmount(highPrices[token.symbol], 8, 2, true)}</td>
                         <td>{formatAmount(utilization, 2, 2, false)}%</td>
                         <td></td>
                         <td></td>
@@ -556,7 +565,7 @@ export default function DashboardV3() {
                         </div>
                         <div className="App-card-row">
                           <div className="label">
-                            <Trans>Price</Trans>
+                            <Trans>Last Price</Trans>
                           </div>
                           <div>${formatKeyAmount(tokenInfo, "minPrice", USD_DECIMALS, 2, true)}</div>
                         </div>
@@ -597,13 +606,13 @@ export default function DashboardV3() {
                         </div>
                         <div className="App-card-row">
                           <div className="label">
-                            <Trans>Weight</Trans>
+                            <Trans>24 High</Trans>
                           </div>
-                          <div>{getWeightText(tokenInfo)}</div>
+                          <div>${formatAmount(highPrices[token.symbol], 8, 2, false)}</div>
                         </div>
                         <div className="App-card-row">
                           <div className="label">
-                            <Trans>Utilization</Trans>
+                            <Trans>24 Change(%)</Trans>
                           </div>
                           <div>{formatAmount(utilization, 2, 2, false)}%</div>
                         </div>
