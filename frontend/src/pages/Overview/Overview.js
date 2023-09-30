@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ethers } from "ethers";
 import { useWeb3React } from "@web3-react/core";
-import { Trans, t} from "@lingui/macro";
+import { Trans, t } from "@lingui/macro";
 
 import iconOview from "img/ic_overview.svg";
 import "./Overview.css";
@@ -52,14 +52,14 @@ const VEST_WITH_GLP_ARB = "VEST_WITH_GLP_ARB";
 const VEST_WITH_GMX_AVAX = "VEST_WITH_GMX_AVAX";
 const VEST_WITH_GLP_AVAX = "VEST_WITH_GLP_AVAX";
 
-export default function Overview( {setPendingTxns, connectWallet }) {
+export default function Overview({ setPendingTxns, connectWallet }) {
   const { active, library, account } = useWeb3React();
   const { chainId } = useChainId();
   const [selectedOption, setSelectedOption] = useState("");
   const [isClaiming, setIsClaiming] = useState(false);
   const [value, setValue] = useState("");
 
-  const isOnChain = chainId===DEFAULT_CHAIN_ID
+  const isOnChain = chainId === DEFAULT_CHAIN_ID;
 
   const rewardRouterAddress = getContract("RewardRouter");
   const rewardReaderAddress = getContract("RewardReader");
@@ -197,30 +197,18 @@ export default function Overview( {setPendingTxns, connectWallet }) {
   );
 
   const { data: esGmxIouBalance } = useSWR(
-    [
-      `ClaimEsGmx:esGmxIouBalance:${active}`,
-      chainId,
-      esAxnIouAddress,
-      "balanceOf",
-      account || PLACEHOLDER_ACCOUNT,
-    ],
+    [`ClaimEsGmx:esGmxIouBalance:${active}`, chainId, esAxnIouAddress, "balanceOf", account || PLACEHOLDER_ACCOUNT],
     {
       fetcher: contractFetcher(library, Token),
     }
   );
 
-  const { axnPrice } = useAxnPrice(
-    chainId,
-    library,
-    active
-  );
+  const { axnPrice } = useAxnPrice(chainId, library, active);
 
   // Get total supply of arbitrum and avalanche
   let { total: totalAxnSupply } = useTotalAxnSupply(chainId);
 
-  let {
-    total: totalAxnStaked,
-  } = useTotalAxnStaked();
+  let { total: totalAxnStaked } = useTotalAxnStaked();
 
   const axnSupply = totalAxnSupply;
 
@@ -388,7 +376,8 @@ export default function Overview( {setPendingTxns, connectWallet }) {
       }
     );
 
-    const needApproval = shouldStakeGmx && tokenAllowance && totalVesterRewards && totalVesterRewards.gt(tokenAllowance);
+    const needApproval =
+      shouldStakeGmx && tokenAllowance && totalVesterRewards && totalVesterRewards.gt(tokenAllowance);
 
     const isPrimaryEnabled = () => {
       return !isCompounding && !isApproving && !isCompounding;
@@ -645,7 +634,7 @@ export default function Overview( {setPendingTxns, connectWallet }) {
 
   return (
     <>
-    <CompoundModal
+      <CompoundModal
         active={active}
         account={account}
         setPendingTxns={setPendingTxns}
@@ -671,135 +660,172 @@ export default function Overview( {setPendingTxns, connectWallet }) {
         library={library}
         chainId={chainId}
       />
-      <div className="BeginAccountTransfer page-layout">
-        <PageTitle
-          title = {PAGE_TITLE}
-          descriptions = {DESCRIPTION}
-          link = "Learn More"
-          href = "https://github.com"
-        />
+      <div className="overview page-layout">
         <div className="Page-content overview">
           <div className="row">
-            <div className="col-lg-5 col-sm-12 col-md-12 ">
+            <div className="Page-title">{PAGE_TITLE}</div>
+            <div className="Page-description">
+              <div className="row">
+                <p>{DESCRIPTION} <a href="#">Lean More</a></p>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-12 col-sm-12 col-md-12 ">
               <div className="row padding-1r">
-                <div className="Exchange-swap-section strategy-container colored border-0">
-                  <div className="Exchange-swap-section-top row">
-                    <div className="strategy-title col-6">{REWARDS}</div>
-                  </div>
-                  <div className="row padding-1r">
-                      <ImgIcon icon = {iconOview} alt= {REWARDS} title={REWARDS} value = {`$${(formatKeyAmount(processedData, "totalRewardsUsd", USD_DECIMALS, 2, true))}`}/>
-                  </div>
-                  <PageRow title={`${nativeTokenSymbol} ( ${wrappedTokenSymbol})`}
-                    value={`${formatKeyAmount(processedData, "totalNativeTokenRewards", 18, 4, true)}`}
-                    subValue={`$${formatKeyAmount(processedData, "totalNativeTokenRewardsUsd", USD_DECIMALS, 2, true)}`}
-                    direction="align-right" className="table-row"/>
-                  <PageRow title="AXN"
-                    value= {`${formatKeyAmount(processedData, "totalVesterRewards", 18, 4, true)}`}
-                    subValue = {`$${formatKeyAmount(processedData, "totalVesterRewardsUsd", USD_DECIMALS, 2, true)}`}
-                    direction="align-right" className="table-row"/>
-                  <PageRow title="esAXN"
-                    value={`${formatKeyAmount(processedData, "totalEsAxnRewards", 18, 4, true)}`}
-                    subValue={`$${formatKeyAmount(processedData, "totalEsAxnRewardsUsd", USD_DECIMALS, 2, true)}` }
-                    direction="align-right" className="table-row"/>
-                  <PageRow title="Multiplier Points"
-                    value={
-                      formatKeyAmount(processedData, "bonusAxnTrackerRewards", 18, 4, true)
-                    }
-                    direction="align-right" className="table-row"/>
-                  <PageRow title="Staked Multiplier Points"
-                    value={
-                      formatKeyAmount(processedData, "bnAxnInFeeAxn", 18, 4, true)
-                    }
-                    direction="align-right" className="table-row"/>
-                  <div className="row padding-1r">
-                    {!active ? (
-                      <button className="App-cta Exchange-swap-button" onClick={() => connectWallet()}>
-                        <Trans>Connect Wallet</Trans>
-                      </button>
-                    ) : (
-                      <div style={{display:'flex', justifyContent:"around", alignItems:"center"}}>
-                        <button
-                          className="default-btn"
-                          onClick={() => setIsCompoundModalVisible(true)}
-                        >
-                          <Trans>Compound</Trans>
+                <div className="col-lg-8 col-sm-12 col-md-12 m-auto">
+                  <div className="Exchange-swap-section strategy-container colored border-0">
+                    <div className="Exchange-swap-section-top row">
+                      <div className="strategy-title col-6">{REWARDS}</div>
+                    </div>
+                    <div className="row padding-1r">
+                      <ImgIcon
+                        icon={iconOview}
+                        alt={REWARDS}
+                        title={REWARDS}
+                        value={`$${formatKeyAmount(processedData, "totalRewardsUsd", USD_DECIMALS, 2, true)}`}
+                      />
+                    </div>
+                    <PageRow
+                      title={`${nativeTokenSymbol} ( ${wrappedTokenSymbol})`}
+                      value={`${formatKeyAmount(processedData, "totalNativeTokenRewards", 18, 4, true)}`}
+                      subValue={`$${formatKeyAmount(processedData, "totalNativeTokenRewardsUsd", USD_DECIMALS, 2, true)}`}
+                      direction="align-right"
+                      className="table-row"
+                    />
+                    <PageRow
+                      title="AXN"
+                      value={`${formatKeyAmount(processedData, "totalVesterRewards", 18, 4, true)}`}
+                      subValue={`$${formatKeyAmount(processedData, "totalVesterRewardsUsd", USD_DECIMALS, 2, true)}`}
+                      direction="align-right"
+                      className="table-row"
+                    />
+                    <PageRow
+                      title="esAXN"
+                      value={`${formatKeyAmount(processedData, "totalEsAxnRewards", 18, 4, true)}`}
+                      subValue={`$${formatKeyAmount(processedData, "totalEsAxnRewardsUsd", USD_DECIMALS, 2, true)}`}
+                      direction="align-right"
+                      className="table-row"
+                    />
+                    <PageRow
+                      title="Multiplier Points"
+                      value={formatKeyAmount(processedData, "bonusAxnTrackerRewards", 18, 4, true)}
+                      direction="align-right"
+                      className="table-row"
+                    />
+                    <PageRow
+                      title="Staked Multiplier Points"
+                      value={formatKeyAmount(processedData, "bnAxnInFeeAxn", 18, 4, true)}
+                      direction="align-right"
+                      className="table-row"
+                    />
+                    <div className="row padding-1r">
+                      {!active ? (
+                        <button className="App-cta Exchange-swap-button" onClick={() => connectWallet()}>
+                          <Trans>Connect Wallet</Trans>
                         </button>
-                        <button
-                          className="default-btn"
-                          onClick={() => setIsClaimModalVisible(true)}
-                        >
-                          <Trans>Claim</Trans>
-                        </button>
-                      </div>
-                    )}
+                      ) : (
+                        <div style={{ display: "flex", justifyContent: "around", alignItems: "center" }}>
+                          <button className="default-btn" onClick={() => setIsCompoundModalVisible(true)}>
+                            <Trans>Compound</Trans>
+                          </button>
+                          <button className="default-btn" onClick={() => setIsClaimModalVisible(true)}>
+                            <Trans>Claim</Trans>
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-lg-5 col-sm-12 col-md-12 text-align-btn padding-1r">
-              <div className="row">
-                <div className="Exchange-swap-section strategy-container">
+            <div className="col-lg-12 col-sm-12 col-md-12 text-align-btn padding-1r">
+              <div className="row padding-1r">
+                <div className="col-6 col-lg-6 col-md-6 col-sm-12  padding-1r">
                   <div className="row">
-                    <div className="col-5">
-                      <PageRow title="AXN & esAXN staked"
-                        value ={`${formatAmount(AxnAndesAxnStaked, 18, 2, true)}`}
-                        subValue = {`$${formatAmount(AxnAndesAxnStakedUsd, USD_DECIMALS, 2, true)}`}
-                        direction="vertical"/>
+                    <div className="Exchange-swap-section strategy-container">
+                      <div className="row">
+                        <div className="col-5">
+                          <PageRow
+                            title="AXN & esAXN staked"
+                            value={`${formatAmount(AxnAndesAxnStaked, 18, 2, true)}`}
+                            subValue={`$${formatAmount(AxnAndesAxnStakedUsd, USD_DECIMALS, 2, true)}`}
+                            direction="vertical"
+                          />
+                        </div>
+                        <div className="col-3">
+                          <PageRow title="APR" value="50.16%" direction="vertical" />
+                        </div>
+                        <div className="col-4">
+                          <Button className="strategy-btn" href="/axes">
+                            Details
+                          </Button>
+                        </div>
+                      </div>
                     </div>
-                    <div className="col-3">
-                      <PageRow title="APR" value="50.16%" direction="vertical"/>
-                    </div>
-                    <div className="col-4">
-                      <Button className="strategy-btn" href="/axes">Details</Button>
+                  </div>
+                  <div className="row">
+                    <div className="Exchange-swap-section strategy-container">
+                      <div className="row">
+                        <div className="col-5">
+                          <PageRow
+                            title="ALP staked"
+                            value={`${formatKeyAmount(processedData, "alpBalance", TLP_DECIMALS, 2, true)}`}
+                            subValue={`$${formatKeyAmount(processedData, "alpBalanceUsd", USD_DECIMALS, 2, true)}`}
+                            direction="vertical"
+                          />
+                        </div>
+                        <div className="col-3">
+                          <PageRow title="APR" value="133.62%" direction="vertical" />
+                        </div>
+                        <div className="col-4">
+                          <Button className="strategy-btn" href="mlp">
+                            Details
+                          </Button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="Exchange-swap-section strategy-container">
+                <div className="col-6 col-lg-6 col-md-6 col-sm-12 padding-1r ">
                   <div className="row">
-                    <div className="col-5">
-                      <PageRow title="ALP staked"
-                        value={`${formatKeyAmount(processedData, "alpBalance", TLP_DECIMALS, 2, true)}`}
-                        subValue = {`$${formatKeyAmount(processedData, "alpBalanceUsd", USD_DECIMALS, 2, true)}`}
-                        direction="vertical"
-                      />
-                    </div>
-                    <div className="col-3">
-                      <PageRow title="APR" value="133.62%" direction="vertical"/>
-                    </div>
-                    <div className="col-4">
-                      <Button className="strategy-btn" href="mlp">Details</Button>
+                    <div className="Exchange-swap-section strategy-container">
+                      <div className="row">
+                        <div className="col-5">
+                          <PageRow
+                            title="Vesting status"
+                            value={`${formatKeyAmount(
+                              vestingData,
+                              "axnVesterClaimSum",
+                              18,
+                              4,
+                              true
+                            )} / ${formatKeyAmount(vestingData, "axnVesterVestedAmount", 18, 4, true)}`}
+                            direction="vertical"
+                          />
+                        </div>
+                        <div className="col-3"></div>
+                        <div className="col-4">
+                          <Button className="strategy-btn" href="vest">
+                            Details
+                          </Button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="Exchange-swap-section strategy-container">
                   <div className="row">
-                    <div className="col-5">
-                      <PageRow title="Vesting status"
-                        value={`${formatKeyAmount(vestingData, "axnVesterClaimSum", 18, 4, true)} / ${formatKeyAmount( vestingData, "axnVesterVestedAmount", 18, 4, true)}`}
-                        direction="vertical"/>
-                    </div>
-                    <div className="col-3">
-                    </div>
-                    <div className="col-4">
-                      <Button className="strategy-btn" href="vest">Details</Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="Exchange-swap-section strategy-container">
-                  <div className="row">
-                    <div className="col-5">
-                      <PageRow title="Deposited in vault" value="$0" direction="vertical"/>
-                    </div>
-                    <div className="col-3">
-                    </div>
-                    <div className="col-4">
-                      <Button className="strategy-btn" href="vault">Details</Button>
+                    <div className="Exchange-swap-section strategy-container">
+                      <div className="row">
+                        <div className="col-5">
+                          <PageRow title="Deposited in vault" value="$0" direction="vertical" />
+                        </div>
+                        <div className="col-3"></div>
+                        <div className="col-4">
+                          <Button className="strategy-btn" href="vault">
+                            Details
+                          </Button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -809,6 +835,5 @@ export default function Overview( {setPendingTxns, connectWallet }) {
         </div>
       </div>
     </>
-
-  )
+  );
 }

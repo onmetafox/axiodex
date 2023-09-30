@@ -208,9 +208,10 @@ export default function DashboardV3() {
   );
 
   // Get 24high Prices
-
   const highPrices = useHighPricesTokens(chainId);
+  // Get Open Interest
 
+  // Get info tokens
   const { infoTokens } = useInfoTokens(library, chainId, active, undefined, undefined);
   const { axnPrice } = useAxnPrice(
     chainId,
