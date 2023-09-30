@@ -133,31 +133,34 @@ export function AppHeaderLinks({
       </div>
       <div className="App-header-link-container">
         <HeaderLink
+          to="/buy"
+          redirectPopupTimestamp={redirectPopupTimestamp}
+          showRedirectModal={showRedirectModal}
+        >
+          <Trans>Buy</Trans>
+        </HeaderLink>
+      </div>
+      <div className="App-header-link-container">
+        <HeaderLink
+          to="/referrals"
+          redirectPopupTimestamp={redirectPopupTimestamp}
+          showRedirectModal={showRedirectModal}
+        >
+          <Trans>Referrals</Trans>
+        </HeaderLink>
+      </div>
+      {/* <div className="App-header-link-container">
+        <HeaderLink
           to="/referrals"
           redirectPopupTimestamp={redirectPopupTimestamp}
           showRedirectModal={showRedirectModal}
         >
           <Trans>About</Trans>
         </HeaderLink>
-      </div>
-      <div className="App-header-link-container">
-        <HeaderLink
-          to="/referrals"
-          redirectPopupTimestamp={redirectPopupTimestamp}
-          showRedirectModal={showRedirectModal}
-        >
-          <Trans>Our Mission</Trans>
-        </HeaderLink>
-      </div>
-      <div className="App-header-link-container">
-        <HeaderLink
-          to="/referrals"
-          redirectPopupTimestamp={redirectPopupTimestamp}
-          showRedirectModal={showRedirectModal}
-        >
-          <Trans>Features</Trans>
-        </HeaderLink>
-      </div>
+      </div> */}
+      <ExternalLink href={"https://docs.axiodex.com/"}>
+        About
+      </ExternalLink>
 
     </div>
   );
