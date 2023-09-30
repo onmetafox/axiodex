@@ -710,7 +710,7 @@ export default function Axes({ setPendingTxns, connectWallet }) {
                 </div>
               </div>
               <div className="Exchange-swap-section strategy-container colored border-0">
-                <PageRow title="AXN" value ="Stake AXN to earn FTM, esAXN, and MPs" direction="vertical"  className="page-row-content"/>
+                <PageRow title="AXN" value ="Stake AXN to earn ETH, esAXN, and MPs" direction="vertical"  className="page-row-content"/>
                 <PageRow title="Wallet"
                   value ={ `${formatKeyAmount(processedData, "axnBalance", 18, 2, true)} AXN`}
                   subValue = {`$${formatKeyAmount(processedData, "axnBalanceUsd", USD_DECIMALS, 2, true)}`}
@@ -737,7 +737,7 @@ export default function Axes({ setPendingTxns, connectWallet }) {
                 </div>
               </div>
               <div className="Exchange-swap-section strategy-container colored border-0 mt-5">
-                <PageRow title="esAXN" value ="Stake esAXN to earn FTM, esAXN, and MPs." direction="vertical"  className="page-row-content"/>
+                <PageRow title="esAXN" value ="Stake esAXN to earn ETH, esAXN, and MPs." direction="vertical"  className="page-row-content"/>
                 <PageRow title="Wallet"
                   value ={`${formatKeyAmount(processedData, "esAxnBalance", 18, 2, true)} esAXN`}
                   subValue = {`$${formatKeyAmount(processedData, "esAxnBalanceUsd", USD_DECIMALS, 2, true)}`}

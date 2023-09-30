@@ -55,31 +55,15 @@ export default function TokenCard({ showRedirectModal, redirectPopupTimestamp })
             <Trans>Basechain APR: 2.04%</Trans>
           </div>
 
-          {/* <div className="Home-token-card-option-apr">
-            <Trans>Ethereum APR:</Trans> <APRLabel chainId={ARBITRUM} label="gmxAprTotal" />,{" "}
-            <Trans>Shibarium APR:</Trans> <APRLabel chainId={AVALANCHE} label="gmxAprTotal" key="AVALANCHE" />
-          </div> */}
           <div className="Home-token-card-option-action">
             <div className="buy">
-              {/* <BuyLink to="/buy_tail" className="default-btn" network={ARBITRUM}>
-                <Trans>Buy on Ethereum</Trans>
-              </BuyLink> */}
-              {/* <BuyLink to="/buy_tail" className="default-btn" network={AVALANCHE}>
-                <Trans>Buy on Shibarium</Trans>
-              </BuyLink> */}
-              {/* <ExternalLink
-                href="https://baseswap.fi/swap"
-                className="default-btn read-more"
-              >
-                <Trans>Buy on Ethereum</Trans>
-              </ExternalLink> */}
               <ExternalLink
                 href="https://baseswap.fi/swap"
                 className="default-btn read-more"
               >
                 <Trans>Buy on Baseswap</Trans>
               </ExternalLink>
-              <ExternalLink href="https://docs.axnfinance.com/tokenomics" className="default-btn read-more">
+              <ExternalLink href="https://docs.axiodex.com/tokenomics" className="default-btn read-more">
                 <Trans>Read more</Trans>
               </ExternalLink>
             </div>
@@ -106,7 +90,7 @@ export default function TokenCard({ showRedirectModal, redirectPopupTimestamp })
               >
                 <Trans>Buy ALP</Trans>
               </Link>
-              <ExternalLink href="https://docs.axnfinance.com/tokenomics" className="default-btn read-more">
+              <ExternalLink href="https://docs.axiodex.com/tokenomics" className="default-btn read-more">
                 <Trans>Read more</Trans>
               </ExternalLink>
             </div>

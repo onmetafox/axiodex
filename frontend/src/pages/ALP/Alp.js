@@ -295,7 +295,7 @@ export default function ALP({ setPendingTxns, connectWallet }) {
                 </div>
               </div>
               <div className="Exchange-swap-section strategy-container colored border-0">
-                <PageRow title= "ALP" value="Stake ALP to earn FTM, esAXN, and MPs." direction="vertical" className="page-row-content"/>
+                <PageRow title= "ALP" value="Stake ALP to earn ETH, esAXN, and MPs." direction="vertical" className="page-row-content"/>
                 <PageRow title= "Wallet"
                   value={`${formatKeyAmount(processedData, "alpBalance", TLP_DECIMALS, 2, true)} AXN`}
                   subValue= {`$${formatKeyAmount(processedData, "alpBalanceUsd", USD_DECIMALS, 2, true)}`}

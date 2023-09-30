@@ -666,7 +666,7 @@ export default function Overview({ setPendingTxns, connectWallet }) {
             <div className="Page-title">{PAGE_TITLE}</div>
             <div className="Page-description">
               <div className="row">
-                <p>{DESCRIPTION} <a href="#">Lean More</a></p>
+                <p>{DESCRIPTION} <a href="https://docs.axiodex.com/tokenomics/rewards-summary">Lean More</a></p>
               </div>
             </div>
           </div>
@@ -678,13 +678,8 @@ export default function Overview({ setPendingTxns, connectWallet }) {
                     <div className="Exchange-swap-section-top row">
                       <div className="strategy-title col-6">{REWARDS}</div>
                     </div>
-                    <div className="row padding-1r">
-                      <ImgIcon
-                        icon={iconOview}
-                        alt={REWARDS}
-                        title={REWARDS}
-                        value={`$${formatKeyAmount(processedData, "totalRewardsUsd", USD_DECIMALS, 2, true)}`}
-                      />
+                    <div classN1ame="row padding-1r">
+                      <div className="total-rewards">{`$${formatKeyAmount(processedData, "totalRewardsUsd", USD_DECIMALS, 2, true)}`}</div>
                     </div>
                     <PageRow
                       title={`${nativeTokenSymbol} ( ${wrappedTokenSymbol})`}

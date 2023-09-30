@@ -5,6 +5,12 @@
     margin-right: auto;
     padding: 2.5rem;
   }
+
+  .total-rewards {
+    font-weight: 700;
+    font-size: 32px;
+    color: #03F5AE;
+  }
   .icon {
     background: linear-gradient(131.99deg, #6bfaf1 -41.53%, #01597e 62.01%);
   }
