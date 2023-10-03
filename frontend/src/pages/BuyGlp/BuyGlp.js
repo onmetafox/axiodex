@@ -27,7 +27,7 @@ export default function BuyGlp(props) {
       <div className="section-title-block">
         <div className="section-title-content">
           <div className="Page-title">
-            <Trans>Buy / Sell TLP</Trans>
+            <Trans>Buy / Sell ALP</Trans>
           </div>
           <div className="Page-description">
             {/* <Trans>

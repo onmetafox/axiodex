@@ -26,7 +26,7 @@ import { DECREASE, getOrderKey, INCREASE, SWAP, USD_DECIMALS } from "lib/legacy"
 import { groupBy, chain, sumBy, sortBy } from "lodash";
 // import { UI_VERSION } from "config/env";
 // import { getServerBaseUrl, getServerUrl } from "config/backend";
-import { getGmxGraphClient, mainnetNissohClient } from "lib/subgraph/clients";
+import { getStatsClient, mainnetNissohClient } from "lib/subgraph/clients";
 import { callContract, contractFetcher } from "lib/contracts";
 import { replaceNativeTokenAddress } from "./tokens";
 import { getUsd } from "./tokens/utils";
@@ -61,8 +61,7 @@ export function useAllOrdersStats(chainId) {
   const [res, setRes] = useState<any>();
 
   useEffect(() => {
-    console.log('useallordersstats.........');
-    const graphClient = getGmxGraphClient(chainId);
+    const graphClient = getStatsClient(chainId);
     if (graphClient) {
       // eslint-disable-next-line no-console
       graphClient.query({ query }).then(setRes).catch(console.warn);
@@ -84,7 +83,7 @@ export function useUserStat(chainId) {
 
   useEffect(() => {
     // eslint-disable-next-line no-console
-    getGmxGraphClient(chainId)?.query({ query }).then(setRes).catch(console.warn);
+    getStatsClient(chainId)?.query({ query }).then(setRes).catch(console.warn);
   }, [setRes, query, chainId]);
 
   return res ? res.data.userStat : null;
@@ -111,7 +110,7 @@ export function useLiquidationsData(chainId, account) {
            type
          }
       }`);
-      const graphClient = getGmxGraphClient(chainId);
+      const graphClient = getStatsClient(chainId);
       if (!graphClient) {
         return;
       }
@@ -224,7 +223,7 @@ export function useAllOrders(chainId, library) {
   const [res, setRes] = useState<any>();
 
   useEffect(() => {
-    getGmxGraphClient(chainId)?.query({ query }).then(setRes);
+    getStatsClient(chainId)?.query({ query }).then(setRes);
   }, [setRes, query, chainId]);
 
   const key = res ? res.data.orders.map((order) => `${order.type}-${order.account}-${order.index}`) : null;
@@ -427,12 +426,12 @@ export function useMinExecutionFee(library, active, chainId, infoTokens) {
   };
 }
 
-export function useStakedGmxSupply(library, active) {
-  const gmxAddress = getContract("AXN");
-  const stakedGmxTrackerAddress = getContract("StakedAxnTracker");
+export function useStakedAxnSupply(library, active) {
+  const axnAddress = getContract("AXN");
+  const stakedAxnTrackerAddress = getContract("StakedAxnTracker");
 
   const { data, mutate } = useSWR(
-    [`StakeV2:stakedGmxSupply:${active}`, DEFAULT_CHAIN_ID, gmxAddress, "balanceOf", stakedGmxTrackerAddress],
+    [`StakeV2:stakedAxnSupply:${active}`, DEFAULT_CHAIN_ID, axnAddress, "balanceOf", stakedAxnTrackerAddress],
     {
       fetcher: contractFetcher(undefined, Token),
     }
@@ -458,31 +457,31 @@ export function useHasOutdatedUi() {
   return {data: false, mutate: {}};
 }
 
-export function useGmxPrice(chainId, libraries, active) {
-  const { data: gmxPrice, mutate: mutateFromChain } = useGmxPriceFromChain(chainId);
+export function useAxnPrice(chainId, libraries, active) {
+  const { data: axnPrice, mutate: mutateFromChain } = useAxnPriceFromChain(chainId);
 
   const mutate = useCallback(() => {
     mutateFromChain();
   }, [mutateFromChain]);
 
   return {
-    gmxPrice,
+    axnPrice,
     mutate,
   };
 }
 
 // use only the supply endpoint on arbitrum, it includes the supply on avalanche
-export function useTotalGmxSupplyFromApiServer() {
-  // const gmxSupplyUrl = getServerUrl(DEFAULT_CHAIN_ID, "/gmx_supply");
+export function useTotalAxnSupplyFromApiServer() {
+  // const axnSupplyUrl = getServerUrl(DEFAULT_CHAIN_ID, "/axn_supply");
 
-  // const { data: gmxSupply, mutate: updateGmxSupply } = useSWR([gmxSupplyUrl], {
+  // const { data: axnSupply, mutate: updateAxnSupply } = useSWR([axnSupplyUrl], {
   //   // @ts-ignore
   //   fetcher: (...args) => fetch(...args).then((res) => res.text()),
   // });
 
   // return {
-  //   total: gmxSupply ? bigNumberify(gmxSupply) : undefined,
-  //   mutate: updateGmxSupply,
+  //   total: axnSupply ? bigNumberify(axnSupply) : undefined,
+  //   mutate: updateAxnSupply,
   // };
   return {
     total: 0,
@@ -490,8 +489,8 @@ export function useTotalGmxSupplyFromApiServer() {
   }
 }
 
-export function useTotalGmxSupply(chainId) {
-  const { data: gmxSupply, mutate: updateTotalSupply } = useSWR(
+export function useTotalAxnSupply(chainId) {
+  const { data: axnSupply, mutate: updateTotalSupply } = useSWR(
     [`StakeV2:mmyTotalSupply:${chainId}`, chainId, getContract("AXN"), "totalSupply"],
     {
       fetcher: contractFetcher(undefined, Token),
@@ -502,20 +501,20 @@ export function useTotalGmxSupply(chainId) {
     updateTotalSupply(undefined, true);
   }, [updateTotalSupply]);
 
-  return { total: gmxSupply, mutate };
+  return { total: axnSupply, mutate };
 }
 
-export function useTotalGmxStaked() {
-  const stakedGmxTrackerAddress = getContract("StakedAxnTracker");
+export function useTotalAxnStaked() {
+  const stakedAxnTrackerAddress = getContract("StakedAxnTracker");
 
-  let totalStakedGmx = useRef(bigNumberify(0));
-  const { data: stakedGmxSupply, mutate: updateStakedGmxSupply } = useSWR<BigNumber>(
+  let totalStakedAxn = useRef(bigNumberify(0));
+  const { data: stakedAxnSupply, mutate: updateStakedAxnSupply } = useSWR<BigNumber>(
     [
-      `StakeV2:stakedGmxSupply:${DEFAULT_CHAIN_ID}`,
+      `StakeV2:stakedAxnSupply:${DEFAULT_CHAIN_ID}`,
       DEFAULT_CHAIN_ID,
       getContract("AXN"),
       "balanceOf",
-      stakedGmxTrackerAddress,
+      stakedAxnTrackerAddress,
     ],
     {
       fetcher: contractFetcher(undefined, Token),
@@ -523,27 +522,27 @@ export function useTotalGmxStaked() {
   );
 
   const mutate = useCallback(() => {
-    updateStakedGmxSupply();
-  }, [updateStakedGmxSupply]);
+    updateStakedAxnSupply();
+  }, [updateStakedAxnSupply]);
 
-  if (stakedGmxSupply) {
-    let total = bigNumberify(stakedGmxSupply);
-    totalStakedGmx.current = total;
+  if (stakedAxnSupply) {
+    let total = bigNumberify(stakedAxnSupply);
+    totalStakedAxn.current = total;
   }
 
   return {
-    total: totalStakedGmx.current,
+    total: totalStakedAxn.current,
     mutate,
   };
 }
 
-export function useTotalGmxInLiquidity(chainId: number) {
+export function useTotalAxnInLiquidity(chainId: number) {
   let poolAddress = getContract("UniswapAxnUsdcPool");
 
   let totalGMXInLiquidity = useRef(bigNumberify(0));
 
-  const { data: gmxInLiquidity, mutate: mutateGMXInLiquidity } = useSWR<any>(
-    [`StakeV2:gmxInLiquidity:${chainId}`, chainId, getContract("AXN"), "balanceOf", poolAddress],
+  const { data: axnInLiquidity, mutate: mutateGMXInLiquidity } = useSWR<any>(
+    [`StakeV2:axnInLiquidity:${chainId}`, chainId, getContract("AXN"), "balanceOf", poolAddress],
     {
       fetcher: contractFetcher(undefined, Token),
     }
@@ -552,8 +551,8 @@ export function useTotalGmxInLiquidity(chainId: number) {
     mutateGMXInLiquidity();
   }, [mutateGMXInLiquidity]);
 
-  if (gmxInLiquidity) {
-    let total = bigNumberify(gmxInLiquidity);
+  if (axnInLiquidity) {
+    let total = bigNumberify(axnInLiquidity);
     totalGMXInLiquidity.current = total;
   }
 
@@ -570,7 +569,7 @@ export function useTotalFundInLiquidity(chainId) {
 
   const { data: usdcInLiquidity, mutate: mutateUSDCInLiquidity } = useSWR<any>(
     [
-      `StakeV2:gmxInLiquidity:${chainId}`,
+      `StakeV2:axnInLiquidity:${chainId}`,
       chainId,
       getNativeToken().address,
       "balanceOf",
@@ -595,7 +594,7 @@ export function useTotalFundInLiquidity(chainId) {
   };
 }
 
-function useGmxPriceFromChain(chainId: number) {
+function useAxnPriceFromChain(chainId: number) {
   const poolAddress = getContract("UniswapAxnUsdcPool");
 
   const { data, mutate: updateReserves } = useSWR(["UniswapAxnUsdcPool", chainId, poolAddress, "getReserves"], {
@@ -603,9 +602,9 @@ function useGmxPriceFromChain(chainId: number) {
   });
 
   const { _reserve0, _reserve1 }: any = data || {};
-  const isGmxUsdc = getContract("AXN").toLowerCase() < getContract("USDC").toLowerCase()
-  const gmxReserve = isGmxUsdc ? _reserve0 : _reserve1
-  const usdcReserve = isGmxUsdc ? _reserve1 : _reserve0
+  const isAxnUsdc = getContract("AXN").toLowerCase() < getContract("USDC").toLowerCase()
+  const axnReserve = isAxnUsdc ? _reserve0 : _reserve1
+  const usdcReserve = isAxnUsdc ? _reserve1 : _reserve0
 
   const vaultAddress = getContract("Vault");
   const usdcAddress = getTokenBySymbol("USDC").address;
@@ -620,9 +619,9 @@ function useGmxPriceFromChain(chainId: number) {
   const PRECISION_AXN = bigNumberify(10)!.pow(18);
   const PRECISION_USDC = bigNumberify(10)!.pow(6);
 
-  let gmxPrice;
-  if (usdcReserve && gmxReserve && usdcPrice) {
-    gmxPrice = usdcReserve.mul(PRECISION_AXN).div(gmxReserve).mul(usdcPrice).div(PRECISION_USDC);
+  let axnPrice;
+  if (usdcReserve && axnReserve && usdcPrice) {
+    axnPrice = usdcReserve.mul(PRECISION_AXN).div(axnReserve).mul(usdcPrice).div(PRECISION_USDC);
   }
 
 
@@ -631,7 +630,7 @@ function useGmxPriceFromChain(chainId: number) {
     updateUsdcPrice(undefined, true);
   }, [updateReserves, updateUsdcPrice]);
 
-  return { data: gmxPrice, mutate };
+  return { data: axnPrice, mutate };
 }
 
 export async function approvePlugin(chainId, pluginAddress, { library, setPendingTxns, sentMsg, failMsg }) {
@@ -885,9 +884,9 @@ export function executeDecreaseOrder(chainId, library, account, index, feeReceiv
 
 export function useTotalStatInfo(chainId) {
   // chainId = 250;
-  // const gmxStatsUrl = getServerUrl(chainId, "/app-stats");
+  // const axnStatsUrl = getServerUrl(chainId, "/app-stats");
 
-  // const { data: stats, mutate: updateGmxState } = useSWR([gmxStatsUrl], {
+  // const { data: stats, mutate: updateAxnState } = useSWR([axnStatsUrl], {
   //   // @ts-ignore
   //   fetcher: (...args) => fetch(...args).then((res) => res.text()),
   // });
@@ -991,11 +990,10 @@ export function useTotalStatInfo(chainId) {
 	}`)
 
   useEffect(()=>{
-    const graphClient = getGmxGraphClient(chainId);
+    const graphClient = getStatsClient(chainId);
 
     if (graphClient) {
       graphClient.query({ query: query }).then((res) => {
-        console.log('[query result]:', res);
 
         // total volume
         if (res?.data?.volumeStats?.length > 0) {
@@ -1034,7 +1032,6 @@ export function useTotalStatInfo(chainId) {
               ...buf
             };
           });
-          console.log('volume24H: ', BigNumber.from(ret[ret.length - 1].all))
           setStats((prev)=>({...prev, volume24H: ret[ret.length - 1].all}))
         } else {
           setStats((prev)=>({...prev, volume24H: BigNumber.from(0)}))
@@ -1057,7 +1054,6 @@ export function useTotalStatInfo(chainId) {
               ...buf
             }
           });
-          console.log('fee24H: ', BigNumber.from(ret[ret.length - 1].all))
           setStats((prev)=>({...prev, fee24H: ret[ret.length - 1].all}))
         } else {
           setStats((prev)=>({...prev, fee24H: '123'}))
@@ -1066,7 +1062,6 @@ export function useTotalStatInfo(chainId) {
         // user stats
         if (res?.data?.userStats?.length > 0) {
           let data:any[] = res?.data?.userStats;
-          console.log('totalUser: ', data[0].uniqueCountCumulative)
           setStats((prev)=>({...prev, totalUser: data[0].uniqueCountCumulative.toString()}))
         } else {
           setStats((prev)=>({...prev, totalUser: '123'}))
@@ -1094,7 +1089,6 @@ export function useTotalStatInfo(chainId) {
           const feesChartData = chain(chartData)
                                   .groupBy(item => item.timestamp)
                                   .map((values, timestamp) => {
-                                    console.log(values, timestamp);
                                     const all = sumBy(values, 'all');
                                     cumulative = cumulative.add(BigNumber.from(all));
 
@@ -1121,8 +1115,6 @@ export function useTotalStatInfo(chainId) {
                                   .value()
                                   .filter(item => item.timestamp >= first_date_ts)
 
-
-          console.log('totalFees: ', BigNumber.from(feesChartData[feesChartData.length - 1].cumulative))
           setStats((prev)=>({...prev, totalFees: feesChartData[feesChartData.length - 1].cumulative}))
 
         } else {
@@ -1165,6 +1157,57 @@ export function useTotalStatInfo(chainId) {
 
           setStats((prev)=>({...prev, status: 200}))
         }
+      }).catch(console.warn);
+    }
+  }, []);
+  return stats;
+}
+
+export function useVolumeStatInfo(chainId) {
+
+  const [stats, setStats] = useState<any[]>([]);
+
+  const PROPS = 'margin liquidation swap mint burn'.split(' ');
+
+  const query = gql(`{
+    volumeStats(
+      first: 30
+      orderDirection: desc
+      subgraphError: allow
+      where: {period: daily}
+      orderBy: id
+    ) {
+      id
+      ${PROPS.join('\n')}
+    }
+	}`)
+
+  useEffect(()=>{
+    const graphClient = getStatsClient(chainId);
+
+    if (graphClient) {
+      graphClient.query({ query: query }).then((res) => {
+
+        // total volume
+        if (res?.data?.volumeStats?.length > 0) {
+          let data:any[] = res?.data?.volumeStats;
+          // let all = BigNumber.from(0);
+          let ret = data.map(item=>{
+            let sum = BigNumber.from(0);
+            PROPS.forEach(prop => {
+              sum = sum.add(BigNumber.from(item[prop]))
+            })
+            // all = all.add(sum);
+            return {
+              sum,
+              ...item
+            }
+          });
+          setStats(ret);
+        } else {
+          return stats;
+        }
+
       }).catch(console.warn);
     }
   }, []);

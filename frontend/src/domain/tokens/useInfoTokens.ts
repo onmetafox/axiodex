@@ -15,7 +15,7 @@ import { bigNumberify, expandDecimals } from "lib/numbers";
 import { getTokens, getWhitelistedTokens } from "config/tokens";
 import { Web3Provider } from "@ethersproject/providers";
 import { getSpread } from "./utils";
-import { getGmxPriceClient } from "lib/subgraph";
+import { getPriceClient } from "lib/subgraph";
 import { gql } from "@apollo/client";
 import { graphFetcher } from "lib/contracts/graphFetcher";
 
@@ -51,7 +51,7 @@ export function useInfoTokens(
 
   // const indexPricesUrl = getServerUrl(chainId, "/prices");
   let indexPrices = {};
-  const client = getGmxPriceClient(chainId)
+  const client = getPriceClient(chainId)
   const query = gql`{
     chainlinkPrices {
       token
@@ -245,4 +245,42 @@ function setTokenUsingIndexPrices(
   const halfSpreadBps = spreadBps.div(2).toNumber();
   token.maxPrice = indexPriceBn.mul(BASIS_POINTS_DIVISOR + halfSpreadBps).div(BASIS_POINTS_DIVISOR);
   token.minPrice = indexPriceBn.mul(BASIS_POINTS_DIVISOR - halfSpreadBps).div(BASIS_POINTS_DIVISOR);
+}
+
+export function useHighPricesTokens(
+  chainId: number,
+) {
+  const whitelistedTokens = getWhitelistedTokens();
+  const client = getPriceClient(chainId)
+  const secondsPerHour = 60 * 60;
+  const from = Math.floor(Date.now() / 1000 / secondsPerHour) * secondsPerHour - 24 * secondsPerHour;
+  const query = gql`{
+    ${whitelistedTokens.map(token => {
+      return `
+        ${token.symbol}:priceCandles(
+          first: 1
+          orderBy: high
+          orderDirection: desc
+          where: {period: "1h", token: "${token.symbol}", timestamp_gt: ${from}}
+        ) {
+          high
+        }
+      `
+    }).join('\n')}
+  }`
+
+  const {data, error, mutate} = useSWR([client, query], {
+    fetcher: graphFetcher,
+    refreshInterval: 500,
+    refreshWhenHidden: true,
+  })
+
+  let prices = {}
+  if(!data?.data) return {};
+  for(const token in data.data) {
+    if(data.data[token]?.[0])
+      prices[token] = data.data[token]?.[0]?.high
+  }
+
+  return prices
 }

@@ -3,7 +3,7 @@ import { getServerUrl } from "config/backend";
 import { getTokenBySymbol, getWrappedToken } from "config/tokens";
 import { getChainlinkChartPricesFromGraph, getChartPricesFromStats, timezoneOffset } from "domain/prices";
 import { bigNumberify } from "lib/numbers";
-import { getGmxPriceClient } from "lib/subgraph";
+import { getPriceClient } from "lib/subgraph";
 
 function getCurrentBarTimestamp(periodSeconds) {
   return Math.floor(Date.now() / (periodSeconds * 1000)) * (periodSeconds * 1000);
@@ -27,18 +27,31 @@ export const getTokenChartPrice = async (chainId: number, symbol: string, period
   return prices;
 };
 
-export async function getCurrentPriceOfToken(chainId: number, symbol: string) {
-    const client = getGmxPriceClient(chainId)
-    const query = gql`{
-      chainlinkPrices(where: {token: $symbol}) {
-        price
-      }
-    }`
+export async function getCurrentPriceOfToken(chainId: number, symbol: string) : Promise<any> {
+    const client = getPriceClient(chainId)
+
     if(client) {
-      const result = await client.query({
-        query, fetchPolicy: 'no-cache', variables: { symbol }
-      })
-      return result?.data?.chainlinkPrices?.[0]?.price
+      // const result = await client.query({
+      //   query, fetchPolicy: 'no-cache', variables: { symbol }
+      // })
+      try {
+        const result = await client.query({
+          query: gql`query($symbol: String) {
+            chainlinkPrices (
+                orderBy: timestamp
+                orderDirection: desc
+                where: { token: $symbol }
+            ) { price }
+          }`,
+          fetchPolicy: 'no-cache',
+          variables: {symbol}
+        })
+
+        return result?.data?.chainlinkPrices?.[0]?.price? result.data.chainlinkPrices[0].price + "0000000000000000000000" : bigNumberify(0)
+      } catch(e) {
+        console.warn("getCurrentPriceOfToken Error: ", e)
+        return bigNumberify(0)
+      }
     } else {
       return bigNumberify(0);
     }

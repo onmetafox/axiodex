@@ -17,27 +17,25 @@ export default function SideBar({children}) {
 
   return (
     <>
-        <div className="row">
-            <div className="col-lg-3 col-md-12 col-sm-12">
+        <div className="container">
+            <div className="col-lg-12 col-md-12 col-sm-12">
                 <div className="menu-button">
-                    <Button imgSrc={rewardIcon} href="/overview"><Trans>Total rewards</Trans></Button>
-                    <Button imgSrc={axnIcon} href="/axes"><Trans>AXN and esAXN</Trans></Button>
-                    <Button imgSrc={mlpIcon} href="/alp"><Trans>ALP</Trans></Button>
-                    <Button imgSrc={vestIcon} href="/vest"><Trans>Vest</Trans></Button>
-                    <Button imgSrc={vaultIcon} href="/vault"><Trans>Vault</Trans></Button>
-                    <Button imgSrc={transIcon} href="/begin_account_transfer"><Trans>Transfer account</Trans></Button>
-
+                    <Button href="/earn"><Trans>Total rewards</Trans></Button>
+                    <Button href="/axes"><Trans>AXN and esAXN</Trans></Button>
+                    <Button href="/alp"><Trans>ALP</Trans></Button>
+                    <Button href="/vault"><Trans>Vault</Trans></Button>
+                    <Button href="/begin_account_transfer"><Trans>Transfer account</Trans></Button>
                 </div>
             </div>
-            <div className="col-lg-9 col-md-12 col-sm-12">
+            <div className="container">
                 {children}
             </div>
         </div>
         <div className="row">
             <Footer></Footer>
         </div>
-        
+
     </>
-    
+
   )
 }

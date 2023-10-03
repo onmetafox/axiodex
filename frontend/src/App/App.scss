@@ -13,7 +13,17 @@
   left: 0;
   right: 0;
 }
-
+.exchange-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+.exchange-icon{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .App-content header {
   position: relative;
   z-index: 800;
@@ -1321,7 +1331,7 @@ button.App-button {
   .landing-page .App-header.large {
     display: none;
   }
-  
+
   .landing-page .App-header.small {
     height: 8.1rem;
     // position: fixed;
@@ -1363,7 +1373,9 @@ button.App-button {
 }
 
 
-
+.text-capitalize {
+  text-transform: capitalize;
+}
 
 
 .dashboard {
@@ -1406,11 +1418,11 @@ button.App-button {
         align-items: center;
         margin-top: 5rem;
       }
-      
+
       .value {
         color: white;
       }
-      
+
     }
     .detail {
       padding-top: 1rem !important;
@@ -1450,7 +1462,7 @@ button.App-button {
     }
     .strategy-content{
       display: block;
-      
+
     }
     .stats-block{
       .btn-label{
@@ -1504,7 +1516,7 @@ button.App-button {
       font-weight: 700;
       color: #FFFFFF;
     }
-    
+
     .App-card-row{
       line-height: 6.5rem;
       padding: 1rem ;
@@ -1568,7 +1580,7 @@ button.App-button {
 
     }
   }
-  
+
   .strategy-container{
     border-radius: 3.2rem;
     background: #2b2b4a;
@@ -1666,7 +1678,7 @@ button.App-button {
   .icon>img{
       margin: auto;
   }
-  
+
   .btn-label {
       margin-left: 0;
       font-size: 15px;
@@ -1694,7 +1706,7 @@ button.App-button {
       letter-spacing: 0em;
       text-align: left;
 
-      
+
   }
 }
 
@@ -1712,7 +1724,7 @@ button.App-button {
           font-weight: 400;
           line-height: 1.8rem;
       }
-      
+
   }
   .divider-row {
       margin: 2rem 0 2rem 0;
@@ -1773,7 +1785,7 @@ button.App-button {
       text-align: left;
 
   }
-  
+
   .alp-container{
       border-radius: 2.7rem;
   }
@@ -1836,13 +1848,13 @@ button.App-button {
   }
 }
 .logo-container, .detail-container{
-  border-radius: 1.5rem; 
+  border-radius: 1.5rem;
   line-height: 5.4rem;
   background: #202040;
   color: white;
   display: -webkit-inline-box;
   margin-top: 0.5rem;
-  
+
 }
 .detail-container{
   display: flex;
@@ -1939,9 +1951,10 @@ button.App-button {
   font-family: Almarai;
   font-size: 15px;
   font-weight: 300;
-  line-height: 17px;
+  line-height: 1.5em;
   letter-spacing: 0em;
   text-align: left;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 @media (max-width: 991px) {

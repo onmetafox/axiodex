@@ -380,10 +380,12 @@ function FullApp() {
       }
     };
 
-    const interval = setInterval(() => {
-      checkPendingTxns();
-    }, 2 * 1000);
-    return () => clearInterval(interval);
+    return checkPendingTxns();
+
+    // const interval = setInterval(() => {
+    //   checkPendingTxns();
+    // }, 2 * 1000);
+    // return () => clearInterval(interval);
   }, [library, pendingTxns, chainId]);
 
   const vaultAddress = getContract("Vault");
@@ -437,7 +439,7 @@ function FullApp() {
     <>
       <div className="App">
         <div className="App-content">
-          
+
           {isHome && (
             <>
               <HomeHeader
@@ -498,9 +500,9 @@ function FullApp() {
                 <Route exact path="/dashboard">
                   <Dashboard3 />
                 </Route>
-                <Route exact path="/earn">
+                {/* <Route exact path="/earn">
                   <Stake setPendingTxns={setPendingTxns} connectWallet={connectWallet} />
-                </Route>
+                </Route> */}
                 <Route exact path="/buy">
                   <Buy
                     savedSlippageAmount={savedSlippageAmount}
@@ -508,7 +510,7 @@ function FullApp() {
                     connectWallet={connectWallet}
                   />
                 </Route>
-                <Route exact path="/buy_tlp">
+                <Route exact path="/buy_alp">
                   <BuyGlp
                     savedSlippageAmount={savedSlippageAmount}
                     setPendingTxns={setPendingTxns}
@@ -568,12 +570,12 @@ function FullApp() {
                 </Route>
                 <Route exact path="/vault">
                   <SideBar>
-                    <Route render={(props) => <Vault {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />} path="/vault"/>
+                    <Route render={(props) => <Vest {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />} path="/vault"/>
                   </SideBar>
                 </Route>
-                <Route exact path="/overview">
+                <Route exact path="/earn">
                   <SideBar>
-                    <Route render={(props) => <Overview {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />} path="/overview"/>
+                    <Route render={(props) => <Overview {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />} path="/earn"/>
                   </SideBar>
                 </Route>
                 <Route exact path="/axes">
@@ -581,11 +583,11 @@ function FullApp() {
                     <Route render={(props) => <Axes {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />} path="/axes"/>
                   </SideBar>
                 </Route>
-                <Route exact path="/vest">
+                {/* <Route exact path="/vest">
                   <SideBar>
-                    <Route component={Vest}  path="/vest"/>
+                    <Route render={(props) => <Vest {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />}  path="/vest"/>
                   </SideBar>
-                </Route>
+                </Route> */}
                 <Route exact path="/alp">
                   <SideBar>
                     <Route render={(props) => <ALP {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />}  path="/alp"/>

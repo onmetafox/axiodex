@@ -1,5 +1,3 @@
-import cx from "classnames";
-import { Trans, t } from "@lingui/macro";
 
 import "./PageTitle.css";
 import ExternalLink from "components/ExternalLink/ExternalLink";
@@ -9,14 +7,14 @@ export default function PageTitle(props) {
   return (
     <div className="Page-title-section component">
       <div className="Page-title">
-        <Trans>{title}</Trans>
+        <div>{title}</div>
       </div>
       <div className="Page-description">
       <div className="row">
         <div className="col-lg-6 col-sm-12 col-md-12">
           {descriptions.map((des, index) => {
             return (
-              <Trans key={index}> { des }</Trans>
+              <div key={index}> { des }</div>
             );
           })}
           {link && (

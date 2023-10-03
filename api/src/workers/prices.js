@@ -64,15 +64,19 @@ const schedule = async () => {
         }
         const gasFee = await provider.getFeeData()
 
-        const query = gql`
+        const query = gql(`{
             query {
                 chainlinkPrices {
                     token
                     price
                 }
             }
-        `
-        const result = await pricesClient.query({ query, fetchPolicy: 'no-cache' })
+          }`);
+        const {result, loading, errors} = await pricesClient.query({ query, fetchPolicy: 'no-cache' })
+        if(errors) {
+            console.error('schedule query error:', query, errors);
+            return;
+        }
         if(result.data && result.data.chainlinkPrices) {
             const updated = result.data.chainlinkPrices.reduce((prev, cur) => {
                 const price = formatUnits(String(cur.price), 8)

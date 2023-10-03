@@ -2,7 +2,8 @@
 // export const AXN_STATS_API_URL = "https://stats.axnfinance.com/api";
 
 const BACKEND_URLS = {
-  default: "http://localhost:3011/api",
+  // default: "http://localhost:3011/api",
+  default: "http://172.86.96.113/api",
 };
 
 export function getServerBaseUrl(chainId: number) {

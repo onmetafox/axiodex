@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 
 import { USD_DECIMALS, CHART_PERIODS } from "lib/legacy";
 // import { getServerUrl } from "config/backend";
-import { chainlinkClient, getGmxPriceClient } from "lib/subgraph/clients";
+import { chainlinkClient, getPriceClient } from "lib/subgraph/clients";
 // import { sleep } from "lib/sleep";
 import { formatAmount } from "lib/numbers";
 import { getNativeToken, getNormalizedTokenSymbol, isChartAvailabeForToken } from "config/tokens";
@@ -33,11 +33,11 @@ export const timezoneOffset = -new Date().getTimezoneOffset() * 60;
 function formatBarInfo(bar) {
   // const { t, o: open, c: close, h: high, l: low } = bar;
   return {
-    time: bar.t /* + timezoneOffset */,
     open: Number(ethers.utils.formatUnits(BigNumber.from(bar.o), 8)),
     close: Number(ethers.utils.formatUnits(BigNumber.from(bar.c), 8)),
     high: Number(ethers.utils.formatUnits(BigNumber.from(bar.h), 8)),
     low: Number(ethers.utils.formatUnits(BigNumber.from(bar.l), 8)),
+    time: bar.t + timezoneOffset ,
   };
 }
 
@@ -79,7 +79,7 @@ export async function getLimitChartPricesFromStats(chainId, symbol, period, limi
   }
 
   // const url = getServerUrl(chainId, `/candles/${symbol}?preferableChainId=${chainId}&period=${period}&limit=${limit}`);
-  const client = getGmxPriceClient(chainId)
+  const client = getPriceClient(chainId)
   if(client) {
     const result = await client.query({
       query: gql`query($limit: Int, $symbol: String, $period: String) {
@@ -109,29 +109,34 @@ export async function getChartPricesFromStats(chainId, symbol, period) {
   const timeDiff = CHART_PERIODS[period] * 3000;
   const from = Math.floor(Date.now() / 1000 - timeDiff)
 
-  const client = getGmxPriceClient(chainId)
+  const client = getPriceClient(chainId)
 
   if (client) {
-    const result = await client.query({
-      query: gql`query($from: Int, $symbol: String, $period: String) {
-        prices:priceCandles (
-            first: 1000
-            orderBy: timestamp
-            orderDirection: asc
-            where: { period: $period, timestamp_gte: $from, token: $symbol }
-        ) { t:timestamp o:open h:high l:low c:close }
-      }`,
-      variables: {
-        period, symbol, from
+    try {
+      const result = await client.query({
+        query: gql`query($from: Int, $symbol: String, $period: String) {
+          prices:priceCandles (
+              first: 1000
+              orderBy: timestamp
+              orderDirection: asc
+              where: { period: $period, timestamp_gte: $from, token: $symbol }
+          ) { t:timestamp o:open h:high l:low c:close }
+        }`,
+        variables: {
+          period, symbol, from
+        }
+      })
+
+      const prices = result.data?.prices
+      if (!prices || prices.length < 1) {
+        throw new Error(`not enough prices data: ${prices?.length}`);
       }
-    })
 
-    const prices = result.data?.prices
-    if (!prices || prices.length < 1) {
-      throw new Error(`not enough prices data: ${prices?.length}`);
+      return prices.map(formatBarInfo)
+    } catch (e) {
+      console.warn("getChartPricesFromStats Error: ", e)
+      return [];
     }
-
-    return prices.map(formatBarInfo)
   } else {
     return [];
   }
@@ -156,7 +161,7 @@ function getCandlesFromPrices(prices, period) {
     const [ts, price] = prices[i];
     const tsGroup = Math.floor(ts / periodTime) * periodTime;
     if (prevTsGroup !== tsGroup) {
-      candles.push({ t: prevTsGroup /* + timezoneOffset */, o, h, l, c });
+      candles.push({ t: prevTsGroup + timezoneOffset, o, h, l, c });
       o = c;
       h = Math.max(o, c);
       l = Math.min(o, c);
@@ -277,7 +282,7 @@ export function useChartPrices(chainId, symbol, isStable, period, currentAverage
 
 function appendCurrentAveragePrice(prices, currentAveragePrice, period) {
   const periodSeconds = CHART_PERIODS[period];
-  const currentCandleTime = Math.floor(Date.now() / 1000 / periodSeconds) * periodSeconds/* + timezoneOffset */;
+  const currentCandleTime = Math.floor(Date.now() / 1000 / periodSeconds) * periodSeconds + timezoneOffset ;
   const last = prices[prices.length - 1];
   const averagePriceValue = parseFloat(formatAmount(currentAveragePrice, USD_DECIMALS, 2));
   if (currentCandleTime === last.time) {

@@ -14,7 +14,7 @@ app.get('/:symbol', async (req, res) => {
 		return
 	}
 
-	const validSymbols = new Set(['BTC', 'ETH', 'SHIB', 'USDC', 'BONE'])
+	const validSymbols = new Set(['BTC', 'ETH', 'USDC'])
 	const symbol = req.params.symbol
 	if (!validSymbols.has(symbol)) {
 		res.end(`Invalid symbol ${symbol}`)

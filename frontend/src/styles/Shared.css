@@ -208,7 +208,7 @@ a.plain {
 
 .default-btn {
   background: #0099FF;
-  border-radius: var(--border-radius-sm);
+  /* border-radius: var(--border-radius-sm); */
   font-size: var(--font-sm);
   line-height: 2rem;
   font-weight: normal;
@@ -230,6 +230,7 @@ a.plain {
   justify-content: center;
   width: 100%;
   height: 100%;
+  margin: 0.3rem;
 }
 
 .default-btn:hover {

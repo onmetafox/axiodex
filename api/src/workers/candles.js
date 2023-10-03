@@ -8,8 +8,8 @@ const TtlCache = require("../utils/ttl-cache")
 const ttlCache = new TtlCache(60, 1000)
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
-const LOAD_NEW_PRICES_LOOP_INTERVAL = IS_PRODUCTION ? 60000 : 5000
-const LOAD_OLD_PRICES_LOOP_INTERVAL = IS_PRODUCTION ? 15000 : 5000
+const LOAD_NEW_PRICES_LOOP_INTERVAL = IS_PRODUCTION ? 60000 : 60000
+const LOAD_OLD_PRICES_LOOP_INTERVAL = IS_PRODUCTION ? 15000 : 15000
 
 const cachedPrices = {
     [BASENET]: {}
@@ -48,12 +48,12 @@ function binSearchPrice(prices, timestamp, gt = true) {
     return ret
 }
 
-function getPricesLimit(limit, preferableChainId = ARBITRUM, symbol, period) {
+function getPricesLimit(limit, preferableChainId = BASENET, symbol, period) {
     const prices = getPrices(preferableChainId, symbol, period)
     return prices.slice(Math.max(prices.length - limit, 0))
 }
 
-function getPricesFromTo(from, to, preferableChainId = ARBITRUM, symbol, period) {
+function getPricesFromTo(from, to, preferableChainId = BASENET, symbol, period) {
     // const cacheKey = `${from}:${to}:${preferableChainId}:${symbol}:${period}`
     // const fromCache = ttlCache.get(cacheKey)
     // if (fromCache) {
@@ -152,13 +152,16 @@ async function loadNewPrices(chainId, period) {
 
     try {
         const query = getQuery()
-        const { data } = await pricesClient.query({ query: gql(query), fetchPolicy: 'no-cache' })
+        const { data, loading, errors } = await pricesClient.query({ query: gql(query), fetchPolicy: 'no-cache' })
+        if(errors) {
+            console.log('price query error: ', before, errors)
+        }
         const prices = data.priceCandles
         if (prices.length) {
             putPricesIntoCache(prices, chainId, true)
         }
     } catch (ex) {
-        console.log(ex)
+        console.log("loadNewPrices Query Error:", ex)
     }
     setTimeout(() => loadNewPrices(chainId, period), LOAD_NEW_PRICES_LOOP_INTERVAL)
 }
@@ -195,7 +198,11 @@ async function loadOldPrices(chainId, period, before = Math.floor(Date.now() / 1
     const seenOldPrices = new Set()
     try {
         const query = getQuery(before)
-        const { data } = await pricesClient.query({ query: gql(query), fetchPolicy: 'no-cache' })
+        const { data, loading, errors } = await pricesClient.query({ query: gql(query), fetchPolicy: 'no-cache' })
+        if(errors) {
+            console.log('prices query error: ', before, errors);
+            return;
+        }
         if (data && data.p0) {
             const prices = []
             for (let i = 0; i < 6; i++) {
@@ -216,7 +223,7 @@ async function loadOldPrices(chainId, period, before = Math.floor(Date.now() / 1
             before = prices[prices.length - 1].timestamp
         }
     } catch (ex) {
-        console.log(ex)
+        console.log("loadOldPrices Query Error:", ex)
     }
     setTimeout(() => loadOldPrices(chainId, period, before), LOAD_OLD_PRICES_LOOP_INTERVAL)
 }

@@ -113,11 +113,43 @@ export function AppHeaderLinks({
         </ExternalLink>
       </div> */}
       <div className="App-header-link-container">
-        <ExternalLink href="https://app.1inch.io/#/1/simple/swap/ETH/0x4384b85fe228ae727b129230211194e4a50877c4">
-          <Trans>Home</Trans>
-        </ExternalLink>
+        {/* <ExternalLink href="https://app.1inch.io/#/1/simple/swap/ETH/0x4384b85fe228ae727b129230211194e4a50877c4"> */}
+        <HeaderLink
+          to="/dashboard"
+          redirectPopupTimestamp={redirectPopupTimestamp}
+          showRedirectModal={showRedirectModal}
+        >
+          <Trans>Dashboard</Trans>
+        </HeaderLink>
       </div>
       <div className="App-header-link-container">
+        <HeaderLink
+          to="/earn"
+          redirectPopupTimestamp={redirectPopupTimestamp}
+          showRedirectModal={showRedirectModal}
+        >
+          <Trans>Earn</Trans>
+        </HeaderLink>
+      </div>
+      <div className="App-header-link-container">
+        <HeaderLink
+          to="/buy"
+          redirectPopupTimestamp={redirectPopupTimestamp}
+          showRedirectModal={showRedirectModal}
+        >
+          <Trans>Buy</Trans>
+        </HeaderLink>
+      </div>
+      <div className="App-header-link-container">
+        <HeaderLink
+          to="/referrals"
+          redirectPopupTimestamp={redirectPopupTimestamp}
+          showRedirectModal={showRedirectModal}
+        >
+          <Trans>Referrals</Trans>
+        </HeaderLink>
+      </div>
+      {/* <div className="App-header-link-container">
         <HeaderLink
           to="/referrals"
           redirectPopupTimestamp={redirectPopupTimestamp}
@@ -125,26 +157,11 @@ export function AppHeaderLinks({
         >
           <Trans>About</Trans>
         </HeaderLink>
-      </div>
-      <div className="App-header-link-container">
-        <HeaderLink
-          to="/referrals"
-          redirectPopupTimestamp={redirectPopupTimestamp}
-          showRedirectModal={showRedirectModal}
-        >
-          <Trans>Our Mission</Trans>
-        </HeaderLink>
-      </div>
-      <div className="App-header-link-container">
-        <HeaderLink
-          to="/referrals"
-          redirectPopupTimestamp={redirectPopupTimestamp}
-          showRedirectModal={showRedirectModal}
-        >
-          <Trans>Features</Trans>
-        </HeaderLink>
-      </div>
-   
+      </div> */}
+      <ExternalLink href={"https://docs.axiodex.com/"}>
+        About
+      </ExternalLink>
+
     </div>
   );
 }

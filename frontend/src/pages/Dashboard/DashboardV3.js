@@ -9,12 +9,48 @@ import {
   Tooltip,
   Legend
 } from 'chart.js'
+import useSWR from "swr";
 import { Bar } from 'react-chartjs-2';
+import { useWeb3React } from "@web3-react/core";
+import { ADDRESS_ZERO } from "@uniswap/v3-sdk";
+import { Trans, t } from "@lingui/macro";
+
+import { useHighPricesTokens, useInfoTokens } from "domain/tokens";
+// import useTotalVolume from "domain/useTotalVolume";
+import { useAxnPrice, useTotalAxnInLiquidity, useTotalAxnStaked, useTotalAxnSupply, useTotalStatInfo, useVolumeStatInfo } from "domain/legacy";
+
+import { gql } from "@apollo/client";
+import { useChainId } from "lib/chains";
+import { contractFetcher } from "lib/contracts";
+import { graphFetcher } from "lib/contracts/graphFetcher";
+import { bigNumberify, expandDecimals, formatAmount, formatKeyAmount } from "lib/numbers";
+import { BASIS_POINTS_DIVISOR, DEFAULT_MAX_USDG_AMOUNT, AXN_DECIMALS, TLP_DECIMALS, USD_DECIMALS,importImage } from "lib/legacy";
+
+// import AssetDropdown from "./AssetDropdown";
+import Button from "components/Button/Button";
+import PageRow from "components/PageComponent/PageRow";
+import ImgIcon from "components/IconComponent/ImgIcon";
+import TooltipComponent from "components/Tooltip/Tooltip";
+import ExternalLink from "components/ExternalLink/ExternalLink";
+import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
+
+
+import { getIcon } from "config/icons";
+import { getContract } from "config/contracts";
+import { getWhitelistedTokens } from "config/tokens";
+
+
+import VaultV2 from "abis/VaultV2.json";
+import ReaderV2 from "abis/ReaderV2.json";
+import GlpManager from "abis/GlpManager.json";
+
+import iconAxn from 'img/ic_axn.svg'
 import iconLocked from "img/ic_locked.svg";
 import iconVolume from "img/ic_volume.svg";
 import iconFee from "img/ic_fee.svg";
 import iconLogo from "img/ic_logo_70.svg";
 import iconLong from "img/ic_long.svg";
+import logoIcon from "img/ic_logo.svg";
 import iconShort from "img/ic_short.svg";
 import iconCalen from "img/ic_calendar.svg";
 import iconMlp from "img/ic_mlp-big.svg";
@@ -23,34 +59,9 @@ import iconArbi from "img/ic_arbitrum_24.svg";
 import iconAval from "img/ic_avalanche_24.svg";
 import chatView from "img/trade-chat.svg";
 
-import ImgIcon from "components/IconComponent/ImgIcon";
-import ExternalLink from "components/ExternalLink/ExternalLink";
-import Button from "components/Button/Button";
-import PageRow from "components/PageComponent/PageRow";
-
-import { Trans, t } from "@lingui/macro";
-
-import VaultV2 from "abis/VaultV2.json";
-import ReaderV2 from "abis/ReaderV2.json";
-import GlpManager from "abis/GlpManager.json";
-
 import "./DashboardV3.css";
-import { useGmxPrice, useTotalGmxInLiquidity, useTotalGmxStaked, useTotalGmxSupply, useTotalStatInfo } from "domain/legacy";
-import { useWeb3React } from "@web3-react/core";
-import { useChainId } from "lib/chains";
-import { bigNumberify, expandDecimals, formatAmount, formatKeyAmount } from "lib/numbers";
-import { BASIS_POINTS_DIVISOR, DEFAULT_MAX_USDG_AMOUNT, AXN_DECIMALS, TLP_DECIMALS, USD_DECIMALS,importImage } from "lib/legacy";
-import { useInfoTokens } from "domain/tokens";
-import { getContract } from "config/contracts";
-import useSWR from "swr";
-import { contractFetcher } from "lib/contracts";
-// import useTotalVolume from "domain/useTotalVolume";
-import { getWhitelistedTokens } from "config/tokens";
-import { ADDRESS_ZERO } from "@uniswap/v3-sdk";
-
-// import AssetDropdown from "./AssetDropdown";
-import TooltipComponent from "components/Tooltip/Tooltip";
-import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
+import { useEffect, useState } from 'react';
+import { getPriceClient } from 'lib/subgraph';
 
 ChartJS.register(
   CategoryScale,
@@ -60,9 +71,9 @@ ChartJS.register(
   Tooltip,
   Legend
 )
-const labels = ['06-10', '06-12', '06-14', '06-16', '06-18', '06-20', '06-22', '06-24', '06-26', '06-28'];
+const labels = ['06-10', '06-12', '06-14', '06-16', '06-18', '06-20', '06-22', '06-24', '06-26', '06-28', '06-10', '06-12', '06-14', '06-16', '06-18', '06-20', '06-22', '06-24', '06-26', '06-28'];
 export const options = {
-  barPercentage: 0.3,
+  barPercentage: 0.7,
   responsive: true,
   legend: {
     labels: {
@@ -78,7 +89,7 @@ export const options = {
         },
         grid: {
           borderDash: [10, 10],
-          color: "#ffffdd",
+          color: "#ddd",
           tickLength: 0, // just to see the dotted line
         }
     },
@@ -89,7 +100,7 @@ export const options = {
         },
         grid: {
           display: false,
-          color: "#ffffff",
+          color: "#ddd",
           backdropPadding: 3,
           borderWidth: 0.5
         }
@@ -102,7 +113,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Trading Vol.',
+      text: 'Trading Vol.($)',
       font: {
         size: 24,
         weight: 'bold',
@@ -119,7 +130,7 @@ export const data = {
   datasets: [
     {
       label: 'Dataset 2',
-      data: labels.map(() => 100 + Math.random() * (100000 - 100)),
+      data: labels.map(() => Math.random() * (250000 - 100)),
       backgroundColor: '#00FFC2'
     },
   ],
@@ -127,6 +138,9 @@ export const data = {
 export default function DashboardV3() {
   const { active, library } = useWeb3React();
   const { chainId } = useChainId();
+
+  const alpIcon = getIcon(chainId, "alp");
+  const baseIcon = getIcon(chainId, "network");
 
   // const totalVolume = useTotalVolume();
 
@@ -158,7 +172,7 @@ export default function DashboardV3() {
     total_Volume = totalStats.totalVolume;
   }
 
-  let { total: totalGmxSupply } = useTotalGmxSupply(chainId);
+  let { total: totalGmxSupply } = useTotalAxnSupply(chainId);
 
   const whitelistedTokens = getWhitelistedTokens();
 
@@ -193,28 +207,32 @@ export default function DashboardV3() {
     }
   );
 
+  // Get 24high Prices
+  const highPrices = useHighPricesTokens(chainId);
+  // Get Open Interest
 
+  // Get info tokens
   const { infoTokens } = useInfoTokens(library, chainId, active, undefined, undefined);
-  const { gmxPrice } = useGmxPrice(
+  const { axnPrice } = useAxnPrice(
     chainId,
     undefined,
     active
   );
 
-  let { total: totalGmxInLiquidity } = useTotalGmxInLiquidity(chainId, active);
+  let { total: totalGmxInLiquidity } = useTotalAxnInLiquidity(chainId, active);
 
   let {
     total: totalStakedGmx,
-  } = useTotalGmxStaked();
+  } = useTotalAxnStaked();
 
   let gmxMarketCap;
-  if (gmxPrice && totalGmxSupply) {
-    gmxMarketCap = gmxPrice.mul(totalGmxSupply).div(expandDecimals(1, AXN_DECIMALS));
+  if (axnPrice && totalGmxSupply) {
+    gmxMarketCap = axnPrice.mul(totalGmxSupply).div(expandDecimals(1, AXN_DECIMALS));
   }
 
   let stakedGmxSupplyUsd;
-  if (gmxPrice && totalStakedGmx) {
-    stakedGmxSupplyUsd = totalStakedGmx.mul(gmxPrice).div(expandDecimals(1, AXN_DECIMALS));
+  if (axnPrice && totalStakedGmx) {
+    stakedGmxSupplyUsd = totalStakedGmx.mul(axnPrice).div(expandDecimals(1, AXN_DECIMALS));
   }
 
   let aum;
@@ -236,8 +254,8 @@ export default function DashboardV3() {
 
   let tvl;
 
-  if (glpMarketCap && gmxPrice && totalStakedGmx) {
-    tvl = glpMarketCap.add(gmxPrice.mul(totalStakedGmx).div(expandDecimals(1, AXN_DECIMALS)));
+  if (glpMarketCap && axnPrice && totalStakedGmx) {
+    tvl = glpMarketCap.add(axnPrice.mul(totalStakedGmx).div(expandDecimals(1, AXN_DECIMALS)));
   }
 
   let adjustedUsdgSupply = bigNumberify(0);
@@ -295,6 +313,59 @@ export default function DashboardV3() {
     else return -1;
   });;
 
+  let volumeStats = useVolumeStatInfo(chainId);
+
+  const [volumeStatsData, setVolumeStatsData] = useState();
+
+  useEffect(() => {
+    volumeStats.sort((a, b) => {return a.id - b.id});
+    let now_str = new Date().toDateString();
+
+    let timezoneOffset = new Date(now_str).getTimezoneOffset();
+    let to = new Date(now_str).getTime() - timezoneOffset * 60 * 1000
+    let from = to - 60 *60 * 24 * 30 * 1000;
+
+    from = Math.floor(from / 1000);
+    to = Math.floor(to / 1000);
+
+
+    let volumeStatsLabels = [];
+    let volumeStatsColumeData = [];
+
+    let index = -1;
+    let i = 0;
+    for (let d = from ; d <= to ; d += 86400 ) {
+      index = volumeStats.findIndex(stat => Number(stat.id) === Number(d));
+      if(index > -1) {
+        volumeStatsColumeData.push(parseFloat(formatAmount(volumeStats[index].sum, USD_DECIMALS, 2, true).replace(/,/g, '')))
+      } else {
+        volumeStatsColumeData.push(0)
+      }
+
+      if(i % 2 === 0) {
+        let cur = new Date(d * 1000)
+        let str_m = ("0" + (cur.getMonth() + 1)).substr(-2)
+        let str_d = ("0" + cur.getDate()).substr(-2)
+
+        volumeStatsLabels.push(str_m + "-" + str_d);
+      } else {
+        volumeStatsLabels.push("");
+      }
+      i ++;
+    }
+
+    setVolumeStatsData({
+      labels: volumeStatsLabels,
+      datasets: [
+        {
+          label: 'Trading Volume',
+          data: volumeStatsColumeData,
+          backgroundColor: '#00FFC2'
+        },
+      ],
+    });
+  }, [volumeStats])
+
   return (
     <>
       <div className="BeginAccountTransfer page-layout dashboard">
@@ -318,7 +389,7 @@ export default function DashboardV3() {
                 </div>
               </div>
               <div className="Exchange-swap-section-bottom strategy-trade">
-                <Bar options={options} data = {data}/>
+                {volumeStatsData && <Bar options={options} data = {volumeStatsData}/>}
               </div>
             </div>
           </div>
@@ -327,7 +398,7 @@ export default function DashboardV3() {
             <div className="token-content">
               <div className="Exchange-swap-section strategy-container border-0">
                 <div className="Exchange-swap-section-top">
-                  <div className="strategy-title"><ImgIcon icon = {iconLogo} title = "AXION" value={`$${formatAmount(gmxPrice, USD_DECIMALS, 3, true)}`}/></div>
+                  <div className="strategy-title"><ImgIcon icon = {iconLogo} title = "AXION" value={`$${formatAmount(axnPrice, USD_DECIMALS, 3, true)}`}/></div>
                   <div className="align-right strategy-link Tab-option">
                       <Button className="strategy-btn">Read more</Button>
                   </div>
@@ -340,24 +411,11 @@ export default function DashboardV3() {
                   </div>
                   <div className="row padding-1r">
                     <div className="stats-block">
-                      <div className="App-card-row header border-bottom-0">
-                        <div className="label">
-                          <Button imgSrc={iconPlus} ><Trans>Total rewards : <span>55%</span></Trans></Button>
-                        </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
-                      </div>
-
                       <div className="App-card-row body">
                         <div className="label">
-                        <Button imgSrc={iconArbi} ><Trans>Total rewards : <span>55%</span></Trans></Button>
+                          <Button imgSrc={baseIcon} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
-                      </div>
-                      <div className="App-card-row footer border-top-0">
-                        <div className="label">
-                          <Button imgSrc={iconAval} ><Trans>Total rewards : <span>55%</span></Trans></Button>
-                        </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
+                        <div className="button"><Button className="strategy-btn green-btn">Buy on Base</Button></div>
                       </div>
                     </div>
                   </div>
@@ -365,7 +423,7 @@ export default function DashboardV3() {
               </div>
               <div className="Exchange-swap-section strategy-container border-0">
                 <div className="Exchange-swap-section-top">
-                  <div className="strategy-title"><ImgIcon icon = {iconMlp} title = "ALP" value={`$${formatAmount(glpPrice, USD_DECIMALS, 3, true)}`}/></div>
+                  <div className="strategy-title"><ImgIcon icon = {alpIcon} title = "ALP" value={`$${formatAmount(glpPrice, USD_DECIMALS, 3, true)}`}/></div>
                   <div className="align-right strategy-link Tab-option">
                     <ExternalLink href="https://gmxio.gitbook.io/gmx/trading#fees">
                       <Button className="strategy-btn">Read more</Button>
@@ -381,24 +439,11 @@ export default function DashboardV3() {
                   </div>
                   <div className="row padding-1r">
                     <div className="stats-block">
-                      <div className="App-card-row header border-bottom-0">
-                        <div className="label">
-                          <Button imgSrc={iconPlus} ><Trans>Total rewards : <span>55%</span></Trans></Button>
-                        </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
-                      </div>
-
                       <div className="App-card-row body">
                         <div className="label">
-                        <Button imgSrc={iconArbi} ><Trans>Total rewards : <span>55%</span></Trans></Button>
+                        <Button imgSrc={baseIcon} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
-                      </div>
-                      <div className="App-card-row footer border-top-0">
-                        <div className="label">
-                          <Button imgSrc={iconAval} ><Trans>Total rewards : <span>55%</span></Trans></Button>
-                        </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on PulseChain</Button></div>
+                        <div className="button"><Button className="strategy-btn green-btn">Buy on Base</Button></div>
                       </div>
                     </div>
                   </div>
@@ -428,7 +473,7 @@ export default function DashboardV3() {
                       <Trans>24 Change(%)</Trans>
                     </th>
                     <th>
-                      <Trans>Open Interest</Trans>
+                      <Trans>Total Commitment</Trans>
                     </th>
                     <th>
                       <Trans>Chart</Trans>
@@ -486,7 +531,7 @@ export default function DashboardV3() {
                             }}
                           />
                         </td>
-                        <td>{getWeightText(tokenInfo)}</td>
+                        <td>${formatAmount(highPrices[token.symbol], 8, 2, true)}</td>
                         <td>{formatAmount(utilization, 2, 2, false)}%</td>
                         <td></td>
                         <td></td>
@@ -521,7 +566,7 @@ export default function DashboardV3() {
                         </div>
                         <div className="App-card-row">
                           <div className="label">
-                            <Trans>Price</Trans>
+                            <Trans>Last Price</Trans>
                           </div>
                           <div>${formatKeyAmount(tokenInfo, "minPrice", USD_DECIMALS, 2, true)}</div>
                         </div>
@@ -562,13 +607,13 @@ export default function DashboardV3() {
                         </div>
                         <div className="App-card-row">
                           <div className="label">
-                            <Trans>Weight</Trans>
+                            <Trans>24 High</Trans>
                           </div>
-                          <div>{getWeightText(tokenInfo)}</div>
+                          <div>${formatAmount(highPrices[token.symbol], 8, 2, false)}</div>
                         </div>
                         <div className="App-card-row">
                           <div className="label">
-                            <Trans>Utilization</Trans>
+                            <Trans>24 Change(%)</Trans>
                           </div>
                           <div>{formatAmount(utilization, 2, 2, false)}%</div>
                         </div>

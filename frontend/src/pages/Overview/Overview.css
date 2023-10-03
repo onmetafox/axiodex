@@ -1,38 +1,48 @@
 .overview {
-    .icon{
-        background: linear-gradient(131.99deg, #6BFAF1 -41.53%, #01597E 62.01%);
-    }
-    .icon>img{
-        margin: auto;
-    }
-    
-    .btn-label {
-        margin-left: 0;
-        font-size: 15px;
-        font-weight: 400;
-        line-height: 2.4rem;
-    }
-    .strategy-btn {
-        border-radius: 1rem;
-        border: solid 1px #b2b2bd;
-    }
-    .text-align-btn {
-        .col-4 {
-            text-align: right;
-        }
-    }
-    .colored {
-        background: linear-gradient(269.5deg, rgba(0, 148, 255, 0.455) -23.12%, rgba(0, 35, 54, 0.5) 106.82%);
-        padding: 3rem;
-        border-radius: 2.6rem;
-    }
-    .strategy-title {
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 18px;
-        letter-spacing: 0em;
-        text-align: left;
+  .Page-content {
+    max-width: 1540px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2.5rem;
+  }
 
-        
+  .total-rewards {
+    font-weight: 700;
+    font-size: 32px;
+    color: #03F5AE;
+  }
+  .icon {
+    background: linear-gradient(131.99deg, #6bfaf1 -41.53%, #01597e 62.01%);
+  }
+  .icon > img {
+    margin: auto;
+  }
+
+  .btn-label {
+    margin-left: 0;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 2.4rem;
+  }
+  .strategy-btn {
+    border-radius: 1rem;
+    border: solid 1px #b2b2bd;
+  }
+  .text-align-btn {
+    .col-4 {
+      text-align: right;
     }
+  }
+  .colored {
+    background: linear-gradient(269.5deg, rgba(0, 148, 255, 0.455) -23.12%, rgba(0, 35, 54, 0.5) 106.82%);
+    padding: 3rem;
+    border-radius: 2.6rem;
+  }
+  .strategy-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
 }
