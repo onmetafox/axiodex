@@ -8,10 +8,10 @@ import Tab from "../Tab/Tab";
 import cx from "classnames";
 import { getContract } from "config/contracts";
 import {
-  getBuyAlpToAmount,
-  getBuyAlpFromAmount,
-  getSellAlpFromAmount,
-  getSellAlpToAmount,
+  getBuyGlpToAmount,
+  getBuyGlpFromAmount,
+  getSellGlpFromAmount,
+  getSellGlpToAmount,
   adjustForDecimals,
   TLP_DECIMALS,
   USD_DECIMALS,
@@ -23,7 +23,7 @@ import {
   importImage,
 } from "lib/legacy";
 
-import { useAxnPrice } from "domain/legacy";
+import { useGmxPrice } from "domain/legacy";
 
 import TokenSelector from "../Exchange/TokenSelector";
 import BuyInputSection from "../BuyInputSection/BuyInputSection";
@@ -106,7 +106,7 @@ export default function GlpSwap(props) {
     savedShouldDisableValidationForTesting,
   } = props;
   const history = useHistory();
-  const swapLabel = isBuying ? "BuyAlp" : "SellAlp";
+  const swapLabel = isBuying ? "BuyGlp" : "SellGlp";
   const tabLabel = isBuying ? t`Buy ALP` : t`Sell ALP`;
   const { active, library, account } = useWeb3React();
   const { chainId } = useChainId();
@@ -140,7 +140,6 @@ export default function GlpSwap(props) {
 
   const tokensForBalanceAndSupplyQuery = [stakedGlpTrackerAddress, usdgAddress];
   const glpIcon = getIcon(chainId, "tlp");
-  const alpIcon = getIcon(chainId, "glp");
 
   const tokenAddresses = tokens.map((token) => token.address);
   const { data: tokenBalances } = useSWR(
@@ -204,7 +203,7 @@ export default function GlpSwap(props) {
     }
   );
 
-  const { gmxPrice } = useAxnPrice(chainId, undefined, active);
+  const { gmxPrice } = useGmxPrice(chainId, undefined, active);
 
   const rewardTrackersForStakingInfo = [stakedGlpTrackerAddress, feeGlpTrackerAddress];
   const { data: stakingInfo } = useSWR(
@@ -334,7 +333,7 @@ export default function GlpSwap(props) {
         }
 
         if (isBuying) {
-          const { amount: nextAmount, feeBasisPoints: feeBps } = getBuyAlpToAmount(
+          const { amount: nextAmount, feeBasisPoints: feeBps } = getBuyGlpToAmount(
             swapAmount,
             swapTokenAddress,
             infoTokens,
@@ -346,7 +345,7 @@ export default function GlpSwap(props) {
           setGlpValue(nextValue);
           setFeeBasisPoints(feeBps);
         } else {
-          const { amount: nextAmount, feeBasisPoints: feeBps } = getSellAlpFromAmount(
+          const { amount: nextAmount, feeBasisPoints: feeBps } = getSellGlpFromAmount(
             swapAmount,
             swapTokenAddress,
             infoTokens,
@@ -370,7 +369,7 @@ export default function GlpSwap(props) {
 
       if (swapToken) {
         if (isBuying) {
-          const { amount: nextAmount, feeBasisPoints: feeBps } = getBuyAlpFromAmount(
+          const { amount: nextAmount, feeBasisPoints: feeBps } = getBuyGlpFromAmount(
             glpAmount,
             swapTokenAddress,
             infoTokens,
@@ -382,7 +381,7 @@ export default function GlpSwap(props) {
           setSwapValue(nextValue);
           setFeeBasisPoints(feeBps);
         } else {
-          const { amount: nextAmount, feeBasisPoints: feeBps } = getSellAlpToAmount(
+          const { amount: nextAmount, feeBasisPoints: feeBps } = getSellGlpToAmount(
             glpAmount,
             swapTokenAddress,
             infoTokens,
@@ -562,10 +561,8 @@ export default function GlpSwap(props) {
 
     const minGlp = glpAmount.mul(BASIS_POINTS_DIVISOR - savedSlippageAmount).div(BASIS_POINTS_DIVISOR);
 
-    console.log("minGlp", minGlp)
-
     const contract = new ethers.Contract(glpRewardRouterAddress, RewardRouter.abi, library.getSigner());
-    const method = swapTokenAddress === AddressZero ? "mintAndStakeAlpETH" : "mintAndStakeAlp";
+    const method = swapTokenAddress === AddressZero ? "mintAndStakeGlpETH" : "mintAndStakeGlp";
     const params = swapTokenAddress === AddressZero ? [0, minGlp] : [swapTokenAddress, swapAmount, 0, minGlp];
     const value = swapTokenAddress === AddressZero ? swapAmount : 0;
 
@@ -697,12 +694,12 @@ export default function GlpSwap(props) {
       />
       <div className="GlpSwap-content">
         <div className="App-card GlpSwap-stats-card">
-
+          
           <div className="App-card-title">
             <div className="App-card-title-mark">
               <div className="App-card-title-mark-icon">
-                <img width="40" src={alpIcon} alt="ALP" />
-                {/* <img src={getIcon(chainId, "icon")} alt="" className="selected-network-symbol" /> */}
+                <img width="40" src={glpIcon} alt="ALP" />
+                <img src={getIcon(chainId, "icon")} alt="" className="selected-network-symbol" />
               </div>
               <div className="App-card-title-mark-info">
                 <div className="App-card-title-mark-title">ALP</div>
@@ -1046,7 +1043,7 @@ export default function GlpSwap(props) {
             {visibleTokens.map((token) => {
               let tokenFeeBps;
               if (isBuying) {
-                const { feeBasisPoints: feeBps } = getBuyAlpFromAmount(
+                const { feeBasisPoints: feeBps } = getBuyGlpFromAmount(
                   glpAmount,
                   token.address,
                   infoTokens,
@@ -1056,7 +1053,7 @@ export default function GlpSwap(props) {
                 );
                 tokenFeeBps = feeBps;
               } else {
-                const { feeBasisPoints: feeBps } = getSellAlpToAmount(
+                const { feeBasisPoints: feeBps } = getSellGlpToAmount(
                   glpAmount,
                   token.address,
                   infoTokens,
@@ -1200,7 +1197,7 @@ export default function GlpSwap(props) {
           {visibleTokens.map((token) => {
             let tokenFeeBps;
             if (isBuying) {
-              const { feeBasisPoints: feeBps } = getBuyAlpFromAmount(
+              const { feeBasisPoints: feeBps } = getBuyGlpFromAmount(
                 glpAmount,
                 token.address,
                 infoTokens,
@@ -1210,7 +1207,7 @@ export default function GlpSwap(props) {
               );
               tokenFeeBps = feeBps;
             } else {
-              const { feeBasisPoints: feeBps } = getSellAlpToAmount(
+              const { feeBasisPoints: feeBps } = getSellGlpToAmount(
                 glpAmount,
                 token.address,
                 infoTokens,

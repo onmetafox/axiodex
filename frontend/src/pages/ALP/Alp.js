@@ -9,7 +9,7 @@ import Vault from "abis/Vault.json";
 import ReaderV2 from "abis/ReaderV2.json";
 import RewardReader from "abis/RewardReader.json";
 import Token from "abis/Token.json";
-import AlpManager from "abis/GlpManager.json";
+import GlpManager from "abis/GlpManager.json";
 
 import {
   TLP_DECIMALS,
@@ -21,7 +21,7 @@ import {
   getStakingData,
   getProcessedData,
 } from "lib/legacy";
-import { useAxnPrice, useTotalAxnStaked, useTotalAxnSupply } from "domain/legacy";
+import { useGmxPrice, useTotalGmxStaked, useTotalGmxSupply } from "domain/legacy";
 import { getConstant } from "config/chains";
 
 import useSWR from "swr";
@@ -45,56 +45,56 @@ export default function ALP({ setPendingTxns, connectWallet }) {
 
   const vaultAddress = getContract("Vault");
   const nativeTokenAddress = getContract("NATIVE_TOKEN");
-  const axnAddress = getContract("AXN");
-  const esAxnAddress = getContract("EsAXN");
-  const bnAxnAddress = getContract("BnAXN");
-  const alpAddress = getContract("ALP");
+  const gmxAddress = getContract("AXN");
+  const esGmxAddress = getContract("EsAXN");
+  const bnGmxAddress = getContract("BnAXN");
+  const glpAddress = getContract("ALP");
 
-  const stakedAxnTrackerAddress = getContract("StakedAxnTracker");
-  const bonusAxnTrackerAddress = getContract("BonusAxnTracker");
-  const feeAxnTrackerAddress = getContract("FeeAxnTracker");
+  const stakedGmxTrackerAddress = getContract("StakedAxnTracker");
+  const bonusGmxTrackerAddress = getContract("BonusAxnTracker");
+  const feeGmxTrackerAddress = getContract("FeeAxnTracker");
 
-  const stakedAlpTrackerAddress = getContract("StakedAlpTracker");
-  const feeAlpTrackerAddress = getContract("FeeAlpTracker");
+  const stakedGlpTrackerAddress = getContract("StakedAlpTracker");
+  const feeGlpTrackerAddress = getContract("FeeAlpTracker");
 
-  const alpManagerAddress = getContract("AlpManager");
+  const glpManagerAddress = getContract("AlpManager");
 
-  const stakedAxnDistributorAddress = getContract("StakedAxnDistributor");
-  const stakedAlpDistributorAddress = getContract("StakedAlpDistributor");
+  const stakedGmxDistributorAddress = getContract("StakedAxnDistributor");
+  const stakedGlpDistributorAddress = getContract("StakedAlpDistributor");
 
-  const axnVesterAddress = getContract("AxnVester");
-  const alpVesterAddress = getContract("AlpVester");
+  const gmxVesterAddress = getContract("AxnVester");
+  const glpVesterAddress = getContract("AlpVester");
 
-  const vesterAddresses = [axnVesterAddress, alpVesterAddress];
+  const vesterAddresses = [gmxVesterAddress, glpVesterAddress];
 
-  const excludedEsAxnAccounts = [stakedAxnDistributorAddress, stakedAlpDistributorAddress];
+  const excludedEsGmxAccounts = [stakedGmxDistributorAddress, stakedGlpDistributorAddress];
 
   const nativeTokenSymbol = getConstant(chainId, "nativeTokenSymbol");
   const wrappedTokenSymbol = getConstant(chainId, "wrappedTokenSymbol");
 
-  const walletTokens = [axnAddress, esAxnAddress, alpAddress, stakedAxnTrackerAddress];
+  const walletTokens = [gmxAddress, esGmxAddress, glpAddress, stakedGmxTrackerAddress];
   const depositTokens = [
-    axnAddress,
-    esAxnAddress,
-    stakedAxnTrackerAddress,
-    bonusAxnTrackerAddress,
-    bnAxnAddress,
-    alpAddress,
+    gmxAddress,
+    esGmxAddress,
+    stakedGmxTrackerAddress,
+    bonusGmxTrackerAddress,
+    bnGmxAddress,
+    glpAddress,
   ];
   const rewardTrackersForDepositBalances = [
-    stakedAxnTrackerAddress,
-    stakedAxnTrackerAddress,
-    bonusAxnTrackerAddress,
-    feeAxnTrackerAddress,
-    feeAxnTrackerAddress,
-    feeAlpTrackerAddress,
+    stakedGmxTrackerAddress,
+    stakedGmxTrackerAddress,
+    bonusGmxTrackerAddress,
+    feeGmxTrackerAddress,
+    feeGmxTrackerAddress,
+    feeGlpTrackerAddress,
   ];
   const rewardTrackersForStakingInfo = [
-    stakedAxnTrackerAddress,
-    bonusAxnTrackerAddress,
-    feeAxnTrackerAddress,
-    stakedAlpTrackerAddress,
-    feeAlpTrackerAddress,
+    stakedGmxTrackerAddress,
+    bonusGmxTrackerAddress,
+    feeGmxTrackerAddress,
+    stakedGlpTrackerAddress,
+    feeGlpTrackerAddress,
   ];
 
   const { data: walletBalances } = useSWR(
@@ -130,15 +130,15 @@ export default function ALP({ setPendingTxns, connectWallet }) {
     }
   );
 
-  const { data: stakedAxnSupply } = useSWR(
-    [`StakeV2:stakedAxnSupply:${active}`, chainId, axnAddress, "balanceOf", stakedAxnTrackerAddress],
+  const { data: stakedGmxSupply } = useSWR(
+    [`StakeV2:stakedGmxSupply:${active}`, chainId, gmxAddress, "balanceOf", stakedGmxTrackerAddress],
     {
       fetcher: contractFetcher(library, Token),
     }
   );
 
-  const { data: aums } = useSWR([`StakeV2:getAums:${active}`, chainId, alpManagerAddress, "getAums"], {
-    fetcher: contractFetcher(library, AlpManager),
+  const { data: aums } = useSWR([`StakeV2:getAums:${active}`, chainId, glpManagerAddress, "getAums"], {
+    fetcher: contractFetcher(library, GlpManager),
   });
 
   const { data: nativeTokenPrice } = useSWR(
@@ -148,10 +148,10 @@ export default function ALP({ setPendingTxns, connectWallet }) {
     }
   );
 
-  const { data: esAxnSupply } = useSWR(
-    [`StakeV2:esAxnSupply:${active}`, chainId, readerAddress, "getTokenSupply", esAxnAddress],
+  const { data: esGmxSupply } = useSWR(
+    [`StakeV2:esGmxSupply:${active}`, chainId, readerAddress, "getTokenSupply", esGmxAddress],
     {
-      fetcher: contractFetcher(library, ReaderV2, [excludedEsAxnAccounts]),
+      fetcher: contractFetcher(library, ReaderV2, [excludedEsGmxAccounts]),
     }
   );
 
@@ -162,35 +162,35 @@ export default function ALP({ setPendingTxns, connectWallet }) {
     }
   );
 
-  const { axnPrice, /* axnPriceFromArbitrum, axnPriceFromAvalanche, */ axnPriceFromGoerli, axnPriceFromPuppy } = useAxnPrice(
+  const { gmxPrice, /* gmxPriceFromArbitrum, gmxPriceFromAvalanche, */ gmxPriceFromGoerli, gmxPriceFromPuppy } = useGmxPrice(
     chainId,
     library,
     active
   );
 
   // Get total supply of arbitrum and avalanche
-  let { total: totalAxnSupply } = useTotalAxnSupply(chainId);
+  let { total: totalGmxSupply } = useTotalGmxSupply(chainId);
 
   let {
-    avax: avaxAxnStaked,
-    arbitrum: arbitrumAxnStaked,
-    goerli: goerliAxnStaked,
-    puppy: puppyAxnStaked,
-    total: totalAxnStaked,
-  } = useTotalAxnStaked();
+    avax: avaxGmxStaked,
+    arbitrum: arbitrumGmxStaked,
+    goerli: goerliGmxStaked,
+    puppy: puppyGmxStaked,
+    total: totalGmxStaked,
+  } = useTotalGmxStaked();
 
-  // const axnSupplyUrl = getServerUrl(chainId, "/axn_supply");
-  // const { data: axnSupply } = useSWR([axnSupplyUrl], {
+  // const gmxSupplyUrl = getServerUrl(chainId, "/gmx_supply");
+  // const { data: gmxSupply } = useSWR([gmxSupplyUrl], {
   //   fetcher: (...args) => fetch(...args).then((res) => res.text()),
   // });
 
-  const axnSupply = totalAxnSupply;
+  const gmxSupply = totalGmxSupply;
 
-  const isAxnTransferEnabled = true;
+  const isGmxTransferEnabled = true;
 
-  let esAxnSupplyUsd;
-  if (esAxnSupply && axnPrice) {
-    esAxnSupplyUsd = esAxnSupply.mul(axnPrice).div(expandDecimals(1, 18));
+  let esGmxSupplyUsd;
+  if (esGmxSupply && gmxPrice) {
+    esGmxSupplyUsd = esGmxSupply.mul(gmxPrice).div(expandDecimals(1, 18));
   }
 
   let aum;
@@ -211,54 +211,54 @@ export default function ALP({ setPendingTxns, connectWallet }) {
     vestingData,
     aum,
     nativeTokenPrice,
-    stakedAxnSupply,
-    axnPrice,
-    axnSupply
+    stakedGmxSupply,
+    gmxPrice,
+    gmxSupply
   );
 
   let hasMultiplierPoints = false;
   let multiplierPointsAmount;
-  if (processedData && processedData.bonusAxnTrackerRewards && processedData.bnAxnInFeeAxn) {
-    multiplierPointsAmount = processedData.bonusAxnTrackerRewards.add(processedData.bnAxnInFeeAxn);
+  if (processedData && processedData.bonusGmxTrackerRewards && processedData.bnGmxInFeeGmx) {
+    multiplierPointsAmount = processedData.bonusGmxTrackerRewards.add(processedData.bnGmxInFeeGmx);
     if (multiplierPointsAmount.gt(0)) {
       hasMultiplierPoints = true;
     }
   }
   let totalRewardTokens;
-  if (processedData && processedData.bnAxnInFeeAxn && processedData.bonusAxnInFeeAxn) {
-    totalRewardTokens = processedData.bnAxnInFeeAxn.add(processedData.bonusAxnInFeeAxn);
+  if (processedData && processedData.bnGmxInFeeGmx && processedData.bonusGmxInFeeGmx) {
+    totalRewardTokens = processedData.bnGmxInFeeGmx.add(processedData.bonusGmxInFeeGmx);
   }
 
-  let totalRewardTokensAndAlp;
-  if (totalRewardTokens && processedData && processedData.alpBalance) {
-    totalRewardTokensAndAlp = totalRewardTokens.add(processedData.alpBalance);
+  let totalRewardTokensAndGlp;
+  if (totalRewardTokens && processedData && processedData.glpBalance) {
+    totalRewardTokensAndGlp = totalRewardTokens.add(processedData.glpBalance);
   }
 
-  const bonusAxnInFeeAxn = processedData ? processedData.bonusAxnInFeeAxn : undefined;
+  const bonusGmxInFeeGmx = processedData ? processedData.bonusGmxInFeeGmx : undefined;
 
-  let stakedAxnSupplyUsd;
-  if (totalAxnStaked && !totalAxnStaked.isZero() && axnPrice) {
-    stakedAxnSupplyUsd = totalAxnStaked.mul(axnPrice).div(expandDecimals(1, 18));
+  let stakedGmxSupplyUsd;
+  if (totalGmxStaked && !totalGmxStaked.isZero() && gmxPrice) {
+    stakedGmxSupplyUsd = totalGmxStaked.mul(gmxPrice).div(expandDecimals(1, 18));
   }
 
   let totalSupplyUsd;
-  if (totalAxnSupply && !totalAxnSupply.isZero() && axnPrice) {
-    totalSupplyUsd = totalAxnSupply.mul(axnPrice).div(expandDecimals(1, 18));
+  if (totalGmxSupply && !totalGmxSupply.isZero() && gmxPrice) {
+    totalSupplyUsd = totalGmxSupply.mul(gmxPrice).div(expandDecimals(1, 18));
   }
 
-  let maxUnstakeableAxn = bigNumberify(0);
+  let maxUnstakeableGmx = bigNumberify(0);
   if (
     totalRewardTokens &&
     vestingData &&
-    vestingData.axnVesterPairAmount &&
+    vestingData.gmxVesterPairAmount &&
     multiplierPointsAmount &&
-    processedData.bonusAxnInFeeAxn
+    processedData.bonusGmxInFeeGmx
   ) {
-    const availableTokens = totalRewardTokens.sub(vestingData.axnVesterPairAmount);
-    const stakedTokens = processedData.bonusAxnInFeeAxn;
+    const availableTokens = totalRewardTokens.sub(vestingData.gmxVesterPairAmount);
+    const stakedTokens = processedData.bonusGmxInFeeGmx;
     const divisor = multiplierPointsAmount.add(stakedTokens);
     if (divisor.gt(0)) {
-      maxUnstakeableAxn = availableTokens.mul(stakedTokens).div(divisor);
+      maxUnstakeableGmx = availableTokens.mul(stakedTokens).div(divisor);
     }
   }
   return (
@@ -280,65 +280,55 @@ export default function ALP({ setPendingTxns, connectWallet }) {
                   </div>
                   <div className="row">
                     <div className="col-6">
-                      <PageRow title={`${nativeTokenSymbol} (${wrappedTokenSymbol})`}
-                        value={formatKeyAmount(processedData, "totalNativeTokenRewards", 18, 4, true)}
+                      <PageRow title={`${nativeTokenSymbol} (${wrappedTokenSymbol})`} 
+                        value={formatKeyAmount(processedData, "totalNativeTokenRewards", 18, 4, true)} 
                         subValue = {`$${formatKeyAmount(processedData, "totalNativeTokenRewardsUsd", USD_DECIMALS, 2, true)}`}
                         direction="vertical"/>
                     </div>
                     <div className="col-6 align-right">
-                      <PageRow title="esAXN"
-                         value={formatKeyAmount(processedData, "totalEsAxnRewards", 18, 4, true)}
-                         subValue= {`$${formatKeyAmount(processedData, "totalEsAxnRewardsUsd", USD_DECIMALS, 2, true)}`}
+                      <PageRow title="esAXN" 
+                         value={formatKeyAmount(processedData, "totalEsGmxRewards", 18, 4, true)} 
+                         subValue= {`$${formatKeyAmount(processedData, "totalEsGmxRewardsUsd", USD_DECIMALS, 2, true)}`} 
                          direction="vertical"/>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="Exchange-swap-section strategy-container colored border-0">
-                <PageRow title= "ALP" value="Stake ALP to earn ETH, esAXN, and MPs." direction="vertical" className="page-row-content"/>
-                <PageRow title= "Wallet"
-                  value={`${formatKeyAmount(processedData, "alpBalance", TLP_DECIMALS, 2, true)} AXN`}
-                  subValue= {`$${formatKeyAmount(processedData, "alpBalanceUsd", USD_DECIMALS, 2, true)}`}
+                <PageRow title= "ALP" value="Stake ALP to earn FTM, esAXN, and MPs." direction="vertical" className="page-row-content"/>
+                <PageRow title= "Wallet" 
+                  value={`${formatKeyAmount(processedData, "glpBalance", TLP_DECIMALS, 2, true)} AXN`}
+                  subValue= {`$${formatKeyAmount(processedData, "glpBalanceUsd", USD_DECIMALS, 2, true)}`} 
                   direction="vertical" className="page-row-content-deverse"/>
-                <PageRow title= "Staked"
-                  value={`${formatKeyAmount(processedData, "alpBalance", TLP_DECIMALS, 2, true)} AXN`}
-                  subValue = {`$${formatKeyAmount(processedData, "alpBalanceUsd", USD_DECIMALS, 2, true)}`}
+                <PageRow title= "Staked" 
+                  value={`${formatKeyAmount(processedData, "glpBalance", TLP_DECIMALS, 2, true)} AXN`}
+                  subValue = {`$${formatKeyAmount(processedData, "glpBalanceUsd", USD_DECIMALS, 2, true)}`} 
                   direction="vertical" className="page-row-content-deverse"/>
               </div>
             </div>
             <div className="col-lg-5 col-sm-12 col-md-12">
               <div className="row padding-1r">
                 <div className="Exchange-swap-section strategy-container alp-container">
-                  <PageRow title= "ALP price"
-                    value={`$${formatKeyAmount(processedData, "alpPrice", TLP_DECIMALS, 3, true)}`}
+                  <PageRow title= "ALP price" 
+                    value={`${formatKeyAmount(processedData, "glpPrice", USD_DECIMALS, 3, true)}`} 
                     direction="vertical" className="page-row-content-deverse"/>
                   {!active && (
                     <button className="App-cta Exchange-swap-button" onClick={() => connectWallet()}>
                       Connect Wallet
                     </button>
                   )}
-                  {active && (
-                    <div style={{display:'flex', justifyContent:"around", alignItems:"center"}}>
-                      <Link className="default-btn" to="/buy_alp">
-                        <Trans>Buy ALP</Trans>
-                      </Link>
-                      <Link className="default-btn" to="/buy_alp#redeem">
-                        <Trans>Sell ALP</Trans>
-                      </Link>
-                    </div>
-                  )}
                   <div className="row padding-1r">
-                    <div className="col-3"><Trans>AXN APR</Trans></div>
+                    <div className="col-3"><Trans>ANX APR</Trans></div>
                     <div className="col-9 App-card-divider"></div>
                   </div>
                   <div className="row padding-1r">
                     <div className="col-12 percent-font"><Trans>50.16%</Trans></div>
                   </div>
-                  <PageRow title= "Total Staked"
-                    value={`${formatKeyAmount(processedData, "alpSupply", 18, 2, true)} AXN ($${formatKeyAmount(processedData, "alpSupplyUsd", USD_DECIMALS, 3, true)})`}
+                  <PageRow title= "Total Staked" 
+                    value={`${formatKeyAmount(processedData, "glpSupply", 18, 2, true)} AXN ($${formatKeyAmount(processedData, "glpSupplyUsd", USD_DECIMALS, 3, true)})`}
                     direction="align-right" className="page-row-content-deverse"/>
-                  <PageRow title= "Total Supply"
-                    value={`${formatKeyAmount(processedData, "alpSupply", 18, 2, true)} AXN ($${formatKeyAmount(processedData, "alpSupplyUsd", USD_DECIMALS, 3, true)})`}
+                  <PageRow title= "Total Supply" 
+                    value={`${formatKeyAmount(processedData, "glpSupply", 18, 2, true)} AXN ($${formatKeyAmount(processedData, "glpSupplyUsd", USD_DECIMALS, 3, true)})`}
                     direction="align-right" className="page-row-content-deverse"/>
                 </div>
               </div>
@@ -347,6 +337,6 @@ export default function ALP({ setPendingTxns, connectWallet }) {
         </div>
       </div>
     </>
-
+    
   )
 }

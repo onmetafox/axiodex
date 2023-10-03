@@ -5,7 +5,7 @@ import { formatAmount } from "lib/numbers";
 import { Bar } from "./types";
 import { formatTimeInBarToMs, getCurrentCandleTime } from "./utils";
 import { fillBarGaps, getCurrentPriceOfToken, getTokenChartPrice } from "./requests";
-import { BigNumber, BigNumberish } from "ethers";
+import { BigNumberish } from "ethers";
 import { PeriodParams } from "charting_library";
 
 const initialHistoryBarsInfo = {
@@ -33,7 +33,7 @@ export class TVDataProvider {
     this.barsInfo = initialHistoryBarsInfo;
   }
 
-  async getCurrentPriceOfToken(chainId: number, ticker: string) {
+  async getCurrentPriceOfToken(chainId: number, ticker: string): Promise<BigNumberish> {
     return getCurrentPriceOfToken(chainId, ticker);
   }
 
@@ -51,6 +51,7 @@ export class TVDataProvider {
     periodParams: PeriodParams,
     shouldRefetchBars: boolean
   ): Promise<Bar[]> {
+    console.log('getTokenHistoryBars...');
     const barsInfo = this.barsInfo;
     if (!barsInfo.data.length || barsInfo.ticker !== ticker || barsInfo.period !== period || shouldRefetchBars) {
       try {
@@ -73,8 +74,8 @@ export class TVDataProvider {
     }
 
     const { from, to, countBack } = periodParams;
-    const toWithOffset = to + timezoneOffset;
-    const fromWithOffset = from + timezoneOffset;
+    const toWithOffset = to // + timezoneOffset;
+    const fromWithOffset = from // + timezoneOffset;
     const bars = barsInfo.data.filter((bar) => bar.time > fromWithOffset && bar.time <= toWithOffset);
 
     // if no bars returned, return empty array
@@ -127,7 +128,7 @@ export class TVDataProvider {
       if (prices?.length) {
         // @ts-ignore
         const lastBar = prices[0];
-        let currentCandleTime = getCurrentCandleTime(period);
+        const currentCandleTime = getCurrentCandleTime(period);
         const lastCandleTime = currentCandleTime - CHART_PERIODS[period];
         if (lastBar.time === currentCandleTime || lastBar.time === lastCandleTime) {
           this.lastBar = { ...lastBar, ticker };
@@ -161,17 +162,16 @@ export class TVDataProvider {
     const currentPrice = await this.getCurrentPriceOfToken(chainId, ticker);
     if(ticker!==this.lastBar.ticker)
       return undefined
-
     const averagePriceValue = parseFloat(formatAmount(currentPrice, USD_DECIMALS, 8));
+    // console.log('live', averagePriceValue)
     if (this.lastBar.time && currentCandleTime === this.lastBar.time && ticker === this.lastBar.ticker) {
-      this.lastBar = {
+      return {
         ...this.lastBar,
         close: averagePriceValue,
         high: Math.max(this.lastBar.open, this.lastBar.high, averagePriceValue),
         low: Math.min(this.lastBar.open, this.lastBar.low, averagePriceValue),
         ticker,
-      }
-      return this.lastBar;
+      };
     } else {
       const newBar = {
         time: currentCandleTime,

@@ -13,7 +13,7 @@ import axnEthIcon from "img/axn-eth.svg";
 import axnBoneIcon from "img/axn-bone.svg";
 import pollBackImage from "img/img_right.svg";
 import { getContract } from "config/contracts";
-import { useTotalAxnInLiquidity, useTotalFundInLiquidity, useAxnPrice } from "domain/legacy";
+import { useTotalGmxInLiquidity, useTotalFundInLiquidity, useGmxPrice } from "domain/legacy";
 import { DEFAULT_DECIMALS, USD_DECIMALS, USDC_DECIMALS, AXN_DECIMALS, shortenAddress } from "lib/legacy";
 import { formatAmount, expandDecimals } from "lib/numbers";
 import { contractFetcher } from "lib/contracts";
@@ -38,7 +38,7 @@ export default function Poll() {
 
   let {
     total: gmxReserve,
-  } = useTotalAxnInLiquidity(chainId);
+  } = useTotalGmxInLiquidity(chainId);
 
   let pairIcon;
   totalGmxInLiquidity = gmxReserve;
@@ -49,7 +49,7 @@ export default function Poll() {
   tokenAddress = getTokenBySymbol("USDC").address;
 
   lpTokenAddress = getContract("UniswapAxnUsdcPool");
-
+  
   const shortLpTokenAddress = shortenAddress(lpTokenAddress, 13);
   const lpTokenUrl = blockExplorer + "address/" + lpTokenAddress;
 
@@ -61,7 +61,7 @@ export default function Poll() {
   const shortLiquidityLockAddress = shortenAddress(liquidityLockAddress, 13);
   const liquidityLockUrl = blockExplorer + "address/" + liquidityLockAddress;
 
-  const { gmxPrice } = useAxnPrice(chainId, undefined, active);
+  const { gmxPrice } = useGmxPrice(chainId, undefined, active);
 
   const liquidityLockerAddress = getContract("LiquidityLock");
 

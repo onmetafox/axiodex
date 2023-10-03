@@ -280,7 +280,8 @@ class PriceFeeds(object):
 
 class Wallet(object):
     def __init__(self, endpoint, priv):
-        self.web3 = Web3(Web3.HTTPProvider(endpoint))
+        self.web3 = Web3(Web3.HTTPProvider(
+            endpoint))
         self.privateKey = priv
         self.address = Account.from_key(self.privateKey).address
 
@@ -288,34 +289,31 @@ class Wallet(object):
         return self.web3.eth.get_transaction_count(self.address)
 
     def signHash(self, hashToSign):
-        signature = Account.signHash(hashToSign, self.privateKey).signature.hex()
+        signature = Account.signHash(
+            hashToSign, self.privateKey).signature.hex()
         return signature
 
     def sendTx(self, tx):
-        # try:
-        #     gas = self.web3.estimateGas(tx)*1.2
-        # except:
-        #     gas = 300000
+        try:
+            gas = self.web3.estimateGas(tx)*1.2
+        except:
+            gas = 300000
         nonce = self.getNonce()
-        build_tx = tx.build_transaction({
+        tx = tx.build_transaction({
             'chainId': self.web3.eth.chain_id,
-            'from': self.address,
-            # 'gas': int(gas),
-            # 'maxFeePerGas': self.web3.toWei(gas, 'gwei'),
-            # 'gasPrice': int(self.web3.eth._gas_price()*2),
-            # 'maxPriorityFeePerGas': self.web3.toWei(max_priority_fee, 'gwei'),
+            'gas': int(gas),
+            'gasPrice': int(self.web3.eth._gas_price()*2),
             'nonce': nonce,
-            # "value": 0,
+            "value": 0,
         })
-        signed_tx = self.web3.eth.account.sign_transaction(
-            build_tx, private_key=self.privateKey)
-        tx_hash = self.web3.eth.send_raw_transaction(signed_tx.rawTransaction)
-        res = self.web3.eth.wait_for_transaction_receipt(
-            transaction_hash=tx_hash,
+        tx = self.web3.eth.account.sign_transaction(
+            tx, private_key=self.privateKey)
+        self.web3.eth.send_raw_transaction(tx.rawTransaction)
+        self.web3.eth.wait_for_transaction_receipt(
+            transaction_hash=tx.hash,
             timeout=90,
-            # poll_latency=1,
-        )
-        print('transaction status:', res.status)
+            poll_latency=1,
+        ).status
 
 
 class Keeper(object):

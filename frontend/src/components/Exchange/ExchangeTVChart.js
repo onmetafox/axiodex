@@ -142,6 +142,7 @@ export default function ExchangeTVChart(props) {
         lines.push(position.liquidation);
       });
     }
+
     return lines;
   }, [currentOrders, currentPositions]);
 

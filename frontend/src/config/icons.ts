@@ -1,10 +1,8 @@
 import pulse from "img/ic_pls_40.svg";
-import base from "img/ic_base.svg"
 
 import gmxIcon from "img/ic_gmx_40.svg";
 import ethIcon from "img/ic_eth_40.svg";
 import glpIcon from "img/ic_glp_40.svg";
-import alpIcon from "img/ic_alp.svg";
 import axnIcon from "img/ic_axn_40.svg";
 import tlpIcon from "img/ic_tlp_40.svg";
 import dropIcon from "img/ic_menu_dots.svg";
@@ -12,10 +10,9 @@ import { LOCALNET } from "./chains";
 
 const ICONS = {
   common: {
-    network: base,
+    network: pulse,
     icon: pulse,
     gmx: gmxIcon,
-    alp: alpIcon,
     glp: glpIcon,
     axn: axnIcon,
     tlp: tlpIcon,

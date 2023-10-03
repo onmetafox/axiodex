@@ -20,10 +20,10 @@ import {
   arrayURLFetcher,
 } from "lib/legacy";
 import {
-  useTotalAxnInLiquidity,
-  useAxnPrice,
-  useTotalAxnStaked,
-  useTotalAxnSupply,
+  useTotalGmxInLiquidity,
+  useGmxPrice,
+  useTotalGmxStaked,
+  useTotalGmxSupply,
   useTotalStatInfo,
 } from "domain/legacy";
 import useFeesSummary from "domain/useFeesSummary";
@@ -100,7 +100,7 @@ export default function DashboardV2() {
     total_Volume = totalStats.totalVolume;
   }
 
-  let { total: totalGmxSupply } = useTotalAxnSupply(chainId);
+  let { total: totalGmxSupply } = useTotalGmxSupply(chainId);
 
   function getWhitelistedTokenAddresses(chainId) {
     const whitelistedTokens = getWhitelistedTokens();
@@ -205,17 +205,17 @@ export default function DashboardV2() {
   //     { total: 0 }
   //   );
 
-  const { gmxPrice } = useAxnPrice(
+  const { gmxPrice } = useGmxPrice(
     chainId,
     undefined,
     active
   );
 
-  let { total: totalGmxInLiquidity } = useTotalAxnInLiquidity(chainId, active);
+  let { total: totalGmxInLiquidity } = useTotalGmxInLiquidity(chainId, active);
 
   let {
     total: totalStakedGmx,
-  } = useTotalAxnStaked();
+  } = useTotalGmxStaked();
 
   let gmxMarketCap;
   if (gmxPrice && totalGmxSupply) {

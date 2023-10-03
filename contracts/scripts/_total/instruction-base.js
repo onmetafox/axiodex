@@ -5,6 +5,8 @@ module.exports = [
     { func: "wallet", as: "remotePriceUpdater", value: "tail backend keeper" },
     { func: "wallet", as: "positionKeeper", value: "position keeper" },
 
+    { func: "const", as: "durationTimeLock", value: 1 },
+
     { func: "load", artifact: "WETH", as: "NATIVE_TOKEN", address: "0x4200000000000000000000000000000000000006" },
     // { func: "load", artifact: "contracts/tokens/General.sol:GeneralToken", as: "HEX", address: "0x826e4e896CC2f5B371Cd7Bb0bd929DB3e3DB67c0" },
     // { func: "load", artifact: "contracts/tokens/General.sol:GeneralToken", as: "USDC", address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" },
@@ -39,7 +41,7 @@ module.exports = [
     { func: "deploy", artifact: "ALP" },
     { func: "call", contract: "ALP", method: "setInPrivateTransferMode", args: [true] },
     { func: "deploy", artifact: "ShortsTracker", args: ["${Vault.address}"] },
-    { func: "deploy", artifact: "AlpManager", args: ["${Vault.address}", "${USDG.address}", "${ALP.address}", "${ShortsTracker.address}", 1] },
+    { func: "deploy", artifact: "AlpManager", args: ["${Vault.address}", "${USDG.address}", "${ALP.address}", "${ShortsTracker.address}", "${durationTimeLock}"] },
     { func: "call", contract: "AlpManager", method: "setInPrivateMode", args: [true] },
     { func: "call", contract: "ALP", method: "setMinter", args: ["${AlpManager.address}", true] },
     { func: "call", contract: "USDG", method: "addVault", args: ["${AlpManager.address}"] },
@@ -359,7 +361,7 @@ module.exports = [
 
     { func: "deploy", artifact: "Timelock", as: "TimeLock", args: [
         "${admin.address}", // admin ???
-        "1", // buffer
+        "${durationTimeLock}", // buffer
         "${Vault.address}", // tokenManager
         "${Vault.address}", // mintReceiver
         "${AlpManager.address}", // glpManager
@@ -438,7 +440,7 @@ module.exports = [
     
     { func: "deploy", artifact: "PriceFeedTimelock", args: [
         "${admin.address}",
-        "1",
+        "${durationTimeLock}",
         "${TokenManager.address}"    
     ]},
     { func: "call", contract: "PriceFeedTimelock", method: "setContractHandler", args: ["${admin.address}", true] },
@@ -505,7 +507,7 @@ module.exports = [
     { func: "deploy", artifact: "VaultReader", args: []},
     { func: "deploy", artifact: "ShortsTrackerTimelock", args: [
         "${admin.address}", // admin
-        1, // buffer
+        "${durationTimeLock}", // buffer
         300,  // averagePriceUpdateDelay
         20 // maxAveragePriceChange
     ]},
@@ -516,8 +518,8 @@ module.exports = [
     
     { func: "deploy", artifact: "AxnTimelock", args: [
         "${admin.address}",
-        "1",
-        "1",
+        "${durationTimeLock}",
+        "${durationTimeLock}",
         "${AddressZero.address}",
         "${admin.address}",
         "${AddressZero.address}",

@@ -19,7 +19,7 @@ export const localnetGraphClient = createClient(SUBGRAPH_URLS[LOCALNET].stats);
 export const localnetReferralClient = createClient(SUBGRAPH_URLS[LOCALNET].referrals);
 export const localnetNissohClient = createClient(SUBGRAPH_URLS[LOCALNET].nissohVault);
 
-export function getStatsClient(chainId: number) {
+export function getGmxGraphClient(chainId: number) {
   if (chainId === MAINNET) {
     return mainnetGraphClient;
   } else if (chainId === TESTNET) {
@@ -31,7 +31,7 @@ export function getStatsClient(chainId: number) {
   throw new Error(`Unsupported chain ${chainId}`);
 }
 
-export function getPriceClient(chainId: number) {
+export function getGmxPriceClient(chainId: number) {
   if (chainId === MAINNET) {
     return null;
   } else if (chainId === TESTNET) {

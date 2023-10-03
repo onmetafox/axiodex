@@ -173,27 +173,22 @@
 
 .token-table td:nth-child(2),
 .token-table th:nth-child(2) {
-  width: 15rem;
+  width: 11rem;
 }
 
 .token-table td:nth-child(3),
 .token-table th:nth-child(3) {
-  width: 15rem;
+  width: 32rem;
 }
 
 .token-table td:nth-child(4),
 .token-table th:nth-child(4) {
-  width: 15rem;
+  width: 20rem;
 }
 
 .token-table td:nth-child(5),
 .token-table th:nth-child(5) {
-  width: 15rem;
-}
-
-.token-table td:nth-child(6),
-.token-table th:nth-child(6) {
-  width: 15rem;
+  width: 13rem;
 }
 
 .token-table td {

@@ -120,15 +120,15 @@ function Referrals({ connectWallet, setPendingTxns, pendingTxns }) {
           <div className="section-title-content">
             <div className="Page-title">
               <Trans>
-                Referrals
+                Referrals 
               </Trans>
             </div>
             <div className="Page-description">
               <Trans>
-                Get fee discounts and earn rebates through the AxioDex referral program
+                Get fee discounts and earn rebates through the GMX referral program
                 <br />
                 For more information, please read the{" "}
-                <a href="https://docs.axiodex.com/referrals">referral program details</a>
+                <ExternalLink href="https://gmxio.gitbook.io/gmx/referrals">referral program details</ExternalLink>.
               </Trans>
             </div>
           </div>

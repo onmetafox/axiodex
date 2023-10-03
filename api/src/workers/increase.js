@@ -32,7 +32,7 @@ const schedule = async () => {
                     index
                     account
                     triggerAboveThreshold
-                    triggerRatio
+                    triggerPrice
                     indexToken
                     isLong
                 }

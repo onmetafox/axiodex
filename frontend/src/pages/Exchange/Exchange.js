@@ -155,7 +155,7 @@ export function getPositions(
     const collateralToken = getTokenInfo(infoTokens, collateralTokens[i], true, getContract("NATIVE_TOKEN"));
     const indexToken = getTokenInfo(infoTokens, indexTokens[i], true, getContract("NATIVE_TOKEN"));
     const key = getPositionKey(account, collateralTokens[i], indexTokens[i], isLong[i]);
-
+    
     let contractKey;
     if (account) {
       contractKey = getPositionContractKey(account, collateralTokens[i], indexTokens[i], isLong[i]);

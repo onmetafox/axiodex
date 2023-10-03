@@ -1,29 +1,18 @@
 import { useWeb3React } from "@web3-react/core";
 import React, { ReactNode, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
-import useSWR from "swr";
-import { ethers } from "ethers";
 
 import moneyIcon from "img/ic_money.svg";
 import { Trans, t } from "@lingui/macro";
-
 import "./Vest.css";
-
-import SEO from "components/Common/SEO";
-import Modal from "components/Modal/Modal";
-import Tooltip from "components/Tooltip/Tooltip";
-import PageRow from "components/PageComponent/PageRow";
-import PageTitle from "components/PageComponent/PageTitle";
 import ExternalLink from "components/ExternalLink/ExternalLink";
-import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
+import PageTitle from "components/PageComponent/PageTitle";
+import PageRow from "components/PageComponent/PageRow";
 
-import Token from "abis/Token.json";
 import Vault from "abis/Vault.json";
-import Vester from "abis/Vester.json";
 import ReaderV2 from "abis/ReaderV2.json";
-import AlpManager from "abis/GlpManager.json";
 import RewardReader from "abis/RewardReader.json";
+import Token from "abis/Token.json";
+import GlpManager from "abis/GlpManager.json";
 
 import {
   USD_DECIMALS,
@@ -33,368 +22,82 @@ import {
   getVestingData,
   getStakingData,
   getProcessedData,
-  getPageTitle,
 } from "lib/legacy";
-import { useChainId } from "lib/chains";
-import { helperToast } from "lib/helperToast";
-import { contractFetcher, callContract } from "lib/contracts";
-import { bigNumberify, expandDecimals, formatAmount, formatAmountFree, formatKeyAmount, parseValue } from "lib/numbers";
-
-import { useAxnPrice, useTotalAxnStaked, useTotalAxnSupply } from "domain/legacy";
-
+import { useGmxPrice, useTotalGmxStaked, useTotalGmxSupply } from "domain/legacy";
 import { getConstant } from "config/chains";
-import { getContract } from "config/contracts";
-// import { getServerUrl } from "config/backend";
 
-// const PAGE_TITLE = "Vest";
-const PAGE_TITLE = "Vault";
+import useSWR from "swr";
+
+import { getContract } from "config/contracts";
+
+// import { getServerUrl } from "config/backend";
+import { contractFetcher } from "lib/contracts";
+import { bigNumberify, expandDecimals, formatAmount, formatAmountFree, formatKeyAmount, parseValue } from "lib/numbers";
+import { useChainId } from "lib/chains";
+import { Link } from "react-router-dom";
+
+const PAGE_TITLE = "Vest";
 const DESCRIPTION = ["Convert esAXN tokens to AXN tokens.","Prior to using the vaults, please review the vesting details carefully."];
 
-function VesterDepositModal(props) {
-  const {
-    isVisible,
-    setIsVisible,
-    chainId,
-    title,
-    maxAmount,
-    value,
-    setValue,
-    balance,
-    vestedAmount,
-    averageStakedAmount,
-    maxVestableAmount,
-    library,
-    stakeTokenLabel,
-    reserveAmount,
-    maxReserveAmount,
-    vesterAddress,
-    setPendingTxns,
-  } = props;
-  const [isDepositing, setIsDepositing] = useState(false);
-
-  let amount = parseValue(value, 18);
-
-  let nextReserveAmount = reserveAmount;
-
-  let nextDepositAmount = vestedAmount;
-  if (amount) {
-    nextDepositAmount = vestedAmount.add(amount);
-  }
-
-  let additionalReserveAmount = bigNumberify(0);
-  if (amount && averageStakedAmount && maxVestableAmount && maxVestableAmount.gt(0)) {
-    nextReserveAmount = nextDepositAmount.mul(averageStakedAmount).div(maxVestableAmount);
-    if (nextReserveAmount.gt(reserveAmount)) {
-      additionalReserveAmount = nextReserveAmount.sub(reserveAmount);
-    }
-  }
-
-  const getError = () => {
-    if (!amount || amount.eq(0)) {
-      return t`Enter an amount`;
-    }
-    if (maxAmount && amount.gt(maxAmount)) {
-      return t`Max amount exceeded`;
-    }
-    if (nextReserveAmount.gt(maxReserveAmount)) {
-      return t`Insufficient staked tokens`;
-    }
-  };
-
-  const onClickPrimary = () => {
-    setIsDepositing(true);
-    const contract = new ethers.Contract(vesterAddress, Vester.abi, library.getSigner());
-
-    callContract(chainId, contract, "deposit", [amount], {
-      sentMsg: t`Deposit submitted!`,
-      failMsg: t`Deposit failed!`,
-      successMsg: t`Deposited!`,
-      setPendingTxns,
-    })
-      .then(async (res) => {
-        setIsVisible(false);
-      })
-      .finally(() => {
-        setIsDepositing(false);
-      });
-  };
-
-  const isPrimaryEnabled = () => {
-    const error = getError();
-    if (error) {
-      return false;
-    }
-    if (isDepositing) {
-      return false;
-    }
-    return true;
-  };
-
-  const getPrimaryText = () => {
-    const error = getError();
-    if (error) {
-      return error;
-    }
-    if (isDepositing) {
-      return t`Depositing...`;
-    }
-    return t`Deposit`;
-  };
-
-  return (
-    <SEO title={getPageTitle("Earn")}>
-      <div className="StakeModal">
-        <Modal isVisible={isVisible} setIsVisible={setIsVisible} label={title} className="non-scrollable">
-          <div className="Exchange-swap-section">
-            <div className="Exchange-swap-section-top">
-              <div className="muted">
-                <div className="Exchange-swap-usd">
-                  <Trans>Deposit</Trans>
-                </div>
-              </div>
-              <div
-                className="muted align-right clickable"
-                onClick={() => setValue(formatAmountFree(maxAmount, 18, 18))}
-              >
-                <Trans>Max: {formatAmount(maxAmount, 18, 4, true)}</Trans>
-              </div>
-            </div>
-            <div className="Exchange-swap-section-bottom">
-              <div>
-                <input
-                  type="number"
-                  placeholder="0.0"
-                  className="Exchange-swap-input"
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
-                />
-              </div>
-              <div className="PositionEditor-token-symbol">esAXN</div>
-            </div>
-          </div>
-          <div className="VesterDepositModal-info-rows">
-            <div className="Exchange-info-row">
-              <div className="Exchange-info-label">
-                <Trans>Wallet</Trans>
-              </div>
-              <div className="align-right">{formatAmount(balance, 18, 2, true)} esAXN</div>
-            </div>
-            <div className="Exchange-info-row">
-              <div className="Exchange-info-label">
-                <Trans>Vault Capacity</Trans>
-              </div>
-              <div className="align-right">
-                <Tooltip
-                  handle={`${formatAmount(nextDepositAmount, 18, 2, true)} / ${formatAmount(
-                    maxVestableAmount,
-                    18,
-                    2,
-                    true
-                  )}`}
-                  position="right-bottom"
-                  renderContent={() => {
-                    return (
-                      <div>
-                        <p className="text-white">
-                          <Trans>Vault Capacity for your Account:</Trans>
-                        </p>
-                        <StatsTooltipRow
-                          showDollar={false}
-                          label={t`Deposited`}
-                          value={`${formatAmount(vestedAmount, 18, 2, true)} esAXN`}
-                        />
-                        <StatsTooltipRow
-                          showDollar={false}
-                          label={t`Max Capacity`}
-                          value={`${formatAmount(maxVestableAmount, 18, 2, true)} esAXN`}
-                        />
-                      </div>
-                    );
-                  }}
-                />
-              </div>
-            </div>
-            <div className="Exchange-info-row">
-              <div className="Exchange-info-label">
-                <Trans>Reserve Amount</Trans>
-              </div>
-              <div className="align-right">
-                <Tooltip
-                  handle={`${formatAmount(
-                    reserveAmount && reserveAmount.gte(additionalReserveAmount)
-                      ? reserveAmount
-                      : additionalReserveAmount,
-                    18,
-                    2,
-                    true
-                  )} / ${formatAmount(maxReserveAmount, 18, 2, true)}`}
-                  position="right-bottom"
-                  renderContent={() => {
-                    return (
-                      <>
-                        <StatsTooltipRow
-                          label={t`Current Reserved`}
-                          value={formatAmount(reserveAmount, 18, 2, true)}
-                          showDollar={false}
-                        />
-                        <StatsTooltipRow
-                          label={t`Additional reserve required`}
-                          value={formatAmount(additionalReserveAmount, 18, 2, true)}
-                          showDollar={false}
-                        />
-                        {amount && nextReserveAmount.gt(maxReserveAmount) && (
-                          <>
-                            <br />
-                            <Trans>
-                              You need a total of at least {formatAmount(nextReserveAmount, 18, 2, true)}{" "}
-                              {stakeTokenLabel} to vest {formatAmount(amount, 18, 2, true)} esAXN.
-                            </Trans>
-                          </>
-                        )}
-                      </>
-                    );
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="Exchange-swap-button-container">
-            <button className="App-cta Exchange-swap-button" onClick={onClickPrimary} disabled={!isPrimaryEnabled()}>
-              {getPrimaryText()}
-            </button>
-          </div>
-        </Modal>
-      </div>
-    </SEO>
-  );
-}
-
-function VesterWithdrawModal(props) {
-  const { isVisible, setIsVisible, chainId, title, library, vesterAddress, setPendingTxns } = props;
-  const [isWithdrawing, setIsWithdrawing] = useState(false);
-
-  const onClickPrimary = () => {
-    setIsWithdrawing(true);
-    const contract = new ethers.Contract(vesterAddress, Vester.abi, library.getSigner());
-
-    callContract(chainId, contract, "withdraw", [], {
-      sentMsg: t`Withdraw submitted.`,
-      failMsg: t`Withdraw failed.`,
-      successMsg: t`Withdrawn!`,
-      setPendingTxns,
-    })
-      .then(async (res) => {
-        setIsVisible(false);
-      })
-      .finally(() => {
-        setIsWithdrawing(false);
-      });
-  };
-
-  return (
-    <div className="StakeModal">
-      <Modal isVisible={isVisible} setIsVisible={setIsVisible} label={title}>
-        <Trans>
-          <div>
-            This will withdraw and unreserve all tokens as well as pause vesting.
-            <br />
-            <br />
-            esAXN tokens that have been converted to AXN will remain as AXN tokens.
-            <br />
-            <br />
-            To claim AXN tokens without withdrawing, use the "Claim" button under the Total Rewards section.
-            <br />
-            <br />
-          </div>
-        </Trans>
-        <div className="Exchange-swap-button-container">
-          <button className="App-cta Exchange-swap-button" onClick={onClickPrimary} disabled={isWithdrawing}>
-            {!isWithdrawing && "Confirm Withdraw"}
-            {isWithdrawing && "Confirming..."}
-          </button>
-        </div>
-      </Modal>
-    </div>
-  );
-}
-
-export default function Vest({setPendingTxns, connectWallet}) {
+export default function Vest() {
   const { active, library, account } = useWeb3React();
   const { chainId } = useChainId();
-
-  const [isVesterDepositModalVisible, setIsVesterDepositModalVisible] = useState(false);
-  const [vesterDepositTitle, setVesterDepositTitle] = useState("");
-  const [vesterDepositStakeTokenLabel, setVesterDepositStakeTokenLabel] = useState("");
-  const [vesterDepositMaxAmount, setVesterDepositMaxAmount] = useState("");
-  const [vesterDepositBalance, setVesterDepositBalance] = useState("");
-  const [vesterDepositEscrowedBalance, setVesterDepositEscrowedBalance] = useState("");
-  const [vesterDepositVestedAmount, setVesterDepositVestedAmount] = useState("");
-  const [vesterDepositAverageStakedAmount, setVesterDepositAverageStakedAmount] = useState("");
-  const [vesterDepositMaxVestableAmount, setVesterDepositMaxVestableAmount] = useState("");
-  const [vesterDepositValue, setVesterDepositValue] = useState("");
-  const [vesterDepositReserveAmount, setVesterDepositReserveAmount] = useState("");
-  const [vesterDepositMaxReserveAmount, setVesterDepositMaxReserveAmount] = useState("");
-  const [vesterDepositAddress, setVesterDepositAddress] = useState("");
-
-  const [isVesterWithdrawModalVisible, setIsVesterWithdrawModalVisible] = useState(false);
-  const [vesterWithdrawTitle, setVesterWithdrawTitle] = useState(false);
-  const [vesterWithdrawAddress, setVesterWithdrawAddress] = useState("");
 
   const rewardReaderAddress = getContract("RewardReader");
   const readerAddress = getContract("Reader");
 
   const vaultAddress = getContract("Vault");
   const nativeTokenAddress = getContract("NATIVE_TOKEN");
-  const axnAddress = getContract("AXN");
-  const esAxnAddress = getContract("EsAXN");
-  const bnAxnAddress = getContract("BnAXN");
-  const alpAddress = getContract("ALP");
+  const gmxAddress = getContract("AXN");
+  const esGmxAddress = getContract("EsAXN");
+  const bnGmxAddress = getContract("BnAXN");
+  const glpAddress = getContract("ALP");
 
-  const stakedAxnTrackerAddress = getContract("StakedAxnTracker");
-  const bonusAxnTrackerAddress = getContract("BonusAxnTracker");
-  const feeAxnTrackerAddress = getContract("FeeAxnTracker");
+  const stakedGmxTrackerAddress = getContract("StakedAxnTracker");
+  const bonusGmxTrackerAddress = getContract("BonusAxnTracker");
+  const feeGmxTrackerAddress = getContract("FeeAxnTracker");
 
-  const stakedAlpTrackerAddress = getContract("StakedAlpTracker");
-  const feeAlpTrackerAddress = getContract("FeeAlpTracker");
+  const stakedGlpTrackerAddress = getContract("StakedAlpTracker");
+  const feeGlpTrackerAddress = getContract("FeeAlpTracker");
 
-  const alpManagerAddress = getContract("AlpManager");
+  const glpManagerAddress = getContract("AlpManager");
 
-  const stakedAxnDistributorAddress = getContract("StakedAxnDistributor");
-  const stakedAlpDistributorAddress = getContract("StakedAlpDistributor");
+  const stakedGmxDistributorAddress = getContract("StakedAxnDistributor");
+  const stakedGlpDistributorAddress = getContract("StakedAlpDistributor");
 
-  const axnVesterAddress = getContract("AxnVester");
-  const alpVesterAddress = getContract("AlpVester");
+  const gmxVesterAddress = getContract("AxnVester");
+  const glpVesterAddress = getContract("AlpVester");
 
-  const vesterAddresses = [axnVesterAddress, alpVesterAddress];
+  const vesterAddresses = [gmxVesterAddress, glpVesterAddress];
 
-  const excludedEsAxnAccounts = [stakedAxnDistributorAddress, stakedAlpDistributorAddress];
+  const excludedEsGmxAccounts = [stakedGmxDistributorAddress, stakedGlpDistributorAddress];
 
   const nativeTokenSymbol = getConstant(chainId, "nativeTokenSymbol");
   const wrappedTokenSymbol = getConstant(chainId, "wrappedTokenSymbol");
 
-  const walletTokens = [axnAddress, esAxnAddress, alpAddress, stakedAxnTrackerAddress];
+  const walletTokens = [gmxAddress, esGmxAddress, glpAddress, stakedGmxTrackerAddress];
   const depositTokens = [
-    axnAddress,
-    esAxnAddress,
-    stakedAxnTrackerAddress,
-    bonusAxnTrackerAddress,
-    bnAxnAddress,
-    alpAddress,
+    gmxAddress,
+    esGmxAddress,
+    stakedGmxTrackerAddress,
+    bonusGmxTrackerAddress,
+    bnGmxAddress,
+    glpAddress,
   ];
   const rewardTrackersForDepositBalances = [
-    stakedAxnTrackerAddress,
-    stakedAxnTrackerAddress,
-    bonusAxnTrackerAddress,
-    feeAxnTrackerAddress,
-    feeAxnTrackerAddress,
-    feeAlpTrackerAddress,
+    stakedGmxTrackerAddress,
+    stakedGmxTrackerAddress,
+    bonusGmxTrackerAddress,
+    feeGmxTrackerAddress,
+    feeGmxTrackerAddress,
+    feeGlpTrackerAddress,
   ];
   const rewardTrackersForStakingInfo = [
-    stakedAxnTrackerAddress,
-    bonusAxnTrackerAddress,
-    feeAxnTrackerAddress,
-    stakedAlpTrackerAddress,
-    feeAlpTrackerAddress,
+    stakedGmxTrackerAddress,
+    bonusGmxTrackerAddress,
+    feeGmxTrackerAddress,
+    stakedGlpTrackerAddress,
+    feeGlpTrackerAddress,
   ];
 
   const { data: walletBalances } = useSWR(
@@ -430,15 +133,15 @@ export default function Vest({setPendingTxns, connectWallet}) {
     }
   );
 
-  const { data: stakedAxnSupply } = useSWR(
-    [`StakeV2:stakedAxnSupply:${active}`, chainId, axnAddress, "balanceOf", stakedAxnTrackerAddress],
+  const { data: stakedGmxSupply } = useSWR(
+    [`StakeV2:stakedGmxSupply:${active}`, chainId, gmxAddress, "balanceOf", stakedGmxTrackerAddress],
     {
       fetcher: contractFetcher(library, Token),
     }
   );
 
-  const { data: aums } = useSWR([`StakeV2:getAums:${active}`, chainId, alpManagerAddress, "getAums"], {
-    fetcher: contractFetcher(library, AlpManager),
+  const { data: aums } = useSWR([`StakeV2:getAums:${active}`, chainId, glpManagerAddress, "getAums"], {
+    fetcher: contractFetcher(library, GlpManager),
   });
 
   const { data: nativeTokenPrice } = useSWR(
@@ -448,10 +151,10 @@ export default function Vest({setPendingTxns, connectWallet}) {
     }
   );
 
-  const { data: esAxnSupply } = useSWR(
-    [`StakeV2:esAxnSupply:${active}`, chainId, readerAddress, "getTokenSupply", esAxnAddress],
+  const { data: esGmxSupply } = useSWR(
+    [`StakeV2:esGmxSupply:${active}`, chainId, readerAddress, "getTokenSupply", esGmxAddress],
     {
-      fetcher: contractFetcher(library, ReaderV2, [excludedEsAxnAccounts]),
+      fetcher: contractFetcher(library, ReaderV2, [excludedEsGmxAccounts]),
     }
   );
 
@@ -462,28 +165,28 @@ export default function Vest({setPendingTxns, connectWallet}) {
     }
   );
 
-  const { axnPrice, /* axnPriceFromArbitrum, axnPriceFromAvalanche, */ axnPriceFromGoerli, axnPriceFromPuppy } = useAxnPrice(
+  const { gmxPrice, /* gmxPriceFromArbitrum, gmxPriceFromAvalanche, */ gmxPriceFromGoerli, gmxPriceFromPuppy } = useGmxPrice(
     chainId,
     library,
     active
   );
 
   // Get total supply of arbitrum and avalanche
-  let { total: totalAxnSupply } = useTotalAxnSupply(chainId);
+  let { total: totalGmxSupply } = useTotalGmxSupply(chainId);
 
   let {
-    avax: avaxAxnStaked,
-    arbitrum: arbitrumAxnStaked,
-    goerli: goerliAxnStaked,
-    puppy: puppyAxnStaked,
-    total: totalAxnStaked,
-  } = useTotalAxnStaked();
+    avax: avaxGmxStaked,
+    arbitrum: arbitrumGmxStaked,
+    goerli: goerliGmxStaked,
+    puppy: puppyGmxStaked,
+    total: totalGmxStaked,
+  } = useTotalGmxStaked();
 
-  const axnSupply = totalAxnSupply;
+  const gmxSupply = totalGmxSupply;
 
-  let esAxnSupplyUsd;
-  if (esAxnSupply && axnPrice) {
-    esAxnSupplyUsd = esAxnSupply.mul(axnPrice).div(expandDecimals(1, 18));
+  let esGmxSupplyUsd;
+  if (esGmxSupply && gmxPrice) {
+    esGmxSupplyUsd = esGmxSupply.mul(gmxPrice).div(expandDecimals(1, 18));
   }
 
   let aum;
@@ -504,150 +207,57 @@ export default function Vest({setPendingTxns, connectWallet}) {
     vestingData,
     aum,
     nativeTokenPrice,
-    stakedAxnSupply,
-    axnPrice,
-    axnSupply
+    stakedGmxSupply,
+    gmxPrice,
+    gmxSupply
   );
 
   let hasMultiplierPoints = false;
   let multiplierPointsAmount;
-  if (processedData && processedData.bonusAxnTrackerRewards && processedData.bnAxnInFeeAxn) {
-    multiplierPointsAmount = processedData.bonusAxnTrackerRewards.add(processedData.bnAxnInFeeAxn);
+  if (processedData && processedData.bonusGmxTrackerRewards && processedData.bnGmxInFeeGmx) {
+    multiplierPointsAmount = processedData.bonusGmxTrackerRewards.add(processedData.bnGmxInFeeGmx);
     if (multiplierPointsAmount.gt(0)) {
       hasMultiplierPoints = true;
     }
   }
   let totalRewardTokens;
-  if (processedData && processedData.bnAxnInFeeAxn && processedData.bonusAxnInFeeAxn) {
-    totalRewardTokens = processedData.bnAxnInFeeAxn.add(processedData.bonusAxnInFeeAxn);
+  if (processedData && processedData.bnGmxInFeeGmx && processedData.bonusGmxInFeeGmx) {
+    totalRewardTokens = processedData.bnGmxInFeeGmx.add(processedData.bonusGmxInFeeGmx);
   }
 
-  let totalRewardTokensAndAlp;
-  if (totalRewardTokens && processedData && processedData.alpBalance) {
-    totalRewardTokensAndAlp = totalRewardTokens.add(processedData.alpBalance);
+  let totalRewardTokensAndGlp;
+  if (totalRewardTokens && processedData && processedData.glpBalance) {
+    totalRewardTokensAndGlp = totalRewardTokens.add(processedData.glpBalance);
   }
 
-  let stakedAxnSupplyUsd;
-  if (totalAxnStaked && !totalAxnStaked.isZero() && axnPrice) {
-    stakedAxnSupplyUsd = totalAxnStaked.mul(axnPrice).div(expandDecimals(1, 18));
+  let stakedGmxSupplyUsd;
+  if (totalGmxStaked && !totalGmxStaked.isZero() && gmxPrice) {
+    stakedGmxSupplyUsd = totalGmxStaked.mul(gmxPrice).div(expandDecimals(1, 18));
   }
 
   let totalSupplyUsd;
-  if (totalAxnSupply && !totalAxnSupply.isZero() && axnPrice) {
-    totalSupplyUsd = totalAxnSupply.mul(axnPrice).div(expandDecimals(1, 18));
+  if (totalGmxSupply && !totalGmxSupply.isZero() && gmxPrice) {
+    totalSupplyUsd = totalGmxSupply.mul(gmxPrice).div(expandDecimals(1, 18));
   }
 
-  let maxUnstakeableAxn = bigNumberify(0);
+  let maxUnstakeableGmx = bigNumberify(0);
   if (
     totalRewardTokens &&
     vestingData &&
-    vestingData.axnVesterPairAmount &&
+    vestingData.gmxVesterPairAmount &&
     multiplierPointsAmount &&
-    processedData.bonusAxnInFeeAxn
+    processedData.bonusGmxInFeeGmx
   ) {
-    const availableTokens = totalRewardTokens.sub(vestingData.axnVesterPairAmount);
-    const stakedTokens = processedData.bonusAxnInFeeAxn;
+    const availableTokens = totalRewardTokens.sub(vestingData.gmxVesterPairAmount);
+    const stakedTokens = processedData.bonusGmxInFeeGmx;
     const divisor = multiplierPointsAmount.add(stakedTokens);
     if (divisor.gt(0)) {
-      maxUnstakeableAxn = availableTokens.mul(stakedTokens).div(divisor);
+      maxUnstakeableGmx = availableTokens.mul(stakedTokens).div(divisor);
     }
   }
 
-  const showAxnVesterDepositModal = () => {
-    let remainingVestableAmount = vestingData.axnVester.maxVestableAmount.sub(vestingData.axnVester.vestedAmount);
-    if (processedData.esAxnBalance.lt(remainingVestableAmount)) {
-      remainingVestableAmount = processedData.esAxnBalance;
-    }
-
-    setIsVesterDepositModalVisible(true);
-    setVesterDepositTitle(t`AXN Vault`);
-    setVesterDepositStakeTokenLabel("staked AXN + esAXN + Multiplier Points");
-    setVesterDepositMaxAmount(remainingVestableAmount);
-    setVesterDepositBalance(processedData.esAxnBalance);
-    setVesterDepositEscrowedBalance(vestingData.axnVester.escrowedBalance);
-    setVesterDepositVestedAmount(vestingData.axnVester.vestedAmount);
-    setVesterDepositMaxVestableAmount(vestingData.axnVester.maxVestableAmount);
-    setVesterDepositAverageStakedAmount(vestingData.axnVester.averageStakedAmount);
-    setVesterDepositReserveAmount(vestingData.axnVester.pairAmount);
-    setVesterDepositMaxReserveAmount(totalRewardTokens);
-    setVesterDepositValue("");
-    setVesterDepositAddress(axnVesterAddress);
-  };
-
-  const showAxnVesterWithdrawModal = () => {
-    if (!vestingData || !vestingData.axnVesterVestedAmount || vestingData.axnVesterVestedAmount.eq(0)) {
-      helperToast.error(t`You have not deposited any tokens for vesting.`);
-      return;
-    }
-
-    setIsVesterWithdrawModalVisible(true);
-    setVesterWithdrawTitle(t`Withdraw from AXN Vault`);
-    setVesterWithdrawAddress(axnVesterAddress);
-  };
-
-  const showAlpVesterDepositModal = () => {
-    let remainingVestableAmount = vestingData.alpVester.maxVestableAmount.sub(vestingData.alpVester.vestedAmount);
-    if (processedData.esAxnBalance.lt(remainingVestableAmount)) {
-      remainingVestableAmount = processedData.esAxnBalance;
-    }
-
-    setIsVesterDepositModalVisible(true);
-    setVesterDepositTitle(t`ALP Vault`);
-    setVesterDepositStakeTokenLabel("staked TLP");
-    setVesterDepositMaxAmount(remainingVestableAmount);
-    setVesterDepositBalance(processedData.esAxnBalance);
-    setVesterDepositEscrowedBalance(vestingData.alpVester.escrowedBalance);
-    setVesterDepositVestedAmount(vestingData.alpVester.vestedAmount);
-    setVesterDepositMaxVestableAmount(vestingData.alpVester.maxVestableAmount);
-    setVesterDepositAverageStakedAmount(vestingData.alpVester.averageStakedAmount);
-    setVesterDepositReserveAmount(vestingData.alpVester.pairAmount);
-    setVesterDepositMaxReserveAmount(processedData.alpBalance);
-    setVesterDepositValue("");
-    setVesterDepositAddress(alpVesterAddress);
-  };
-
-  const showAlpVesterWithdrawModal = () => {
-    if (!vestingData || !vestingData.alpVesterVestedAmount || vestingData.alpVesterVestedAmount.eq(0)) {
-      helperToast.error(t`You have not deposited any tokens for vesting.`);
-      return;
-    }
-
-    setIsVesterWithdrawModalVisible(true);
-    setVesterWithdrawTitle(t`Withdraw from ALP Vault`);
-    setVesterWithdrawAddress(alpVesterAddress);
-  };
-
   return (
     <>
-      <VesterDepositModal
-          isVisible={isVesterDepositModalVisible}
-          setIsVisible={setIsVesterDepositModalVisible}
-          chainId={chainId}
-          title={vesterDepositTitle}
-          stakeTokenLabel={vesterDepositStakeTokenLabel}
-          maxAmount={vesterDepositMaxAmount}
-          balance={vesterDepositBalance}
-          escrowedBalance={vesterDepositEscrowedBalance}
-          vestedAmount={vesterDepositVestedAmount}
-          averageStakedAmount={vesterDepositAverageStakedAmount}
-          maxVestableAmount={vesterDepositMaxVestableAmount}
-          reserveAmount={vesterDepositReserveAmount}
-          maxReserveAmount={vesterDepositMaxReserveAmount}
-          value={vesterDepositValue}
-          setValue={setVesterDepositValue}
-          library={library}
-          vesterAddress={vesterDepositAddress}
-          setPendingTxns={setPendingTxns}
-        />
-        <VesterWithdrawModal
-          isVisible={isVesterWithdrawModalVisible}
-          setIsVisible={setIsVesterWithdrawModalVisible}
-          vesterAddress={vesterWithdrawAddress}
-          chainId={chainId}
-          title={vesterWithdrawTitle}
-          library={library}
-          setPendingTxns={setPendingTxns}
-        />
       <div className="BeginAccountTransfer page-layout">
         <PageTitle
           title = {PAGE_TITLE}
@@ -661,7 +271,7 @@ export default function Vest({setPendingTxns, connectWallet}) {
                   <div className="Exchange-swap-section-top">
                     <div className="strategy-title">AXN Vault</div>
                     <div className="align-right strategy-link Tab-option">
-                      <ExternalLink href="https://axnio.gitbook.io/axn/trading#fees">
+                      <ExternalLink href="https://gmxio.gitbook.io/gmx/trading#fees">
                         <img src={moneyIcon} alt="" className="Tab-option-icon" />
                       </ExternalLink>
                     </div>
@@ -678,41 +288,24 @@ export default function Vest({setPendingTxns, connectWallet}) {
                           </div>
                         </div>
                         <div className="Exchange-swap-section-bottom strategy-content">
-                          <div>{`${formatKeyAmount(vestingData, "axnVesterClaimable", 18, 4, true)} AXN`}</div>
+                          <Trans>{`${formatKeyAmount(vestingData, "gmxVesterClaimable", 18, 4, true)} AXN`}</Trans>
                         </div>
                       </div>
                     </div>
                     <div className="row">
-                      <PageRow title= "Total Staked"
+                      <PageRow title= "Total Staked" 
                         value={formatAmount(totalRewardTokens, 18, 2, true)}
                         direction="align-right" className="page-row-content-deverse"/>
                     </div>
                     <div className="row">
-                      <PageRow title= "Reserved for Vesting"
-                        value={`${formatKeyAmount(vestingData, "axnVesterPairAmount", 18, 2, true)} / ${formatAmount(totalRewardTokens, 18, 2, true)}`}
+                      <PageRow title= "Reserved for Vesting" 
+                        value={`${formatKeyAmount(vestingData, "gmxVesterPairAmount", 18, 2, true)} / ${formatAmount(totalRewardTokens, 18, 2, true)}`}
                         direction="align-right" className="page-row-content-deverse"/>
                     </div>
                     <div className="row">
-                      <PageRow title= "Vesting Status"
-                        value={`${formatKeyAmount(vestingData, "axnVesterClaimSum", 18, 4, true)} / ${formatKeyAmount(vestingData, "axnVesterVestedAmount", 18, 4, true)}`}
+                      <PageRow title= "Vesting Status" 
+                        value={`${formatKeyAmount(vestingData, "gmxVesterClaimSum", 18, 4, true)} / ${formatKeyAmount(vestingData, "gmxVesterVestedAmount", 18, 4, true)}`}
                         direction="align-right" className="page-row-content-deverse"/>
-                    </div>
-                    <div className="row">
-                      {active && (
-                        <div style={{display:'flex', justifyContent:"around", alignItems:"center"}}>
-                          <button className="default-btn" onClick={() => showAxnVesterDepositModal()}>
-                            <Trans>Deposit</Trans>
-                          </button>
-                          <button className="default-btn" onClick={() => showAxnVesterWithdrawModal()}>
-                            <Trans>Widthraw</Trans>
-                          </button>
-                        </div>
-                      )}
-                      {!active && (
-                        <button className="default-btn" onClick={() => connectWallet()}>
-                          Connect Wallet
-                        </button>
-                      )}
                     </div>
                   </div>
                 </div>
@@ -724,7 +317,7 @@ export default function Vest({setPendingTxns, connectWallet}) {
                   <div className="Exchange-swap-section-top">
                     <div className="strategy-title">ALP Vault</div>
                     <div className="align-right strategy-link Tab-option">
-                      <ExternalLink href="https://axnio.gitbook.io/axn/trading#fees">
+                      <ExternalLink href="https://gmxio.gitbook.io/gmx/trading#fees">
                         <img src={moneyIcon} alt="" className="Tab-option-icon" />
                       </ExternalLink>
                     </div>
@@ -741,41 +334,24 @@ export default function Vest({setPendingTxns, connectWallet}) {
                           </div>
                         </div>
                         <div className="Exchange-swap-section-bottom strategy-content">
-                          <div>{`${formatKeyAmount(vestingData, "alpVesterClaimable", 18, 4, true)} AXN`}</div>
+                          <Trans>{`${formatKeyAmount(vestingData, "glpVesterClaimable", 18, 4, true)} AXN`}</Trans>
                         </div>
                       </div>
                     </div>
                     <div className="row">
-                      <PageRow title= "Stake Tokens"
-                        value={`${formatAmount(processedData.alpBalance, 18, 2, true)} ALP`}
+                      <PageRow title= "Stake Tokens" 
+                        value={`${formatAmount(processedData.glpBalance, 18, 2, true)} ALP`}
                         direction="align-right" className="page-row-content-deverse"/>
                     </div>
                     <div className="row">
-                      <PageRow title= "Reserved for Vesting"
-                        value={`${formatKeyAmount(vestingData, "alpVesterPairAmount", 18, 2, true)} / ${formatAmount(processedData.alpBalance, 18, 2, true)}`}
+                      <PageRow title= "Reserved for Vesting" 
+                        value={`${formatKeyAmount(vestingData, "glpVesterPairAmount", 18, 2, true)} / ${formatAmount(processedData.glpBalance, 18, 2, true)}`}
                         direction="align-right" className="page-row-content-deverse"/>
                     </div>
                     <div className="row">
-                      <PageRow title= "Vesting Status"
-                        value={`${formatKeyAmount(vestingData, "alpVesterClaimSum", 18, 4, true)} / ${formatKeyAmount( vestingData, "alpVesterVestedAmount", 18, 4, true)}`}
+                      <PageRow title= "Vesting Status" 
+                        value={`${formatKeyAmount(vestingData, "glpVesterClaimSum", 18, 4, true)} / ${formatKeyAmount( vestingData, "glpVesterVestedAmount", 18, 4, true)}`}
                         direction="align-right" className="page-row-content-deverse"/>
-                    </div>
-                    <div className="row">
-                      {active && (
-                        <div style={{display:'flex', justifyContent:"around", alignItems:"center"}}>
-                          <button className="default-btn" onClick={() => showAlpVesterDepositModal()}>
-                            <Trans>Deposit</Trans>
-                          </button>
-                          <button className="default-btn" onClick={() => showAlpVesterWithdrawModal()}>
-                            <Trans>Widthraw</Trans>
-                          </button>
-                        </div>
-                      )}
-                      {!active && (
-                        <button className="default-btn" onClick={() => connectWallet()}>
-                          Connect Wallet
-                        </button>
-                      )}
                     </div>
                   </div>
                 </div>
@@ -785,6 +361,6 @@ export default function Vest({setPendingTxns, connectWallet}) {
         </div>
       </div>
     </>
-
+    
   )
 }

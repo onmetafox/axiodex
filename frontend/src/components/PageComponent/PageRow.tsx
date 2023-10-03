@@ -1,4 +1,5 @@
 import cx from "classnames";
+import { Trans, t } from "@lingui/macro";
 import "./PageRow.css";
 export default function PageRow(props) {
   const { title, value, direction, className, subValue} = props;
@@ -6,25 +7,25 @@ export default function PageRow(props) {
   return (
     <div className={classNames}>
       {(()=> {
-        if(direction === "align-right"){
+        if(direction == "align-right"){
           return (
             <>
-              <div className="col-6 title">{title}</div>
+              <div className="col-6 title"><Trans>{title}</Trans></div>
               <div className="col-6 value align-right">{value} <span>{subValue}</span></div>
             </>
           )
-        }else if(direction === "vertical"){
+        }else if(direction == "vertical"){
           return (
             <>
-              <div className="title">{title}</div>
-              <div className="value">{value} <span>{subValue}</span></div>
+              <div className="title"><Trans>{title}</Trans></div>
+              <div className="value"><Trans>{value} <span>{subValue}</span></Trans></div>
             </>
           )
         }else{
           return (
             <>
-              <div className="col-6 title"><div>{title}</div></div>
-              <div className="col-6 value">{value} <span>{subValue}</span></div>
+              <div className="col-6 title"><Trans>{title}</Trans></div>
+              <div className="col-6 value"><Trans>{value} <span>{subValue}</span></Trans></div>
             </>
           )
         }

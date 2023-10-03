@@ -8,14 +8,9 @@ export default function ImgIcon(props) {
   let classNames = cx("icon-container", className);
   return (
     <div className={classNames}>
-      {
-        icon && (
-          <div className="icon">
-            <img src={icon} alt={alt} />
-          </div>
-        )
-      }
-
+      <div className="icon">
+        <img src={icon} alt={alt} />
+      </div>
       <div className="detail">
         <div className="title">
           {title}

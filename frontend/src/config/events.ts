@@ -317,7 +317,7 @@ export const appEventsData: EventData[] = [
     isActive: true,
     validTill: "18 Dec 2023, 12:00",
     bodyText:
-      "This is a beta preview based on Goerli Testnet of Basechain. All data is based on contracts deployed on testnet and therefore does not reflect current live market values",
+      "This is a beta preview based on Testnet V4 of PulseChain. All data is based on contracts deployed on testnet and therefore does not reflect current live market values",
     buttons: [],
   },
 ];

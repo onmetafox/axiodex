@@ -246,7 +246,7 @@ export function getNormalizedTokenSymbol(tokenSymbol) {
   return tokenSymbol;
 }
 
-const AVAILABLE_CHART_TOKENS = ["ETH", "BTC", "USDC"]
+const AVAILABLE_CHART_TOKENS = ["WETH", "BTC", "USDC"]
 
 export function isChartAvailabeForToken(tokenSymbol: string) {
   const token = getTokenBySymbol(tokenSymbol);

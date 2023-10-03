@@ -19,7 +19,7 @@ import GlpManager from "abis/GlpManager.json";
 
 import { useWeb3React } from "@web3-react/core";
 
-import { useTotalAxnSupply, useAxnPrice } from "domain/legacy";
+import { useTotalGmxSupply, useGmxPrice } from "domain/legacy";
 
 import { getContract } from "config/contracts";
 // import { getServerUrl } from "config/backend";
@@ -125,14 +125,14 @@ export default function APRLabel({ chainId, label }) {
     }
   );
 
-  const { gmxPrice } = useAxnPrice(chainId, {}, active);
+  const { gmxPrice } = useGmxPrice(chainId, {}, active);
 
   // const gmxSupplyUrl = getServerUrl(chainId, "/gmx_supply");
   // const { data: gmxSupply } = useSWR([gmxSupplyUrl], {
   //   fetcher: (...args) => fetch(...args).then((res) => res.text()),
   // });
 
-  let { total: gmxSupply } = useTotalAxnSupply(chainId);
+  let { total: gmxSupply } = useTotalGmxSupply(chainId);
 
   let aum;
   if (aums && aums.length > 0) {

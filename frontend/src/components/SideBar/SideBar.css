@@ -15,12 +15,12 @@
     padding: 5rem !important;
 }
 .menu-button {
-    padding: 3rem 0 0 3rem;
+    padding: 5rem 0 0 3rem;
 }
 .menu-button > a > span {
     color: white;
-    font-size: 17px !important;
-    font-weight: 500 !important;
+    font-size: 15px !important;
+    font-weight: 300 !important;
 }
 .menu-button > a{
     line-height: 4.5rem;
@@ -31,7 +31,7 @@
     justify-content: center
 }
 @media (max-width: 991.98px) {
-
+    
 }
 .btn {
     border: none;
@@ -39,7 +39,7 @@
 @media (min-width: 992px) {
     .menu-button, .menu-button > a{
         text-align: left;
-        display: flex;
+        display: block;
     }
 }
 @media (max-width: 760px) {
