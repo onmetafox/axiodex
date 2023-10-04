@@ -683,7 +683,12 @@ button.App-connect-wallet:hover {
 
 .App-header-container-left .a.active,
 .App-header-container-left a.active {
-  color: white;
+  color: #1e9cf0;
+}
+
+.App-header-container-left .a:hover,
+.App-header-container-left a:hover {
+  color: #0099FF;
 }
 
 .Toastify {
