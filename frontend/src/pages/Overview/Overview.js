@@ -666,7 +666,7 @@ export default function Overview({ setPendingTxns, connectWallet }) {
             <div className="Page-title">{PAGE_TITLE}</div>
             <div className="Page-description">
               <div className="row">
-                <p>{DESCRIPTION} <a href="https://docs.axiodex.com/tokenomics/rewards-summary">Lean More</a></p>
+                <p>{DESCRIPTION} <a href="https://docs.axiodex.com/tokenomics/rewards-summary">Learn More</a></p>
               </div>
             </div>
           </div>
