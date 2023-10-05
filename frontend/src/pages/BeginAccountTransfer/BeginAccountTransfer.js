@@ -270,7 +270,7 @@ export default function BeginAccountTransfer(props) {
                 value={receiver}
                 onChange={(e) => setReceiver(e.target.value)}
                 className="text-input"
-                placeholder= "Email Address"
+                placeholder= "Enter Address"
               />
             </div>
           </div>
