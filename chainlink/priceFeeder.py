@@ -5,19 +5,13 @@ from eth_account import Account
 from threading import Thread
 
 config = {
-    'endpoint': "https://rpc.v4.testnet.pulsechain.com",
+    'endpoint': "https://goerli.base.org",
     'sleepTime': 9,
     'gasProvider': "0xa0ac723c47c750b1aad4923d70e23257698debac7bdafd0afcf79713707eaaf9",
     'tokens': {
         'usdc': "0x598d812240983501fb074781a0225cB026900e3e",
         'btc': "0xDc78a8443EA62cDFd56B18D1A5Db9b1eF31e1E6C",
         'eth': "0xf6aaFB97EFe4d723E7EF03ff225174293213eEc3",
-        # 'bnb': "0x4826533B4897376654Bb4d4AD88B7faFD0C98528",
-        'pls': "0xe90563aB3ebFe5978F0D96d94110BdCC06ed4708",
-        # 'bone': "0xe52198b893caa2f3691708534591d44b599d5007",
-        'hex': "0x196B5355757E2eccC70Fb118f5653336Bb0F222e",
-        # 'shib': "0xaB3d36925958fad37BBcfB6Cb5A3C2ae09cB41b7",
-        # 'leash': "0x09D70a09a2EeEb8Cf4e698F5633f883Cb690D0e5",
     }
 }
 
