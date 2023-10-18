@@ -400,7 +400,9 @@ export default function DashboardV3() {
                 <div className="Exchange-swap-section-top">
                   <div className="strategy-title"><ImgIcon icon = {iconLogo} title = "AXION" value={`$${formatAmount(axnPrice, USD_DECIMALS, 3, true)}`}/></div>
                   <div className="align-right strategy-link Tab-option">
-                      <Button className="strategy-btn">Read more</Button>
+                    <ExternalLink href="https://docs.axiodex.com/tokenomics" className="strategy-btn">
+                      Read more
+                    </ExternalLink>
                   </div>
                 </div>
                 <div className="Exchange-swap-section-bottom strategy-content">
@@ -415,7 +417,11 @@ export default function DashboardV3() {
                         <div className="label">
                           <Button imgSrc={baseIcon} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on Base</Button></div>
+                        <div className="button">
+                          <ExternalLink href="https://dashboard.axiodex.com/#/buy" className="strategy-btn green-btn">
+                            Buy on Base
+                          </ExternalLink>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -425,8 +431,8 @@ export default function DashboardV3() {
                 <div className="Exchange-swap-section-top">
                   <div className="strategy-title"><ImgIcon icon = {alpIcon} title = "ALP" value={`$${formatAmount(glpPrice, USD_DECIMALS, 3, true)}`}/></div>
                   <div className="align-right strategy-link Tab-option">
-                    <ExternalLink href="https://gmxio.gitbook.io/gmx/trading#fees">
-                      <Button className="strategy-btn">Read more</Button>
+                    <ExternalLink href="https://docs.axiodex.com/tokenomics" className="strategy-btn">
+                      Read more
                     </ExternalLink>
                   </div>
                 </div>
@@ -443,7 +449,11 @@ export default function DashboardV3() {
                         <div className="label">
                         <Button imgSrc={baseIcon} ><Trans>Total rewards : <span>55%</span></Trans></Button>
                         </div>
-                        <div className="button"><Button className="strategy-btn green-btn">Buy on Base</Button></div>
+                        <div className="button">
+                          <ExternalLink href="https://dashboard.axiodex.com/#/buy" className="strategy-btn green-btn">
+                            Buy on Base
+                          </ExternalLink>
+                        </div>
                       </div>
                     </div>
                   </div>

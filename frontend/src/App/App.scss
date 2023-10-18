@@ -1501,12 +1501,12 @@ button.App-button {
       }
       .green-btn {
         background: #00B981;
-        .btn-label {
-          color: black !important;
-          font-size: 15px;
-          font-weight: 400;
-          line-height: 24px;
-        }
+        text-decoration: none;
+        color: black !important;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 25px;
+        padding: 10px;
       }
     }
     .App-card-divider {

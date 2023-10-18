@@ -11,7 +11,7 @@ export default function ImgIcon(props) {
       {
         icon && (
           <div className="icon">
-            <img src={icon} alt={alt} />
+            <img src={icon} alt={alt} style={{width:'100%'}} />
           </div>
         )
       }
