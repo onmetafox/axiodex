@@ -94,10 +94,9 @@ const constants = {
 const ALCHEMY_WHITELISTED_DOMAINS = ["axn.finanace", "app.axn.finanace"];
 
 export const RPC_PROVIDERS = {
-  [MAINNET]: ["https://rpc.notadegen.com/base"],
-  [TESTNET]: ["https://rpc.notadegen.com/base/goerli"],
+  [MAINNET]: ["https://base.publicnode.com"],
+  [TESTNET]: ["https://base-goerli.publicnode.com"],
   [LOCALNET]: ["http://localhost:8545"],
-  // [LOCALNET]: ["http://172.86.96.113/rpc/devnet"],
 };
 
 export const FALLBACK_PROVIDERS = {

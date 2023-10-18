@@ -1441,8 +1441,7 @@ export function getHomeUrl() {
     return "http://localhost:3010";
   }
 
-  return "https://beta.axnfinance.com";
-  // return "https://tail.vessellookup.com";
+  return "https://axiodex.com";
 }
 
 export function getAppBaseUrl() {
@@ -1450,8 +1449,7 @@ export function getAppBaseUrl() {
     return "http://localhost:3011/#";
   }
 
-  return "https://app.axnfinance.com/#";
-  // return "https://app.tail.vessellookup.com/#";
+  return "https://app.axiodex.com/#";
 }
 
 export function getRootShareApiUrl() {
