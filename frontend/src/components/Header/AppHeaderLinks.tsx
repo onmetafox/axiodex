@@ -37,81 +37,11 @@ export function AppHeaderLinks({
           </div>
         </div>
       )}
-      {/* <div className="App-header-link-container">
-        <HeaderLink
-          to="/dashboard"
-          redirectPopupTimestamp={redirectPopupTimestamp}
-          showRedirectModal={showRedirectModal}
-        >
-          <Trans>Dashboard</Trans>
-        </HeaderLink>
-      </div> */}
-      {/* <div className="header-dropdown">
-        <div className="header-dropdown-content">
-          <HeaderLink to="/nft" redirectPopupTimestamp={redirectPopupTimestamp} showRedirectModal={showRedirectModal}>
-            <Trans>Mint</Trans>
-          </HeaderLink>
-          <HeaderLink to="/stake-nft" redirectPopupTimestamp={redirectPopupTimestamp} showRedirectModal={showRedirectModal}>
-            <Trans>Stake NFT</Trans>
-          </HeaderLink>
-        </div>
-      </div> */}
-      {/* <div className="App-header-link-container">
-        <HeaderLink
-          to="/dashboard"
-          redirectPopupTimestamp={redirectPopupTimestamp}
-          showRedirectModal={showRedirectModal}
-        >
-          <Trans>NFT</Trans>
-        </HeaderLink>
-      </div> */}
-      {/* <div className="App-header-link-container">
-        <HeaderLink to="/earn" redirectPopupTimestamp={redirectPopupTimestamp} showRedirectModal={showRedirectModal}>
-          <Trans>Earn</Trans>
-        </HeaderLink>
-      </div>
       <div className="App-header-link-container">
-        <HeaderLink to="/buy" redirectPopupTimestamp={redirectPopupTimestamp} showRedirectModal={showRedirectModal}>
-          <Trans>Buy</Trans>
-        </HeaderLink>
-      </div> */}
-      {/* <div className="App-header-link-container">
-        <ExternalLink href="https://app.1inch.io/#/1/simple/swap/ETH/0x4384b85fe228ae727b129230211194e4a50877c4">
-          <Trans>Buy</Trans>
+        <ExternalLink href={"https://axiodex.com/"}>
+          Home
         </ExternalLink>
       </div>
-      <div className="App-header-link-container">
-        <HeaderLink
-          to="/referrals"
-          redirectPopupTimestamp={redirectPopupTimestamp}
-          showRedirectModal={showRedirectModal}
-        >
-          <Trans>Referrals</Trans>
-        </HeaderLink>
-      </div> */}
-      {/* <div className="App-header-link-container">
-        <HeaderLink
-          to="/ecosystem"
-          redirectPopupTimestamp={redirectPopupTimestamp}
-          showRedirectModal={showRedirectModal}
-        >
-          <Trans>Ecosystem</Trans>
-        </HeaderLink>
-      </div> */}
-      {/* <div className="App-header-link-container">
-        <HeaderLink
-          to="/poll"
-          redirectPopupTimestamp={redirectPopupTimestamp}
-          showRedirectModal={showRedirectModal}
-        >
-          <Trans>PoLL</Trans>
-        </HeaderLink>
-      </div> */}
-      {/* <div className="App-header-link-container">
-        <ExternalLink href="https://docs.axnfinance.com/">
-          <Trans>Docs</Trans>
-        </ExternalLink>
-      </div> */}
       <div className="App-header-link-container">
         {/* <ExternalLink href="https://app.1inch.io/#/1/simple/swap/ETH/0x4384b85fe228ae727b129230211194e4a50877c4"> */}
         <HeaderLink
@@ -149,15 +79,6 @@ export function AppHeaderLinks({
           <Trans>Referrals</Trans>
         </HeaderLink>
       </div>
-      {/* <div className="App-header-link-container">
-        <HeaderLink
-          to="/referrals"
-          redirectPopupTimestamp={redirectPopupTimestamp}
-          showRedirectModal={showRedirectModal}
-        >
-          <Trans>About</Trans>
-        </HeaderLink>
-      </div> */}
       <ExternalLink href={"https://docs.axiodex.com/"}>
         About
       </ExternalLink>
