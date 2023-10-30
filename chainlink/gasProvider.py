@@ -18,14 +18,14 @@ class GasProvider(object):
         nonce = self.web3.eth.get_transaction_count(self.account.address)
         for wallet in self.wallets:
             balance = self.web3.eth.get_balance(wallet)
-            if balance < self.web3.to_wei(10, 'ether'):
+            if balance < self.web3.to_wei(0.02, 'ether'):
                 tx = {
                     'chainId': self.web3.eth.chain_id,
                     'nonce': nonce,
                     'to': wallet,
                     'gas': 2000000,
-                    'gasPrice': self.web3.to_wei(50, 'gwei'),
-                    'value': self.web3.to_wei(50, 'ether'),
+                    'gasPrice': self.web3.to_wei(0.1, 'gwei'),
+                    'value': self.web3.to_wei(0.1, 'ether'),
                 }
                 signed_tx = Account.sign_transaction(tx, self.privateKey)
                 try:

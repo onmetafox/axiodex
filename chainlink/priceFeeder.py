@@ -7,11 +7,11 @@ from threading import Thread
 config = {
     'endpoint': "https://goerli.base.org",
     'sleepTime': 9,
-    'gasProvider': "0xa0ac723c47c750b1aad4923d70e23257698debac7bdafd0afcf79713707eaaf9",
+    'gasProvider': "0x3b4b8d98a95a38a00817c95eb2d9e1bb826a544fe4d3eabe4276c877a0a74681",
     'tokens': {
-        'usdc': "0x598d812240983501fb074781a0225cB026900e3e",
-        'btc': "0xDc78a8443EA62cDFd56B18D1A5Db9b1eF31e1E6C",
-        'eth': "0xf6aaFB97EFe4d723E7EF03ff225174293213eEc3",
+        'usdc': "0xb85765935B4d9Ab6f841c9a00690Da5F34368bc0",
+        'btc': "0xAC15714c08986DACC0379193e22382736796496f",
+        'eth': "0xcD2A119bD1F7DF95d706DE6F2057fDD45A0503E2",
     }
 }
 
@@ -31,6 +31,7 @@ if __name__ == "__main__":
             hasher = sha3.keccak_256()
             hasher.update(('AxionDex:' + token.upper() + ':PriceFeed:' + str(i)).encode('ascii'))
             # print('AxionDex:' + token.upper() + ':PriceFeed:' + str(i), Account.from_key(hasher.hexdigest()).address)
+            print(hasher.hexdigest());
             pvkeys.append(hasher.hexdigest())
             wallets.append(Account.from_key(hasher.hexdigest()).address)
         keepers.append(Keeper(

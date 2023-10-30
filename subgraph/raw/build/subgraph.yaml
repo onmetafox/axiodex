@@ -6,9 +6,9 @@ dataSources:
     name: PositionRouter
     network: base-testnet
     source:
-      address: "0xdd1eCac457C996f7937Ea2Ca97C87E7bd0C59768"
+      address: "0xC2493FC7B823cF32AdC6e316ea27136ad2718f4a"
       abi: PositionRouter
-      startBlock: 9616625
+      startBlock: 11710134
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -31,9 +31,9 @@ dataSources:
     name: RewardRouterV2
     network: base-testnet
     source:
-      address: "0x823a8B0fB4203eccd61f2d7166715113Ef802429"
+      address: "0xC6CD864DA5a0Cb187E33671F6aBd7C585d3945F8"
       abi: RewardRouterV2
-      startBlock: 9616625
+      startBlock: 11710134
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -60,9 +60,9 @@ dataSources:
     name: Vault
     network: base-testnet
     source:
-      address: "0x94eBF73e4892d7002e373697ec71690f86103D78"
+      address: "0x0fe870bc7d5d9cFd8b6e079AC3FB5CBfc02Adeb0"
       abi: Vault
-      startBlock: 9616625
+      startBlock: 11710134
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -98,9 +98,9 @@ dataSources:
     name: AlpManager
     network: base-testnet
     source:
-      address: "0x1A1832256cA51a57DB12b1b20703A40A2273D47B"
+      address: "0x6d6e921a13916b6DAb1Acca1fbda7b2195FDF7F0"
       abi: AlpManager
-      startBlock: 9616625
+      startBlock: 11710134
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

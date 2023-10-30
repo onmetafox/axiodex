@@ -338,8 +338,10 @@ class Keeper(object):
             print('call', self.token, 'transmit')
             try:
                 wallet = random.choice(list(self.wallets.values()))
+                print('choiced wallet: ', wallet.address)
                 # roundId = self.contract.functions.latestRound().call()+1
                 excPrice = self.pricefeeds.getAvgPrice()
+                print('excPrice:', excPrice)
                 if excPrice > 0:
                     wallet.sendTx(self.contract.functions.setLatestAnswer(excPrice))
                     print('setLatestAnswer', self.token, excPrice, wallet.address)

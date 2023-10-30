@@ -8,9 +8,9 @@ dataSources:
     name: OrderBook
     network: base-testnet
     source:
-      address: "0x698727269d637aC283F0CF07CD1B48715a4bD59F"
+      address: "0x00093a37d28b4D987E6e951D3b5dFED83Eb508B0"
       abi: OrderBook
-      startBlock: 9616625
+      startBlock: 11710134
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
