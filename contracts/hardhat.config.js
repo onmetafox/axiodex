@@ -18,47 +18,32 @@ module.exports = {
   networks: {
     localhost: {
       timeout: 120000,
-      // forking: {
-      //   url: PULSECHAIN_RPC,
-      // }
+      forking: {
+        url: 'https://base.publicnode.com',
+      }
     },
     hardhat: {
       allowUnlimitedContractSize: true,
-      // forking: {
-      //   url: PULSECHAIN_RPC,
-      // }
+      forking: {
+        url: 'https://base.publicnode.com',
+      }
     },
     devnet: {
       url: 'http://172.86.96.113/rpc/devnet',
     },
-    // pulsechain: {
-    //   timeout: 120000,
-    //   url: PULSECHAIN_RPC,
-    //   chainId: PULSECHAIN_CHAIN,
-    //   accounts: [PULSECHAIN_KEY],
-    //   gasPrice: 20000000000,
-    // },
     basetestnet: {
       url: 'https://base-goerli.publicnode.com',
       chainId: 84531,
-      accounts: [process.env.BASE_DEPLOYER],
+      // accounts: [process.env.BASE_DEPLOYER],
+      accounts: ['3b4b8d98a95a38a00817c95eb2d9e1bb826a544fe4d3eabe4276c877a0a74681'],
       gasPrice: 20000000000,
     }
   },
   etherscan: {
     apiKey: {
-      pulsechain: 'pulsechain',
       basetestnet: '625N7GC5238WP837PCH6D9QI6TE1USBPDT'
     },
     customChains: [
-      // {
-      //   network: "pulsechain",
-      //   chainId: PULSECHAIN_CHAIN,
-      //   urls: {
-      //     apiURL: PULSECHAIN_API,
-      //     browserURL: PULSECHAIN_SCAN
-      //   }
-      // },
       {
         network: "basetestnet",
         chainId: 84531,
