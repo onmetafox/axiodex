@@ -22,7 +22,7 @@ const ICONS = {
     drop: dropIcon
   },
   [LOCALNET]: {
-    network: ethIcon
+    network: base
   }
 };
 
