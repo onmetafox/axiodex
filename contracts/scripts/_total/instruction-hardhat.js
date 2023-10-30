@@ -7,28 +7,18 @@ module.exports = [
 
     { func: "const", as: "durationTimeLock", value: 1 },
 
-    { func: "load", artifact: "WETH", as: "NATIVE_TOKEN", address: "0x4200000000000000000000000000000000000006" },
+    // { func: "load", artifact: "WETH", as: "NATIVE_TOKEN", address: "0x4200000000000000000000000000000000000006" },
     // { func: "load", artifact: "contracts/tokens/General.sol:GeneralToken", as: "HEX", address: "0x826e4e896CC2f5B371Cd7Bb0bd929DB3e3DB67c0" },
     // { func: "load", artifact: "contracts/tokens/General.sol:GeneralToken", as: "USDC", address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" },
     // { func: "load", artifact: "contracts/tokens/General.sol:GeneralToken", as: "ETH", address: "0x3677bd78ccf4d299328ecfba61790cf8dbfcf686" },
     // { func: "load", artifact: "contracts/tokens/General.sol:GeneralToken", as: "BTC", address: "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599" },
-    { func: "deploy", artifact: "contracts/tokens/General.sol:GeneralToken", as: "HEX", args: [
-        "HEX", "HEX", 8, 1000000000
-    ] },
-    { func: "deploy", artifact: "contracts/tokens/General.sol:GeneralToken", as: "USDC", args: [
-        "USD Coin", "USDC", 6, 1000000000
-    ] },
-    { func: "deploy", artifact: "contracts/tokens/General.sol:GeneralToken", as: "BTC", args: [
-        "Bitcoin", "BTC", 8, 100000
-    ] },
+    { func: "deploy", artifact: "WETH", args: [ "Wrapped ETH", "WETH", 18 ], as: "NATIVE_TOKEN" },
+    { func: "deploy", artifact: "contracts/tokens/General.sol:GeneralToken", as: "HEX", args: ["HEX", "HEX", 8, 1000000000] },
+    { func: "deploy", artifact: "contracts/tokens/General.sol:GeneralToken", as: "USDC", args: ["USD Coin", "USDC", 6, 1000000000] },
+    { func: "deploy", artifact: "contracts/tokens/General.sol:GeneralToken", as: "BTC", args: ["Bitcoin", "BTC", 8, 100000] },
 
     { func: "deploy", artifact: "TokenManager", args: [1] },
-    {
-        func: "call",
-        contract: "TokenManager",
-        method: "initialize",
-        args: [ ["${admin.address}"] ]
-    },
+    { func: "call", contract: "TokenManager", method: "initialize", args: [ ["${admin.address}"] ]},
 
     { func: "deploy", artifact: "Multicall3" },
     { func: "deploy", artifact: "Vault" },
@@ -52,11 +42,7 @@ module.exports = [
     { func: "call", contract: "Vault", method: "setFees", args: [10, 5, 20, 20, 1, 10, "${parseUnits('2',30)}", "${24*60*60}", true] },
     { func: "deploy", artifact: "VaultErrorController" },
     { func: "call", contract: "Vault", method: "setErrorController", args: ["${VaultErrorController.address}"] },
-    {
-        func: "call",
-        contract: "VaultErrorController",
-        method: "setErrors",
-        args: ["${Vault.address}", [
+    { func: "call", contract: "VaultErrorController", method: "setErrors", args: ["${Vault.address}", [
             "Vault: zero error",
             "Vault: already initialized",
             "Vault: invalid _maxLeverage",
@@ -118,11 +104,12 @@ module.exports = [
     { func: "deploy", artifact: "VaultUtils", args: ["${Vault.address}"] },
     { func: "call", contract: "Vault", method: "setVaultUtils", args: ["${VaultUtils.address}"] },
 
-    { func: "load", artifact: "PriceFeed", as: "PriceFeedBTC", address: "0xAC15714c08986DACC0379193e22382736796496f" },
-    { func: "load", artifact: "PriceFeed", as: "PriceFeedETH", address: "0xcD2A119bD1F7DF95d706DE6F2057fDD45A0503E2" },
-    { func: "load", artifact: "PriceFeed", as: "PriceFeedUSDC", address: "0xb85765935B4d9Ab6f841c9a00690Da5F34368bc0" },
-    // { func: "deploy", artifact: "PriceFeed", as: "PriceFeedETH" },
-    // // { func: "call", contract: "PriceFeedETH", method: "setLatestAnswer", args: ["${parseUnits('0.14826772', 8)}"] },
+    // { func: "load", artifact: "PriceFeed", as: "PriceFeedBTC", address: "0xAC15714c08986DACC0379193e22382736796496f" },
+    // { func: "load", artifact: "PriceFeed", as: "PriceFeedETH", address: "0xcD2A119bD1F7DF95d706DE6F2057fDD45A0503E2" },
+    // { func: "load", artifact: "PriceFeed", as: "PriceFeedUSDC", address: "0xb85765935B4d9Ab6f841c9a00690Da5F34368bc0" },
+    { func: "deploy", artifact: "PriceFeed", as: "PriceFeedETH" },
+
+    { func: "call", contract: "PriceFeedETH", method: "setLatestAnswer", args: ["${parseUnits('1', 8)}"] },
     // { func: "wallet", as: "_keeper", value: "AxionDex:PLS:PriceFeed:0" }, { func: "call", contract: "PriceFeedETH", method: "setAdmin", args: ["${_keeper.address}", true] }, 
     // { func: "wallet", as: "_keeper", value: "AxionDex:PLS:PriceFeed:1" }, { func: "call", contract: "PriceFeedETH", method: "setAdmin", args: ["${_keeper.address}", true] }, 
     // { func: "wallet", as: "_keeper", value: "AxionDex:PLS:PriceFeed:2" }, { func: "call", contract: "PriceFeedETH", method: "setAdmin", args: ["${_keeper.address}", true] }, 
@@ -131,8 +118,8 @@ module.exports = [
     // { func: "wallet", as: "_keeper", value: "AxionDex:PLS:PriceFeed:5" }, { func: "call", contract: "PriceFeedETH", method: "setAdmin", args: ["${_keeper.address}", true] }, 
     { func: "call", contract: "VaultPriceFeed", method: "setTokenConfig", args: ["${NATIVE_TOKEN.address}", "${PriceFeedETH.address}", 8, false] },
 
-    // { func: "deploy", artifact: "PriceFeed", as: "PriceFeedBTC" },
-    // // { func: "call", contract: "PriceFeedBTC", method: "setLatestAnswer", args: ["${parseUnits('28600.55', 8)}"] },
+    { func: "deploy", artifact: "PriceFeed", as: "PriceFeedBTC" },
+    { func: "call", contract: "PriceFeedBTC", method: "setLatestAnswer", args: ["${parseUnits('1', 8)}"] },
     // { func: "wallet", as: "_keeper", value: "AxionDex:BTC:PriceFeed:0" }, { func: "call", contract: "PriceFeedBTC", method: "setAdmin", args: ["${_keeper.address}", true] }, 
     // { func: "wallet", as: "_keeper", value: "AxionDex:BTC:PriceFeed:1" }, { func: "call", contract: "PriceFeedBTC", method: "setAdmin", args: ["${_keeper.address}", true] }, 
     // { func: "wallet", as: "_keeper", value: "AxionDex:BTC:PriceFeed:2" }, { func: "call", contract: "PriceFeedBTC", method: "setAdmin", args: ["${_keeper.address}", true] }, 
@@ -141,8 +128,8 @@ module.exports = [
     // { func: "wallet", as: "_keeper", value: "AxionDex:BTC:PriceFeed:5" }, { func: "call", contract: "PriceFeedBTC", method: "setAdmin", args: ["${_keeper.address}", true] }, 
     { func: "call", contract: "VaultPriceFeed", method: "setTokenConfig", args: ["${BTC.address}", "${PriceFeedBTC.address}", 8, false] },
     
-    // { func: "deploy", artifact: "PriceFeed", as: "PriceFeedUSDC" },
-    // // { func: "call", contract: "PriceFeedUSDC", method: "setLatestAnswer", args: ["${parseUnits('1', 8)}"] },
+    { func: "deploy", artifact: "PriceFeed", as: "PriceFeedUSDC" },
+    { func: "call", contract: "PriceFeedUSDC", method: "setLatestAnswer", args: ["${parseUnits('1', 8)}"] },
     // { func: "wallet", as: "_keeper", value: "AxionDex:USDC:PriceFeed:0" }, { func: "call", contract: "PriceFeedUSDC", method: "setAdmin", args: ["${_keeper.address}", true] }, 
     // { func: "wallet", as: "_keeper", value: "AxionDex:USDC:PriceFeed:1" }, { func: "call", contract: "PriceFeedUSDC", method: "setAdmin", args: ["${_keeper.address}", true] }, 
     // { func: "wallet", as: "_keeper", value: "AxionDex:USDC:PriceFeed:2" }, { func: "call", contract: "PriceFeedUSDC", method: "setAdmin", args: ["${_keeper.address}", true] }, 
@@ -162,13 +149,13 @@ module.exports = [
     // { func: "call", contract: "VaultPriceFeed", method: "setTokenConfig", args: ["${ETH.address}", "${PriceFeedETH.address}", 8, false] },
 
     { func: "deploy", artifact: "PriceFeed", as: "PriceFeedHEX" },
-    // { func: "call", contract: "PriceFeedHEX", method: "setLatestAnswer", args: ["${parseUnits('1', 8)}"] },
-    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:0" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
-    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:1" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
-    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:2" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
-    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:3" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
-    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:4" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
-    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:5" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
+    { func: "call", contract: "PriceFeedHEX", method: "setLatestAnswer", args: ["${parseUnits('1', 8)}"] },
+    // { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:0" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
+    // { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:1" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
+    // { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:2" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
+    // { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:3" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
+    // { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:4" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
+    // { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:5" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
     { func: "call", contract: "VaultPriceFeed", method: "setTokenConfig", args: ["${HEX.address}", "${PriceFeedHEX.address}", 8, false] },
 
     // { func: "call", contract: "PriceFeedPLS", method: "setAdmin", args: ["${localPriceUpdater.address}", true] }, 
@@ -183,11 +170,17 @@ module.exports = [
     // { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${remotePriceUpdater.address}", true] }, 
     // { func: "call", contract: "PriceFeedUSDC", method: "setAdmin", args: ["${remotePriceUpdater.address}", true] }, 
     
-    { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${NATIVE_TOKEN.address}", 18, 20000, 0, "${parseUnits('3',25)}", false, true] },
-    { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${BTC.address}", 8, 3000, 0, "${parseUnits('5',25)}", false, true] },
+    // { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${NATIVE_TOKEN.address}", 18, 10000, 75, 0, false, true] },
+    // { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${BTC.address}", 8, 10000, 75, 0, false, true] },
+    // // { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${ETH.address}", 18, 45000, 0, "${parseUnits('5',25)}", false, true] },
+    // { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${HEX.address}", 8, 10000, 75, 0, false, true] },
+    // { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${USDC.address}", 6, 10000, 75, 0, true, false] },
+
+    { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${NATIVE_TOKEN.address}", 18, 10000, 0, "${parseUnits('3',25)}", false, true] },
+    { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${BTC.address}", 8, 10000, 0, "${parseUnits('5',25)}", false, true] },
     // { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${ETH.address}", 18, 45000, 0, "${parseUnits('5',25)}", false, true] },
-    { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${HEX.address}", 8, 45000, 0, "${parseUnits('5',25)}", false, true] },
-    { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${USDC.address}", 6, 45000, 0, "${parseUnits('5',25)}", true, false] },
+    { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${HEX.address}", 8, 10000, 0, "${parseUnits('5',25)}", false, true] },
+    { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${USDC.address}", 6, 10000, 0, "${parseUnits('5',25)}", true, false] },
 
     { func: "deploy", artifact: "OrderBook", args: [] },
     { func: "call", contract: "OrderBook", method: "initialize", args: [
@@ -244,7 +237,7 @@ module.exports = [
     { func: "deploy", artifact: "RewardTracker", as: "StakedAlpTracker", args: ["Fee + Staked ALP", "fsALP"] },
     { func: "deploy", artifact: "RewardDistributor", as: "StakedAlpDistributor", args: ["${EsAXN.address}","${StakedAlpTracker.address}"] },
     { func: "call", contract: "StakedAlpTracker", method: "initialize", args: [
-        ["${StakedAlpTracker.address}", "${ALP.address}", "${FeeAlpTracker.address}"], "${StakedAlpDistributor.address}"
+        ["${StakedAlpTracker.address}", "${FeeAlpTracker.address}", "${ALP.address}",], "${StakedAlpDistributor.address}"
     ] },
     { func: "call", contract: "StakedAlpDistributor", method: "updateLastDistributionTime", args: [] },
 
@@ -355,14 +348,13 @@ module.exports = [
         "${AddressZero.address}",
         "${AddressZero.address}"    
     ] },
-
     { func: "call", contract: "FeeAlpTracker", method: "setHandler", args: ["${AlpRewardRouter.address}", true] },
     { func: "call", contract: "StakedAlpTracker", method: "setHandler", args: ["${AlpRewardRouter.address}", true] },
     { func: "call", contract: "AlpManager", method: "setHandler", args: ["${AlpRewardRouter.address}", true] },
-    
+
     // Add alp token to liquidity pool
     { func: "call", contract: "AlpManager", method: "setInPrivateMode", args: [false] },
-    { func: "call", contract: "USDC", method: "approve", args: ["${AlpManager.address}", "${parseUnits('10000',6)}"] },
+    { func: "call", contract: "USDC", method: "approve", args: ["${AlpManager.address}", "${parseUnits('100',6)}"] },
     { func: "call", contract: "AlpRewardRouter", method: "mintAndStakeAlp", args: [
         "${USDC.address}", "${parseUnits('100',6)}", "${parseUnits('99',18)}", "${parseUnits('99',18)}"
     ] },
@@ -606,17 +598,21 @@ module.exports = [
     { func: "call", contract: "TimeLock", method: "setMaxGlobalShortSize", args: ["${Vault.address}", "${HEX.address}", "${parseUnits('20000', 30)}"] },
     { func: "call", contract: "TimeLock", method: "setMaxGlobalShortSize", args: ["${Vault.address}", "${USDC.address}", "${parseUnits('20000', 30)}"] },
 
-    { func: "call", contract: "NATIVE_TOKEN", method: "deposit", overrides: {value: "100000000000000000"}, key: "deposit 0.1ETH" },
-    { func: "call", contract: "NATIVE_TOKEN", method: "approve", args: ["${Router.address}", "${parseUnits('100', 18)}"] },
-    { func: "call", contract: "Router", method: "directPoolDeposit", args: ["${NATIVE_TOKEN.address}", "${parseUnits('0.1', 18)}"] },
-    { func: "call", contract: "USDC", method: "approve", args: ["${Router.address}", "${parseUnits('100000', 6)}"] },
-    { func: "call", contract: "Router", method: "directPoolDeposit", args: ["${USDC.address}", "${parseUnits('100000', 6)}"] },
-    { func: "call", contract: "BTC", method: "approve", args: ["${Router.address}", "${parseUnits('100', 8)}"] },
-    { func: "call", contract: "Router", method: "directPoolDeposit", args: ["${BTC.address}", "${parseUnits('100', 8)}"] },
+    // { func: "call", contract: "NATIVE_TOKEN", method: "deposit", overrides: {value: "100000000000000000"}, key: "deposit 0.1ETH" },
+    // { func: "call", contract: "NATIVE_TOKEN", method: "approve", args: ["${Router.address}", "${parseUnits('100', 18)}"] },
+    // { func: "call", contract: "Router", method: "directPoolDeposit", args: ["${NATIVE_TOKEN.address}", "${parseUnits('0.1', 18)}"] },
+
+    // { func: "call", contract: "USDC", method: "approve", args: ["${Router.address}", "${parseUnits('100000', 6)}"] },
+    // { func: "call", contract: "Router", method: "directPoolDeposit", args: ["${USDC.address}", "${parseUnits('100000', 6)}"] },
+
+    // { func: "call", contract: "BTC", method: "approve", args: ["${Router.address}", "${parseUnits('100', 8)}"] },
+    // { func: "call", contract: "Router", method: "directPoolDeposit", args: ["${BTC.address}", "${parseUnits('100', 8)}"] },
+
     // { func: "call", contract: "ETH", method: "approve", args: ["${Router.address}", "${parseUnits('1000', 18)}"] },
     // { func: "call", contract: "Router", method: "directPoolDeposit", args: ["${ETH.address}", "${parseUnits('1000', 18)}"] },
-    { func: "call", contract: "HEX", method: "approve", args: ["${Router.address}", "${parseUnits('1000000', 8)}"] },
-    { func: "call", contract: "Router", method: "directPoolDeposit", args: ["${HEX.address}", "${parseUnits('5000', 8)}"] },
+
+    // { func: "call", contract: "HEX", method: "approve", args: ["${Router.address}", "${parseUnits('1000000', 8)}"] },
+    // { func: "call", contract: "Router", method: "directPoolDeposit", args: ["${HEX.address}", "${parseUnits('5000', 8)}"] },
     
     // { func: "call", contract: "EsAXN", method: "setMinter", args: ["${admin.address}", true] },
     // { func: "call", contract: "EsAXN", method: "mint", args: ["${StakedAxnDistributor.address}", "${parseEther('600000')}"] },
