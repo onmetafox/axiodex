@@ -6,7 +6,7 @@ dataSources:
     name: PriceFeedBTC
     network: base-testnet
     source:
-      address: "0xAC15714c08986DACC0379193e22382736796496f"
+      address: "0xf8340046E11672610532bc2F7554241ceE118fB7"
       abi: ChainlinkAggregator
       startBlock: 11710134
     mapping:
@@ -27,7 +27,7 @@ dataSources:
     name: PriceFeedETH
     network: base-testnet
     source:
-      address: "0xcD2A119bD1F7DF95d706DE6F2057fDD45A0503E2"
+      address: "0xeEF0ee34696a7982b8AE27c67f91f364D91967a0"
       abi: ChainlinkAggregator
       startBlock: 11710134
     mapping:
@@ -69,7 +69,7 @@ dataSources:
     name: PriceFeedUSDC
     network: base-testnet
     source:
-      address: "0xb85765935B4d9Ab6f841c9a00690Da5F34368bc0"
+      address: "0x83Eb07416dAbDB3DE6b12a8FA63F372773814445"
       abi: ChainlinkAggregator
       startBlock: 11710134
     mapping:
