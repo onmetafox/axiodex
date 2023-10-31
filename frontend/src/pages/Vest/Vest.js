@@ -48,7 +48,7 @@ import { getContract } from "config/contracts";
 
 // const PAGE_TITLE = "Vest";
 const PAGE_TITLE = "Vault";
-const DESCRIPTION = ["Convert esAXN tokens to AXN tokens.","Prior to using the vaults, please review the vesting details carefully."];
+const DESCRIPTION = ["Convert esAXN tokens to AXN tokens.","Prior to using the vaults, please review the vesting details carefully.","Vaulting to convert your esAXN tokens to AXN tokens will lock a portion of your AXN or ALP for 6 months"];
 
 function VesterDepositModal(props) {
   const {
@@ -746,7 +746,7 @@ export default function Vest({setPendingTxns, connectWallet}) {
                       </div>
                     </div>
                     <div className="row">
-                      <PageRow title= "Stake Tokens"
+                      <PageRow title= "Tokens"
                         value={`${formatAmount(processedData.alpBalance, 18, 2, true)} ALP`}
                         direction="align-right" className="page-row-content-deverse"/>
                     </div>
