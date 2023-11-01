@@ -41,7 +41,7 @@ import { callContract, contractFetcher } from "lib/contracts";
 import { bigNumberify, expandDecimals, formatAmount, formatAmountFree, formatKeyAmount, parseValue } from "lib/numbers";
 import { useChainId } from "lib/chains";
 
-const PAGE_TITLE = "Staking";
+const PAGE_TITLE = "AXN & esAXN";
 const DESCRIPTION = ["Earn rewards by staking AXN and esAXN tokens."];
 
 const { AddressZero } = ethers.constants;
@@ -683,7 +683,7 @@ export default function Axes({ setPendingTxns, connectWallet }) {
         <div className="Page-content axes">
           <div className="row">
             <div className="col-lg-5 col-sm-12 col-md-12">
-              {/* <div className="row padding-1r">
+              <div className="row padding-1r">
                 <div className="Exchange-swap-section strategy-container colored border-0">
                   <div className="Exchange-swap-section-top row">
                     <div className="strategy-title">Reward</div>
@@ -708,7 +708,7 @@ export default function Axes({ setPendingTxns, connectWallet }) {
                     </div>
                   </div>
                 </div>
-              </div> */}
+              </div>
               <div className="Exchange-swap-section strategy-container colored border-0">
                 <PageRow title="AXN" value ="Stake AXN to earn ETH, esAXN, and MPs" direction="vertical"  className="page-row-content"/>
                 <PageRow title="Wallet"

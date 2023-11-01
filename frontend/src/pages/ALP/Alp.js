@@ -34,7 +34,7 @@ import { bigNumberify, expandDecimals, formatKeyAmount } from "lib/numbers";
 import { useChainId } from "lib/chains";
 
 const PAGE_TITLE = "ALP";
-const DESCRIPTION = ["The ALP token is automatically staked."];
+const DESCRIPTION = ["Earn rewards by staking ALP token."];
 
 export default function ALP({ setPendingTxns, connectWallet }) {
   const { active, library, account } = useWeb3React();
@@ -268,7 +268,7 @@ export default function ALP({ setPendingTxns, connectWallet }) {
         <div className="Page-content">
           <div className="row">
             <div className="col-lg-5 col-sm-12 col-md-12">
-              {/* <div className="row padding-1r">
+              <div className="row padding-1r">
                 <div className="Exchange-swap-section strategy-container colored border-0">
                   <div className="Exchange-swap-section-top row">
                     <div className="strategy-title">Reward</div>
@@ -293,15 +293,15 @@ export default function ALP({ setPendingTxns, connectWallet }) {
                     </div>
                   </div>
                 </div>
-              </div> */}
+              </div>
               <div className="Exchange-swap-section strategy-container colored border-0">
-                <PageRow title= "ALP" value="Auto-staked ALP earns ETH, esAXN, and MPs." direction="vertical" className="page-row-content"/>
+                <PageRow title= "ALP" value="Stake ALP to earn ETH, esAXN, and MPs." direction="vertical" className="page-row-content"/>
                 <PageRow title= "Wallet"
-                  value={`${formatKeyAmount(processedData, "alpBalance", TLP_DECIMALS, 2, true)} ALP`}
+                  value={`${formatKeyAmount(processedData, "alpBalance", TLP_DECIMALS, 2, true)} AXN`}
                   subValue= {`$${formatKeyAmount(processedData, "alpBalanceUsd", USD_DECIMALS, 2, true)}`}
                   direction="vertical" className="page-row-content-deverse"/>
                 <PageRow title= "Staked"
-                  value={`${formatKeyAmount(processedData, "alpBalance", TLP_DECIMALS, 2, true)} ALP`}
+                  value={`${formatKeyAmount(processedData, "alpBalance", TLP_DECIMALS, 2, true)} AXN`}
                   subValue = {`$${formatKeyAmount(processedData, "alpBalanceUsd", USD_DECIMALS, 2, true)}`}
                   direction="vertical" className="page-row-content-deverse"/>
               </div>

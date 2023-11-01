@@ -44,8 +44,8 @@ import {
 } from "lib/legacy";
 
 const PAGE_TITLE = "Overview";
-const DESCRIPTION = ["By staking AXN or ALP tokens to the Base network, you can earn Protocol income and Rewards."];
-const REWARDS = "Rewards Summary";
+const DESCRIPTION = ["By staking AXN or ALP tokens to the Base network, You can earn Protocol income and Rewards."];
+const REWARDS = "Total Rewards";
 
 const VEST_WITH_GMX_ARB = "VEST_WITH_GMX_ARB";
 const VEST_WITH_GLP_ARB = "VEST_WITH_GLP_ARB";
@@ -740,7 +740,7 @@ export default function Overview({ setPendingTxns, connectWallet }) {
                   <div className="row">
                     <div className="Exchange-swap-section strategy-container">
                       <div className="row">
-                        <div className="col-6">
+                        <div className="col-5">
                           <PageRow
                             title="AXN & esAXN staked"
                             value={`${formatAmount(AxnAndesAxnStaked, 18, 2, true)}`}
@@ -748,8 +748,13 @@ export default function Overview({ setPendingTxns, connectWallet }) {
                             direction="vertical"
                           />
                         </div>
-                        <div className="col-6">
+                        <div className="col-3">
                           <PageRow title="APR" value="50.16%" direction="vertical" />
+                        </div>
+                        <div className="col-4">
+                          <Button className="strategy-btn" href="/axes">
+                            Details
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -757,7 +762,7 @@ export default function Overview({ setPendingTxns, connectWallet }) {
                   <div className="row">
                     <div className="Exchange-swap-section strategy-container">
                       <div className="row">
-                        <div className="col-6">
+                        <div className="col-5">
                           <PageRow
                             title="ALP staked"
                             value={`${formatKeyAmount(processedData, "alpBalance", TLP_DECIMALS, 2, true)}`}
@@ -765,8 +770,13 @@ export default function Overview({ setPendingTxns, connectWallet }) {
                             direction="vertical"
                           />
                         </div>
-                        <div className="col-6">
+                        <div className="col-3">
                           <PageRow title="APR" value="133.62%" direction="vertical" />
+                        </div>
+                        <div className="col-4">
+                          <Button className="strategy-btn" href="mlp">
+                            Details
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -776,7 +786,7 @@ export default function Overview({ setPendingTxns, connectWallet }) {
                   <div className="row">
                     <div className="Exchange-swap-section strategy-container">
                       <div className="row">
-                        <div className="col-6">
+                        <div className="col-5">
                           <PageRow
                             title="Vesting status"
                             value={`${formatKeyAmount(
@@ -789,17 +799,27 @@ export default function Overview({ setPendingTxns, connectWallet }) {
                             direction="vertical"
                           />
                         </div>
-                        <div className="col-6"></div>
+                        <div className="col-3"></div>
+                        <div className="col-4">
+                          <Button className="strategy-btn" href="vest">
+                            Details
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div className="row">
                     <div className="Exchange-swap-section strategy-container">
                       <div className="row">
-                        <div className="col-6">
+                        <div className="col-5">
                           <PageRow title="Deposited in vault" value="$0" direction="vertical" />
                         </div>
-                        <div className="col-6"></div>
+                        <div className="col-3"></div>
+                        <div className="col-4">
+                          <Button className="strategy-btn" href="vault">
+                            Details
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
