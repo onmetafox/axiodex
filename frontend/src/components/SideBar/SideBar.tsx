@@ -20,10 +20,10 @@ export default function SideBar({children}) {
         <div className="container">
             <div className="col-lg-12 col-md-12 col-sm-12">
                 <div className="menu-button">
-                    <Button href="/earn"><Trans>Total rewards</Trans></Button>
-                    <Button href="/axes"><Trans>AXN and esAXN</Trans></Button>
+                    <Button href="/earn"><Trans>Rewards</Trans></Button>
+                    <Button href="/axes"><Trans>Staking</Trans></Button>
                     <Button href="/alp"><Trans>ALP</Trans></Button>
-                    <Button href="/vault"><Trans>Vault</Trans></Button>
+                    <Button href="/vault"><Trans>Vaulting</Trans></Button>
                     <Button href="/begin_account_transfer"><Trans>Transfer account</Trans></Button>
                 </div>
             </div>

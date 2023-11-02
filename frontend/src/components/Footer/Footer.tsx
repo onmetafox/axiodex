@@ -16,9 +16,9 @@ export default function Footer({ showRedirectModal, redirectPopupTimestamp }: Pr
   return (
     <div className="Footer">
       <div className={cx("Footer-wrapper", { home: isHome })}>
-        <div className="Footer-logo">
+        {/* <div className="Footer-logo">
           <img src={logoImg} alt="MetaMask" />
-        </div>
+        </div> */}
         <div className="Footer-social-link-block">
           {SOCIAL_LINKS.map((platform) => {
             return (
@@ -28,7 +28,7 @@ export default function Footer({ showRedirectModal, redirectPopupTimestamp }: Pr
             );
           })}
         </div>
-        <div className="Footer-links">
+        {/* <div className="Footer-links">
           {getFooterLinks(isHome).map(({ external, text, link, isAppLink }) => {
             if (external) {
               return (
@@ -63,7 +63,7 @@ export default function Footer({ showRedirectModal, redirectPopupTimestamp }: Pr
               </NavLink>
             );
           })}
-        </div>
+        </div> */}
       </div>
     </div>
   );

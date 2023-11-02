@@ -6,9 +6,10 @@
   position: absolute;
   transform: translateX(-50%);
   left: 50%;
-  height: 20rem;
+  height: 10rem;
   bottom: 0;
   border-top: 1px solid #282b4c;
+  padding-top: 4rem;
 }
 
 .Footer-logo {
