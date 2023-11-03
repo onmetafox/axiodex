@@ -38,9 +38,9 @@ export function getFooterLinks(isHome) {
 }
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  { link: "https://twitter.com/ShibAxnfinance", name: "Twitter", icon: twitterIcon },
+  { link: "https://twitter.com/AxiodexTrading", name: "Twitter", icon: twitterIcon },
   // { link: "https://medium.com/@axnfinancetoken", name: "Medium", icon: mediumIcon },
   // { link: "https://github.com/Axnfinance", name: "Github", icon: githubIcon },
-  { link: "https://t.me/axnfinanceportal", name: "Telegram", icon: telegramIcon },
-  { link: "https://discord.gg/YSsXWXCq", name: "Discord", icon: discordIcon },
+  { link: "https://t.me/Axiodex", name: "Telegram", icon: telegramIcon },
+  { link: "https://discord.gg/ZHY9jZQdRP", name: "Discord", icon: discordIcon },
 ];
