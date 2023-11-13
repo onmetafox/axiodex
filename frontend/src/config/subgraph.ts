@@ -16,7 +16,7 @@ export const SUBGRAPH_URLS = {
     // orders: "https://api.studio.thegraph.com/query/44624/orders-base-goerli/version/latest",
     orders: "https://api.studio.thegraph.com/query/44624/orders-base-goerli/latest",
     // prices: "https://api.studio.thegraph.com/query/44624/prices-base-goerli/version/latest",
-    prices: "https://api.studio.thegraph.com/query/44624/prices-base-goerli/0.0.4",
+    prices: "https://api.studio.thegraph.com/query/44624/prices-base-goerli/latest",
     nissohVault: "https://api.thegraph.com/subgraphs/name/nissoh/gmx-vault",
   },
   [LOCALNET]: {

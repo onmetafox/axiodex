@@ -1,6 +1,6 @@
 import { defineMessage } from "@lingui/macro";
 import "./Footer.css";
-import twitterIcon from "img/twitter.png";
+import twitterIcon from "img/ic_twitter.svg";
 import discordIcon from "img/ic_discord.svg";
 import telegramIcon from "img/ic_telegram.svg";
 import githubIcon from "img/ic_github.svg";
@@ -38,9 +38,9 @@ export function getFooterLinks(isHome) {
 }
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  { link: "https://twitter.com/AxiodexTrading", name: "Twitter", icon: twitterIcon },
-  // { link: "https://medium.com/@axnfinancetoken", name: "Medium", icon: mediumIcon },
-  // { link: "https://github.com/Axnfinance", name: "Github", icon: githubIcon },
-  { link: "https://t.me/Axiodex", name: "Telegram", icon: telegramIcon },
-  { link: "https://discord.gg/ZHY9jZQdRP", name: "Discord", icon: discordIcon },
+  { link: "https://twitter.com/ShibAxnfinance", name: "Twitter", icon: twitterIcon },
+  { link: "https://medium.com/@axnfinancetoken", name: "Medium", icon: mediumIcon },
+  { link: "https://github.com/Axnfinance", name: "Github", icon: githubIcon },
+  { link: "https://t.me/axnfinanceportal", name: "Telegram", icon: telegramIcon },
+  { link: "https://discord.gg/YSsXWXCq", name: "Discord", icon: discordIcon },
 ];

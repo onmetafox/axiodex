@@ -11,10 +11,10 @@ config = {
     'endpoint': "https://goerli.base.org",
     'sleepTime': 10,
     'keeper': "3b4b8d98a95a38a00817c95eb2d9e1bb826a544fe4d3eabe4276c877a0a74681",
-    'orderBookAddress': "0x00093a37d28b4D987E6e951D3b5dFED83Eb508B0",
-    'orderExecutorAddress': "0x00629a62B9F76681CE76C7F3CFae067858A69Eb2",
-    'timeLockAddress': "0x4063EF728Cf71306f5F9BeC04309C1e5e8B55485",
-    'vaultAddress': "0x0fe870bc7d5d9cFd8b6e079AC3FB5CBfc02Adeb0"
+    'orderBookAddress': "0x698727269d637aC283F0CF07CD1B48715a4bD59F",
+    'orderExecutorAddress': "0x5402f23A6927f118FBeE319FAb74f970D0cbec8A",
+    'timeLockAddress': "0x7c5dA0E2B363991467bC034aeF6266fbd801c0dE",
+    'vaultAddress': "0x94eBF73e4892d7002e373697ec71690f86103D78"
 }
 
 class OrderKeeper(object):
