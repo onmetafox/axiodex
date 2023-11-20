@@ -41,7 +41,7 @@ import { callContract, contractFetcher } from "lib/contracts";
 import { bigNumberify, expandDecimals, formatAmount, formatAmountFree, formatKeyAmount, parseValue } from "lib/numbers";
 import { useChainId } from "lib/chains";
 
-const PAGE_TITLE = "AXN & esAXN";
+const PAGE_TITLE = "Staking";
 const DESCRIPTION = ["Earn rewards by staking AXN and esAXN tokens."];
 
 const { AddressZero } = ethers.constants;
@@ -683,7 +683,7 @@ export default function Axes({ setPendingTxns, connectWallet }) {
         <div className="Page-content axes">
           <div className="row">
             <div className="col-lg-5 col-sm-12 col-md-12">
-              <div className="row padding-1r">
+              {/* <div className="row padding-1r">
                 <div className="Exchange-swap-section strategy-container colored border-0">
                   <div className="Exchange-swap-section-top row">
                     <div className="strategy-title">Reward</div>
@@ -708,14 +708,14 @@ export default function Axes({ setPendingTxns, connectWallet }) {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="Exchange-swap-section strategy-container colored border-0">
                 <PageRow title="AXN" value ="Stake AXN to earn ETH, esAXN, and MPs" direction="vertical"  className="page-row-content"/>
                 <PageRow title="Wallet"
                   value ={ `${formatKeyAmount(processedData, "axnBalance", 18, 2, true)} AXN`}
                   subValue = {`$${formatKeyAmount(processedData, "axnBalanceUsd", USD_DECIMALS, 2, true)}`}
                   direction="vertical"  className="page-row-content-deverse"/>
-                <PageRow title="Staked" value ={`$${formatKeyAmount(processedData, "axnInStakedAxn", 18, 2, true)} AXN`}
+                <PageRow title="Staked" value ={`${formatKeyAmount(processedData, "axnInStakedAxn", 18, 2, true)} AXN`}
                   subValue ={`$${formatKeyAmount(processedData, "axnInStakedAxnUsd", USD_DECIMALS, 2, true)}`}
                   direction="vertical"  className="page-row-content-deverse"/>
                 <div className="row padding-1r">
@@ -793,10 +793,10 @@ export default function Axes({ setPendingTxns, connectWallet }) {
                     <div className="col-12 percent-font"><Trans>50.16%</Trans></div>
                   </div>
                   <PageRow title="Total Staked"
-                    value ={`${formatKeyAmount(processedData, "stakedEsAxnSupply", 18, 0, true)} AXN ($${formatKeyAmount(processedData, "stakedEsAxnSupplyUsd", USD_DECIMALS, 0, true)})`}
+                    value ={`${formatAmount(totalAxnStaked, 18, 0, true)} AXN ($${formatAmount(stakedAxnSupplyUsd, USD_DECIMALS, 0, true)})`}
                     direction="align-right"  className="page-row-content-deverse"/>
                   <PageRow title="Total Supply"
-                    value ={`${formatAmount(esAxnSupply, 18, 0, true)} AXN ($${formatAmount(esAxnSupplyUsd, USD_DECIMALS, 0, true)})`}
+                    value ={`${formatAmount(totalAxnSupply, 18, 0, true)} AXN ($${formatAmount(totalSupplyUsd, USD_DECIMALS, 0, true)})`}
                     direction="align-right"  className="page-row-content-deverse"/>
                   <PageRow title="MPs APR" value ="100%" direction="align-right"  className="page-row-content-deverse"/>
                   <PageRow title="Boost Percentage"
@@ -810,11 +810,12 @@ export default function Axes({ setPendingTxns, connectWallet }) {
                     <div className="col-12 percent-font" ><Trans>50.16%</Trans></div>
                   </div>
                   <PageRow title="Total Staked"
-                    value ={`${formatAmount(totalAxnStaked, 18, 0, true)} esAXN ($${formatAmount(stakedAxnSupplyUsd, USD_DECIMALS, 0, true)})`}
+                    value ={`${formatKeyAmount(processedData, "stakedEsAxnSupply", 18, 0, true)} esAXN ($${formatKeyAmount(processedData, "stakedEsAxnSupplyUsd", USD_DECIMALS, 0, true)})`}
                     direction="align-right"  className="page-row-content-deverse"/>
                   <PageRow title="Total Supply"
-                    value ={`${formatAmount(totalAxnSupply, 18, 0, true)} esAXN ($${formatAmount(totalSupplyUsd, USD_DECIMALS, 0, true)})`}
+                    value ={`${formatAmount(esAxnSupply, 18, 0, true)} esAXN ($${formatAmount(esAxnSupplyUsd, USD_DECIMALS, 0, true)})`}
                     direction="align-right"  className="page-row-content-deverse"/>
+
                   <PageRow title="MPs APR" value ="100%" direction="align-right"  className="page-row-content-deverse"/>
                 </div>
               </div>

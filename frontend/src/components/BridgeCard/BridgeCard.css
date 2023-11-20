@@ -1,0 +1,111 @@
+.BridgeCard {
+  .colored {
+    background: linear-gradient(269.5deg, rgba(0, 148, 255, 0.455) -23.12%, rgba(0, 35, 54, 0.5) 106.82%);
+    padding: 3rem;
+    border-radius: 2rem;
+  }
+
+  .bridge-chain-row {
+    display: flex;
+    gap: 1.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+
+  .bridge-amount-row {
+    padding-left: 1em;
+    padding-right: 1em;
+
+    .input-row {
+      .input-label-row {
+        display: flex;
+        justify-content: space-between;
+
+        .text-input {
+          border-radius: .5em;
+        }
+
+        .input-label {
+          color: #aaa;
+
+          .value {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+
+  .withdraw-list{
+    margin-top: 3rem;
+    padding: 0;
+    .icon {
+      width: 4rem;
+      height: 4rem;
+      background: transparent;
+      padding: 0;
+    }
+    .market-title {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 27px;
+      margin: 2rem 0 2rem 0;
+    }
+    .token-table{
+      border-collapse: separate;
+      border-spacing: 0 1em;
+    }
+    .title {
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 18px;
+    }
+    .token-table>thead>tr>th:last-child {
+      text-align: center;
+    }
+
+    .token-table>tbody>tr>td {
+      background: #2b2b4a;
+    }
+    .token-table>tbody>tr>td:first-child{
+      border-radius: 1.4rem 0 0 1.4rem;
+    }
+    .token-table>tbody>tr>td:last-child{
+      border-radius:  0 1.4rem 1.4rem 0;
+      text-align: center;
+    }
+    .label {
+      font-family: "Baloo";
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 32px;
+      color: white;
+    }
+    .App-card {
+      background: #2b2b4a;
+      border-radius: 14px;
+      border: 4px 4px 0px 4px;
+
+    }
+  }
+
+  .arrow-icon {
+    width: 1.5em;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .BridgeCard {
+    .bridge-chain-row {
+      gap: 1em;
+      .icon2-container {
+        .icon {
+          display: none;
+        }
+      }
+      .arrow-icon {
+        display: none;
+      }
+    }
+  }
+}

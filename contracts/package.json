@@ -8,11 +8,7 @@
   "scripts": {
     "test": "npx hardhat test",
     "compile": "hardhat compile",
-    "typechain": "hardhat typechain",
-    "deploy:localhost:AXN": "hardhat run scripts/gmx/deployGMX.js --network localhost",
-    "deploy:basetestnet:AXN": "hardhat run scripts/gmx/deployGMX.js --network basetestnet",
-    "deploy:base:AXN": "hardhat run scripts/gmx/deployGMX.js --network basetestnet",
-    "deploy:ethereum:AXN": "hardhat run scripts/gmx/deployGMX.js --network ethereum"
+    "typechain": "hardhat typechain"
   },
   "author": "",
   "license": "ISC",

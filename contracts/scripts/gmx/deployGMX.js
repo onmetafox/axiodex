@@ -2,10 +2,10 @@ const { ethers } = require("hardhat")
 const { deployContract, sendTxn } = require("../shared/helpers")
 
 async function main() {
-  const AXN = await deployContract("AXN", [])
+  const gmx = await deployContract("GMX", [])
   const [wallet] = await ethers.getSigners()
 
-  await sendTxn(AXN.setMinter(wallet.address, true), "AXN.setMinter")
+  await sendTxn(gmx.setMinter(wallet.address, true), "gmx.setMinter")
 }
 
 main()

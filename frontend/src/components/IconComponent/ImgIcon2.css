@@ -1,0 +1,35 @@
+.icon2-container{
+  display: flex;
+  .icon {
+    /* background: linear-gradient(131.99deg, #6BFAF1 -41.53%, #01597E 62.01%); */
+    width: 5rem;
+    height: 5rem;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    text-align: center;
+    float: left;
+    display: flex;
+    justify-content: center
+  }
+  .detail {
+    padding-left: 1rem;
+    display: inline-grid;
+    .title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    .value {
+      font-weight: 300;
+      margin-top: auto;
+      margin-bottom: auto;
+      /* font-size: 32px; */
+      /* color: #03F5AE; */
+    }
+  }
+  img {
+    text-align: center;
+    margin: auto;
+  }
+}

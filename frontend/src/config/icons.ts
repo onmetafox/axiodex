@@ -13,6 +13,7 @@ import { LOCALNET } from "./chains";
 const ICONS = {
   common: {
     network: base,
+    eth: ethIcon,
     icon: pulse,
     gmx: gmxIcon,
     alp: alpIcon,

@@ -34,7 +34,7 @@ import { bigNumberify, expandDecimals, formatKeyAmount } from "lib/numbers";
 import { useChainId } from "lib/chains";
 
 const PAGE_TITLE = "ALP";
-const DESCRIPTION = ["Earn rewards by staking ALP token."];
+const DESCRIPTION = ["The ALP token is automatically staked."];
 
 export default function ALP({ setPendingTxns, connectWallet }) {
   const { active, library, account } = useWeb3React();
@@ -268,7 +268,7 @@ export default function ALP({ setPendingTxns, connectWallet }) {
         <div className="Page-content">
           <div className="row">
             <div className="col-lg-5 col-sm-12 col-md-12">
-              <div className="row padding-1r">
+              {/* <div className="row padding-1r">
                 <div className="Exchange-swap-section strategy-container colored border-0">
                   <div className="Exchange-swap-section-top row">
                     <div className="strategy-title">Reward</div>
@@ -293,15 +293,15 @@ export default function ALP({ setPendingTxns, connectWallet }) {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="Exchange-swap-section strategy-container colored border-0">
-                <PageRow title= "ALP" value="Stake ALP to earn ETH, esAXN, and MPs." direction="vertical" className="page-row-content"/>
+                <PageRow title= "ALP" value="Auto-staked ALP earns ETH, esAXN, and MPs." direction="vertical" className="page-row-content"/>
                 <PageRow title= "Wallet"
-                  value={`${formatKeyAmount(processedData, "alpBalance", TLP_DECIMALS, 2, true)} AXN`}
+                  value={`${formatKeyAmount(processedData, "alpBalance", TLP_DECIMALS, 2, true)} ALP`}
                   subValue= {`$${formatKeyAmount(processedData, "alpBalanceUsd", USD_DECIMALS, 2, true)}`}
                   direction="vertical" className="page-row-content-deverse"/>
                 <PageRow title= "Staked"
-                  value={`${formatKeyAmount(processedData, "alpBalance", TLP_DECIMALS, 2, true)} AXN`}
+                  value={`${formatKeyAmount(processedData, "alpBalance", TLP_DECIMALS, 2, true)} ALP`}
                   subValue = {`$${formatKeyAmount(processedData, "alpBalanceUsd", USD_DECIMALS, 2, true)}`}
                   direction="vertical" className="page-row-content-deverse"/>
               </div>
@@ -310,7 +310,7 @@ export default function ALP({ setPendingTxns, connectWallet }) {
               <div className="row padding-1r">
                 <div className="Exchange-swap-section strategy-container alp-container">
                   <PageRow title= "ALP price"
-                    value={`$${formatKeyAmount(processedData, "alpPrice", TLP_DECIMALS, 3, true)}`}
+                    value={`$${formatKeyAmount(processedData, "alpPrice", USD_DECIMALS, 3, true)}`}
                     direction="vertical" className="page-row-content-deverse"/>
                   {!active && (
                     <button className="App-cta Exchange-swap-button" onClick={() => connectWallet()}>
@@ -335,10 +335,10 @@ export default function ALP({ setPendingTxns, connectWallet }) {
                     <div className="col-12 percent-font"><Trans>50.16%</Trans></div>
                   </div>
                   <PageRow title= "Total Staked"
-                    value={`${formatKeyAmount(processedData, "alpSupply", 18, 2, true)} AXN ($${formatKeyAmount(processedData, "alpSupplyUsd", USD_DECIMALS, 3, true)})`}
+                    value={`${formatKeyAmount(processedData, "alpSupply", 18, 2, true)} ALP ($${formatKeyAmount(processedData, "alpSupplyUsd", USD_DECIMALS, 3, true)})`}
                     direction="align-right" className="page-row-content-deverse"/>
                   <PageRow title= "Total Supply"
-                    value={`${formatKeyAmount(processedData, "alpSupply", 18, 2, true)} AXN ($${formatKeyAmount(processedData, "alpSupplyUsd", USD_DECIMALS, 3, true)})`}
+                    value={`${formatKeyAmount(processedData, "alpSupply", 18, 2, true)} ALP ($${formatKeyAmount(processedData, "alpSupplyUsd", USD_DECIMALS, 3, true)})`}
                     direction="align-right" className="page-row-content-deverse"/>
                 </div>
               </div>

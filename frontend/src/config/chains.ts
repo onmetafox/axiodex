@@ -7,10 +7,13 @@ const { parseEther } = ethers.utils;
 
 export const MAINNET = 8453;    // basechain mainnet
 export const TESTNET = 84531;   // basechain testnet
+export const ETH_MAINNET = 1;
+export const ETH_TESTNET = 5;
 export const LOCALNET = 31337;
 
 // TODO take it from web3
 export const DEFAULT_CHAIN_ID = TESTNET;
+export const BRIDGE_ETH_CHAIN = ETH_TESTNET;
 export const CHAIN_ID = DEFAULT_CHAIN_ID;
 
 // export const SUPPORTED_CHAIN_IDS = [ARBITRUM, AVALANCHE, ETHEREUM, SHIBARIUM, GOERLI];
@@ -18,32 +21,42 @@ export const CHAIN_ID = DEFAULT_CHAIN_ID;
 export const IS_NETWORK_DISABLED = {
   [MAINNET]: false,
   [TESTNET]: false,
+  [ETH_MAINNET]: false,
+  [ETH_TESTNET]: false,
   [LOCALNET]: true,
 };
 
-export const SUPPORTED_CHAIN_IDS = [MAINNET, TESTNET, LOCALNET].filter(chainId => !IS_NETWORK_DISABLED[chainId]);
+export const SUPPORTED_CHAIN_IDS = [MAINNET, TESTNET, ETH_MAINNET, ETH_TESTNET, LOCALNET].filter(chainId => !IS_NETWORK_DISABLED[chainId]);
 
 export const CHAIN_NAMES_MAP = {
   [MAINNET]: "Base",
   [TESTNET]: "Base Goerli",
+  [ETH_MAINNET]: "Ethereum",
+  [ETH_TESTNET]: "Eth Goerli",
   [LOCALNET]: "Hardhat",
 };
 
 export const GAS_PRICE_ADJUSTMENT_MAP = {
   [MAINNET]: "3000000000",
   [TESTNET]: "3000000000", // 3 gwei
+  [ETH_MAINNET]: "3000000000",
+  [ETH_TESTNET]: "3000000000", // 3 gwei
   [LOCALNET]: "3000000000", // 3 gwei
 };
 
 export const MAX_GAS_PRICE_MAP = {
   [MAINNET]: "200000000000", // 200 gwei
   [TESTNET]: "200000000000", // 200 gwei
+  [ETH_MAINNET]: "200000000000",
+  [ETH_TESTNET]: "200000000000",
   [LOCALNET]: "200000000000", // 200 gwei
 };
 
 export const HIGH_EXECUTION_FEES_MAP = {
   [MAINNET]: 3, // 3 USD
   [TESTNET]: 3, // 3 USD
+  [ETH_MAINNET]: 3,
+  [ETH_TESTNET]: 3,
   [LOCALNET]: 3, // 3 USD
 };
 
@@ -95,7 +108,10 @@ const ALCHEMY_WHITELISTED_DOMAINS = ["axn.finanace", "app.axn.finanace"];
 
 export const RPC_PROVIDERS = {
   [MAINNET]: ["https://base.publicnode.com"],
-  [TESTNET]: ["https://base-goerli.publicnode.com"],
+  [TESTNET]: ["https://base-goerli.blockpi.network/v1/rpc/public"],
+  // [TESTNET]: ["https://goerli.base.org"],
+  [ETH_MAINNET]: ["https://ethereum.publicnode.com"],
+  [ETH_TESTNET]: ["https://ethereum-goerli.publicnode.com"],
   [LOCALNET]: ["http://localhost:8545"],
 };
 
@@ -124,6 +140,28 @@ export const NETWORK_METADATA: { [chainId: number]: NetworkMetadata } = {
     },
     rpcUrls: RPC_PROVIDERS[TESTNET],
     blockExplorerUrls: ["https://goerli.basescan.org/"],
+  },
+  [ETH_MAINNET]: {
+    chainId: "0x" + ETH_MAINNET.toString(16),
+    chainName: CHAIN_NAMES_MAP[ETH_MAINNET],
+    nativeCurrency: {
+      name: "Ether",
+      symbol: "ETH",
+      decimals: 18,
+    },
+    rpcUrls: RPC_PROVIDERS[ETH_MAINNET],
+    blockExplorerUrls: ["https://etherscan.io/"]
+  },
+  [ETH_TESTNET]: {
+    chainId: "0x" + ETH_TESTNET.toString(16),
+    chainName: CHAIN_NAMES_MAP[ETH_TESTNET],
+    nativeCurrency: {
+      name: "Ether",
+      symbol: "ETH",
+      decimals: 18,
+    },
+    rpcUrls: RPC_PROVIDERS[ETH_TESTNET],
+    blockExplorerUrls: ["https://goerli.etherscan.io/"]
   },
   [LOCALNET]: {
     chainId: "0x" + LOCALNET.toString(16),

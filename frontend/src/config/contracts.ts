@@ -51,7 +51,12 @@ const CONTRACTS = {
     "MummyClubNFT": AddressZero,
     "MummyClubNFTStaking": AddressZero,
     "MummyClubSale": AddressZero,
-    "MummyClubVester": AddressZero
+    "MummyClubVester": AddressZero,
+    "L1StandardBridge": "0x0",
+    "L2StandardBridge": "0x0",
+    "L2ToL1MessagePasser": "0x0",
+    "L2OutputOracle": "0x0",
+    "OptimismPortal": "0x0"
   },
   [TESTNET]: {
     "NATIVE_TOKEN": "0x4200000000000000000000000000000000000006",
@@ -116,7 +121,13 @@ const CONTRACTS = {
     "PancakeRouter": "0xcBED3f41A20925f1484a600496E14302388AC2E4",
     "UniswapAxnUsdcPool": "0xe603EE0b0a6E07f72EcE39b41AC6cbd35CB0d086",
     "LiquidityLocker": "0x864E52e23E0DC0D711F6687d9464DF218e60ad52",
-    "EsAxnIOU": "0x0000000000000000000000000000000000000000"
+    "EsAxnIOU": "0x0000000000000000000000000000000000000000",
+    "L1StandardBridge": "0xFe0C2063146E0dFB1E27fc25918a2058bf5c2554",
+    // "L1StandardBridge": "0xfA6D8Ee5BE770F84FC001D098C4bD604Fe01284a",
+    "L2StandardBridge": "0x4200000000000000000000000000000000000010",
+    "L2ToL1MessagePasser": "0x4200000000000000000000000000000000000016",
+    "L2OutputOracle": "0x2A35891ff30313CcFa6CE88dcf3858bb075A2298",
+    "OptimismPortal": "0xe93c8cD0D409341205A592f8c4Ac1A5fe5585cfA"
     // "MummyClubNFT": "0x0000000000000000000000000000000000000000",
     // "MummyClubNFTStaking": "0x0000000000000000000000000000000000000000",
     // "MummyClubSale": "0x0000000000000000000000000000000000000000",
