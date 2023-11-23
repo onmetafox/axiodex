@@ -79,9 +79,29 @@ export function AppHeaderLinks({
           <Trans>Referrals</Trans>
         </HeaderLink>
       </div>
-      <ExternalLink href={"https://docs.axiodex.com/"}>
-        About
-      </ExternalLink>
+      {/* <div className="App-header-link-container">
+        <HeaderLink
+          to="/bridge"
+          redirectPopupTimestamp={redirectPopupTimestamp}
+          showRedirectModal={showRedirectModal}
+        >
+          <Trans>Bridge</Trans>
+        </HeaderLink>
+      </div> */}
+      <div className="App-header-link-container">
+        <HeaderLink
+          to="/airdrop"
+          redirectPopupTimestamp={redirectPopupTimestamp}
+          showRedirectModal={showRedirectModal}
+        >
+          <Trans>Airdrop</Trans>
+        </HeaderLink>
+      </div>
+      <div className="App-header-link-container">
+        <ExternalLink href={"https://docs.axiodex.com/"}>
+          About
+        </ExternalLink>
+      </div>
 
     </div>
   );

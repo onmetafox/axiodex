@@ -12,7 +12,7 @@ export const ETH_TESTNET = 5;
 export const LOCALNET = 31337;
 
 // TODO take it from web3
-export const DEFAULT_CHAIN_ID = TESTNET;
+export const DEFAULT_CHAIN_ID = LOCALNET;
 export const BRIDGE_ETH_CHAIN = ETH_TESTNET;
 export const CHAIN_ID = DEFAULT_CHAIN_ID;
 
@@ -21,9 +21,9 @@ export const CHAIN_ID = DEFAULT_CHAIN_ID;
 export const IS_NETWORK_DISABLED = {
   [MAINNET]: false,
   [TESTNET]: false,
-  [ETH_MAINNET]: false,
-  [ETH_TESTNET]: false,
-  [LOCALNET]: true,
+  [ETH_MAINNET]: true,
+  [ETH_TESTNET]: true,
+  [LOCALNET]: false,
 };
 
 export const SUPPORTED_CHAIN_IDS = [MAINNET, TESTNET, ETH_MAINNET, ETH_TESTNET, LOCALNET].filter(chainId => !IS_NETWORK_DISABLED[chainId]);
