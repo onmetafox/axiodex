@@ -43,6 +43,11 @@ module.exports = {
       url: `https://rpc.flashbots.net`,
       accounts: [`${mnemonic}`],
       chainId: 1
+    },
+    sepolia: {
+      url: `https://rpc.ankr.com/eth_sepolia`,
+      accounts: [`${mnemonic}`],
+      chainId: 11155111,
     }
   },
   etherscan: {
