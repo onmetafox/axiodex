@@ -20,7 +20,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import Home from "pages/Home/Home";
 // import Ecosystem from "pages/Ecosystem/Ecosystem";
-// import Stake from "pages/Stake/Stake";
+import Stake from "pages/Stake/Stake";
 import { Exchange } from "pages/Exchange/Exchange";
 import Actions from "pages/Actions/Actions";
 import OrdersOverview from "pages/OrdersOverview/OrdersOverview";
@@ -111,8 +111,6 @@ import {
 import { useChainId } from "lib/chains";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import { isDevelopment } from "config/env";
-import Bridge from "pages/Bridge/Bridge";
-import Airdrop from "pages/Airdrop/Airdrop";
 if ("ethereum" in window) {
   window.ethereum.autoRefreshOnNetworkChange = false;
 }
@@ -347,7 +345,7 @@ function FullApp() {
       const updatedPendingTxns = [];
       for (let i = 0; i < pendingTxns.length; i++) {
         const pendingTxn = pendingTxns[i];
-        const receipt = await library?.getTransactionReceipt(pendingTxn.hash);
+        const receipt = await library.getTransactionReceipt(pendingTxn.hash);
         if (receipt) {
           if (receipt.status === 0) {
             const txUrl = getExplorerUrl(chainId) + "tx/" + pendingTxn.hash;
@@ -585,29 +583,15 @@ function FullApp() {
                     <Route render={(props) => <Axes {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />} path="/axes"/>
                   </SideBar>
                 </Route>
-                // <Route exact path="/vest">
-                //   <SideBar>
-                //     <Route render={(props) => <Vault {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />}  path="/vest"/>
-                //   </SideBar>
-                // </Route>
+                {/* <Route exact path="/vest">
+                  <SideBar>
+                    <Route render={(props) => <Vest {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />}  path="/vest"/>
+                  </SideBar>
+                </Route> */}
                 <Route exact path="/alp">
                   <SideBar>
                     <Route render={(props) => <ALP {...props} setPendingTxns={setPendingTxns} connectWallet={connectWallet} />}  path="/alp"/>
                   </SideBar>
-                </Route>
-                {/* <Route exact path="/bridge">
-                  <Bridge
-                    savedSlippageAmount={savedSlippageAmount}
-                    setPendingTxns={setPendingTxns}
-                    connectWallet={connectWallet}
-                  />
-                </Route> */}
-                <Route exact path="/airdrop">
-                  <Airdrop
-                    savedSlippageAmount={savedSlippageAmount}
-                    setPendingTxns={setPendingTxns}
-                    connectWallet={connectWallet}
-                  />
                 </Route>
                 <Route exact path="/complete_account_transfer/:sender/:receiver">
                   <CompleteAccountTransfer setPendingTxns={setPendingTxns} />
@@ -727,15 +711,15 @@ function App() {
   }, []);
   return (
     <SWRConfig value={{ refreshInterval: 5000 }}>
-        <Web3ReactProvider getLibrary={getLibrary}>
-              <SEO>
-                <Router>
-                  <I18nProvider i18n={i18n}>
-                    <FullApp />
-                  </I18nProvider>
-                </Router>
-              </SEO>
-        </Web3ReactProvider>
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <SEO>
+          <Router>
+            <I18nProvider i18n={i18n}>
+              <FullApp />
+            </I18nProvider>
+          </Router>
+        </SEO>
+      </Web3ReactProvider>
     </SWRConfig>
   );
 }

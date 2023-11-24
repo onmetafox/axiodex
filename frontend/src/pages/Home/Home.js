@@ -251,7 +251,7 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
           <div className="Home-benefit">
             <div className="Home-benefit-icon">
               <img src={bigLogo} alt="Reduce Liquidation Risks Icon" className="Home-benefit-icon-symbol" />
-
+              
             </div>
             <div className="Home-benifit-content">
               <div className="Home-benefit-title">
@@ -259,11 +259,11 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
               </div>
               <div className="Home-benefit-description">
                 <Trans>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
                 </Trans>
               </div>
             </div>
-
+            
           </div>
         </div>
       </div>
@@ -308,7 +308,7 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
               </Trans>
             </div>
           </div>
-
+           
           {/* <div className="Home-cta-info">
             <div className="Home-cta-info__title">
               <Trans>Available on your preferred network</Trans>
@@ -377,7 +377,7 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
               </div>
             </div>
           </div>
-
+          
         </div>
       </div>
 
