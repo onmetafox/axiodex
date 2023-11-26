@@ -142,10 +142,10 @@ export default function Airdrop() {
 
     if (userData) {
       //console.log({
-        address: userData.address,
-        value: userData.value,
-        proof: userData.proof,
-      })
+      //  address: userData.address,
+      //  value: userData.value,
+      //  proof: userData.proof,
+      //})
       const canClaim = await contract.canClaim(userData.address, userData.value, userData.proof);
       //console.log("canClaim", canClaim)
 
