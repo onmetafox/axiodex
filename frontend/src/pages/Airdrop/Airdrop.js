@@ -26,7 +26,7 @@ export default function Airdrop() {
     if (active && library) {
       const contract = new ethers.Contract(contractAddress, AirdropAbi, library.getSigner());
       const userData = AirdropData.users.find((data) => data.address.toLowerCase() === account.toLowerCase());
-      console.log("userData", userData)
+      //console.log("userData", userData)
 
       if (userData !== undefined) {
         setUserInfo(userData)
@@ -66,7 +66,7 @@ export default function Airdrop() {
   async function calculateRemainingTime(contract) {
 
     const userData = AirdropData.users.find((data) => data.address.toLowerCase() === account.toLowerCase());
-    console.log("userData", userData)
+    //console.log("userData", userData)
 
     const claimable = await contract.calculateClaimable(account, userData.value).then((result) => {
       return result.toString()
@@ -92,7 +92,7 @@ export default function Airdrop() {
     // Calculate the difference in seconds
     let timeDiff = nextClaimTime - currentTime;
     /*
-    console.log({
+    //console.log({
       lastClaim,
       currentTime,
       nextClaimTime,
@@ -122,9 +122,9 @@ export default function Airdrop() {
     const nextClaimDate = new Date(lastClaimDate.getTime() + claimPeriod * 1000);
     const now = new Date();
     const diff = Math.abs(nextClaimDate.getTime() - now.getTime());
-    console.log("diff", diff)
+    //console.log("diff", diff)
     const diffDays = Math.ceil(diff / (1000 * 60 * 60)); 
-    console.log("diffDays", diffDays)
+    //console.log("diffDays", diffDays)
     const hours = 0
     const minutes = 0
     const seconds = 0
@@ -134,20 +134,20 @@ export default function Airdrop() {
 
 
   async function claim() {
-    console.log("account", account)
+    //console.log("account", account)
     const contract = new ethers.Contract(contractAddress, AirdropAbi, library.getSigner());
 
     const userData = AirdropData.users.find((data) => data.address.toLowerCase() === account.toLowerCase());
-    console.log("userData", userData)
+    //console.log("userData", userData)
 
     if (userData) {
-      console.log({
+      //console.log({
         address: userData.address,
         value: userData.value,
         proof: userData.proof,
       })
       const canClaim = await contract.canClaim(userData.address, userData.value, userData.proof);
-      console.log("canClaim", canClaim)
+      //console.log("canClaim", canClaim)
 
       await contract.claim(userData.value, userData.proof);
     }
@@ -160,7 +160,7 @@ export default function Airdrop() {
           <div className="section-title-block">
             <div className="section-title-content">
               <div className="Page-title">
-                <Trans>Claim airdrop</Trans>
+                <p>Claim airdrop</p>
               </div>
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function Airdrop() {
             <div className="Home-token-card-option">
               <div className="Home-token-card-option-info">
                 <div className="Home-token-card-option-title">
-                  <Trans>Connect your wallet and click on claim</Trans>
+                  <p>Connect your wallet and click on claim</p>
                 </div>
                 {userInfo === undefined && (
                   <div className="Home-token-card-option-title">
@@ -176,11 +176,11 @@ export default function Airdrop() {
                   </div>
                 )}
                 <div className="Home-token-card-option-title">
-                  <Trans>Claimable Amount: {formatEther(claimableAmount)}</Trans>
+                  <p>Claimable Amount: {formatEther(claimableAmount)}</p>
                 </div>
                 {firstClaimTimestamp > 0 && (
                   <div className="Home-token-card-option-title">
-                    <Trans>Next claim available in {remainingTime}</Trans>
+                    <p>Next claim available in {remainingTime}</p>
                   </div>
                 )}
 
