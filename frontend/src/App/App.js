@@ -29,6 +29,7 @@ import Referrals from "pages/Referrals/Referrals";
 import BuyGlp from "pages/BuyGlp/BuyGlp";
 import BuyGMX from "pages/BuyGMX/BuyGMX";
 import Buy from "pages/Buy/Buy";
+import Airdrop from "pages/Airdrop/Airdrop";
 import Poll from "pages/Poll/Poll";
 // import NftMint from "pages/Nft/NftMint";
 import YourNft from "pages/Nft/YourNft";
@@ -503,6 +504,9 @@ function FullApp() {
                 {/* <Route exact path="/earn">
                   <Stake setPendingTxns={setPendingTxns} connectWallet={connectWallet} />
                 </Route> */}
+                 <Route exact path="/airdrop">
+                  <Airdrop/>
+                 </Route>
                 <Route exact path="/buy">
                   <Buy
                     savedSlippageAmount={savedSlippageAmount}
