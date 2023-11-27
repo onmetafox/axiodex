@@ -7,12 +7,12 @@ import { getPageTitle } from "lib/legacy";
 import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
 import { formatEther, parseEther } from 'ethers/lib/utils';
+import { set } from "date-fns";
 const AirdropAbi = require("abis/Airdrop.json");
 const AirdropData = require("../../data/AirdropData.json");
 
 export default function Airdrop() {
   const [claimableAmount, setClaimableAmount] = React.useState("0");
-  const [firstClaimTimestamp, setFirstClaimTimestamp] = React.useState("0");
   const [lastClaimTimestamp, setLastClaimTimestamp] = React.useState("0");
   const [claimPeriod, setClaimPeriod] = React.useState("0");
   const [remainingTime, setRemainingTime] = React.useState("");
@@ -20,22 +20,76 @@ export default function Airdrop() {
   const [updateInterval, setUpdateInterval] = React.useState(undefined);
 
   const { active, library, account } = useWeb3React();
-  const contractAddress = "0x9152A3dad08F133fB6C91238b07187F2b4B34383"
+  const contractAddress = "0x0c8fE10C5e32F4B488C3E9B6247a129930f5Bf65"
+
 
   React.useEffect(() => {
+    setClaimableAmount("0")
+    setLastClaimTimestamp("0")
+    setClaimPeriod("0")
+    setRemainingTime("")
+    setUserInfo(undefined)
+    setUpdateInterval(undefined)
+
     if (active && library) {
-      const contract = new ethers.Contract(contractAddress, AirdropAbi, library.getSigner());
+
+
+
+
+
       const userData = AirdropData.users.find((data) => data.address.toLowerCase() === account.toLowerCase());
+      setUserInfo(userData)
       //console.log("userData", userData)
 
       if (userData !== undefined) {
-        setUserInfo(userData)
+        const contract = new ethers.Contract(contractAddress, AirdropAbi, library.getSigner());
         contract.calculateClaimable(account, userData.value).then((result) => {
           setClaimableAmount(result.toString())
-        })
 
-        contract.firstClaimTimestamp(account).then((result) => {
-          setFirstClaimTimestamp(result.toString())
+          contract.lastClaimTimestamp(account).then((result) => {
+            setLastClaimTimestamp(result.toString())
+
+            contract.claimPeriod().then((result) => {
+              setClaimPeriod(result.toString())
+
+              if (updateInterval) {
+                clearInterval(updateInterval)
+              }
+
+              const myInterval = setInterval(() => {
+                calculateRemainingTime(contract).then((result) => {
+                })
+              }, 1000)
+              setUpdateInterval(myInterval)
+            })
+          })
+        })
+      }
+    }
+  }, [account])
+
+
+
+  /*
+  React.useEffect(() => {
+    if (active && library) {
+
+      setClaimableAmount("0")
+      setLastClaimTimestamp("0")
+      setClaimPeriod("0")
+      setRemainingTime("")
+      setUserInfo(undefined)
+      setUpdateInterval(undefined)
+
+
+      const contract = new ethers.Contract(contractAddress, AirdropAbi, library.getSigner());
+      const userData = AirdropData.users.find((data) => data.address.toLowerCase() === account.toLowerCase());
+      setUserInfo(userData)
+      //console.log("userData", userData)
+
+      if (userData !== undefined) {
+        contract.calculateClaimable(account, userData.value).then((result) => {
+          setClaimableAmount(result.toString())
         })
 
         contract.lastClaimTimestamp(account).then((result) => {
@@ -55,10 +109,10 @@ export default function Airdrop() {
           })
         }, 1000)
         setUpdateInterval(myInterval)
-
       }
     }
-  }, [active, library, account])
+  }, [active, account])
+  */
 
 
 
@@ -149,7 +203,9 @@ export default function Airdrop() {
       const canClaim = await contract.canClaim(userData.address, userData.value, userData.proof);
       //console.log("canClaim", canClaim)
 
-      await contract.claim(userData.value, userData.proof);
+      if (canClaim) {
+        await contract.claim(userData.value, userData.proof);
+      }
     }
   }
 
@@ -178,7 +234,7 @@ export default function Airdrop() {
                 <div className="Home-token-card-option-title">
                   <p>Claimable Amount: {formatEther(claimableAmount)}</p>
                 </div>
-                {firstClaimTimestamp > 0 && (
+                {userInfo !== undefined && remainingTime !== "" && (
                   <div className="Home-token-card-option-title">
                     <p>Next claim available in {remainingTime}</p>
                   </div>
