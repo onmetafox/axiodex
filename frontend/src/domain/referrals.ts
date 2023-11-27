@@ -7,7 +7,7 @@ import ReferralStorage from "abis/ReferralStorage.json";
 import { MAX_REFERRAL_CODE_LENGTH, isAddressZero, isHashZero } from "lib/legacy";
 import { getContract } from "config/contracts";
 import { REGEX_VERIFY_BYTES32 } from "components/Referrals/referralsHelper";
-import { MAINNET, TESTNET, LOCALNET } from "config/chains";
+import { MAINNET, TESTNET, LOCALNET, ETH_MAINNET } from "config/chains";
 import {
   mainnetReferralClient,
   testnetReferralClient,
@@ -30,6 +30,8 @@ function getGraphClient(chainId) {
     return testnetReferralClient;
   } else if (chainId === LOCALNET) {
     return localnetReferralClient;
+  } else if (chainId === ETH_MAINNET) {
+    return mainnetReferralClient;
   }
   throw new Error(`Unsupported chain ${chainId}`);
 }
@@ -273,13 +275,13 @@ export function useReferralsData(chainId, account) {
           codes: res.data.referralCodes.map((e) => decodeReferralCode(e.code)),
           referralTotalStats: res.data.referralTotalStats
             ? {
-                volume: bigNumberify(res.data.referralTotalStats.volume),
-                discountUsd: bigNumberify(res.data.referralTotalStats.discountUsd),
-              }
+              volume: bigNumberify(res.data.referralTotalStats.volume),
+              discountUsd: bigNumberify(res.data.referralTotalStats.discountUsd),
+            }
             : {
-                volume: bigNumberify(0),
-                discountUsd: bigNumberify(0),
-              },
+              volume: bigNumberify(0),
+              discountUsd: bigNumberify(0),
+            },
         });
       })
       // eslint-disable-next-line no-console

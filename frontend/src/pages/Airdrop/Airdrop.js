@@ -20,7 +20,7 @@ export default function Airdrop() {
   const [updateInterval, setUpdateInterval] = React.useState(undefined);
 
   const { active, library, account } = useWeb3React();
-  const contractAddress = "0x0c8fE10C5e32F4B488C3E9B6247a129930f5Bf65"
+  const contractAddress = "0xC0a3832A899a76336e434a816AdDE0267D875b02"
 
 
   React.useEffect(() => {
@@ -32,11 +32,6 @@ export default function Airdrop() {
     setUpdateInterval(undefined)
 
     if (active && library) {
-
-
-
-
-
       const userData = AirdropData.users.find((data) => data.address.toLowerCase() === account.toLowerCase());
       setUserInfo(userData)
       //console.log("userData", userData)
@@ -200,11 +195,16 @@ export default function Airdrop() {
       //  value: userData.value,
       //  proof: userData.proof,
       //})
-      const canClaim = await contract.canClaim(userData.address, userData.value, userData.proof);
-      //console.log("canClaim", canClaim)
 
-      if (canClaim) {
-        await contract.claim(userData.value, userData.proof);
+      try {
+        const canClaim = await contract.canClaim(userData.address, userData.value, userData.proof);
+        //console.log("canClaim", canClaim)
+
+        if (canClaim) {
+          await contract.claim(userData.value, userData.proof);
+        }
+      } catch (error) {
+        console.log("error", error)
       }
     }
   }
