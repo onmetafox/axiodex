@@ -27,8 +27,8 @@ export function getStatsClient(chainId: number) {
   } else if (chainId === LOCALNET) {
     return localnetGraphClient;
   }
-  // todo review, commented for allow eth airdrop
-  //throw new Error(`Unsupported chain ${chainId}`);
+
+  throw new Error(`Unsupported chain ${chainId}`);
 }
 
 export function getPriceClient(chainId: number) {
@@ -40,6 +40,5 @@ export function getPriceClient(chainId: number) {
     return null;
   }
 
-  // todo review, commented for allow eth airdrop
-  //throw new Error(`Unsupported chain ${chainId}`);
+  throw new Error(`Unsupported chain ${chainId}`);
 }

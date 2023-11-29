@@ -5,7 +5,6 @@ require('@typechain/hardhat')
 const dotenv = require('dotenv')
 
 dotenv.config()
-const mnemonic = process.env.BASE_DEPLOYER;
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
 
@@ -35,24 +34,27 @@ module.exports = {
     basetestnet: {
       url: 'https://base-goerli.publicnode.com',
       chainId: 84531,
-      // accounts: [process.env.BASE_DEPLOYER],
-      accounts: ['3b4b8d98a95a38a00817c95eb2d9e1bb826a544fe4d3eabe4276c877a0a74681'],
+      accounts: [process.env.BASE_DEPLOYER],
       gasPrice: 20000000000,
     },
-    mainnet: {
-      url: `https://rpc.flashbots.net`,
-      accounts: [`${mnemonic}`],
-      chainId: 1
+    base: {
+      url: 'https://base.publicnode.com',
+      chainId: 84531,
+      accounts: [process.env.BASE_DEPLOYER],
+      // gasPrice: 20000000000,
     },
-    sepolia: {
-      url: `https://rpc.ankr.com/eth_sepolia`,
-      accounts: [`${mnemonic}`],
-      chainId: 11155111,
+    ethereum: {
+      url: 'https://base-goerli.publicnode.com',
+      chainId: 1,
+      accounts: [process.env.ETHEREUM_DEPLOYER],
+      // gasPrice: 20000000000,
     }
   },
   etherscan: {
     apiKey: {
-      basetestnet: '625N7GC5238WP837PCH6D9QI6TE1USBPDT'
+      basetestnet: '625N7GC5238WP837PCH6D9QI6TE1USBPDT',
+      base: '625N7GC5238WP837PCH6D9QI6TE1USBPDT',
+      ethereum: 'C7MSIMK1FXRGYMB39IHUURH68KIEVDPUH2',
     },
     customChains: [
       {
@@ -61,6 +63,14 @@ module.exports = {
         urls: {
           apiURL: "https://api-goerli.basescan.org/api",
           browserURL: "https://goerli.basescan.org"
+        }
+      },
+      {
+        network: "base",
+        chainId: 8453,
+        urls: {
+          apiURL: "https://api.basescan.org/api",
+          browserURL: "https://basescan.org"
         }
       }
     ]
@@ -74,7 +84,7 @@ module.exports = {
           runs: 8
         }
       }
-    }, {
+    },{
       version: "0.8.0",
       settings: {
         optimizer: {
@@ -82,7 +92,7 @@ module.exports = {
           runs: 200
         }
       }
-    }, {
+    },{
       version: "0.8.16",
       settings: {
         optimizer: {
@@ -90,7 +100,7 @@ module.exports = {
           runs: 200
         }
       }
-    }, {
+    },{
       version: "0.5.0",
       settings: {
         optimizer: {
@@ -98,7 +108,7 @@ module.exports = {
           runs: 200
         }
       }
-    }, {
+    },{
       version: "0.5.16",
       settings: {
         optimizer: {
@@ -106,7 +116,7 @@ module.exports = {
           runs: 200
         }
       }
-    }, {
+    },{
       version: "0.6.0",
       settings: {
         optimizer: {
@@ -114,7 +124,7 @@ module.exports = {
           runs: 200
         }
       }
-    }, {
+    },{
       version: "0.6.2",
       settings: {
         optimizer: {
@@ -122,7 +132,7 @@ module.exports = {
           runs: 200
         }
       }
-    }, {
+    },{
       version: "0.6.6",
       settings: {
         optimizer: {
@@ -131,17 +141,9 @@ module.exports = {
         }
       }
     },
-    ]
-  },
+  ]},
   typechain: {
     outDir: "typechain",
     target: "ethers-v5",
   },
-  gasReporter: {
-    token: "ETH",
-    currency: 'USD',
-    gasPrice: 50,
-    enabled: true,
-    coinmarketcap: '0caa3779-3cb2-4665-a7d3-652823b53908'
-  }
 }
