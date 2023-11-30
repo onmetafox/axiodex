@@ -35,7 +35,7 @@ module.exports = {
     basetestnet: {
       url: 'https://base-goerli.publicnode.com',
       chainId: 84531,
-      accounts: [process.env.BASE_DEPLOYER],
+      accounts: [`${mnemonic}`],
       gasPrice: 20000000000,
     },
     mainnet: {
