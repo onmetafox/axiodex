@@ -62,7 +62,6 @@ import chatView from "img/trade-chat.svg";
 import "./DashboardV3.css";
 import { useEffect, useState } from 'react';
 import { getPriceClient } from 'lib/subgraph';
-import Footer from 'components/Footer/Footer';
 
 ChartJS.register(
   CategoryScale,
@@ -636,7 +635,6 @@ export default function DashboardV3() {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     </>
 
