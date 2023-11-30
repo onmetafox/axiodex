@@ -43,6 +43,15 @@ export function AppHeaderLinks({
         </ExternalLink>
       </div>
       <div className="App-header-link-container">
+        <HeaderLink
+          to="/airdrop"
+          redirectPopupTimestamp={redirectPopupTimestamp}
+          showRedirectModal={showRedirectModal}
+        >
+          <Trans>Airdrop</Trans>
+        </HeaderLink>
+      </div>
+      <div className="App-header-link-container">
         {/* <ExternalLink href="https://app.1inch.io/#/1/simple/swap/ETH/0x4384b85fe228ae727b129230211194e4a50877c4"> */}
         <HeaderLink
           to="/dashboard"
@@ -88,15 +97,6 @@ export function AppHeaderLinks({
           <Trans>Bridge</Trans>
         </HeaderLink>
       </div> */}
-      <div className="App-header-link-container">
-        <HeaderLink
-          to="/airdrop"
-          redirectPopupTimestamp={redirectPopupTimestamp}
-          showRedirectModal={showRedirectModal}
-        >
-          <Trans>Airdrop</Trans>
-        </HeaderLink>
-      </div>
       <div className="App-header-link-container">
         <ExternalLink href={"https://docs.axiodex.com/"}>
           About

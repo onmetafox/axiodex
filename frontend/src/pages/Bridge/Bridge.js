@@ -3,7 +3,7 @@ import SEO from "components/Common/SEO";
 import Footer from "components/Footer/Footer";
 import "./Bridge.css"
 import { getPageTitle } from "lib/legacy";
-import BridgeCard from "components/BridgeCard/BridgeCard";
+// import BridgeCard from "components/BridgeCard/BridgeCard";
 
 const DESCRIPTION = ["Bridge $AXN seamlessly and securely across blockchains."];
 
@@ -24,7 +24,7 @@ export default function Bridge(props) {
             </div>
             </div>
           </div>
-          <BridgeCard {...props}/>
+          {/* <BridgeCard {...props}/> */}
         </div>
         <Footer />
       </div>

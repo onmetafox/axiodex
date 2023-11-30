@@ -5,6 +5,7 @@ require('@typechain/hardhat')
 const dotenv = require('dotenv')
 
 dotenv.config()
+const mnemonic = process.env.BASE_DEPLOYER;
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
 
@@ -37,17 +38,15 @@ module.exports = {
       accounts: [process.env.BASE_DEPLOYER],
       gasPrice: 20000000000,
     },
-    base: {
-      url: 'https://base.publicnode.com',
-      chainId: 84531,
-      accounts: [process.env.BASE_DEPLOYER],
-      // gasPrice: 20000000000,
+    mainnet: {
+      url: `https://rpc.flashbots.net`,
+      accounts: [`${mnemonic}`],
+      chainId: 1
     },
-    ethereum: {
-      url: 'https://base-goerli.publicnode.com',
-      chainId: 1,
-      accounts: [process.env.ETHEREUM_DEPLOYER],
-      // gasPrice: 20000000000,
+    sepolia: {
+      url: `https://rpc.ankr.com/eth_sepolia`,
+      accounts: [`${mnemonic}`],
+      chainId: 11155111,
     }
   },
   etherscan: {
@@ -84,7 +83,7 @@ module.exports = {
           runs: 8
         }
       }
-    },{
+    }, {
       version: "0.8.0",
       settings: {
         optimizer: {
@@ -92,7 +91,7 @@ module.exports = {
           runs: 200
         }
       }
-    },{
+    }, {
       version: "0.8.16",
       settings: {
         optimizer: {
@@ -100,7 +99,7 @@ module.exports = {
           runs: 200
         }
       }
-    },{
+    }, {
       version: "0.5.0",
       settings: {
         optimizer: {
@@ -108,7 +107,7 @@ module.exports = {
           runs: 200
         }
       }
-    },{
+    }, {
       version: "0.5.16",
       settings: {
         optimizer: {
@@ -116,7 +115,7 @@ module.exports = {
           runs: 200
         }
       }
-    },{
+    }, {
       version: "0.6.0",
       settings: {
         optimizer: {
@@ -124,7 +123,7 @@ module.exports = {
           runs: 200
         }
       }
-    },{
+    }, {
       version: "0.6.2",
       settings: {
         optimizer: {
@@ -132,7 +131,7 @@ module.exports = {
           runs: 200
         }
       }
-    },{
+    }, {
       version: "0.6.6",
       settings: {
         optimizer: {
@@ -141,9 +140,17 @@ module.exports = {
         }
       }
     },
-  ]},
+    ]
+  },
   typechain: {
     outDir: "typechain",
     target: "ethers-v5",
   },
+  gasReporter: {
+    token: "ETH",
+    currency: 'USD',
+    gasPrice: 50,
+    enabled: true,
+    coinmarketcap: '0caa3779-3cb2-4665-a7d3-652823b53908'
+  }
 }

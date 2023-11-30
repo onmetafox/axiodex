@@ -29,6 +29,7 @@ import Referrals from "pages/Referrals/Referrals";
 import BuyGlp from "pages/BuyGlp/BuyGlp";
 import BuyGMX from "pages/BuyGMX/BuyGMX";
 import Buy from "pages/Buy/Buy";
+import Airdrop from "pages/Airdrop/Airdrop";
 import Poll from "pages/Poll/Poll";
 // import NftMint from "pages/Nft/NftMint";
 import YourNft from "pages/Nft/YourNft";
@@ -112,7 +113,6 @@ import { useChainId } from "lib/chains";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import { isDevelopment } from "config/env";
 import Bridge from "pages/Bridge/Bridge";
-import Airdrop from "pages/Airdrop/Airdrop";
 if ("ethereum" in window) {
   window.ethereum.autoRefreshOnNetworkChange = false;
 }
@@ -505,6 +505,9 @@ function FullApp() {
                 {/* <Route exact path="/earn">
                   <Stake setPendingTxns={setPendingTxns} connectWallet={connectWallet} />
                 </Route> */}
+                 <Route exact path="/airdrop">
+                  <Airdrop/>
+                 </Route>
                 <Route exact path="/buy">
                   <Buy
                     savedSlippageAmount={savedSlippageAmount}
@@ -602,13 +605,6 @@ function FullApp() {
                     connectWallet={connectWallet}
                   />
                 </Route> */}
-                <Route exact path="/airdrop">
-                  <Airdrop
-                    savedSlippageAmount={savedSlippageAmount}
-                    setPendingTxns={setPendingTxns}
-                    connectWallet={connectWallet}
-                  />
-                </Route>
                 <Route exact path="/complete_account_transfer/:sender/:receiver">
                   <CompleteAccountTransfer setPendingTxns={setPendingTxns} />
                 </Route>
