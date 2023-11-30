@@ -172,7 +172,7 @@ export default function Airdrop() {
     const now = new Date();
     const diff = Math.abs(nextClaimDate.getTime() - now.getTime());
     //console.log("diff", diff)
-    const diffDays = Math.ceil(diff / (1000 * 60 * 60)); 
+    const diffDays = Math.ceil(diff / (1000 * 60 * 60));
     //console.log("diffDays", diffDays)
     const hours = 0
     const minutes = 0
@@ -201,7 +201,7 @@ export default function Airdrop() {
         //console.log("canClaim", canClaim)
 
         if (canClaim) {
-          await contract.claim(userData.value, userData.proof, { gasLimit: 400000 });
+          await contract.claim(userData.value, userData.proof);
         }
       } catch (error) {
         console.log("error", error)

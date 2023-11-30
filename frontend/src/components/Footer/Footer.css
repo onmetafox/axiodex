@@ -3,13 +3,15 @@
   /* padding-top: 4rem; */
   background: #16182e;
   width: 100vw;
+  height: fit-content;
   position: absolute;
   transform: translateX(-50%);
   left: 50%;
-  height: 10rem;
+  /* height: 10rem; */
   bottom: 0;
   border-top: 1px solid #282b4c;
   padding-top: 4rem;
+  padding-bottom: 1rem;
 }
 
 .Footer-logo {
@@ -50,8 +52,18 @@
   justify-content: center;
 }
 
+
 .Footer-social-link-block .App-social-link:hover img {
   filter: brightness(0) invert(1);
+}
+
+.Footer .contact-link {
+  padding-top: 0.5rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.Footer .scan-link {
+  text-decoration: none;
 }
 
 .Footer-copyright {

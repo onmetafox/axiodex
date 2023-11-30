@@ -54,6 +54,14 @@ export const padDecimals = (amount: BigNumberish, minDecimals: number) => {
   return amountStr;
 };
 
+export const formatHash = (hash: string) => {
+  const defaultValue = "...";
+  if (hash === undefined || hash.length === 0) {
+    return defaultValue;
+  }
+  return hash.slice(0,10) + "..." + hash.slice(hash.length - 6, hash.length - 1)
+}
+
 export const formatAmount = (
   amount: BigNumberish | undefined,
   tokenDecimals: number,

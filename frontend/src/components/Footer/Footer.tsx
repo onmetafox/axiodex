@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { isHomeSite, getAppBaseUrl, shouldShowRedirectModal } from "lib/legacy";
 import { getFooterLinks, SOCIAL_LINKS } from "./constants";
 import ExternalLink from "components/ExternalLink/ExternalLink";
-import { i18n } from "@lingui/core";
+import { getContract } from "config/contracts";
 
 type Props = { showRedirectModal?: (to: string) => void; redirectPopupTimestamp?: () => void };
 
@@ -27,6 +27,14 @@ export default function Footer({ showRedirectModal, redirectPopupTimestamp }: Pr
               </ExternalLink>
             );
           })}
+        </div>
+        <div>
+          <ExternalLink className="scan-link" href="https://etherscan.io/address/0xd9557a5825113d377627f8f1d413d7ab55da1b42">
+            0xd9557a5825113d377627f8f1d413d7ab55da1b42
+          </ExternalLink>
+          <p className="contact-link">
+            marketing@axiodex.io
+          </p>
         </div>
         {/* <div className="Footer-links">
           {getFooterLinks(isHome).map(({ external, text, link, isAppLink }) => {

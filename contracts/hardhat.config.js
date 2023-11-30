@@ -35,9 +35,13 @@ module.exports = {
     basetestnet: {
       url: 'https://base-goerli.publicnode.com',
       chainId: 84531,
-      // accounts: [process.env.BASE_DEPLOYER],
-      accounts: ['3b4b8d98a95a38a00817c95eb2d9e1bb826a544fe4d3eabe4276c877a0a74681'],
+      accounts: [`${mnemonic}`],
       gasPrice: 20000000000,
+    },
+    base: {
+      url: `https://base.publicnode.com`,
+      accounts: [`${mnemonic}`],
+      chainId: 8453
     },
     mainnet: {
       url: `https://rpc.flashbots.net`,
@@ -52,7 +56,9 @@ module.exports = {
   },
   etherscan: {
     apiKey: {
-      basetestnet: '625N7GC5238WP837PCH6D9QI6TE1USBPDT'
+      basetestnet: '625N7GC5238WP837PCH6D9QI6TE1USBPDT',
+      base: '625N7GC5238WP837PCH6D9QI6TE1USBPDT',
+      ethereum: 'C7MSIMK1FXRGYMB39IHUURH68KIEVDPUH2',
     },
     customChains: [
       {
@@ -61,6 +67,14 @@ module.exports = {
         urls: {
           apiURL: "https://api-goerli.basescan.org/api",
           browserURL: "https://goerli.basescan.org"
+        }
+      },
+      {
+        network: "base",
+        chainId: 8453,
+        urls: {
+          apiURL: "https://api.basescan.org/api",
+          browserURL: "https://basescan.org"
         }
       }
     ]
