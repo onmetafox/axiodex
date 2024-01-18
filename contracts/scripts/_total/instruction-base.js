@@ -118,9 +118,10 @@ module.exports = [
     { func: "deploy", artifact: "VaultUtils", args: ["${Vault.address}"] },
     { func: "call", contract: "Vault", method: "setVaultUtils", args: ["${VaultUtils.address}"] },
 
-    { func: "load", artifact: "PriceFeed", as: "PriceFeedBTC", address: "0xAC15714c08986DACC0379193e22382736796496f" },
-    { func: "load", artifact: "PriceFeed", as: "PriceFeedETH", address: "0xcD2A119bD1F7DF95d706DE6F2057fDD45A0503E2" },
-    { func: "load", artifact: "PriceFeed", as: "PriceFeedUSDC", address: "0xb85765935B4d9Ab6f841c9a00690Da5F34368bc0" },
+    // price feed address for base mainnet
+    { func: "load", artifact: "PriceFeed", as: "PriceFeedBTC", address: "0xCCADC697c55bbB68dc5bCdf8d3CBe83CdD4E071E" },
+    { func: "load", artifact: "PriceFeed", as: "PriceFeedETH", address: "0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70" },
+    { func: "load", artifact: "PriceFeed", as: "PriceFeedUSDC", address: "0x7e860098F58bBFC8648a4311b374B1D669a2bc6B" },
     // { func: "deploy", artifact: "PriceFeed", as: "PriceFeedETH" },
     // // { func: "call", contract: "PriceFeedETH", method: "setLatestAnswer", args: ["${parseUnits('0.14826772', 8)}"] },
     // { func: "wallet", as: "_keeper", value: "AxionDex:PLS:PriceFeed:0" }, { func: "call", contract: "PriceFeedETH", method: "setAdmin", args: ["${_keeper.address}", true] }, 
@@ -315,9 +316,14 @@ module.exports = [
     { func: "call", contract: "BonusAxnDistributor", method: "setBonusMultiplier", args: ["10000"] },
     { func: "call", contract: "FeeAxnTracker", method: "setHandler", args: ["${RewardRouter.address}", true] },
 
+    { func: "call", contract: "EsAXN", method: "setMinter", args: ["${AxnVester.address}", true] },
+    { func: "call", contract: "EsAXN", method: "setMinter", args: ["${AlpVester.address}", true] },
+
     { func: "call", contract: "EsAXN", method: "setHandler", args: ["${StakedAxnTracker.address}", true] },
     { func: "call", contract: "BnAXN", method: "setHandler", args: ["${FeeAxnTracker.address}", true] },
     { func: "call", contract: "BnAXN", method: "setHandler", args: ["${RewardRouter.address}", true] },
+
+    { func: "call", contract: "FeeAxnTracker", method: "setDepositToken", args: ["${BnAXN.address}", true]},
 
     { func: "call", contract: "FeeAlpTracker", method: "setHandler", args: ["${StakedAlpTracker.address}", true] },
     { func: "call", contract: "ALP", method: "setHandler", args: ["${FeeAlpTracker.address}", true] },
@@ -414,6 +420,8 @@ module.exports = [
     { func: "call", contract: "ShortsTracker", method: "setHandler", args: ["${PositionManager.address}", true] },
 
     { func: "call", contract: "Router", method: "addPlugin", args: ["${PositionManager.address}"] },
+
+    { func: "call", contract: "Router", method: "addPlugin", args: ["${OrderBook.address}"] },
 
     { func: "call", contract: "PositionManager", method: "setGov", args: ["${TimeLock.address}"] },
 

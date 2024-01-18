@@ -20,13 +20,13 @@ module.exports = {
     localhost: {
       timeout: 120000,
       forking: {
-        url: 'https://base.publicnode.com',
+        url: 'https://base.llamarpc.com',
       }
     },
     hardhat: {
       allowUnlimitedContractSize: true,
       forking: {
-        url: 'https://base.publicnode.com',
+        url: 'https://base.llamarpc.com',
       }
     },
     devnet: {

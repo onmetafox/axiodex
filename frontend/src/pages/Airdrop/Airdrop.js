@@ -201,7 +201,7 @@ export default function Airdrop() {
         //console.log("canClaim", canClaim)
 
         if (canClaim) {
-          await contract.claim(userData.value, userData.proof);
+          await contract.claim(userData.value, userData.proof, { gasLimit: 400000 });
         }
       } catch (error) {
         console.log("error", error)
