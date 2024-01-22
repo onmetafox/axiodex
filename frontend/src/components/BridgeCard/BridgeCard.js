@@ -115,12 +115,12 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
     let messageLog = withdrawal.logs.find((log) => {
       if (log.address === l2ToL1MessagePasser) {
         const parsed = messageContract.interface.parseLog(log);
-        console.log('parsed', parsed);
+        // console.log('parsed', parsed);
         return parsed.name === 'MessagePassed';
       }
       return false;
     });
-    console.log('messageLog', messageLog);
+    // console.log('messageLog', messageLog);
 
     if (!messageLog) {
       messageLog = withdrawal.logs[0];
@@ -135,7 +135,7 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
       gasLimit: parsedLog.args.gasLimit,
       data: parsedLog.args.data,
     };
-    console.log('withdrawalMessage', withdrawalMessage);
+    // console.log('withdrawalMessage', withdrawalMessage);
     return withdrawalMessage;
   };
 
@@ -175,7 +175,6 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
           if(tx.to === optimismPortal && tx.value !== '0') withdrawals.push(tx);
           if(tx.to === l2StandardBridge) {
             const functionName = l2StandardBridgeContract.interface.getFunction(tx.input.slice(0,10)).name;
-            console.log('functionName:', functionName)
             if(functionName === 'withdraw') {
               const decodedWithdrawData = l2StandardBridgeContract.interface.decodeFunctionData(
                 tx.input.slice(0,10),
@@ -189,16 +188,14 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
             }
           }
         }
-        console.log('raw transactions', withdrawals);
+        // console.log('raw transactions', withdrawals);
         // setWithdrawList(withdrawals)
 
         const latestBlockNumber = await oracleContract.latestBlockNumber();
         const finalizationPeriod = await oracleContract.FINALIZATION_PERIOD_SECONDS();
         for(let i = 0 ; i < withdrawals.length ; i ++) {
           const withdrawal = withdrawals[i];
-          console.log("withdrawal.hash", withdrawal.hash);
           const receipt = await BASE_PROVIDER.getTransactionReceipt(withdrawal.hash);
-          console.log('receipt:', receipt);
           if(!receipt) {
             withdrawal.isFinalized = false;
             withdrawal.isProven = false;
@@ -222,13 +219,12 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
           withdrawal.isReadyToProve =
             latestBlockNumber >= receipt.blockNumber && !isFinalized && !isProven;
         }
-        console.log('withdrawals', withdrawals);
+        // console.log('withdrawals', withdrawals);
 
         const sorted = withdrawals.sort((a, b) => {
           return a.timeStamp > b.timeStamp;
         });
 
-        console.log('sorted', sorted);
         setWithdrawList(sorted);
       }
     } catch (e) {
@@ -321,14 +317,8 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
         library.getSigner(account)
       );
 
-      console.log(account);
-
       const nonce = await messageContract.messageNonce();
-      console.log('messageNonce', nonce);
-
       const ethAmount = ethers.utils.parseUnits(amount);
-      console.log("amount:", ethAmount);
-
       callContract(chainId, messageContract, 'initiateWithdrawal', [account, miniGasAmount, emptyData], {
         value: ethAmount,
         gasLimit: defaultGasAmount,
@@ -338,7 +328,7 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
         setPendingTxns
       })
       .then((res) => {
-        console.log(res)
+        // console.log(res)
       })
       .catch((err) => console.error(err))
       .finally(() => setIsSubmitting(false));
@@ -369,26 +359,25 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
       );
 
       const withdrawal = await BASE_PROVIDER.getTransactionReceipt(hash);
-      console.log('withdrawal receipt:', withdrawal?.blockNumber, withdrawal);
+      // console.log('withdrawal receipt:', withdrawal?.blockNumber, withdrawal);
       if(!withdrawal) return;
 
       const l2OutputIdx = await oracleContract.getL2OutputIndexAfter(
         withdrawal.blockNumber,
       )
-      console.log('l2OutputIndx', l2OutputIdx);
+      // console.log('l2OutputIndx', l2OutputIdx);
 
       const l2Output = await oracleContract.getL2Output(l2OutputIdx);
-      console.log('l2Output', l2Output);
+      // console.log('l2Output', l2Output);
 
       let messageLog = withdrawal.logs.find((log) => {
         if(log.address === l2ToL1MessagePasser) {
           const parsed = messageContract.interface.parseLog(log);
-          console.log('parsed', parsed);
           return parsed.name === 'MessagePassed';
         }
         return false;
       });
-      console.log('messageLog:', messageLog);
+      // console.log('messageLog:', messageLog);
 
       if(!messageLog) {
         messageLog = withdrawal.logs[0];
@@ -403,7 +392,7 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
         gasLimit: parsedLog.args.gasLimit,
         data: parsedLog.args.data,
       };
-      console.log('withdrawalMessage', withdrawalMessage);
+      // console.log('withdrawalMessage', withdrawalMessage);
 
       const types = [
         'uint256',
@@ -425,7 +414,7 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
 
       const hashedWithdrawal = keccak256(encoded);
 
-      console.log('hasedWithdrawal', hashedWithdrawal);
+      // console.log('hasedWithdrawal', hashedWithdrawal);
 
       const messageSlot = keccak256(
         defaultAbiCoder.encode(
@@ -434,7 +423,7 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
         )
       )
 
-      console.log('messageSlot', messageSlot);
+      // console.log('messageSlot', messageSlot);
 
       const l2BlockNumber = "0x" + ethers.BigNumber.from(l2Output[2]).toBigInt().toString(16);
 
@@ -444,13 +433,13 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
         l2BlockNumber
       ]);
 
-      console.log('proof', proof);
+      // console.log('proof', proof);
 
       const block = await BASE_PROVIDER.send('eth_getBlockByNumber', [
         l2BlockNumber,
         false,
       ]);
-      console.log('block', block);
+      // console.log('block', block);
       if(!block) return;
       const outputProof = {
         version: HashZero,
@@ -458,7 +447,7 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
         messagePasserStorageRoot: proof.storageHash,
         latestBlockhash: block.hash,
       };
-      console.log('outputProof', outputProof);
+      // console.log('outputProof', outputProof);
 
       // const proving = await portalContract.proveWithdrawalTransaction(
       //   withdrawalMessage,
@@ -469,7 +458,7 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
 
       // console.log('proving', proving);
       // const result = await proving.wait();
-      return;
+      // return;
       callContract(chainId, portalContract, 'proveWithdrawalTransaction', [withdrawalMessage, l2OutputIdx, outputProof, proof.storageProof[0].proof], {
         // value: defaultGasAmount,
         gasLimit: defaultGasAmount,
@@ -519,10 +508,10 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
       library?.getSigner(account)
     )
     const withdrawal = await library.getTransactionReceipt(hash);
-    console.log('withdrawal receipt', withdrawal.blockNumber, withdrawal);
+    // console.log('withdrawal receipt', withdrawal.blockNumber, withdrawal);
 
     const msg = await getWithdrawalMessage(messageContract, withdrawal)
-    console.log('msg', msg);
+    // console.log('msg', msg);
 
   }
 
@@ -531,7 +520,6 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
       if (value === chainId) {
         return;
       }
-      console.log(value, active);
       if(!active) {
         setTimeout(() => {
           switchNetwork(value, active);
@@ -557,11 +545,8 @@ export default function BridgeCard({ setPendingTxns, connectWallet }) {
         );
 
         const sender = await bridgeContract.l2TokenBridge();
-        console.log("sender:", sender);
 
         const ethAmount = ethers.utils.parseEther(amount);
-        console.log('ethAmount', ethAmount);
-        console.log('chainId', chainId);
 
         callContract(chainId, bridgeContract, 'bridgeETH', [miniGasAmount, '0x'], {
           value: ethAmount,

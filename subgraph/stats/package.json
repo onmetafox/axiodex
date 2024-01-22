@@ -4,7 +4,7 @@
   "scripts": {
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
-    "prepare:testnet": "node ../prepare.js base-testnet 9616625 state-basetestnet.json",
+    "prepare:testnet": "node ../prepare.js base-testnet 13708475 state-basetestnet.json",
     "init:testnet": "graph init --studio stats-base-goerli",
     "auth:testnet": "graph auth --studio ad317bb9ff468283708f997e81ce837a",
     "deploy:testnet": "graph deploy --studio stats-base-goerli"

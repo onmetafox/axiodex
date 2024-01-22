@@ -111,7 +111,7 @@ const ALCHEMY_WHITELISTED_DOMAINS = ["axn.finanace", "app.axn.finanace"];
 
 export const RPC_PROVIDERS = {
   [MAINNET]: ["https://base.publicnode.com"],
-  [TESTNET]: ["https://base-goerli.blockpi.network/v1/rpc/public"],
+  [TESTNET]: ["https://base-goerli.publicnode.com"],
   [ETH_TESTNET]: ["https://ethereum-goerli.publicnode.com"],
   [LOCALNET]: ["http://localhost:8545"],
   [ETH_MAINNET]: ["https://mainnet.infura.io/v3/3aa84d7219d641b0a99fd6d3a84482eb"],

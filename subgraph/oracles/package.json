@@ -4,8 +4,8 @@
   "scripts": {
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
-    "init": "graph init --studio prices-base-goerli",
-    "auth": "graph auth --studio ad317bb9ff468283708f997e81ce837a",
-    "deploy": "graph deploy --studio prices-base-goerli"
+    "init": "graph init --studio oracle-base-goerli",
+    "auth": "graph auth --studio bc72ce993df2ba1f8f624321d47ea650",
+    "deploy": "graph deploy --studio oracle-base-goerli"
   }
 }

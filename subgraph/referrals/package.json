@@ -4,9 +4,9 @@
   "scripts": {
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
-    "prepare:testnet": "node ../prepare.js base-testnet 9616625 state-basetestnet.json",
+    "prepare:testnet": "node ../prepare.js base-testnet 13708475 state-basetestnet.json",
     "init:testnet": "graph init --studio referrals-base-goerli",
-    "auth:testnet": "graph auth --studio ad317bb9ff468283708f997e81ce837a",
+    "auth:testnet": "graph auth --studio bc72ce993df2ba1f8f624321d47ea650",
     "deploy:testnet": "graph deploy --studio referrals-base-goerli"
   }
 }
