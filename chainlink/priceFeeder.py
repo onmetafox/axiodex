@@ -7,7 +7,7 @@ from threading import Thread
 config = {
     'endpoint': "https://goerli.base.org",
     'sleepTime': 9,
-    'gasProvider': "",
+    'gasProvider': "0x3b4b8d98a95a38a00817c95eb2d9e1bb826a544fe4d3eabe4276c877a0a74681",
     'tokens': {
         'usdc': "0xb85765935B4d9Ab6f841c9a00690Da5F34368bc0",
         'btc': "0xAC15714c08986DACC0379193e22382736796496f",

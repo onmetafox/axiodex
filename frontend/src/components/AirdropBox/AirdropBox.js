@@ -50,6 +50,7 @@ export default function AirdropBox({ setPendingTxns, connectWallet }) {
   }, [])
 
   const onAirdrop = async ()=>{
+    console.log(account, info[0], info[1]);
     if(account && info) {
       try {
         setLoading(true);
@@ -65,6 +66,7 @@ export default function AirdropBox({ setPendingTxns, connectWallet }) {
           setPendingTxns
         })
         .then((res) => {
+          console.log(res)
           setIsClaimed(true);
         })
         .catch((err) => {setLoading(false);console.error(err)})
