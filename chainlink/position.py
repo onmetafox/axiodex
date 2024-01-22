@@ -11,7 +11,7 @@ import random
 config = {
     'endpoint': "https://goerli.base.org",
     'sleepTime': 10,
-    'keeper': "3b4b8d98a95a38a00817c95eb2d9e1bb826a544fe4d3eabe4276c877a0a74681",
+    'keeper': "",
     'positionRouterAddress': "0x29C973401298772BC78ecc12E548Ce12C3241874",
 }
 

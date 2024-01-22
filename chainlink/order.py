@@ -10,7 +10,7 @@ import numpy as np
 config = {
     'endpoint': "https://goerli.base.org",
     'sleepTime': 10,
-    'keeper': "3b4b8d98a95a38a00817c95eb2d9e1bb826a544fe4d3eabe4276c877a0a74681",
+    'keeper': "",
     'orderBookAddress': "0x2C234841fae0EB833518376c85cBA3Ae3e210B33",
     'orderExecutorAddress': "0x05D594fc77aFbff99D3C57aeb12639773749eb39",
     'timeLockAddress': "0xFAeC262CB26aA3038E3ac6269e6B6b77734AB364",
