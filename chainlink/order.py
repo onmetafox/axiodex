@@ -11,10 +11,10 @@ config = {
     'endpoint': "https://goerli.base.org",
     'sleepTime': 10,
     'keeper': "",
-    'orderBookAddress': "0x00093a37d28b4D987E6e951D3b5dFED83Eb508B0",
-    'orderExecutorAddress': "0x00629a62B9F76681CE76C7F3CFae067858A69Eb2",
-    'timeLockAddress': "0x4063EF728Cf71306f5F9BeC04309C1e5e8B55485",
-    'vaultAddress': "0x0fe870bc7d5d9cFd8b6e079AC3FB5CBfc02Adeb0"
+    'orderBookAddress': "0x2C234841fae0EB833518376c85cBA3Ae3e210B33",
+    'orderExecutorAddress': "0x05D594fc77aFbff99D3C57aeb12639773749eb39",
+    'timeLockAddress': "0xFAeC262CB26aA3038E3ac6269e6B6b77734AB364",
+    'vaultAddress': "0x084c0c767279e0b36Eb406596E54095b3F0e300c"
 }
 
 class OrderKeeper(object):
@@ -26,7 +26,7 @@ class OrderKeeper(object):
         self.timeLockContract = self.web3.eth.contract(abi=open('abiTimeLock.json', 'r').read(), address=config['timeLockAddress'])
         
     def run_query(self, query):
-        request = requests.post('https://api.studio.thegraph.com/proxy/44624/orders-base-goerli/version/latest/'
+        request = requests.post('https://api.studio.thegraph.com/query/61609/orders-base-goerli/0.0.4'
                                 '', 
                                 json={'query':query}, 
                                 headers={'Content-Type': 'application/json'})

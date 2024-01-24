@@ -117,7 +117,12 @@ module.exports = [
     },
     { func: "deploy", artifact: "VaultUtils", args: ["${Vault.address}"] },
     { func: "call", contract: "Vault", method: "setVaultUtils", args: ["${VaultUtils.address}"] },
-
+    
+    // price feed address for base testnet
+    // { func: "load", artifact: "PriceFeed", as: "PriceFeedBTC", address: "0xAC15714c08986DACC0379193e22382736796496f" },
+    // { func: "load", artifact: "PriceFeed", as: "PriceFeedETH", address: "0xcD2A119bD1F7DF95d706DE6F2057fDD45A0503E2" },
+    // { func: "load", artifact: "PriceFeed", as: "PriceFeedUSDC", address: "0xb85765935B4d9Ab6f841c9a00690Da5F34368bc0" },
+    
     // price feed address for base mainnet
     { func: "load", artifact: "PriceFeed", as: "PriceFeedBTC", address: "0xCCADC697c55bbB68dc5bCdf8d3CBe83CdD4E071E" },
     { func: "load", artifact: "PriceFeed", as: "PriceFeedETH", address: "0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70" },

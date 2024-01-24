@@ -1,6 +1,6 @@
 import { BigInt, log } from "@graphprotocol/graph-ts"
-import { UpdateAnswer } from "../generated/PriceFeedBTC/PriceFeed"
-import { AnswerUpdated } from "../generated/ChainlinkAggregatorBTC/ChainlinkAggregator"
+import { UpdateAnswer } from "../generated/PriceFeedHEX/PriceFeed"
+import { AnswerUpdated } from "../generated/PriceFeedBTC/ChainlinkAggregator"
 import { ChainlinkPrice, PriceCandle } from "../generated/schema"
 
 function timestampToPeriodStart(timestamp: BigInt, period: string): BigInt {

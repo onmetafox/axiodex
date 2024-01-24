@@ -1,16 +1,15 @@
 specVersion: 0.0.2
-description: GMX
-repository: https://github.com/gmx-io/gmx-subgraph
+description: Axiodex
 schema:
   file: schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: OrderBook
-    network: base-testnet
+    network: base
     source:
-      address: "0x00093a37d28b4D987E6e951D3b5dFED83Eb508B0"
+      address: "0x5D524F714b34E967D3c3B154443318244D6b8748"
       abi: OrderBook
-      startBlock: 11710134
+      startBlock: 9572396
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

@@ -12,12 +12,13 @@ export const LOCALNET = 31337;
 export const ETH_MAINNET = 1;
 
 // TODO take it from web3
-export const DEFAULT_CHAIN_ID = TESTNET;
+export const DEFAULT_CHAIN_ID = MAINNET;
 export const CHAIN_ID = DEFAULT_CHAIN_ID;
 
 // export const SUPPORTED_CHAIN_IDS = [ARBITRUM, AVALANCHE, ETHEREUM, SHIBARIUM, GOERLI];
 
 export const IS_NETWORK_DISABLED = {
+  [ETH_MAINNET]: true,
   [MAINNET]: false,
   [TESTNET]: false,
   [LOCALNET]: true,
@@ -58,6 +59,7 @@ export const HIGH_EXECUTION_FEES_MAP = {
 const constants = {
   [MAINNET]: {
     nativeTokenSymbol: "WETH",
+    wrappedTokenSymbol: "WETH",
     defaultCollateralSymbol: "USDC",
     defaultFlagOrdersEnabled: false,
     positionReaderPropsLength: 8,
@@ -110,8 +112,8 @@ const constants = {
 const ALCHEMY_WHITELISTED_DOMAINS = ["axn.finanace", "app.axn.finanace"];
 
 export const RPC_PROVIDERS = {
-  [MAINNET]: ["https://base.publicnode.com"],
-  [TESTNET]: ["https://base-goerli.blockpi.network/v1/rpc/public"],
+  [MAINNET]: ["https://base.llamarpc.com"],
+  [TESTNET]: ["https://base-goerli.publicnode.com"],
   [ETH_TESTNET]: ["https://ethereum-goerli.publicnode.com"],
   [LOCALNET]: ["http://localhost:8545"],
   [ETH_MAINNET]: ["https://mainnet.infura.io/v3/3aa84d7219d641b0a99fd6d3a84482eb"],

@@ -5,7 +5,7 @@ import { formatAmount } from "lib/numbers";
 import { Bar } from "./types";
 import { formatTimeInBarToMs, getCurrentCandleTime } from "./utils";
 import { fillBarGaps, getCurrentPriceOfToken, getTokenChartPrice } from "./requests";
-import { BigNumber, BigNumberish } from "ethers";
+// import { BigNumber, BigNumberish } from "ethers";
 import { PeriodParams } from "charting_library";
 
 const initialHistoryBarsInfo = {
@@ -59,7 +59,7 @@ export class TVDataProvider {
         const currentCandleTime = getCurrentCandleTime(period);
         const lastCandleTime = currentCandleTime - CHART_PERIODS[period];
         const lastBar = filledBars[filledBars.length - 1];
-        if (lastBar.time === currentCandleTime || lastBar.time === lastCandleTime) {
+        if (lastBar?.time === currentCandleTime || lastBar?.time === lastCandleTime) {
           this.lastBar = { ...lastBar, ticker };
         }
         this.barsInfo.data = filledBars;

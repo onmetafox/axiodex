@@ -6,6 +6,9 @@ export const chainlinkClient = createClient(SUBGRAPH_URLS.common.chainLink);
 
 export const mainnetGraphClient = createClient(SUBGRAPH_URLS[MAINNET].stats);
 export const mainnetReferralClient = createClient(SUBGRAPH_URLS[MAINNET].referrals);
+export const mainnetPriceClient = createClient(SUBGRAPH_URLS[MAINNET].prices);
+export const mainnetOrderClient = createClient(SUBGRAPH_URLS[MAINNET].orders);
+export const mainnetRawClient = createClient(SUBGRAPH_URLS[MAINNET].raws);
 export const mainnetNissohClient = createClient(SUBGRAPH_URLS[MAINNET].nissohVault);
 
 export const testnetGraphClient = createClient(SUBGRAPH_URLS[TESTNET].stats);
@@ -33,7 +36,7 @@ export function getStatsClient(chainId: number) {
 
 export function getPriceClient(chainId: number) {
   if (chainId === MAINNET) {
-    return null;
+    return mainnetPriceClient;
   } else if (chainId === TESTNET) {
     return testnetPriceClient;
   } else if (chainId === LOCALNET) {

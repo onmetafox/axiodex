@@ -4,9 +4,9 @@
   "scripts": {
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
-    "prepare": "node ../prepare.js basechain 9616625 state-basetestnet.json",
-    "init": "graph init --studio orders-base-goerli",
-    "auth": "graph auth --studio ad317bb9ff468283708f997e81ce837a",
-    "deploy": "graph deploy --studio orders-base-goerli"
+    "prepare": "node ../prepare.js base 13708475 state-basetestnet.json",
+    "init": "graph init --studio orders-base",
+    "auth": "graph auth --studio bc72ce993df2ba1f8f624321d47ea650",
+    "deploy": "graph deploy --studio orders-base"
   }
 }

@@ -12,7 +12,7 @@ config = {
     'endpoint': "https://goerli.base.org",
     'sleepTime': 10,
     'keeper': "",
-    'positionRouterAddress': "0xC2493FC7B823cF32AdC6e316ea27136ad2718f4a",
+    'positionRouterAddress': "0x29C973401298772BC78ecc12E548Ce12C3241874",
 }
 
 class PositionKeeper(object):

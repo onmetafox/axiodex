@@ -134,8 +134,14 @@ export async function getChartPricesFromStats(chainId, symbol, period) {
 
       return prices.map(formatBarInfo)
     } catch (e) {
-      console.warn("getChartPricesFromStats Error: ", e)
-      return [];
+      console.error("getChartPricesFromStats Error: ", e)
+      try {
+        return await getChainlinkChartPricesFromGraph(symbol, period);
+      } catch (ex2) {
+        // eslint-disable-next-line no-console
+        console.warn("getChainlinkChartPricesFromGraph failed", ex2);
+        return [];
+      }
     }
   } else {
     return [];

@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: OrderBook
-    network: base-testnet
+    network: base
     source:
-      address: "0x00093a37d28b4D987E6e951D3b5dFED83Eb508B0"
+      address: "0x5D524F714b34E967D3c3B154443318244D6b8748"
       abi: OrderBook
-      startBlock: 11710134
+      startBlock: 9572396
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -25,11 +25,11 @@ dataSources:
       file: OrderBook\OrderBook.wasm
   - kind: ethereum/contract
     name: BatchSender
-    network: base-testnet
+    network: base
     source:
-      address: "0x1a124990B9A60dCE8b41cA24f014f2178BD4De07"
+      address: "0x6638Ac691bC282D0C182C28cfe9fC078A6b4489A"
       abi: BatchSender
-      startBlock: 11710134
+      startBlock: 9572396
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -45,11 +45,11 @@ dataSources:
       file: OrderBook\OrderBook.wasm
   - kind: ethereum/contract
     name: PositionManager
-    network: base-testnet
+    network: base
     source:
-      address: "0x054c9aDf1d4EC8d5339D2930C00076e043D889a6"
+      address: "0xDA5cea3908C1950435D428c477066142263BFFDB"
       abi: PositionManager
-      startBlock: 11710134
+      startBlock: 9572396
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -68,11 +68,11 @@ dataSources:
       file: OrderBook\OrderBook.wasm
   - kind: ethereum/contract
     name: PositionRouter
-    network: base-testnet
+    network: base
     source:
-      address: "0xC2493FC7B823cF32AdC6e316ea27136ad2718f4a"
+      address: "0x5A1002E3c609A3f95276ca11C13Ea5802CcC23f5"
       abi: PositionRouter
-      startBlock: 11710134
+      startBlock: 9572396
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -91,11 +91,11 @@ dataSources:
       file: OrderBook\OrderBook.wasm
   - kind: ethereum/contract
     name: ReferralStorage
-    network: base-testnet
+    network: base
     source:
-      address: "0x9E12C069E2a280Ca8135A96E49690251993a7dd6"
+      address: "0xD4e31aEF59241a037aa484a9E5Fa8699Bb5bFcd1"
       abi: ReferralStorage
-      startBlock: 11710134
+      startBlock: 9572396
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
