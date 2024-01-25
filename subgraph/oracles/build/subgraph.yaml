@@ -11,7 +11,7 @@ dataSources:
       startBlock: 2095708
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
         - ChainlinkPrice
@@ -32,7 +32,7 @@ dataSources:
       startBlock: 2092836
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
         - ChainlinkPrice
@@ -53,7 +53,7 @@ dataSources:
       startBlock: 9572396
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
         - ChainlinkPrice
@@ -74,7 +74,7 @@ dataSources:
       startBlock: 2093474
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
         - ChainlinkPrice

@@ -6,8 +6,7 @@ export const SUBGRAPH_URLS = {
     referrals: "https://api.studio.thegraph.com/query/64033/referrals-base/0.0.1",
     raws: "https://api.studio.thegraph.com/query/64033/raw-base/0.0.1",
     orders: "https://api.studio.thegraph.com/query/64033/orders-base/0.0.1",
-    prices: "https://api.studio.thegraph.com/query/64033/oracle-base/0.0.11",
-    // prices: "https://api.studio.thegraph.com/query/44624/prices-base-goerli/0.0.4",
+    prices: "https://api.studio.thegraph.com/query/64033/prices-base/0.0.417",
     nissohVault: "https://api.thegraph.com/subgraphs/name/nissoh/gmx-vault",
   },
   [TESTNET]: {

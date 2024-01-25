@@ -74,7 +74,7 @@ function updateCandle(entity: ChainlinkPrice, period: string): void {
   lastCandle.close = entity.price
   lastCandle.save()
 
-  // log.debug("*** updatedCandle {} {} {} {} {}", [candle.id, candle.open.toString(), candle.high.toString(), candle.low.toString(), candle.close.toString(),])
+  log.debug("*** updatedCandle {} {} {} {} {}", [candle.id, candle.open.toString(), candle.high.toString(), candle.low.toString(), candle.close.toString(),])
 
   candle.save()
 }
@@ -115,13 +115,16 @@ export function handleAnswerUpdatedUSDC(event: UpdateAnswer): void {
 }
 
 export function handleOracleAnswerUpdatedBTC(event: AnswerUpdated): void {
+  log.debug("*** handleOracleAnswerUpdatedBTC {} {} {}", [event.params.current.toString(), event.block.timestamp.toString(), event.block.number.toString()])
   updateChainlinkPrice("BTC", event.params.current, event.block.timestamp, event.block.number)
 }
 
 export function handleOracleAnswerUpdatedETH(event: AnswerUpdated): void {
+  log.debug("*** handleOracleAnswerUpdatedETH {} {} {}", [event.params.current.toString(), event.block.timestamp.toString(), event.block.number.toString()])
   updateChainlinkPrice("ETH", event.params.current, event.block.timestamp, event.block.number)
 }
 
 export function handleOracleAnswerUpdatedUSDC(event: AnswerUpdated): void {
+  log.debug("*** handleOracleAnswerUpdatedUSDC {} {} {}", [event.params.current.toString(), event.block.timestamp.toString(), event.block.number.toString()])
   updateChainlinkPrice("USDC", event.params.current, event.block.timestamp, event.block.number)
 }

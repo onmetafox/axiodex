@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
-import { getServerUrl } from "config/backend";
-import { getTokenBySymbol, getWrappedToken } from "config/tokens";
+// import { getServerUrl } from "config/backend";
+// import { getTokenBySymbol, getWrappedToken } from "config/tokens";
 import { getChainlinkChartPricesFromGraph, getChartPricesFromStats, timezoneOffset } from "domain/prices";
 import { bigNumberify } from "lib/numbers";
 import { getPriceClient } from "lib/subgraph";

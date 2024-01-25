@@ -106,7 +106,7 @@ export async function getLimitChartPricesFromStats(chainId, symbol, period, limi
 export async function getChartPricesFromStats(chainId, symbol, period) {
   symbol = getNormalizedTokenSymbol(symbol);
 
-  const timeDiff = CHART_PERIODS[period] * 3000;
+  const timeDiff = CHART_PERIODS[period] * 1000;
   const from = Math.floor(Date.now() / 1000 - timeDiff)
 
   const client = getPriceClient(chainId)
@@ -135,13 +135,7 @@ export async function getChartPricesFromStats(chainId, symbol, period) {
       return prices.map(formatBarInfo)
     } catch (e) {
       console.error("getChartPricesFromStats Error: ", e)
-      try {
-        return await getChainlinkChartPricesFromGraph(symbol, period);
-      } catch (ex2) {
-        // eslint-disable-next-line no-console
-        console.warn("getChainlinkChartPricesFromGraph failed", ex2);
-        return [];
-      }
+      return [];
     }
   } else {
     return [];
