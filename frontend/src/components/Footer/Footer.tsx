@@ -29,8 +29,8 @@ export default function Footer({ showRedirectModal, redirectPopupTimestamp }: Pr
           })}
         </div>
         <div>
-          <ExternalLink className="scan-link" href="https://etherscan.io/address/0xd9557a5825113d377627f8f1d413d7ab55da1b42">
-            0xd9557a5825113d377627f8f1d413d7ab55da1b42
+          <ExternalLink className="scan-link" href="https://etherscan.io/address/0xeC7ACba6FeDb7EbfBc0F44F8F0bC6fC39543E28a">
+            0xeC7ACba6FeDb7EbfBc0F44F8F0bC6fC39543E28a
           </ExternalLink>
           <p className="contact-link">
             marketing@axiodex.io
