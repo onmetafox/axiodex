@@ -5,13 +5,13 @@ from eth_account import Account
 from threading import Thread
 
 config = {
-    'endpoint': "https://goerli.base.org",
-    'sleepTime': 9,
+    'endpoint': "https://base.org",
+    'sleepTime': 10,
     'gasProvider': "",
     'tokens': {
-        'usdc': "0xb85765935B4d9Ab6f841c9a00690Da5F34368bc0",
-        'btc': "0xAC15714c08986DACC0379193e22382736796496f",
-        'eth': "0xcD2A119bD1F7DF95d706DE6F2057fDD45A0503E2",
+        'usdc': "0xeDc16F500dBb061449Fb46A6AB4701F9310c3928",
+        'btc': "0x795356E1B93190aB641C711b7c69E56eaC4522c0",
+        'eth': "0x4200000000000000000000000000000000000006",
     }
 }
 
