@@ -15,7 +15,6 @@ config = {
     'orderExecutorAddress': "0x05D594fc77aFbff99D3C57aeb12639773749eb39",
     'timeLockAddress': "0xFAeC262CB26aA3038E3ac6269e6B6b77734AB364",
     'vaultAddress': "0x084c0c767279e0b36Eb406596E54095b3F0e300c"
-
 }
 
 class OrderKeeper(object):

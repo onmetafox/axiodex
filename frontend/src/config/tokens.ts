@@ -25,7 +25,7 @@ export const TOKENS: Token[] = [
   {
     name: "Bitcoin",
     symbol: "BTC",
-    decimals: 8,
+    decimals: 18,
     address: getContract("BTC"),
     isShortable: true,
     imageUrl: "https://assets.coingecko.com/coins/images/7598/thumb/wrapped_bitcoin_wbtc.png?1548822744",
