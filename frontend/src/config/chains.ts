@@ -62,7 +62,7 @@ const constants = {
     wrappedTokenSymbol: "WETH",
     defaultCollateralSymbol: "USDC",
     defaultFlagOrdersEnabled: false,
-    positionReaderPropsLength: 8,
+    positionReaderPropsLength: 9,
     v2: true,
     SWAP_ORDER_EXECUTION_GAS_FEE: parseEther("0.0001"),
     INCREASE_ORDER_EXECUTION_GAS_FEE: parseEther("0.0001"),
@@ -107,7 +107,7 @@ const constants = {
     nativeTokenSymbol: "WETH",
     defaultCollateralSymbol: "USDC",
     defaultFlagOrdersEnabled: false,
-    positionReaderPropsLength: 8,
+    positionReaderPropsLength: 9,
     v2: true,
   },
 };
