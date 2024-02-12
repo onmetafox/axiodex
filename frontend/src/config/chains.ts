@@ -35,7 +35,7 @@ export const CHAIN_NAMES_MAP = {
 };
 
 export const GAS_PRICE_ADJUSTMENT_MAP = {
-  [MAINNET]: "3000000000",
+  [MAINNET]: "1000000",
   [TESTNET]: "3000000000", // 3 gwei
   [ETH_TESTNET]: "3000000000", // 3 gwei
   [LOCALNET]: "3000000000", // 3 gwei
@@ -43,7 +43,7 @@ export const GAS_PRICE_ADJUSTMENT_MAP = {
 };
 
 export const MAX_GAS_PRICE_MAP = {
-  [MAINNET]: "200000000000", // 200 gwei
+  [MAINNET]: "1000000000", // 200 gwei
   [TESTNET]: "200000000000", // 200 gwei
   [ETH_TESTNET]: "200000000000",
   [LOCALNET]: "200000000000", // 200 gwei
@@ -64,9 +64,9 @@ const constants = {
     defaultFlagOrdersEnabled: false,
     positionReaderPropsLength: 8,
     v2: true,
-    SWAP_ORDER_EXECUTION_GAS_FEE: parseEther("0.01"),
-    INCREASE_ORDER_EXECUTION_GAS_FEE: parseEther("0.01"),
-    DECREASE_ORDER_EXECUTION_GAS_FEE: parseEther("0.0100001"),
+    SWAP_ORDER_EXECUTION_GAS_FEE: parseEther("0.0001"),
+    INCREASE_ORDER_EXECUTION_GAS_FEE: parseEther("0.0001"),
+    DECREASE_ORDER_EXECUTION_GAS_FEE: parseEther("0.0001"),
   },
 
   // [TESTNET]: {
