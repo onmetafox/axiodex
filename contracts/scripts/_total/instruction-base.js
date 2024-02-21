@@ -1,33 +1,36 @@
 module.exports = [
     { func: "wallet", as: "admin", value: "#1" },
     { func: "wallet", as: "AddressZero", value: "0x0000000000000000000000000000000000000000" },
-    { func: "wallet", as: "localPriceUpdater", value: "tail local keeper" },
-    { func: "wallet", as: "remotePriceUpdater", value: "tail backend keeper" },
+    { func: "wallet", as: "localPriceUpdater", value: "axion local keeper" },
+    { func: "wallet", as: "remotePriceUpdater", value: "axion backend keeper" },
     { func: "wallet", as: "positionKeeper", value: "position keeper" },
 
     { func: "const", as: "durationTimeLock", value: 1 },
 
     { func: "load", artifact: "WETH", as: "NATIVE_TOKEN", address: "0x4200000000000000000000000000000000000006" },
     // { func: "load", artifact: "contracts/tokens/General.sol:GeneralToken", as: "HEX", address: "0x826e4e896CC2f5B371Cd7Bb0bd929DB3e3DB67c0" },
-    // { func: "load", artifact: "contracts/tokens/General.sol:GeneralToken", as: "USDC", address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" },
+    { func: "load", artifact: "contracts/tokens/General.sol:GeneralToken", as: "USDC", address: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" },
     // { func: "load", artifact: "contracts/tokens/General.sol:GeneralToken", as: "ETH", address: "0x3677bd78ccf4d299328ecfba61790cf8dbfcf686" },
-    // { func: "load", artifact: "contracts/tokens/General.sol:GeneralToken", as: "BTC", address: "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599" },
-    { func: "deploy", artifact: "contracts/tokens/General.sol:GeneralToken", as: "HEX", args: [
-        "HEX", "HEX", 8, 1000000000
-    ] },
-    { func: "deploy", artifact: "contracts/tokens/General.sol:GeneralToken", as: "USDC", args: [
-        "USD Coin", "USDC", 6, 1000000000
-    ] },
-    { func: "deploy", artifact: "contracts/tokens/General.sol:GeneralToken", as: "BTC", args: [
-        "Bitcoin", "BTC", 8, 100000
-    ] },
+    { func: "load", artifact: "contracts/tokens/General.sol:GeneralToken", as: "BTC", address: "0x236aa50979D5f3De3Bd1Eeb40E81137F22ab794b" },
+
+    {
+        func: "deploy", artifact: "contracts/tokens/General.sol:GeneralToken", as: "HEX", args: [
+            "HEX", "HEX", 8, 1000000000
+        ]
+    },
+    // { func: "deploy", artifact: "contracts/tokens/General.sol:GeneralToken", as: "USDC", args: [
+    //     "USD Coin", "USDC", 6, 1000000000
+    // ] },
+    // { func: "deploy", artifact: "contracts/tokens/General.sol:GeneralToken", as: "BTC", args: [
+    //     "Bitcoin", "BTC", 8, 100000
+    // ] },
 
     { func: "deploy", artifact: "TokenManager", args: [1] },
     {
         func: "call",
         contract: "TokenManager",
         method: "initialize",
-        args: [ ["${admin.address}"] ]
+        args: [["${admin.address}"]]
     },
 
     { func: "deploy", artifact: "Multicall3" },
@@ -117,12 +120,12 @@ module.exports = [
     },
     { func: "deploy", artifact: "VaultUtils", args: ["${Vault.address}"] },
     { func: "call", contract: "Vault", method: "setVaultUtils", args: ["${VaultUtils.address}"] },
-    
+
     // price feed address for base testnet
     // { func: "load", artifact: "PriceFeed", as: "PriceFeedBTC", address: "0xAC15714c08986DACC0379193e22382736796496f" },
     // { func: "load", artifact: "PriceFeed", as: "PriceFeedETH", address: "0xcD2A119bD1F7DF95d706DE6F2057fDD45A0503E2" },
     // { func: "load", artifact: "PriceFeed", as: "PriceFeedUSDC", address: "0xb85765935B4d9Ab6f841c9a00690Da5F34368bc0" },
-    
+
     // price feed address for base mainnet
     { func: "load", artifact: "PriceFeed", as: "PriceFeedBTC", address: "0xCCADC697c55bbB68dc5bCdf8d3CBe83CdD4E071E" },
     { func: "load", artifact: "PriceFeed", as: "PriceFeedETH", address: "0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70" },
@@ -146,7 +149,7 @@ module.exports = [
     // { func: "wallet", as: "_keeper", value: "AxionDex:BTC:PriceFeed:4" }, { func: "call", contract: "PriceFeedBTC", method: "setAdmin", args: ["${_keeper.address}", true] }, 
     // { func: "wallet", as: "_keeper", value: "AxionDex:BTC:PriceFeed:5" }, { func: "call", contract: "PriceFeedBTC", method: "setAdmin", args: ["${_keeper.address}", true] }, 
     { func: "call", contract: "VaultPriceFeed", method: "setTokenConfig", args: ["${BTC.address}", "${PriceFeedBTC.address}", 8, false] },
-    
+
     // { func: "deploy", artifact: "PriceFeed", as: "PriceFeedUSDC" },
     // // { func: "call", contract: "PriceFeedUSDC", method: "setLatestAnswer", args: ["${parseUnits('1', 8)}"] },
     // { func: "wallet", as: "_keeper", value: "AxionDex:USDC:PriceFeed:0" }, { func: "call", contract: "PriceFeedUSDC", method: "setAdmin", args: ["${_keeper.address}", true] }, 
@@ -156,7 +159,7 @@ module.exports = [
     // { func: "wallet", as: "_keeper", value: "AxionDex:USDC:PriceFeed:4" }, { func: "call", contract: "PriceFeedUSDC", method: "setAdmin", args: ["${_keeper.address}", true] }, 
     // { func: "wallet", as: "_keeper", value: "AxionDex:USDC:PriceFeed:5" }, { func: "call", contract: "PriceFeedUSDC", method: "setAdmin", args: ["${_keeper.address}", true] }, 
     { func: "call", contract: "VaultPriceFeed", method: "setTokenConfig", args: ["${USDC.address}", "${PriceFeedUSDC.address}", 8, true] },
-    
+
     // { func: "deploy", artifact: "PriceFeed", as: "PriceFeedETH" },
     // // { func: "call", contract: "PriceFeedETH", method: "setLatestAnswer", args: ["${parseUnits('1800', 8)}"] },
     // { func: "wallet", as: "_keeper", value: "AxionDex:ETH:PriceFeed:0" }, { func: "call", contract: "PriceFeedETH", method: "setAdmin", args: ["${_keeper.address}", true] }, 
@@ -169,12 +172,12 @@ module.exports = [
 
     { func: "deploy", artifact: "PriceFeed", as: "PriceFeedHEX" },
     // { func: "call", contract: "PriceFeedHEX", method: "setLatestAnswer", args: ["${parseUnits('1', 8)}"] },
-    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:0" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
-    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:1" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
-    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:2" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
-    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:3" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
-    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:4" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
-    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:5" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] }, 
+    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:0" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] },
+    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:1" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] },
+    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:2" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] },
+    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:3" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] },
+    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:4" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] },
+    { func: "wallet", as: "_keeper", value: "AxionDex:HEX:PriceFeed:5" }, { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${_keeper.address}", true] },
     { func: "call", contract: "VaultPriceFeed", method: "setTokenConfig", args: ["${HEX.address}", "${PriceFeedHEX.address}", 8, false] },
 
     // { func: "call", contract: "PriceFeedPLS", method: "setAdmin", args: ["${localPriceUpdater.address}", true] }, 
@@ -188,7 +191,7 @@ module.exports = [
     // { func: "call", contract: "PriceFeedETH", method: "setAdmin", args: ["${remotePriceUpdater.address}", true] }, 
     // { func: "call", contract: "PriceFeedHEX", method: "setAdmin", args: ["${remotePriceUpdater.address}", true] }, 
     // { func: "call", contract: "PriceFeedUSDC", method: "setAdmin", args: ["${remotePriceUpdater.address}", true] }, 
-    
+
     { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${NATIVE_TOKEN.address}", 18, 20000, 0, "${parseUnits('3',25)}", false, true] },
     { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${BTC.address}", 8, 3000, 0, "${parseUnits('5',25)}", false, true] },
     // { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${ETH.address}", 18, 45000, 0, "${parseUnits('5',25)}", false, true] },
@@ -196,16 +199,18 @@ module.exports = [
     { func: "call", contract: "Vault", method: "setTokenConfig", args: ["${USDC.address}", 6, 45000, 0, "${parseUnits('5',25)}", true, false] },
 
     { func: "deploy", artifact: "OrderBook", args: [] },
-    { func: "call", contract: "OrderBook", method: "initialize", args: [
-        "${Router.address}",  // router
-        "${Vault.address}", // vault
-        "${NATIVE_TOKEN.address}", // weth
-        "${USDG.address}", // usdg
-        "${parseEther('0.01')}", // min execution fee
-        "${parseUnits('10', 30)}" // min purchase token amount usd
-    ] },
+    {
+        func: "call", contract: "OrderBook", method: "initialize", args: [
+            "${Router.address}",  // router
+            "${Vault.address}", // vault
+            "${NATIVE_TOKEN.address}", // weth
+            "${USDG.address}", // usdg
+            "${parseEther('0.01')}", // min execution fee
+            "${parseUnits('10', 30)}" // min purchase token amount usd
+        ]
+    },
 
-    { func: "deploy", artifact: "OrderExecutor", args: ["${Vault.address}","${OrderBook.address}"] },
+    { func: "deploy", artifact: "OrderExecutor", args: ["${Vault.address}", "${OrderBook.address}"] },
 
     { func: "deploy", artifact: "AXN", args: [] },
     { func: "call", contract: "AXN", method: "setMinter", args: ["${admin.address}", true] },
@@ -217,47 +222,57 @@ module.exports = [
     { func: "call", contract: "ALP", method: "setInPrivateTransferMode", args: [true] },
 
     { func: "deploy", artifact: "RewardTracker", as: "StakedAxnTracker", args: ["Staked AXN", "sAXN"] },
-    { func: "deploy", artifact: "RewardDistributor", as: "StakedAxnDistributor", args: ["${EsAXN.address}","${StakedAxnTracker.address}"] },
-    { func: "call", contract: "StakedAxnTracker", method: "initialize", args: [
-        ["${AXN.address}","${EsAXN.address}"], "${StakedAxnDistributor.address}"
-    ] },
+    { func: "deploy", artifact: "RewardDistributor", as: "StakedAxnDistributor", args: ["${EsAXN.address}", "${StakedAxnTracker.address}"] },
+    {
+        func: "call", contract: "StakedAxnTracker", method: "initialize", args: [
+            ["${AXN.address}", "${EsAXN.address}"], "${StakedAxnDistributor.address}"
+        ]
+    },
     { func: "call", contract: "StakedAxnDistributor", method: "updateLastDistributionTime", args: [] },
 
     { func: "deploy", artifact: "RewardTracker", as: "BonusAxnTracker", args: ["Staked + Bonus AXN", "sbAXN"] },
-    { func: "deploy", artifact: "BonusDistributor", as: "BonusAxnDistributor", args: ["${BnAXN.address}","${BonusAxnTracker.address}"] },
-    { func: "call", contract: "BonusAxnTracker", method: "initialize", args: [
-        ["${StakedAxnTracker.address}"], "${BonusAxnDistributor.address}"
-    ] },
+    { func: "deploy", artifact: "BonusDistributor", as: "BonusAxnDistributor", args: ["${BnAXN.address}", "${BonusAxnTracker.address}"] },
+    {
+        func: "call", contract: "BonusAxnTracker", method: "initialize", args: [
+            ["${StakedAxnTracker.address}"], "${BonusAxnDistributor.address}"
+        ]
+    },
     { func: "call", contract: "BonusAxnDistributor", method: "updateLastDistributionTime", args: [] },
 
     { func: "call", contract: "BnAXN", method: "setMinter", args: ["${admin.address}", true] },
     { func: "call", contract: "BnAXN", method: "mint", args: ["${BonusAxnDistributor.address}", "${parseEther('15000000')}"] },
 
     { func: "deploy", artifact: "RewardTracker", as: "FeeAxnTracker", args: ["Staked + Bonus + Fee AXN", "sbfAXN"] },
-    { func: "deploy", artifact: "RewardDistributor", as: "FeeAxnDistributor", args: ["${NATIVE_TOKEN.address}","${FeeAxnTracker.address}"] },
-    { func: "call", contract: "FeeAxnTracker", method: "initialize", args: [
-        ["${BonusAxnTracker.address}","${BonusAxnDistributor.address}"], "${FeeAxnDistributor.address}"
-    ] },
+    { func: "deploy", artifact: "RewardDistributor", as: "FeeAxnDistributor", args: ["${NATIVE_TOKEN.address}", "${FeeAxnTracker.address}"] },
+    {
+        func: "call", contract: "FeeAxnTracker", method: "initialize", args: [
+            ["${BonusAxnTracker.address}", "${BonusAxnDistributor.address}"], "${FeeAxnDistributor.address}"
+        ]
+    },
     { func: "call", contract: "FeeAxnDistributor", method: "updateLastDistributionTime", args: [] },
 
     { func: "deploy", artifact: "RewardTracker", as: "FeeAlpTracker", args: ["Fee ALP", "fALP"] },
-    { func: "deploy", artifact: "RewardDistributor", as: "FeeAlpDistributor", args: ["${NATIVE_TOKEN.address}","${FeeAlpTracker.address}"] },
-    { func: "call", contract: "FeeAlpTracker", method: "initialize", args: [
-        ["${ALP.address}"], "${FeeAlpDistributor.address}"
-    ] },
+    { func: "deploy", artifact: "RewardDistributor", as: "FeeAlpDistributor", args: ["${NATIVE_TOKEN.address}", "${FeeAlpTracker.address}"] },
+    {
+        func: "call", contract: "FeeAlpTracker", method: "initialize", args: [
+            ["${ALP.address}"], "${FeeAlpDistributor.address}"
+        ]
+    },
     { func: "call", contract: "FeeAlpDistributor", method: "updateLastDistributionTime", args: [] },
 
     { func: "deploy", artifact: "RewardTracker", as: "StakedAlpTracker", args: ["Fee + Staked ALP", "fsALP"] },
-    { func: "deploy", artifact: "RewardDistributor", as: "StakedAlpDistributor", args: ["${EsAXN.address}","${StakedAlpTracker.address}"] },
-    { func: "call", contract: "StakedAlpTracker", method: "initialize", args: [
-        ["${StakedAlpTracker.address}", "${ALP.address}", "${FeeAlpTracker.address}"], "${StakedAlpDistributor.address}"
-    ] },
+    { func: "deploy", artifact: "RewardDistributor", as: "StakedAlpDistributor", args: ["${EsAXN.address}", "${StakedAlpTracker.address}"] },
+    {
+        func: "call", contract: "StakedAlpTracker", method: "initialize", args: [
+            ["${StakedAlpTracker.address}", "${ALP.address}", "${FeeAlpTracker.address}"], "${StakedAlpDistributor.address}"
+        ]
+    },
     { func: "call", contract: "StakedAlpDistributor", method: "updateLastDistributionTime", args: [] },
 
     { func: "call", contract: "EsAXN", method: "setMinter", args: ["${admin.address}", true] },
     { func: "call", contract: "EsAXN", method: "mint", args: ["${StakedAxnDistributor.address}", "${parseEther('600000')}"] },
     { func: "call", contract: "EsAXN", method: "mint", args: ["${StakedAlpDistributor.address}", "${parseEther('600000')}"] },
-    
+
     { func: "call", contract: "StakedAxnTracker", method: "setInPrivateTransferMode", args: [true] },
     { func: "call", contract: "StakedAxnTracker", method: "setInPrivateStakingMode", args: [true] },
     { func: "call", contract: "BonusAxnTracker", method: "setInPrivateTransferMode", args: [true] },
@@ -271,45 +286,51 @@ module.exports = [
     { func: "call", contract: "StakedAlpTracker", method: "setInPrivateTransferMode", args: [true] },
     { func: "call", contract: "StakedAlpTracker", method: "setInPrivateStakingMode", args: [true] },
 
-    { func: "deploy", artifact: "contracts/staking/Vester.sol:Vester", as: "AxnVester", args: [
-        "Vested AXN", // _name
-        "vAXN", // _symbol
-        "${365 * 86400}", // _vestingDuration
-        "${EsAXN.address}", // _esToken
-        "${FeeAxnTracker.address}", // _pairToken
-        "${AXN.address}", // _claimableToken
-        "${StakedAxnTracker.address}", // _rewardTracker
-    ] },
+    {
+        func: "deploy", artifact: "contracts/staking/Vester.sol:Vester", as: "AxnVester", args: [
+            "Vested AXN", // _name
+            "vAXN", // _symbol
+            "${365 * 86400}", // _vestingDuration
+            "${EsAXN.address}", // _esToken
+            "${FeeAxnTracker.address}", // _pairToken
+            "${AXN.address}", // _claimableToken
+            "${StakedAxnTracker.address}", // _rewardTracker
+        ]
+    },
 
-    { func: "deploy", artifact: "contracts/staking/Vester.sol:Vester", as: "AlpVester", args: [
-        "Vested ALP", // _name
-        "vGLP", // _symbol
-        "${365 * 86400}", // _vestingDuration
-        "${EsAXN.address}", // _esToken
-        "${StakedAlpTracker.address}", // _pairToken
-        "${AXN.address}", // _claimableToken
-        "${StakedAlpTracker.address}", // _rewardTracker
-    ] },
+    {
+        func: "deploy", artifact: "contracts/staking/Vester.sol:Vester", as: "AlpVester", args: [
+            "Vested ALP", // _name
+            "vGLP", // _symbol
+            "${365 * 86400}", // _vestingDuration
+            "${EsAXN.address}", // _esToken
+            "${StakedAlpTracker.address}", // _pairToken
+            "${AXN.address}", // _claimableToken
+            "${StakedAlpTracker.address}", // _rewardTracker
+        ]
+    },
 
     { func: "call", contract: "AXN", method: "mint", args: ["${AxnVester.address}", "${parseEther('40000')}"] },
     { func: "call", contract: "AXN", method: "mint", args: ["${AlpVester.address}", "${parseEther('20000')}"] },
 
-    { func: "deploy", artifact: "RewardRouterV2", as: "RewardRouter", args: []},
-    { func: "call", contract: "RewardRouter", method: "initialize", args: [
-        "${NATIVE_TOKEN.address}",
-        "${AXN.address}",
-        "${EsAXN.address}",
-        "${BnAXN.address}",
-        "${ALP.address}",
-        "${StakedAxnTracker.address}",
-        "${BonusAxnTracker.address}",
-        "${FeeAxnTracker.address}",
-        "${FeeAlpTracker.address}",
-        "${StakedAlpTracker.address}",
-        "${AlpManager.address}",
-        "${AxnVester.address}",
-        "${AlpVester.address}"    
-    ] },
+    { func: "deploy", artifact: "RewardRouterV2", as: "RewardRouter", args: [] },
+    {
+        func: "call", contract: "RewardRouter", method: "initialize", args: [
+            "${NATIVE_TOKEN.address}",
+            "${AXN.address}",
+            "${EsAXN.address}",
+            "${BnAXN.address}",
+            "${ALP.address}",
+            "${StakedAxnTracker.address}",
+            "${BonusAxnTracker.address}",
+            "${FeeAxnTracker.address}",
+            "${FeeAlpTracker.address}",
+            "${StakedAlpTracker.address}",
+            "${AlpManager.address}",
+            "${AxnVester.address}",
+            "${AlpVester.address}"
+        ]
+    },
 
     { func: "call", contract: "AlpManager", method: "setHandler", args: ["${RewardRouter.address}", true] },
 
@@ -328,17 +349,17 @@ module.exports = [
     { func: "call", contract: "BnAXN", method: "setHandler", args: ["${FeeAxnTracker.address}", true] },
     { func: "call", contract: "BnAXN", method: "setHandler", args: ["${RewardRouter.address}", true] },
 
-    { func: "call", contract: "FeeAxnTracker", method: "setDepositToken", args: ["${BnAXN.address}", true]},
+    { func: "call", contract: "FeeAxnTracker", method: "setDepositToken", args: ["${BnAXN.address}", true] },
 
     { func: "call", contract: "FeeAlpTracker", method: "setHandler", args: ["${StakedAlpTracker.address}", true] },
     { func: "call", contract: "ALP", method: "setHandler", args: ["${FeeAlpTracker.address}", true] },
     { func: "call", contract: "FeeAlpTracker", method: "setHandler", args: ["${RewardRouter.address}", true] },
-    
+
     { func: "call", contract: "StakedAlpTracker", method: "setHandler", args: ["${RewardRouter.address}", true] },
-    
+
     { func: "call", contract: "EsAXN", method: "setHandler", args: ["${RewardRouter.address}", true] },
     { func: "call", contract: "EsAXN", method: "setHandler", args: ["${StakedAxnDistributor.address}", true] },
-    
+
     { func: "call", contract: "EsAXN", method: "setHandler", args: ["${StakedAlpDistributor.address}", true] },
     { func: "call", contract: "EsAXN", method: "setHandler", args: ["${StakedAlpTracker.address}", true] },
     { func: "call", contract: "EsAXN", method: "setHandler", args: ["${AxnVester.address}", true] },
@@ -350,49 +371,55 @@ module.exports = [
     { func: "call", contract: "FeeAxnTracker", method: "setHandler", args: ["${AxnVester.address}", true] },
     { func: "call", contract: "StakedAlpTracker", method: "setHandler", args: ["${AlpVester.address}", true] },
 
-    { func: "deploy", artifact: "RewardRouterV2", as: "AlpRewardRouter", args: []},
-    { func: "call", contract: "AlpRewardRouter", method: "initialize", args: [
-        "${NATIVE_TOKEN.address}",
-        "${AddressZero.address}",
-        "${AddressZero.address}",
-        "${AddressZero.address}",
-        "${ALP.address}",
-        "${AddressZero.address}",
-        "${AddressZero.address}",
-        "${AddressZero.address}",
-        "${FeeAlpTracker.address}",
-        "${StakedAlpTracker.address}",
-        "${AlpManager.address}",
-        "${AddressZero.address}",
-        "${AddressZero.address}"    
-    ] },
+    { func: "deploy", artifact: "RewardRouterV2", as: "AlpRewardRouter", args: [] },
+    {
+        func: "call", contract: "AlpRewardRouter", method: "initialize", args: [
+            "${NATIVE_TOKEN.address}",
+            "${AddressZero.address}",
+            "${AddressZero.address}",
+            "${AddressZero.address}",
+            "${ALP.address}",
+            "${AddressZero.address}",
+            "${AddressZero.address}",
+            "${AddressZero.address}",
+            "${FeeAlpTracker.address}",
+            "${StakedAlpTracker.address}",
+            "${AlpManager.address}",
+            "${AddressZero.address}",
+            "${AddressZero.address}"
+        ]
+    },
 
     { func: "call", contract: "FeeAlpTracker", method: "setHandler", args: ["${AlpRewardRouter.address}", true] },
     { func: "call", contract: "StakedAlpTracker", method: "setHandler", args: ["${AlpRewardRouter.address}", true] },
     { func: "call", contract: "AlpManager", method: "setHandler", args: ["${AlpRewardRouter.address}", true] },
-    
+
     // Add alp token to liquidity pool
     { func: "call", contract: "AlpManager", method: "setInPrivateMode", args: [false] },
     { func: "call", contract: "USDC", method: "approve", args: ["${AlpManager.address}", "${parseUnits('10000',6)}"] },
-    { func: "call", contract: "AlpRewardRouter", method: "mintAndStakeAlp", args: [
-        "${USDC.address}", "${parseUnits('100',6)}", "${parseUnits('99',18)}", "${parseUnits('99',18)}"
-    ] },
+    {
+        func: "call", contract: "AlpRewardRouter", method: "mintAndStakeAlp", args: [
+            "${USDC.address}", "${parseUnits('100',6)}", "${parseUnits('99',18)}", "${parseUnits('99',18)}"
+        ]
+    },
     { func: "call", contract: "AlpManager", method: "setInPrivateMode", args: [true] },
 
-    { func: "deploy", artifact: "Timelock", as: "TimeLock", args: [
-        "${admin.address}", // admin ???
-        "${durationTimeLock}", // buffer
-        "${Vault.address}", // tokenManager
-        "${Vault.address}", // mintReceiver
-        "${AlpManager.address}", // glpManager
-        "${RewardRouter.address}", // RewardRouter
-        "${parseEther('13250000')}", // maxTokenSupply
-        "10", // marginFeeBasisPoints 0.1%
-        "500" // maxMarginFeeBasisPoints 5%    
-    ]},
+    {
+        func: "deploy", artifact: "Timelock", as: "TimeLock", args: [
+            "${admin.address}", // admin ???
+            "${durationTimeLock}", // buffer
+            "${Vault.address}", // tokenManager
+            "${Vault.address}", // mintReceiver
+            "${AlpManager.address}", // glpManager
+            "${RewardRouter.address}", // RewardRouter
+            "${parseEther('13250000')}", // maxTokenSupply
+            "10", // marginFeeBasisPoints 0.1%
+            "500" // maxMarginFeeBasisPoints 5%    
+        ]
+    },
     { func: "call", contract: "TimeLock", method: "setMarginFeeBasisPoints", args: [10, 500] },
     { func: "call", contract: "TimeLock", method: "setShouldToggleIsLeverageEnabled", args: [true] },
-    
+
     { func: "call", contract: "Vault", method: "setGov", args: ["${TimeLock.address}"] },
     { func: "call", contract: "VaultErrorController", method: "setGov", args: ["${TimeLock.address}"] },
     { func: "call", contract: "VaultUtils", method: "setGov", args: ["${TimeLock.address}"] },
@@ -403,14 +430,16 @@ module.exports = [
 
     { func: "call", contract: "TimeLock", method: "signalApprove", args: ["${AXN.address}", "${admin.address}", "1000000000000000000"] },
 
-    { func: "deploy", artifact: "PositionManager", args: [
-        "${Vault.address}", 
-        "${Router.address}", 
-        "${ShortsTracker.address}", 
-        "${NATIVE_TOKEN.address}", 
-        30, 
-        "${OrderBook.address}"
-    ]},
+    {
+        func: "deploy", artifact: "PositionManager", args: [
+            "${Vault.address}",
+            "${Router.address}",
+            "${ShortsTracker.address}",
+            "${NATIVE_TOKEN.address}",
+            30,
+            "${OrderBook.address}"
+        ]
+    },
 
     { func: "call", contract: "PositionManager", method: "setShouldValidateIncreaseOrder", args: ["false"] },
 
@@ -430,27 +459,29 @@ module.exports = [
 
     { func: "call", contract: "PositionManager", method: "setGov", args: ["${TimeLock.address}"] },
 
-    { func: "deploy", artifact: "PositionRouter", args: [
-        "${Vault.address}", 
-        "${Router.address}", 
-        "${NATIVE_TOKEN.address}", 
-        "${ShortsTracker.address}", 
-        30, 
-        "20000000000000000" 
-    ]},
+    {
+        func: "deploy", artifact: "PositionRouter", args: [
+            "${Vault.address}",
+            "${Router.address}",
+            "${NATIVE_TOKEN.address}",
+            "${ShortsTracker.address}",
+            30,
+            "20000000000000000"
+        ]
+    },
 
     { func: "call", contract: "ShortsTracker", method: "setHandler", args: ["${PositionRouter.address}", true] },
-    
+
     { func: "call", contract: "Router", method: "addPlugin", args: ["${PositionRouter.address}"] },
-    
+
     { func: "call", contract: "PositionRouter", method: "setDelayValues", args: [1, 180, "${30 * 60}"] },
     { func: "call", contract: "TimeLock", method: "setContractHandler", args: ["${PositionRouter.address}", true] },
 
     { func: "call", contract: "PositionRouter", method: "setGov", args: ["${TimeLock.address}"] },
-    
-    { func: "deploy", artifact: "ReferralReader", args: []},
-    
-    { func: "deploy", artifact: "ReferralStorage", args: []},
+
+    { func: "deploy", artifact: "ReferralReader", args: [] },
+
+    { func: "deploy", artifact: "ReferralStorage", args: [] },
 
     { func: "call", contract: "PositionRouter", method: "setReferralStorage", args: ["${ReferralStorage.address}"] },
     { func: "call", contract: "PositionManager", method: "setReferralStorage", args: ["${ReferralStorage.address}"] },
@@ -459,12 +490,14 @@ module.exports = [
     { func: "call", contract: "ReferralStorage", method: "setTier", args: [1, 2000, 5000] },
     { func: "call", contract: "ReferralStorage", method: "setTier", args: [2, 5000, 4000] },
     { func: "call", contract: "ReferralStorage", method: "setGov", args: ["${TimeLock.address}"] },
-    
-    { func: "deploy", artifact: "PriceFeedTimelock", args: [
-        "${admin.address}",
-        "${durationTimeLock}",
-        "${TokenManager.address}"    
-    ]},
+
+    {
+        func: "deploy", artifact: "PriceFeedTimelock", args: [
+            "${admin.address}",
+            "${durationTimeLock}",
+            "${TokenManager.address}"
+        ]
+    },
     { func: "call", contract: "PriceFeedTimelock", method: "setContractHandler", args: ["${admin.address}", true] },
 
     { func: "call", contract: "PriceFeedTimelock", method: "setKeeper", args: ["${admin.address}", true] },
@@ -472,15 +505,17 @@ module.exports = [
     { func: "call", contract: "PriceFeedTimelock", method: "setKeeper", args: ["${remotePriceUpdater.address}", true] },
 
     { func: "deploy", artifact: "FastPriceEvents" },
-    { func: "deploy", artifact: "FastPriceFeed", args: [
-        300, // priceDuration 
-        3600, // maxPriceUpdateDelay 
-        1, // minBlockInterval 
-        250, // maxDeviationBasisPoint 
-        "${FastPriceEvents.address}", // fastPriceEvents 
-        "${admin.address}", // tokenManager 
-        "${PositionRouter.address}" // positionRouter
-    ], as: "SecondaryPriceFeed" },
+    {
+        func: "deploy", artifact: "FastPriceFeed", args: [
+            300, // priceDuration 
+            3600, // maxPriceUpdateDelay 
+            1, // minBlockInterval 
+            250, // maxDeviationBasisPoint 
+            "${FastPriceEvents.address}", // fastPriceEvents 
+            "${admin.address}", // tokenManager 
+            "${PositionRouter.address}" // positionRouter
+        ], as: "SecondaryPriceFeed"
+    },
     { func: "call", contract: "VaultPriceFeed", method: "setSecondaryPriceFeed", args: ["${SecondaryPriceFeed.address}"] },
     // { func: "call", contract: "VaultPriceFeed", method: "setTokenConfig", args: ["${NATIVE_TOKEN.address}", "${PriceFeedETH.address}", 8, false] },
     // { func: "call", contract: "VaultPriceFeed", method: "setTokenConfig", args: ["${BTC.address}", "${PriceFeedBTC.address}", 8, false] },
@@ -488,10 +523,12 @@ module.exports = [
     // { func: "call", contract: "VaultPriceFeed", method: "setTokenConfig", args: ["${HEX.address}", "${PriceFeedHEX.address}", 8, true] },
     // { func: "call", contract: "VaultPriceFeed", method: "setTokenConfig", args: ["${USDC.address}", "${PriceFeedUSDC.address}", 8, true] },
 
-    { func: "call", contract: "SecondaryPriceFeed", method: "initialize", args: [1, 
-        ["${admin.address}"], 
-        ["${admin.address}", "${localPriceUpdater.address}", "${remotePriceUpdater.address}"]
-    ] },
+    {
+        func: "call", contract: "SecondaryPriceFeed", method: "initialize", args: [1,
+            ["${admin.address}"],
+            ["${admin.address}", "${localPriceUpdater.address}", "${remotePriceUpdater.address}"]
+        ]
+    },
     { func: "call", contract: "SecondaryPriceFeed", method: "setVaultPriceFeed", args: ["${VaultPriceFeed.address}"] },
     { func: "call", contract: "SecondaryPriceFeed", method: "setMaxTimeDeviation", args: [3600] },
     { func: "call", contract: "SecondaryPriceFeed", method: "setSpreadBasisPointsIfInactive", args: [50] },
@@ -513,42 +550,48 @@ module.exports = [
     { func: "call", contract: "FastPriceEvents", method: "setGov", args: ["${PriceFeedTimelock.address}"] },
 
     // { func: "deploy", artifact: "GMT", args: ["${parseEther('401000')}"]},
-    { func: "deploy", artifact: "StakeManager", args: []},
-    { func: "deploy", artifact: "StakedAlp", args: [
-        "${ALP.address}",
-        "${AlpManager.address}",
-        "${StakedAlpTracker.address}",
-        "${FeeAlpTracker.address}"    
-    ]},
+    { func: "deploy", artifact: "StakeManager", args: [] },
+    {
+        func: "deploy", artifact: "StakedAlp", args: [
+            "${ALP.address}",
+            "${AlpManager.address}",
+            "${StakedAlpTracker.address}",
+            "${FeeAlpTracker.address}"
+        ]
+    },
     { func: "call", contract: "FeeAlpTracker", method: "setHandler", args: ["${StakedAlp.address}", true] },
     { func: "call", contract: "StakedAlpTracker", method: "setHandler", args: ["${StakedAlp.address}", true] },
-    { func: "deploy", artifact: "AlpBalance", args: ["${AlpManager.address}", "${StakedAlpTracker.address}"]},
+    { func: "deploy", artifact: "AlpBalance", args: ["${AlpManager.address}", "${StakedAlpTracker.address}"] },
 
-    { func: "deploy", artifact: "BalanceUpdater", args: []},
-    { func: "deploy", artifact: "BatchSender", args: []},
-    { func: "deploy", artifact: "VaultReader", args: []},
-    { func: "deploy", artifact: "ShortsTrackerTimelock", args: [
-        "${admin.address}", // admin
-        "${durationTimeLock}", // buffer
-        300,  // averagePriceUpdateDelay
-        20 // maxAveragePriceChange
-    ]},
+    { func: "deploy", artifact: "BalanceUpdater", args: [] },
+    { func: "deploy", artifact: "BatchSender", args: [] },
+    { func: "deploy", artifact: "VaultReader", args: [] },
+    {
+        func: "deploy", artifact: "ShortsTrackerTimelock", args: [
+            "${admin.address}", // admin
+            "${durationTimeLock}", // buffer
+            300,  // averagePriceUpdateDelay
+            20 // maxAveragePriceChange
+        ]
+    },
     { func: "call", contract: "ShortsTrackerTimelock", method: "setHandler", args: ["${ShortsTracker.address}", true] },
-    { func: "deploy", artifact: "RewardReader", args: []},
-    { func: "deploy", artifact: "Reader", args: []},
-    { func: "deploy", artifact: "OrderBookReader", args: []},
-    
-    { func: "deploy", artifact: "AxnTimelock", args: [
-        "${admin.address}",
-        "${durationTimeLock}",
-        "${durationTimeLock}",
-        "${AddressZero.address}",
-        "${admin.address}",
-        "${AddressZero.address}",
-        "${parseEther('13250000')}"    
-    ]},
+    { func: "deploy", artifact: "RewardReader", args: [] },
+    { func: "deploy", artifact: "Reader", args: [] },
+    { func: "deploy", artifact: "OrderBookReader", args: [] },
 
-    { func: "deploy", artifact: "EsAxnBatchSender", args: ["${EsAXN.address}"]},
+    {
+        func: "deploy", artifact: "AxnTimelock", args: [
+            "${admin.address}",
+            "${durationTimeLock}",
+            "${durationTimeLock}",
+            "${AddressZero.address}",
+            "${admin.address}",
+            "${AddressZero.address}",
+            "${parseEther('13250000')}"
+        ]
+    },
+
+    { func: "deploy", artifact: "EsAxnBatchSender", args: ["${EsAXN.address}"] },
     { func: "call", contract: "EsAXN", method: "setHandler", args: ["${EsAxnBatchSender.address}"] },
     { func: "call", contract: "AxnVester", method: "setHandler", args: ["${EsAxnBatchSender.address}"] },
     { func: "call", contract: "AlpVester", method: "setHandler", args: ["${EsAxnBatchSender.address}"] },
@@ -575,38 +618,46 @@ module.exports = [
 
     // { func: "load", artifact: "contracts/uniswap/Router.sol:PancakeRouter", address: "0xDaE9dd3d1A52CfCe9d5F2fAC7fDe164D500E50f7" },
     // { func: "load", artifact: "contracts/uniswap/Factory.sol:PancakeFactory", address: "0xFf0538782D122d3112F75dc7121F61562261c0f7" },
-    { func: "deploy", artifact: "contracts/uniswap/Factory.sol:PancakeFactory", args: ["${admin.address}"]},
-    { func: "init_pair_hash", router: "contracts/uniswap/Router.sol", factory: "PancakeFactory"},
-    { func: "deploy", artifact: "contracts/uniswap/Router.sol:PancakeRouter", args: ["${PancakeFactory.address}", "${NATIVE_TOKEN.address}"]},
+    { func: "deploy", artifact: "contracts/uniswap/Factory.sol:PancakeFactory", args: ["${admin.address}"] },
+    { func: "init_pair_hash", router: "contracts/uniswap/Router.sol", factory: "PancakeFactory" },
+    { func: "deploy", artifact: "contracts/uniswap/Router.sol:PancakeRouter", args: ["${PancakeFactory.address}", "${NATIVE_TOKEN.address}"] },
     { func: "call", contract: "AXN", method: "mint", args: ["${admin.address}", "${parseEther('10000000')}"] },
     { func: "call", contract: "AXN", method: "approve", args: ["${PancakeRouter.address}", "${parseEther('1000000')}"] },
     { func: "call", contract: "USDC", method: "approve", args: ["${PancakeRouter.address}", "${parseUnits('10000000', 6)}"] },
-    { func: "call", contract: "PancakeRouter", method: "addLiquidity", args: [
-        "${USDC.address}", "${AXN.address}", "${parseUnits('10000000', 6)}", "${parseEther('1000000')}", 0, 0, "${admin.address}", "${block.timestamp + 1000}"
-    ]},
+    {
+        func: "call", contract: "PancakeRouter", method: "addLiquidity", args: [
+            "${USDC.address}", "${AXN.address}", "${parseUnits('10000000', 6)}", "${parseEther('1000000')}", 0, 0, "${admin.address}", "${block.timestamp + 1000}"
+        ]
+    },
     { func: "call", contract: "PancakeFactory", method: "getPair", args: ["${USDC.address}", "${AXN.address}"], as: "_pairAxnUsdcPool" },
 
     { func: "load", artifact: "contracts/uniswap/IUniswapV2Pair.sol:IUniswapV2Pair", as: "UniswapAxnUsdcPool", address: "${_pairAxnUsdcPool}" },
-    
-    { func: "deploy", artifact: "LiquidityLocker", args: [
-        "${TimeLock.address}",
-        "${UniswapAxnUsdcPool.address}",
-        "${block.timestamp + 86400 * 20}"    
-    ]},
-    
+
+    {
+        func: "deploy", artifact: "LiquidityLocker", args: [
+            "${TimeLock.address}",
+            "${UniswapAxnUsdcPool.address}",
+            "${block.timestamp + 86400 * 20}"
+        ]
+    },
+
     { func: "call", contract: "UniswapAxnUsdcPool", method: "balanceOf", args: ["${admin.address}"], as: "_balanceOfAxnUsdc" },
     { func: "call", contract: "UniswapAxnUsdcPool", method: "transfer", args: ["${LiquidityLocker.address}", "${_balanceOfAxnUsdc}"] },
 
-    { func: "call", contract: "PositionRouter", method: "setMaxGlobalSizes", args: [
-        ["${NATIVE_TOKEN.address}", "${BTC.address}"], 
-        ["${parseUnits('15', 36)}", "${parseUnits('10', 36)}"], 
-        ["${parseUnits('10', 36)}", "${parseUnits('1000', 30)}"]
-    ] },
-    { func: "call", contract: "PositionManager", method: "setMaxGlobalSizes", args: [
-        ["${NATIVE_TOKEN.address}", "${BTC.address}"], 
-        ["${parseUnits('15', 36)}", "${parseUnits('10', 36)}"], 
-        ["${parseUnits('10', 36)}", "${parseUnits('1000', 30)}"]
-    ] },
+    {
+        func: "call", contract: "PositionRouter", method: "setMaxGlobalSizes", args: [
+            ["${NATIVE_TOKEN.address}", "${BTC.address}"],
+            ["${parseUnits('15', 36)}", "${parseUnits('10', 36)}"],
+            ["${parseUnits('10', 36)}", "${parseUnits('1000', 30)}"]
+        ]
+    },
+    {
+        func: "call", contract: "PositionManager", method: "setMaxGlobalSizes", args: [
+            ["${NATIVE_TOKEN.address}", "${BTC.address}"],
+            ["${parseUnits('15', 36)}", "${parseUnits('10', 36)}"],
+            ["${parseUnits('10', 36)}", "${parseUnits('1000', 30)}"]
+        ]
+    },
 
     // { func: "wallet", value: "0x2fD798a8fcc64Ba1Bc62bF363A6A28F63e93D5b8", as: "tierAccount1" },
     // { func: "wallet", value: "0x8Bcf10D5bD8a0FF835221dD2a9C794B435c52813", as: "tierAccount2" },
@@ -619,7 +670,7 @@ module.exports = [
     { func: "call", contract: "TimeLock", method: "setMaxGlobalShortSize", args: ["${Vault.address}", "${HEX.address}", "${parseUnits('20000', 30)}"] },
     { func: "call", contract: "TimeLock", method: "setMaxGlobalShortSize", args: ["${Vault.address}", "${USDC.address}", "${parseUnits('20000', 30)}"] },
 
-    { func: "call", contract: "NATIVE_TOKEN", method: "deposit", overrides: {value: "100000000000000000"}, key: "deposit 0.1ETH" },
+    { func: "call", contract: "NATIVE_TOKEN", method: "deposit", overrides: { value: "100000000000000000" }, key: "deposit 0.1ETH" },
     { func: "call", contract: "NATIVE_TOKEN", method: "approve", args: ["${Router.address}", "${parseUnits('100', 18)}"] },
     { func: "call", contract: "Router", method: "directPoolDeposit", args: ["${NATIVE_TOKEN.address}", "${parseUnits('0.1', 18)}"] },
     { func: "call", contract: "USDC", method: "approve", args: ["${Router.address}", "${parseUnits('100000', 6)}"] },
@@ -630,13 +681,13 @@ module.exports = [
     // { func: "call", contract: "Router", method: "directPoolDeposit", args: ["${ETH.address}", "${parseUnits('1000', 18)}"] },
     { func: "call", contract: "HEX", method: "approve", args: ["${Router.address}", "${parseUnits('1000000', 8)}"] },
     { func: "call", contract: "Router", method: "directPoolDeposit", args: ["${HEX.address}", "${parseUnits('5000', 8)}"] },
-    
+
     // { func: "call", contract: "EsAXN", method: "setMinter", args: ["${admin.address}", true] },
     // { func: "call", contract: "EsAXN", method: "mint", args: ["${StakedAxnDistributor.address}", "${parseEther('600000')}"] },
     // { func: "call", contract: "EsAXN", method: "mint", args: ["${StakedAlpDistributor.address}", "${parseEther('600000')}"] },
     // { func: "call", contract: "BnAXN", method: "setMinter", args: ["${admin.address}", true] },
     // { func: "call", contract: "BnAXN", method: "mint", args: ["${BonusAxnDistributor.address}", "${parseEther('15000000')}"] },
-    { func: "call", contract: "NATIVE_TOKEN", method: "deposit", overrides: {value: "200000000000000000"}, key: "deposit 0.2ETH" },
+    { func: "call", contract: "NATIVE_TOKEN", method: "deposit", overrides: { value: "200000000000000000" }, key: "deposit 0.2ETH" },
     { func: "call", contract: "NATIVE_TOKEN", method: "transfer", args: ["${FeeAxnDistributor.address}", "${parseEther('0.1')}"] },
     { func: "call", contract: "NATIVE_TOKEN", method: "transfer", args: ["${FeeAlpDistributor.address}", "${parseEther('0.1')}"] },
 
@@ -658,18 +709,20 @@ module.exports = [
     { func: "call", contract: "FeeAlpDistributor", method: "updateLastDistributionTime" },
     { func: "call", contract: "BonusAxnDistributor", method: "updateLastDistributionTime" },
 
-    { func: "save", contracts: [
-        "NATIVE_TOKEN", "BTC", "HEX", "USDC",
-        "Vault", "Router", "VaultReader", "Reader", "AlpManager", "RewardRouter", "AlpRewardRouter", "RewardReader", 
-        "ALP", "AXN", "EsAXN", "BnAXN", "USDG", "EsAxnIOU",
-        "StakedAxnTracker", "BonusAxnTracker", "FeeAxnTracker", "StakedAlpTracker", "FeeAlpTracker",
-        "StakedAxnDistributor", "StakedAlpDistributor",
-        "AxnVester", "AlpVester",
-        "OrderBook", "OrderExecutor", "OrderBookReader",
-        "PositionRouter", "PositionManager",
-        "UniswapMmyFtmPool", "UniswapAxnUsdcPool", "ReferralStorage",
-        "ReferralReader",
-        "TimeLock", "SecondaryPriceFeed",
-        "LiquidityLocker", "MummyClubNFT", "MummyClubNFTStaking", "MummyClubSale", "MummyClubVester"
-    ] }
+    {
+        func: "save", contracts: [
+            "NATIVE_TOKEN", "BTC", "HEX", "USDC",
+            "Vault", "Router", "VaultReader", "Reader", "AlpManager", "RewardRouter", "AlpRewardRouter", "RewardReader",
+            "ALP", "AXN", "EsAXN", "BnAXN", "USDG", "EsAxnIOU",
+            "StakedAxnTracker", "BonusAxnTracker", "FeeAxnTracker", "StakedAlpTracker", "FeeAlpTracker",
+            "StakedAxnDistributor", "StakedAlpDistributor",
+            "AxnVester", "AlpVester",
+            "OrderBook", "OrderExecutor", "OrderBookReader",
+            "PositionRouter", "PositionManager",
+            "UniswapMmyFtmPool", "UniswapAxnUsdcPool", "ReferralStorage",
+            "ReferralReader",
+            "TimeLock", "SecondaryPriceFeed",
+            "LiquidityLocker", "MummyClubNFT", "MummyClubNFTStaking", "MummyClubSale", "MummyClubVester"
+        ]
+    }
 ]
