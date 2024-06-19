@@ -20,13 +20,13 @@ module.exports = {
     localhost: {
       timeout: 120000,
       forking: {
-        url: 'https://base.llamarpc.com',
+        url: 'https://mainnet.base.org',
       }
     },
     hardhat: {
       allowUnlimitedContractSize: true,
       forking: {
-        url: 'https://base.llamarpc.com',
+        url: 'https://mainnet.base.org',
       }
     },
     devnet: {
@@ -39,7 +39,7 @@ module.exports = {
       gasPrice: 20000000000,
     },
     base: {
-      url: `https://base.publicnode.com`,
+      url: 'https://mainnet.base.org',
       accounts: [`${mnemonic}`],
       chainId: 8453
     },
